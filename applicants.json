@@ -1,8 +1,8 @@
 {
-    "generated_at": "2026-08-07T10:10:56+02:00",
+    "generated_at": "2026-08-07T11:06:03+02:00",
     "source": "แบบตอบรับ.xlsx",
-    "source_mtime": "2026-08-07T09:49:34+02:00",
-    "total_applicants": 81,
+    "source_mtime": "2026-08-07T11:06:03+02:00",
+    "total_applicants": 84,
     "slots": [
         {
             "id": "A1",
@@ -767,28 +767,28 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
-                    "review_note": "",
-                    "reviewed_at": ""
+                    "review_note": "ทดสอบระบบ",
+                    "reviewed_at": "2026-08-07 11:00:06"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
-            "review_note": "",
+            "review_note": "ทดสอบระบบ",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-07 11:00:06",
             "assigned_slot": "",
             "key": "a52f1661f11d83dad73f0a525624f735"
         },
@@ -929,29 +929,29 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-07 11:06:03"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-07 11:06:03",
+            "assigned_slot": "A1",
             "key": "b21ab18be4e8dca7b3a3316d62a51b71"
         },
         {
@@ -6965,6 +6965,234 @@
             "reviewed_at": "",
             "assigned_slot": "",
             "key": "9d58d2644135d32a12e3fa0257854e44"
+        },
+        {
+            "row": 85,
+            "timestamp": 1786088982,
+            "datetime": "2026-08-07 14:49:42",
+            "datetime_th": "7 ส.ค. 2569 · 14:49:42 น.",
+            "time_label": "7 ส.ค. 2569 · 14:49:42 น.",
+            "timestamp_raw": "7\/8\/2026, 14:49:42",
+            "name": "นางสาวสิริหลักบุญ สุรไพฑูรย์",
+            "phone": "872961939",
+            "zone": "C",
+            "zone_raw": "โซน C",
+            "category": "ผลไม้",
+            "category_raw": "ผลไม้",
+            "detail": "สินค้าที่ร้าน ราคาย่อมเยา เข้าถึงทุกเพศทุกวัย มีผลไม้สดใส่กล่องปอกพร้อมทาน ปอกวันต่อวัน ไม่มีค้างคืน \/ มะม่วงเบา \/ มะกอกน้ำ \/ มะม่วงสามรส \/ กระท้อนทรงเครื่อง จุดเด่นคือน้ำจิ้มรสเด็ด ชิมแล้วติดใจ ประกอบไปด้วยกะปิแห้ง กะปิโหว่ น้ำปลาหวานกุ้ง ค่ะ",
+            "qualifications": "เป็นผู้ที่มีอายุตั้งแต่ 18 ปี ขึ้นไป, เป็นผู้จำหน่ายสินค้าด้วยตนเอง, ไม่เป็นบุคคลที่มีข้อพิพาททางคดีกับมหาวิทยาลัยขอนแก่น และหน่วยงานอื่น ๆ, ไม่เคยกระทำผิดกฎหมาย หรือต้องคำพิพากษาถึงที่สุดว่ากระทำผิดกฎหมาย ยกเว้นการกระทำผิดที่กระทำโดยประมาท หรือความผิดลหุโทษ, ไม่เป็นโรคที่สังคมรังเกียจ หรือโรคติดต่อที่เป็นอันตรายร้ายแรงต่อสังคม และไม่เป็นบุคคลวิกลจริตหรือเป็นบุคคลเสมือนไร้ความสามารถ",
+            "id_card": "https:\/\/drive.google.com\/file\/d\/16gRSciJj-HoaEzpQDz0F9x_cJFZdLLV9\/view",
+            "house_reg": "https:\/\/drive.google.com\/file\/d\/19GTX3YU1x7xv7CpvRJqqAMrd2JJBASBw\/view",
+            "photo": "https:\/\/drive.google.com\/file\/d\/12itPq2zbUCeC3ivF4qfDR7BycRsetRYe\/view",
+            "food_photos": [
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1PceggkLsS41Eg9aCYeRSs5tl4oFoY0IL\/view",
+                    "id": "1PceggkLsS41Eg9aCYeRSs5tl4oFoY0IL",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1PceggkLsS41Eg9aCYeRSs5tl4oFoY0IL&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1PceggkLsS41Eg9aCYeRSs5tl4oFoY0IL&sz=w1600"
+                },
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/14qn1oA1orJlRJYff_1jqiHOQSzESEuDx\/view",
+                    "id": "14qn1oA1orJlRJYff_1jqiHOQSzESEuDx",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=14qn1oA1orJlRJYff_1jqiHOQSzESEuDx&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=14qn1oA1orJlRJYff_1jqiHOQSzESEuDx&sz=w1600"
+                },
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1SRu5meDcBbsU7xAPXRqNpNCHGFfWl3uk\/view",
+                    "id": "1SRu5meDcBbsU7xAPXRqNpNCHGFfWl3uk",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1SRu5meDcBbsU7xAPXRqNpNCHGFfWl3uk&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1SRu5meDcBbsU7xAPXRqNpNCHGFfWl3uk&sz=w1600"
+                },
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1TiGF7jEaSxJzZtox4XkYHuBamO97XuP7\/view",
+                    "id": "1TiGF7jEaSxJzZtox4XkYHuBamO97XuP7",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1TiGF7jEaSxJzZtox4XkYHuBamO97XuP7&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1TiGF7jEaSxJzZtox4XkYHuBamO97XuP7&sz=w1600"
+                },
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1hlZhsVkYh7QI4c07ZUNvVdKEn52seAqS\/view",
+                    "id": "1hlZhsVkYh7QI4c07ZUNvVdKEn52seAqS",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1hlZhsVkYh7QI4c07ZUNvVdKEn52seAqS&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1hlZhsVkYh7QI4c07ZUNvVdKEn52seAqS&sz=w1600"
+                }
+            ],
+            "docs": {
+                "id_card": true,
+                "house_reg": true,
+                "photo": true,
+                "food": true,
+                "qualify": true
+            },
+            "auto_missing": [],
+            "doc_check": {
+                "system": {
+                    "pass": true,
+                    "label": "ครบถ้วน",
+                    "missing": []
+                },
+                "admin": {
+                    "reviewed": false,
+                    "status": "",
+                    "pass": false,
+                    "fail": false,
+                    "missing_detail": "",
+                    "review_note": "",
+                    "reviewed_at": ""
+                },
+                "effective": {
+                    "source": "system",
+                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "pass": true,
+                    "label": "ครบถ้วน (ระบบ)",
+                    "reason": ""
+                }
+            },
+            "status": "ครบถ้วน (อัตโนมัติ)",
+            "status_raw": "",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "",
+            "assigned_slot": "",
+            "key": "b301e3c8cc0bf4d1b82cf76b61dc5859"
+        },
+        {
+            "row": 86,
+            "timestamp": 1786090410,
+            "datetime": "2026-08-07 15:13:30",
+            "datetime_th": "7 ส.ค. 2569 · 15:13:30 น.",
+            "time_label": "7 ส.ค. 2569 · 15:13:30 น.",
+            "timestamp_raw": "7\/8\/2026, 15:13:30",
+            "name": "นางสาวกาญจนาภรณ์ อัครปัญญา",
+            "phone": "660648893",
+            "zone": "C",
+            "zone_raw": "โซน C",
+            "category": "พิซซ่า",
+            "category_raw": "พิซซ่า (จำกัด 1 ล็อค)",
+            "detail": "แป้งนุ่ม หน้าเเน่น ราคาประหยัด ชิ้นละ 25 บาท",
+            "qualifications": "เป็นผู้ที่มีอายุตั้งแต่ 18 ปี ขึ้นไป, เป็นผู้จำหน่ายสินค้าด้วยตนเอง, ไม่เป็นบุคคลที่มีข้อพิพาททางคดีกับมหาวิทยาลัยขอนแก่น และหน่วยงานอื่น ๆ, ไม่เคยกระทำผิดกฎหมาย หรือต้องคำพิพากษาถึงที่สุดว่ากระทำผิดกฎหมาย ยกเว้นการกระทำผิดที่กระทำโดยประมาท หรือความผิดลหุโทษ, ไม่เป็นโรคที่สังคมรังเกียจ หรือโรคติดต่อที่เป็นอันตรายร้ายแรงต่อสังคม และไม่เป็นบุคคลวิกลจริตหรือเป็นบุคคลเสมือนไร้ความสามารถ",
+            "id_card": "https:\/\/drive.google.com\/file\/d\/1IlRO2kxr7aBuerq1hkR2-sfLrd4e9p4H\/view",
+            "house_reg": "https:\/\/drive.google.com\/file\/d\/1ImR_APE-TtXzCprhfMFT9faohCy5qcXa\/view",
+            "photo": "https:\/\/drive.google.com\/file\/d\/10dqJL3LfWzh2e9TMz-KX-iCTx9lQnlMc\/view",
+            "food_photos": [
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1AvX8Y3nJVlcVWkjUZFfXT_qsbveb7Efd\/view",
+                    "id": "1AvX8Y3nJVlcVWkjUZFfXT_qsbveb7Efd",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1AvX8Y3nJVlcVWkjUZFfXT_qsbveb7Efd&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1AvX8Y3nJVlcVWkjUZFfXT_qsbveb7Efd&sz=w1600"
+                }
+            ],
+            "docs": {
+                "id_card": true,
+                "house_reg": true,
+                "photo": true,
+                "food": true,
+                "qualify": true
+            },
+            "auto_missing": [],
+            "doc_check": {
+                "system": {
+                    "pass": true,
+                    "label": "ครบถ้วน",
+                    "missing": []
+                },
+                "admin": {
+                    "reviewed": false,
+                    "status": "",
+                    "pass": false,
+                    "fail": false,
+                    "missing_detail": "",
+                    "review_note": "",
+                    "reviewed_at": ""
+                },
+                "effective": {
+                    "source": "system",
+                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "pass": true,
+                    "label": "ครบถ้วน (ระบบ)",
+                    "reason": ""
+                }
+            },
+            "status": "ครบถ้วน (อัตโนมัติ)",
+            "status_raw": "",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "",
+            "assigned_slot": "",
+            "key": "d57ed0b04f7799637f8c0a26a712f24d"
+        },
+        {
+            "row": 87,
+            "timestamp": 1786091931,
+            "datetime": "2026-08-07 15:38:51",
+            "datetime_th": "7 ส.ค. 2569 · 15:38:51 น.",
+            "time_label": "7 ส.ค. 2569 · 15:38:51 น.",
+            "timestamp_raw": "7\/8\/2026, 15:38:51",
+            "name": "ฐานิตา ทบจันทร์",
+            "phone": "658717621",
+            "zone": "C",
+            "zone_raw": "โซน C",
+            "category": "สุกี้โรล\/เกี๊ยวต้ม\/ชาบู",
+            "category_raw": "สุกี้โรล\/เกี๊ยวต้ม\/ชาบู",
+            "detail": "สุกี้โรล เป็นผักกาดขาว ห่อหมู สอดไส้ต่างๆ ทานกับน้ำจิ้มสุกี้และซีฟู๊ด",
+            "qualifications": "เป็นผู้ที่มีอายุตั้งแต่ 18 ปี ขึ้นไป, เป็นผู้จำหน่ายสินค้าด้วยตนเอง, ไม่เป็นบุคคลที่มีข้อพิพาททางคดีกับมหาวิทยาลัยขอนแก่น และหน่วยงานอื่น ๆ, ไม่เคยกระทำผิดกฎหมาย หรือต้องคำพิพากษาถึงที่สุดว่ากระทำผิดกฎหมาย ยกเว้นการกระทำผิดที่กระทำโดยประมาท หรือความผิดลหุโทษ, ไม่เป็นโรคที่สังคมรังเกียจ หรือโรคติดต่อที่เป็นอันตรายร้ายแรงต่อสังคม และไม่เป็นบุคคลวิกลจริตหรือเป็นบุคคลเสมือนไร้ความสามารถ",
+            "id_card": "https:\/\/drive.google.com\/file\/d\/1kg53a9uKYMCaogc_eMvBJSDa5gQahY_J\/view",
+            "house_reg": "https:\/\/drive.google.com\/file\/d\/1Tdui04K_ljCm7hNDNDtKXuePQjKTYhkR\/view",
+            "photo": "https:\/\/drive.google.com\/file\/d\/1FCTzdR8fx44hjiBuwrCWCLGrFNjpm6aM\/view",
+            "food_photos": [
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/14IxT-MZBJGgF-orxwkuw8c15r3K74vtx\/view",
+                    "id": "14IxT-MZBJGgF-orxwkuw8c15r3K74vtx",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=14IxT-MZBJGgF-orxwkuw8c15r3K74vtx&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=14IxT-MZBJGgF-orxwkuw8c15r3K74vtx&sz=w1600"
+                },
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/19sZIMkKUdurKiNTchV7v4GClNIu83HbZ\/view",
+                    "id": "19sZIMkKUdurKiNTchV7v4GClNIu83HbZ",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=19sZIMkKUdurKiNTchV7v4GClNIu83HbZ&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=19sZIMkKUdurKiNTchV7v4GClNIu83HbZ&sz=w1600"
+                }
+            ],
+            "docs": {
+                "id_card": true,
+                "house_reg": true,
+                "photo": true,
+                "food": true,
+                "qualify": true
+            },
+            "auto_missing": [],
+            "doc_check": {
+                "system": {
+                    "pass": true,
+                    "label": "ครบถ้วน",
+                    "missing": []
+                },
+                "admin": {
+                    "reviewed": false,
+                    "status": "",
+                    "pass": false,
+                    "fail": false,
+                    "missing_detail": "",
+                    "review_note": "",
+                    "reviewed_at": ""
+                },
+                "effective": {
+                    "source": "system",
+                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "pass": true,
+                    "label": "ครบถ้วน (ระบบ)",
+                    "reason": ""
+                }
+            },
+            "status": "ครบถ้วน (อัตโนมัติ)",
+            "status_raw": "",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "",
+            "assigned_slot": "",
+            "key": "5721105c3a55f494e5277bac9c935cb5"
         }
     ],
     "shop_report": [
@@ -6972,9 +7200,21 @@
             "slot": "A1",
             "zone": "A",
             "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 4,
+                "key": "b21ab18be4e8dca7b3a3316d62a51b71",
+                "name": "หทัยวรรณ ทาให้งาม",
+                "phone": "634030759",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-07 11:06:03",
+                "time_label": "6 ส.ค. 2569 · 08:34:43 น.",
+                "applied_zone": "A",
+                "applied_category": "เครื่องดื่มไม่มีแอลกอฮอล์",
+                "review_note": ""
+            }
         },
         {
             "slot": "A2",
@@ -7290,15 +7530,15 @@
         }
     ],
     "doc_summary": {
-        "total": 81,
-        "system_ok": 81,
+        "total": 84,
+        "system_ok": 84,
         "system_fail": 0,
-        "admin_ok": 0,
+        "admin_ok": 2,
         "admin_fail": 0,
-        "admin_pending": 81,
-        "effective_ok": 81,
+        "admin_pending": 82,
+        "effective_ok": 84,
         "effective_fail": 0
     },
     "policy": "ระบบอัปเดตเฉพาะคอลัมน์สถานะ (P–U) เท่านั้น ไม่ลบรายการผู้สมัครใน Excel",
-    "notice": "หากไม่พบชื่อในระบบ ให้ดาวน์โหลดไฟล์ล่าสุดจาก Google Sheet แล้วอัปโหลดทับผ่านปุ่มนำเข้าข้อมูล · การเช็คเอกสาร\/คัดเลือกเป็นการอัปเดตสถานะเท่านั้น ไม่ลบแถวข้อมูล · สถานะเอกสารยึดตามที่ Admin ตรวจเมื่อมีการบันทึกแล้ว"
+    "notice": "นำเข้า Excel ล่าสุดจาก Google Sheet ได้ที่ปุ่มนำเข้าข้อมูล · การเช็คเอกสาร\/คัดเลือกเป็นการอัปเดตสถานะเท่านั้น ไม่ลบแถวผู้สมัคร · สถานะเอกสารยึดตาม Admin เมื่อบันทึกแล้ว · เวลาที่แสดงเป็นเวลาไทย (Asia\/Bangkok)"
 }
