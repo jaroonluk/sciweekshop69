@@ -6,5 +6,7 @@ rebuild_out.json
 .DS_Store
 Thumbs.db
 ~$*
+~$*.xlsx
 แบบตอบรับ.xlsx
 *.xlsx
+_test_*.php

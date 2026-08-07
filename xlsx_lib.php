@@ -779,8 +779,10 @@ function sci_unassign_shop(int $row, string $selection = 'รอพิจาร�
 }
 
 function sci_save_payload_json(array $data): void {
-  file_put_contents(
-    sci_dir() . DIRECTORY_SEPARATOR . 'applicants.json',
-    json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT)
-  );
+  $path = sci_dir() . DIRECTORY_SEPARATOR . 'applicants.json';
+  $json = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+  // Cache file is optional — do not break API if directory is not writable
+  if (@file_put_contents($path, $json) === false) {
+    // ignore permission errors on shared hosting
+  }
 }

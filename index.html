@@ -1868,7 +1868,13 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      const json = await res.json();
+      const json = await (async () => {
+        const text = await res.text();
+        try { return JSON.parse(text); }
+        catch (e) {
+          throw new Error(text.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 240) || "บันทึกไม่สำเร็จ");
+        }
+      })();
       if (!json.ok) throw new Error(json.error || "บันทึกไม่สำเร็จ");
       state.data = json.data;
       render();
@@ -1881,7 +1887,12 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ row, slot, allow_cross: !!allowCross }),
       });
-      const json = await res.json();
+      const text = await res.text();
+      let json;
+      try { json = JSON.parse(text); }
+      catch (e) {
+        throw new Error(text.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 240) || "บันทึกไม่สำเร็จ");
+      }
       if (!json.ok) throw new Error(json.error || "บันทึกไม่สำเร็จ");
       state.data = json.data;
       render();
@@ -1894,7 +1905,12 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ row, selection }),
       });
-      const json = await res.json();
+      const text = await res.text();
+      let json;
+      try { json = JSON.parse(text); }
+      catch (e) {
+        throw new Error(text.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 240) || "บันทึกไม่สำเร็จ");
+      }
       if (!json.ok) throw new Error(json.error || "บันทึกไม่สำเร็จ");
       state.data = json.data;
       render();
@@ -1964,17 +1980,33 @@
       }
     }
 
+    async function fetchJson(url, options) {
+      const res = await fetch(url, options);
+      const text = await res.text();
+      let json;
+      try {
+        json = JSON.parse(text);
+      } catch (e) {
+        const plain = text
+          .replace(/<br\s*\/?>/gi, "\n")
+          .replace(/<\/?b>/gi, "")
+          .replace(/<[^>]+>/g, " ")
+          .replace(/\s+/g, " ")
+          .trim();
+        throw new Error(plain.slice(0, 240) || "เซิร์ฟเวอร์ตอบกลับไม่ใช่ JSON");
+      }
+      return json;
+    }
+
     async function loadData() {
-      const res = await fetch("api.php?action=data&_=" + Date.now());
-      const json = await res.json();
+      const json = await fetchJson("api.php?action=data&_=" + Date.now());
       if (json.error) throw new Error(json.error);
       state.data = json;
       render();
     }
 
     document.getElementById("btnRebuild").onclick = async () => {
-      const res = await fetch("api.php?action=rebuild&_=" + Date.now());
-      const json = await res.json();
+      const json = await fetchJson("api.php?action=rebuild&_=" + Date.now());
       if (!json.ok) return alert(json.error || "รีเฟรชไม่สำเร็จ");
       state.data = json.data;
       render();
@@ -1983,12 +2015,16 @@
     document.getElementById("fileUpload").onchange = async (e) => {
       const file = e.target.files?.[0];
       if (!file) return;
+      if (file.name.startsWith("~$")) {
+        alert("ไฟล์นี้เป็นไฟล์ชั่วคราวของ Excel (~$...) กรุณาปิด Excel แล้วอัปโหลดไฟล์แบบตอบรับ.xlsx จริง");
+        e.target.value = "";
+        return;
+      }
       const fd = new FormData();
       fd.append("file", file);
       fd.append("action", "upload");
       try {
-        const res = await fetch("api.php?action=upload", { method: "POST", body: fd });
-        const json = await res.json();
+        const json = await fetchJson("api.php?action=upload", { method: "POST", body: fd });
         if (!json.ok) throw new Error(json.error || "อัปโหลดไม่สำเร็จ");
         state.data = json.data;
         render();

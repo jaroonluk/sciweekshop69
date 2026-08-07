@@ -1,4 +1,9 @@
 <?php
+// JSON API: never leak HTML warnings into the response body
+ini_set('display_errors', '0');
+error_reporting(E_ALL);
+ob_start();
+
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
 
@@ -6,6 +11,10 @@ require_once __DIR__ . '/xlsx_lib.php';
 
 function sci_json_out($data, int $code = 200): void {
   http_response_code($code);
+  while (ob_get_level() > 0) {
+    ob_end_clean();
+  }
+  header('Content-Type: application/json; charset=utf-8');
   echo json_encode($data, JSON_UNESCAPED_UNICODE);
   exit;
 }
