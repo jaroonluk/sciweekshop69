@@ -1,6 +1,8 @@
 <?php
 mb_internal_encoding('UTF-8');
 
+require_once __DIR__ . '/sci_zip.php';
+
 const SCI_STATUS_HEADERS = [
   'P' => 'สถานะเอกสาร (ระบบตรวจ)',
   'Q' => 'เอกสารที่ขาด / รายละเอียด',
@@ -179,7 +181,7 @@ function sci_drive_id(string $url): ?string {
   return null;
 }
 
-function sci_load_shared_strings(ZipArchive $zip): array {
+function sci_load_shared_strings($zip): array {
   $ss = $zip->getFromName('xl/sharedStrings.xml');
   $strings = [];
   if (!$ss) return $strings;
@@ -194,7 +196,7 @@ function sci_load_shared_strings(ZipArchive $zip): array {
 }
 
 function sci_read_sheet_rows(string $path): array {
-  $zip = new ZipArchive();
+  $zip = sci_new_zip();
   if ($zip->open($path) !== true) {
     throw new RuntimeException('เปิดไฟล์ Excel ไม่ได้');
   }
@@ -532,7 +534,7 @@ function sci_ensure_status_and_write(array $updates): array {
   $tmp = $path . '.tmp.zip';
   copy($path, $tmp);
 
-  $zip = new ZipArchive();
+  $zip = sci_new_zip();
   if ($zip->open($tmp) !== true) {
     throw new RuntimeException('เปิดไฟล์ชั่วคราวไม่ได้');
   }
