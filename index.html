@@ -1,0 +1,2069 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SCI Shop Review · พิจารณาร้านค้า</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --sun: #ffd84d;
+      --sun-deep: #f0b400;
+      --amber: #ff9f1c;
+      --coral: #ff6842;
+      --teal: #0d8a7f;
+      --ink: #1c160e;
+      --muted: #6a5f50;
+      --line: rgba(28,22,14,.1);
+      --ok: #187a48;
+      --warn: #b45309;
+      --danger: #c0392b;
+      --panel: rgba(255,252,240,.92);
+      --card: #fff;
+      --sidebar: 280px;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      font-family: "Sarabun", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(900px 500px at 0% 0%, #ffe27a 0%, transparent 55%),
+        radial-gradient(800px 420px at 100% 0%, #ffc089 0%, transparent 50%),
+        linear-gradient(160deg, #fff1b8, #fff8e8 40%, #ffe9c8);
+      overflow: hidden;
+    }
+
+    .app {
+      height: 100vh;
+      height: 100dvh;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: .75rem 1rem;
+      background: linear-gradient(90deg, #ffd54a, #ffb347 55%, #ff8a5b);
+      border-bottom: 1px solid rgba(255,255,255,.45);
+      box-shadow: 0 8px 24px rgba(180,110,0,.15);
+      z-index: 30;
+    }
+    .brand {
+      font-family: "Chakra Petch", sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.15rem, 2vw, 1.55rem);
+      margin: 0;
+      white-space: nowrap;
+    }
+    .top-meta { flex: 1; min-width: 0; color: #3d3118; font-size: .92rem; }
+    .top-meta b { font-family: "Chakra Petch", sans-serif; }
+    .top-actions { display: flex; flex-wrap: wrap; gap: .4rem; }
+
+    .btn {
+      font: inherit;
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: .48rem .9rem;
+      font-weight: 700;
+      background: #fff;
+      color: var(--ink);
+      border: 1px solid rgba(0,0,0,.08);
+      font-family: "Chakra Petch", sans-serif;
+      font-size: .88rem;
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 14px rgba(0,0,0,.08); }
+    .btn.primary { background: var(--ink); color: var(--sun); border-color: var(--ink); }
+    .btn.teal { background: #e7f7f5; color: var(--teal); border-color: #b8e4df; }
+    .btn.warn { background: #fff3e0; color: var(--warn); border-color: #ffd8a8; }
+    .btn.ghost { background: rgba(255,255,255,.55); }
+    .btn.ok { background: #e8f7ee; color: var(--ok); border-color: #b7e4c7; }
+    .btn.danger { background: #fdecea; color: var(--danger); border-color: #f5c2bd; }
+    .btn.active-sel {
+      outline: 2px solid var(--ink);
+      box-shadow: 0 0 0 2px rgba(255,216,77,.55);
+    }
+    .sel-actions { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .35rem; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: var(--sidebar) 1fr;
+      min-height: 0;
+    }
+
+    .sidebar {
+      min-height: 0;
+      overflow: auto;
+      padding: .85rem;
+      background: var(--panel);
+      border-right: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .side-block { margin-bottom: 1rem; }
+    .side-block h3 {
+      margin: 0 0 .5rem;
+      font-family: "Chakra Petch", sans-serif;
+      font-size: .98rem;
+    }
+    .zone-list { display: grid; gap: .4rem; }
+    .zone-list button {
+      text-align: left;
+      display: grid;
+      gap: .15rem;
+      width: 100%;
+      padding: .65rem .8rem;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fff;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: "Chakra Petch", sans-serif;
+    }
+    .zone-list button.active {
+      background: var(--ink);
+      color: var(--sun);
+      border-color: var(--ink);
+    }
+    .zone-list .z-title { font-size: 1rem; }
+    .zone-list .z-meta {
+      font-size: .8rem;
+      font-weight: 600;
+      font-family: "Sarabun", sans-serif;
+      opacity: .9;
+      line-height: 1.35;
+    }
+    .zone-list button.active .z-meta { color: #ffe9a0; opacity: 1; }
+
+    .search input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: .65rem .8rem;
+      font: inherit;
+      background: #fff;
+      outline: none;
+    }
+    .search input:focus { border-color: var(--amber); box-shadow: 0 0 0 3px rgba(255,159,28,.18); }
+
+    .empty-panel {
+      background: #fff;
+      border: 1px dashed #f0c44a;
+      border-radius: 14px;
+      padding: .75rem;
+      font-size: .9rem;
+    }
+    .empty-panel .tags { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .45rem; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: .25rem;
+      padding: .22rem .5rem;
+      border-radius: 999px;
+      background: #fff4c8;
+      border: 1px solid #f0c44a;
+      font-size: .78rem;
+      font-weight: 700;
+      font-family: "Chakra Petch", sans-serif;
+    }
+    .chip.ok { background: #e8f7ee; border-color: #b7e4c7; color: var(--ok); }
+    .chip.empty { background: #f4f1ea; border-color: #ddd4c4; color: var(--muted); }
+    .chip.warn { background: #fff1e6; border-color: #ffd0a8; color: var(--warn); }
+    .chip.danger { background: #fdecea; border-color: #f5c2bd; color: var(--danger); }
+
+    .status-panel {
+      display: grid;
+      gap: .55rem;
+      margin: .65rem 0 .55rem;
+      padding: .7rem .75rem;
+      border-radius: 14px;
+      background: rgba(255,248,230,.85);
+      border: 1px solid rgba(240,180,0,.28);
+    }
+    .status-panel .status-row {
+      margin: 0;
+      gap: .55rem;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .45rem .75rem .45rem .55rem;
+      border-radius: 12px;
+      border: 2px solid transparent;
+      font-family: "Chakra Petch", sans-serif;
+      font-weight: 700;
+      font-size: 1.02rem;
+      line-height: 1.2;
+      letter-spacing: .01em;
+      box-shadow: 0 2px 8px rgba(28,22,14,.06);
+    }
+    .status-badge .badge-ico {
+      width: 1.55rem;
+      height: 1.55rem;
+      border-radius: 9px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      font-size: .95rem;
+      font-weight: 800;
+      background: rgba(255,255,255,.55);
+    }
+    .status-badge .badge-ico svg,
+    .btn-check .btn-ico svg,
+    .btn-quick .btn-ico svg {
+      width: 1rem;
+      height: 1rem;
+      display: block;
+    }
+    .status-badge .badge-text {
+      display: grid;
+      gap: .05rem;
+      min-width: 0;
+    }
+    .status-badge .badge-label {
+      font-size: .68rem;
+      font-weight: 700;
+      opacity: .78;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      font-family: "Sarabun", sans-serif;
+    }
+    .status-badge .badge-value {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+    .status-badge.sel-ok {
+      background: #d8f5e4;
+      border-color: #2f9e60;
+      color: #0f5c34;
+    }
+    .status-badge.sel-ok .badge-ico { background: #1f7a4c; color: #fff; }
+    .status-badge.sel-no {
+      background: #fde0dc;
+      border-color: #d6453a;
+      color: #8f1e16;
+    }
+    .status-badge.sel-no .badge-ico { background: #c0392b; color: #fff; }
+    .status-badge.sel-wait {
+      background: #ffe9a8;
+      border-color: #e0a800;
+      color: #6b4e00;
+    }
+    .status-badge.sel-wait .badge-ico { background: #d97706; color: #fff; }
+    .status-badge.doc-ok {
+      background: #dff7ec;
+      border-color: #3dae6d;
+      color: #0f5c34;
+    }
+    .status-badge.doc-ok .badge-ico { background: #187a48; color: #fff; }
+    .status-badge.doc-warn {
+      background: #ffe8d2;
+      border-color: #f0a04b;
+      color: #8a4508;
+    }
+    .status-badge.doc-warn .badge-ico { background: #b45309; color: #fff; }
+    .status-badge.doc-danger {
+      background: #fde0dc;
+      border-color: #d6453a;
+      color: #8f1e16;
+    }
+    .status-badge.doc-danger .badge-ico { background: #c0392b; color: #fff; }
+    .status-badge.doc-wait {
+      background: #fff4c8;
+      border-color: #e0b400;
+      color: #6b4e00;
+    }
+    .status-badge.doc-wait .badge-ico { background: #ca8a04; color: #fff; }
+    .status-badge.doc-attach-ok {
+      background: #e7f7f5;
+      border-color: #5bbdb3;
+      color: #0a5f58;
+    }
+    .status-badge.doc-attach-ok .badge-ico { background: #0d8a7f; color: #fff; }
+    .status-badge.doc-attach-warn {
+      background: #fff1e6;
+      border-color: #ffb06b;
+      color: #8a4508;
+    }
+    .status-badge.doc-attach-warn .badge-ico { background: #c2410c; color: #fff; }
+
+    .btn-check {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .55rem .95rem !important;
+      font-size: .95rem !important;
+      border-radius: 12px !important;
+      border: 2px solid #0d8a7f !important;
+      background: linear-gradient(180deg, #12a396, #0d8a7f) !important;
+      color: #fff !important;
+      box-shadow: 0 4px 12px rgba(13,138,127,.28);
+      animation: check-pulse 2.4s ease-in-out infinite;
+    }
+    .btn-check:hover {
+      background: linear-gradient(180deg, #0d8a7f, #0a6f66) !important;
+      box-shadow: 0 6px 16px rgba(13,138,127,.35);
+    }
+    .btn-check .btn-ico {
+      width: 1.35rem;
+      height: 1.35rem;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: rgba(255,255,255,.22);
+      font-size: 1rem;
+      line-height: 1;
+    }
+    @keyframes check-pulse {
+      0%, 100% { box-shadow: 0 4px 12px rgba(13,138,127,.28); }
+      50% { box-shadow: 0 4px 16px rgba(13,138,127,.45), 0 0 0 4px rgba(13,138,127,.12); }
+    }
+    .btn-quick {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      font-size: .92rem !important;
+      padding: .42rem .8rem !important;
+    }
+    .btn-quick .btn-ico { font-size: 1rem; line-height: 1; }
+
+    .view-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .35rem;
+      margin-bottom: .75rem;
+    }
+    .view-tabs button {
+      font-family: "Chakra Petch", sans-serif;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 12px;
+      padding: .55rem .5rem;
+      cursor: pointer;
+      font-size: .88rem;
+    }
+    .view-tabs button.active {
+      background: var(--ink);
+      color: var(--sun);
+      border-color: var(--ink);
+    }
+    .policy-note {
+      font-size: .8rem;
+      color: var(--muted);
+      line-height: 1.4;
+      margin: .4rem 0 0;
+      padding: .45rem .55rem;
+      border-radius: 10px;
+      background: #f4f1ea;
+      border: 1px dashed #ddd4c4;
+    }
+
+    .shop-board {
+      display: grid;
+      gap: .45rem;
+      margin-bottom: .85rem;
+      padding: .7rem;
+      border-radius: 12px;
+      background: #f7fffb;
+      border: 1px solid #b7e4c7;
+    }
+    .shop-board h4 {
+      margin: 0 0 .35rem;
+      font-family: "Chakra Petch", sans-serif;
+      font-size: .95rem;
+    }
+    .shop-board .board-hint {
+      margin: 0 0 .45rem;
+      font-size: .82rem;
+      color: var(--muted);
+    }
+    .shop-slots {
+      display: grid;
+      gap: .4rem;
+    }
+    .shop-slot {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: .55rem;
+      align-items: center;
+      padding: .55rem .65rem;
+      border-radius: 10px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+    .shop-board.cross-fill {
+      background: #fff8e8;
+      border-color: #f0c44a;
+    }
+    .shop-slot.cross-slot {
+      border-style: dashed;
+    }
+    .shop-board.cross-fill .board-hint {
+      color: #6b4e00;
+    }
+    .shop-slot .slot-id {
+      font-family: "Chakra Petch", sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      min-width: 2.4rem;
+      text-align: center;
+      padding: .25rem .4rem;
+      border-radius: 8px;
+      background: var(--ink);
+      color: var(--sun);
+    }
+    .shop-slot .slot-op { min-width: 0; }
+    .shop-slot .slot-op b {
+      display: block;
+      font-family: "Chakra Petch", sans-serif;
+      font-size: 1rem;
+    }
+    .shop-slot .slot-op span {
+      color: var(--muted);
+      font-size: .82rem;
+    }
+    .shop-slot select {
+      font: inherit;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: .35rem .45rem;
+      max-width: 12rem;
+      background: #fff;
+    }
+
+    .report-wrap { display: grid; gap: 1rem; }
+    .report-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45rem;
+    }
+    .report-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(240,180,0,.28);
+      font-size: .95rem;
+    }
+    .report-table th, .report-table td {
+      padding: .7rem .8rem;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+    .report-table th {
+      font-family: "Chakra Petch", sans-serif;
+      background: linear-gradient(90deg, #fff1b8, #ffe4bd);
+      font-size: .9rem;
+    }
+    .report-table tr.filled td { background: #f3fbf6; }
+    .report-table tr.empty td { background: #faf7f0; }
+    .report-table .op-name {
+      font-family: "Chakra Petch", sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+    .report-zone {
+      margin: 0 0 .35rem;
+      font-family: "Chakra Petch", sans-serif;
+    }
+    .report-empty-box {
+      background: #fffaf0;
+      border: 1px solid #f0c44a;
+      border-radius: 14px;
+      padding: .85rem 1rem;
+    }
+    .report-empty-box h3 {
+      margin: 0 0 .35rem;
+      font-family: "Chakra Petch", sans-serif;
+      font-size: 1.05rem;
+    }
+    .report-empty-box .sub {
+      margin: 0 0 .65rem;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .report-empty-list {
+      display: grid;
+      gap: .45rem;
+    }
+    .report-empty-item {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: .55rem;
+      align-items: center;
+      padding: .55rem .7rem;
+      border-radius: 10px;
+      background: #fff;
+      border: 1px dashed #e0b84a;
+      font-size: .92rem;
+    }
+    .report-empty-item .slots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .25rem;
+      justify-content: end;
+    }
+    .report-empty-zone {
+      margin: .75rem 0 .35rem;
+      font-family: "Chakra Petch", sans-serif;
+      font-size: .95rem;
+    }
+
+    .doc-overview {
+      margin-top: .45rem;
+      padding: .65rem .7rem;
+      border-radius: 12px;
+      background: #fff;
+      border: 1px solid var(--line);
+      display: grid;
+      gap: .45rem;
+    }
+    .doc-overview .ov-title {
+      font-family: "Chakra Petch", sans-serif;
+      font-weight: 700;
+      font-size: .92rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .35rem;
+      align-items: center;
+    }
+    .doc-overview .ov-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .45rem;
+    }
+    @media (max-width: 720px) {
+      .doc-overview .ov-grid { grid-template-columns: 1fr; }
+    }
+    .doc-box {
+      border-radius: 10px;
+      padding: .5rem .6rem;
+      border: 1px solid var(--line);
+      background: #faf7f0;
+    }
+    .doc-box.ok { background: #eefaf3; border-color: #b7e4c7; }
+    .doc-box.fail { background: #fff1e6; border-color: #ffd0a8; }
+    .doc-box.admin { background: #eef6ff; border-color: #b7d4f0; }
+    .doc-box.admin.ok { background: #eefaf3; border-color: #b7e4c7; }
+    .doc-box.admin.fail { background: #fdecea; border-color: #f5c2bd; }
+    .doc-box .box-h {
+      font-family: "Chakra Petch", sans-serif;
+      font-weight: 700;
+      font-size: .82rem;
+      margin-bottom: .25rem;
+      opacity: .85;
+    }
+    .doc-box .box-v {
+      font-family: "Chakra Petch", sans-serif;
+      font-weight: 700;
+      font-size: 1.02rem;
+    }
+    .doc-box ul {
+      margin: .35rem 0 0;
+      padding-left: 1.1rem;
+      font-size: .86rem;
+      line-height: 1.4;
+    }
+    .doc-box .reason {
+      margin-top: .35rem;
+      font-size: .88rem;
+      font-weight: 600;
+      color: var(--warn);
+      line-height: 1.4;
+    }
+    .doc-box.fail .reason, .doc-box.admin.fail .reason { color: var(--danger); }
+    .doc-checklist {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .3rem;
+      margin-top: .25rem;
+    }
+    .doc-checklist .chip { font-size: .72rem; padding: .18rem .45rem; }
+    .doc-summary-panel {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: .7rem;
+      font-size: .88rem;
+      display: grid;
+      gap: .35rem;
+    }
+    .doc-summary-panel .row {
+      display: flex;
+      justify-content: space-between;
+      gap: .5rem;
+      align-items: center;
+    }
+
+    .main {
+      min-height: 0;
+      overflow: auto;
+      padding: 1rem 1.1rem 2rem;
+    }
+
+    .notice {
+      margin-bottom: .85rem;
+      padding: .7rem .9rem;
+      border-radius: 12px;
+      background: #fff7df;
+      border: 1px solid #f0c44a;
+      color: #5c4a1f;
+      font-size: .92rem;
+    }
+
+    .group {
+      background: var(--card);
+      border: 1px solid rgba(240,180,0,.28);
+      border-radius: 18px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(180,120,0,.08);
+      scroll-margin-top: 1rem;
+    }
+    .group-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: .75rem;
+      padding: .95rem 1.05rem;
+      background: linear-gradient(90deg, #fff1b8, #ffe4bd);
+      border-bottom: 1px solid rgba(240,180,0,.22);
+      align-items: start;
+    }
+    .group-head h2 {
+      margin: 0 0 .25rem;
+      font-family: "Chakra Petch", sans-serif;
+      font-size: 1.15rem;
+    }
+    .group-head p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .slot-pills { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .45rem; }
+    .slot-pill {
+      font-family: "Chakra Petch", sans-serif;
+      font-weight: 700;
+      font-size: .8rem;
+      padding: .2rem .5rem;
+      border-radius: 8px;
+      background: var(--ink);
+      color: var(--sun);
+    }
+    .head-badges { display: flex; flex-wrap: wrap; gap: .35rem; justify-content: end; }
+
+    .group-body { padding: .85rem 1rem 1rem; }
+
+    .applicant {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: .85rem;
+      margin-bottom: .65rem;
+      background: linear-gradient(180deg, #fffdf8, #fff);
+      transition: background .2s ease, border-color .2s ease;
+    }
+    .applicant.first {
+      border-color: #f0b400;
+      box-shadow: inset 0 0 0 1px rgba(240,180,0,.22);
+      background: linear-gradient(180deg, #fff7d1, #fff);
+    }
+    .applicant.sel-approved {
+      background: linear-gradient(180deg, #e8f8ef, #f4fff8);
+      border-color: #3dae6d;
+      box-shadow: inset 4px 0 0 #1f7a4c;
+    }
+    .applicant.sel-approved.first {
+      background: linear-gradient(180deg, #d8f5e4, #f0fff6);
+    }
+    .applicant.sel-rejected {
+      background: linear-gradient(180deg, #f8ecea, #fff8f7);
+      border-color: #e0a8a0;
+      box-shadow: inset 4px 0 0 #c0392b;
+      opacity: .92;
+    }
+    .applicant.sel-pending {
+      background: linear-gradient(180deg, #fffdf8, #fff);
+    }
+    .app-top {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: .7rem;
+      align-items: start;
+    }
+    .rank {
+      width: 2.35rem; height: 2.35rem;
+      border-radius: 12px;
+      display: grid; place-items: center;
+      font-family: "Chakra Petch", sans-serif;
+      font-weight: 700;
+      background: #f1ece3;
+      color: var(--muted);
+    }
+    .applicant.first .rank {
+      background: linear-gradient(135deg, var(--sun), var(--amber));
+      color: var(--ink);
+    }
+    .app-name { margin: 0; font-family: "Chakra Petch", sans-serif; font-size: 1.05rem; }
+    .app-sub { margin: .15rem 0 0; color: var(--muted); font-size: .9rem; }
+    .time {
+      font-family: "Chakra Petch", sans-serif;
+      font-size: .78rem;
+      font-weight: 700;
+      padding: .32rem .55rem;
+      border-radius: 999px;
+      background: #fff4c8;
+      border: 1px solid #f0c44a;
+      white-space: normal;
+      text-align: right;
+      line-height: 1.25;
+      max-width: 14rem;
+    }
+    .filter-list { display: grid; gap: .35rem; }
+    .filter-list button {
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: .55rem .7rem;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #fff;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: .88rem;
+    }
+    .filter-list button.active { outline: 2px solid var(--ink); }
+    .filter-list button.f-all.active { background: #fff4c8; }
+    .filter-list button.f-pending.active { background: #fff4c8; }
+    .filter-list button.f-ok.active { background: #e8f7ee; color: var(--ok); }
+    .filter-list button.f-no.active { background: #fdecea; color: var(--danger); }
+    .sum-list { display: grid; gap: .45rem; }
+    .sum-item {
+      padding: .55rem .7rem;
+      border-radius: 10px;
+      background: #fff;
+      border: 1px solid var(--line);
+      font-size: .9rem;
+    }
+    .sum-item b { font-family: "Chakra Petch", sans-serif; }
+
+    .detail {
+      margin: .7rem 0;
+      padding: .65rem .75rem;
+      border-radius: 10px;
+      background: #fff8e8;
+      border-left: 4px solid var(--amber);
+      line-height: 1.5;
+    }
+
+    .status-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      align-items: center;
+      margin-bottom: .55rem;
+    }
+    .status-panel .sel-actions {
+      margin-top: 0;
+      padding-top: .15rem;
+      border-top: 1px dashed rgba(240,180,0,.35);
+    }
+
+    .docs-row, .thumbs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-top: .45rem;
+    }
+    .docs-row a, .linkish {
+      text-decoration: none;
+      color: var(--ink);
+      font-size: .8rem;
+      font-weight: 600;
+      padding: .3rem .55rem;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+    .docs-row a:hover { background: #fff4c8; }
+
+    .thumb {
+      width: 72px;
+      height: 72px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid #f0c44a;
+      background: #fff8e0;
+      cursor: zoom-in;
+      position: relative;
+      padding: 0;
+    }
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .thumb .ph {
+      width: 100%; height: 100%;
+      display: grid; place-items: center;
+      font-size: .72rem;
+      color: var(--muted);
+      font-weight: 700;
+      text-align: center;
+      padding: .25rem;
+    }
+
+    .empty-state {
+      text-align: center;
+      color: var(--muted);
+      padding: 1rem;
+      background: #faf7f0;
+      border-radius: 12px;
+    }
+
+    .modal-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(28,22,14,.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 1rem;
+    }
+    .modal-backdrop.show { display: flex; }
+    .modal {
+      width: min(720px, 100%);
+      max-height: min(90vh, 900px);
+      overflow: auto;
+      background: #fffef8;
+      border-radius: 18px;
+      border: 1px solid rgba(240,180,0,.35);
+      box-shadow: 0 24px 60px rgba(0,0,0,.25);
+      padding: 1.1rem 1.2rem 1.2rem;
+    }
+    .modal h3 {
+      margin: 0 0 .35rem;
+      font-family: "Chakra Petch", sans-serif;
+      font-size: 1.25rem;
+    }
+    .modal .sub { color: var(--muted); margin: 0 0 1rem; }
+    .form-grid { display: grid; gap: .75rem; }
+    label { display: grid; gap: .3rem; font-weight: 600; font-size: .92rem; }
+    input[type=text], textarea, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: .65rem .75rem;
+      font: inherit;
+      background: #fff;
+    }
+    textarea { min-height: 90px; resize: vertical; }
+    .checks { display: grid; gap: .35rem; }
+    .checks label {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      font-weight: 500;
+      background: #fff8e8;
+      border-radius: 10px;
+      padding: .45rem .6rem;
+    }
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: .45rem;
+      margin-top: 1rem;
+    }
+
+    .lightbox {
+      position: fixed; inset: 0;
+      background: rgba(10,8,5,.88);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 120;
+      padding: 1rem;
+    }
+    .lightbox.show { display: flex; }
+    .lightbox img {
+      max-width: min(96vw, 1200px);
+      max-height: 92vh;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.45);
+      background: #222;
+    }
+    .lightbox .close {
+      position: absolute;
+      top: 1rem; right: 1rem;
+    }
+
+    @media (max-width: 900px) {
+      body { overflow: auto; }
+      .app { height: auto; min-height: 100vh; }
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { border-right: 0; border-bottom: 1px solid var(--line); max-height: none; }
+      .main { overflow: visible; }
+      .app-top { grid-template-columns: auto 1fr; }
+      .time { grid-column: 2; justify-self: start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <h1 class="brand">SCI Shop Review</h1>
+      <div class="top-meta" id="topMeta">กำลังโหลด...</div>
+      <div class="top-actions">
+        <button class="btn ghost" type="button" id="btnRebuild">รีเฟรชข้อมูล</button>
+        <label class="btn teal" style="display:inline-flex;align-items:center;gap:.35rem;cursor:pointer">
+          นำเข้า Excel
+          <input type="file" id="fileUpload" accept=".xlsx" hidden />
+        </label>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="side-block">
+          <h3>มุมมอง</h3>
+          <div class="view-tabs">
+            <button type="button" id="tabReview" class="active">พิจารณา</button>
+            <button type="button" id="tabReport">รายงานร้าน</button>
+          </div>
+          <p class="policy-note">อัปเดตเฉพาะสถานะใน Excel (คอลัมน์ P–U) · ไม่ลบรายการผู้สมัคร</p>
+        </div>
+        <div class="side-block search">
+          <h3>ค้นหา</h3>
+          <input id="q" type="search" placeholder="ชื่อ / เบอร์ / ประเภท / A1" />
+        </div>
+        <div class="side-block">
+          <h3>โซน</h3>
+          <div class="zone-list" id="zoneList"></div>
+        </div>
+        <div class="side-block" id="statusSideBlock">
+          <h3>สถานะพิจารณา</h3>
+          <div class="filter-list" id="statusFilters"></div>
+          <div style="margin-top:.55rem;display:flex;gap:.35rem;flex-wrap:wrap">
+            <button class="btn teal" type="button" id="btnStatusSummary" style="padding:.35rem .7rem">สรุปทุกสถานะ</button>
+          </div>
+        </div>
+        <div class="side-block" id="docSummarySideBlock">
+          <h3>ภาพรวมตรวจเอกสาร</h3>
+          <div class="doc-summary-panel" id="docSummaryPanel">-</div>
+        </div>
+        <div class="side-block" id="emptySideBlock">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin-bottom:.5rem">
+            <h3 style="margin:0">ล็อคว่างในโซนนี้</h3>
+            <button class="btn warn" type="button" id="btnEmptySummary" style="padding:.35rem .7rem">สรุป</button>
+          </div>
+          <div class="empty-panel" id="emptyPanel">-</div>
+        </div>
+      </aside>
+
+      <main class="main" id="main"></main>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="statusModal">
+    <div class="modal">
+      <h3>ตรวจสถานะเอกสาร (Admin)</h3>
+      <p class="sub" id="statusSub"></p>
+      <div class="form-grid">
+        <div>
+          <div style="font-weight:700;margin-bottom:.35rem">ผลตรวจอัตโนมัติจากระบบ (ไฟล์แนบ)</div>
+          <div class="checks" id="autoChecks"></div>
+        </div>
+        <label>สถานะเอกสารโดย Admin (ใช้ตัดสิน)
+          <select id="fStatus">
+            <option value="รอตรวจสอบ">รอตรวจสอบ</option>
+            <option value="ครบถ้วน">ครบถ้วน</option>
+            <option value="ไม่ครบถ้วน">ไม่ครบถ้วน</option>
+            <option value="ขาดคุณสมบัติ">ขาดคุณสมบัติ</option>
+          </select>
+        </label>
+        <label>เอกสารที่ขาด / เหตุผลที่ไม่ครบ
+          <textarea id="fMissing" placeholder="เช่น ขาดทะเบียนบ้าน, รูปอาหารไม่ชัด, สำเนาไม่ชัดเจน"></textarea>
+        </label>
+        <label>คุณสมบัติ / หมายเหตุการพิจารณา
+          <textarea id="fNote" placeholder="บันทึกเพิ่มเติมสำหรับคณะกรรมการ"></textarea>
+        </label>
+        <div>
+          <div style="font-weight:700;margin-bottom:.45rem;font-size:1.05rem;font-family:'Chakra Petch',sans-serif">ผลการคัดเลือก</div>
+          <div class="sel-actions" id="selButtons">
+            <button type="button" class="btn ok btn-quick" data-sel="ได้รับการคัดเลือก"><span class="btn-ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2.8 2.7 5.5 6.1.9-4.4 4.3 1 6.1L12 16.7 6.6 19.6l1-6.1-4.4-4.3 6.1-.9L12 2.8z"/></svg></span> ได้รับการคัดเลือก</button>
+            <button type="button" class="btn danger btn-quick" data-sel="ไม่ได้รับการคัดเลือก"><span class="btn-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></span> ไม่ได้รับการคัดเลือก</button>
+            <button type="button" class="btn btn-quick" data-sel="รอพิจารณา"><span class="btn-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span> รอพิจารณา</button>
+          </div>
+          <input type="hidden" id="fSelection" value="รอพิจารณา" />
+        </div>
+        <label id="slotPickWrap">ล็อคร้านที่ได้รับ (เมื่อคัดเลือก)
+          <select id="fSlot">
+            <option value="">— ยังไม่ระบุล็อค —</option>
+          </select>
+        </label>
+        <p class="policy-note" style="margin:0">บันทึกเป็นสถานะใน Excel เท่านั้น ไม่ลบรายการผู้สมัคร</p>
+      </div>
+      <div class="modal-actions">
+        <button class="btn" type="button" id="btnCancelStatus">ยกเลิก</button>
+        <button class="btn primary" type="button" id="btnSaveStatus">บันทึกลง Excel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="emptyModal">
+    <div class="modal">
+      <h3 id="emptyModalTitle">สรุปล็อคว่าง</h3>
+      <p class="sub">ล็อคที่ยังไม่มีผู้สมัครในโซนที่เลือก</p>
+      <div id="emptyModalBody"></div>
+      <div class="modal-actions">
+        <button class="btn primary" type="button" id="btnCloseEmpty">ปิด</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="statusSummaryModal">
+    <div class="modal" style="width:min(820px,100%)">
+      <h3>สรุปสถานะพิจารณา</h3>
+      <p class="sub" id="statusSummarySub"></p>
+      <div id="statusSummaryBody"></div>
+      <div class="modal-actions">
+        <button class="btn" type="button" data-jump-sel="รอพิจารณา">ดูรอพิจารณา</button>
+        <button class="btn ok" type="button" data-jump-sel="ได้รับการคัดเลือก">ดูอนุมัติ</button>
+        <button class="btn danger" type="button" data-jump-sel="ไม่ได้รับการคัดเลือก">ดูไม่อนุมัติ</button>
+        <button class="btn primary" type="button" id="btnCloseStatusSummary">ปิด</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="assignModal">
+    <div class="modal">
+      <h3>คัดเลือกเข้าล็อคร้าน</h3>
+      <p class="sub" id="assignSub"></p>
+      <label>เลือกล็อคร้าน
+        <select id="assignSlotSelect"></select>
+      </label>
+      <p class="policy-note">ระบบจะอัปเดตสถานะ “ได้รับการคัดเลือก” และระบุล็อคใน Excel · หากล็อคมีผู้คัดเลือกเดิม จะเปลี่ยนสถานะผู้นั้นเป็น “รอพิจารณา” (ไม่ลบรายการ)</p>
+      <div class="modal-actions">
+        <button class="btn" type="button" id="btnCancelAssign">ยกเลิก</button>
+        <button class="btn primary" type="button" id="btnConfirmAssign">ยืนยันคัดเลือก</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <button class="btn" type="button" id="btnCloseLb">ปิด</button>
+    <img id="lbImg" alt="รูปอาหารขยาย" />
+  </div>
+
+  <script>
+    const zoneMeta = {
+      A: { label: "โซน A", shops: 12 },
+      B: { label: "โซน B", shops: 6 },
+      C: { label: "โซน C", shops: 14 },
+      D: { label: "โซน D", shops: 8 },
+    };
+
+    const state = {
+      data: null,
+      zone: "A",
+      q: "",
+      selFilter: "ALL",
+      editing: null,
+      view: "review", // review | report
+      assignKey: null,
+    };
+
+    function esc(s) {
+      return String(s ?? "").replace(/[&<>"']/g, c => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+      }[c]));
+    }
+
+    function fmtTime(a) {
+      return a.time_label || a.datetime_th || a.datetime || "-";
+    }
+
+    function selectionClass(sel) {
+      if (sel === "ได้รับการคัดเลือก") return "sel-approved";
+      if (sel === "ไม่ได้รับการคัดเลือก") return "sel-rejected";
+      return "sel-pending";
+    }
+
+    function countBySelection(applicants, zone) {
+      const list = zone === "ALL" ? applicants : applicants.filter(a => a.zone === zone);
+      return {
+        ALL: list.length,
+        "รอพิจารณา": list.filter(a => a.selection === "รอพิจารณา").length,
+        "ได้รับการคัดเลือก": list.filter(a => a.selection === "ได้รับการคัดเลือก").length,
+        "ไม่ได้รับการคัดเลือก": list.filter(a => a.selection === "ไม่ได้รับการคัดเลือก").length,
+      };
+    }
+
+    function passSelFilter(a) {
+      return state.selFilter === "ALL" || a.selection === state.selFilter;
+    }
+
+    function matchCat(a, b) {
+      const clean = x => String(x||"").replace(/\s*\(จำกัด[^)]*\)\s*/g,"").replace(/[\s\/\(\)\-]/g,"").trim();
+      return clean(a) === clean(b);
+    }
+
+    function appsForGroup(g, applicants) {
+      return applicants
+        .filter(a => a.zone === g.zone && matchCat(a.category, g.cat))
+        .sort((x,y) => x.timestamp - y.timestamp);
+    }
+
+    function emptyGroups(zone, data) {
+      return data.groups
+        .filter(g => g.zone === zone)
+        .filter(g => appsForGroup(g, data.applicants).length === 0);
+    }
+
+    function ico(name) {
+      const icons = {
+        check: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>`,
+        x: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>`,
+        star: `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2.8 2.7 5.5 6.1.9-4.4 4.3 1 6.1L12 16.7 6.6 19.6l1-6.1-4.4-4.3 6.1-.9L12 2.8z"/></svg>`,
+        wait: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`,
+        alert: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 8v5"/><circle cx="12" cy="17" r="1.2" fill="currentColor" stroke="none"/><path d="M10.2 3.8h3.6L21 19.2H3L10.2 3.8z"/></svg>`,
+        clip: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.5 7.5 8.6 14.4a2.5 2.5 0 0 0 3.5 3.5l8.2-8.2a4 4 0 0 0-5.7-5.7L5.6 13a5.5 5.5 0 0 0 7.8 7.8l6.4-6.4"/></svg>`,
+        doc: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9l-4-4H9z"/><path d="M13 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>`,
+      };
+      return icons[name] || icons.doc;
+    }
+
+    function slotsForApplicant(a) {
+      const data = state.data;
+      if (!data) return [];
+      return data.slots.filter(s => s.zone === a.zone && matchCat(a.category, s.cat));
+    }
+
+    function operatorOnSlot(slotId) {
+      const report = state.data?.shop_report || [];
+      return report.find(r => r.slot === slotId) || null;
+    }
+
+    function freeSlotsForApplicant(a, includeCurrent = true) {
+      return slotsForApplicant(a).filter(s => {
+        const row = operatorOnSlot(s.id);
+        if (!row || !row.filled) return true;
+        if (includeCurrent && row.operator?.row === a.row) return true;
+        return false;
+      });
+    }
+
+    /** Candidates from other categories to fill a shop with no native applicants */
+    function crossFillCandidates(slotZone, slotCat, currentRow = null) {
+      const apps = state.data?.applicants || [];
+      return apps
+        .filter(a => !matchCat(a.category, slotCat) || a.zone !== slotZone)
+        .filter(a => a.selection !== "ไม่ได้รับการคัดเลือก")
+        .sort((x, y) => {
+          // Prefer same zone, then not yet assigned, then earlier time
+          const zX = x.zone === slotZone ? 0 : 1;
+          const zY = y.zone === slotZone ? 0 : 1;
+          if (zX !== zY) return zX - zY;
+          const aX = x.assigned_slot && x.selection === "ได้รับการคัดเลือก" ? 1 : 0;
+          const aY = y.assigned_slot && y.selection === "ได้รับการคัดเลือก" ? 1 : 0;
+          if (aX !== aY) return aX - aY;
+          return x.timestamp - y.timestamp;
+        });
+    }
+
+    function crossOptionLabel(a, slotId) {
+      const parts = [`โซน ${a.zone}`, a.category, a.name];
+      if (a.assigned_slot && a.assigned_slot !== slotId && a.selection === "ได้รับการคัดเลือก") {
+        parts.push(`(ล็อค ${a.assigned_slot})`);
+      }
+      return parts.join(" · ");
+    }
+
+    function renderCrossOptions(slotId, slotZone, slotCat, selectedRow = null) {
+      const cands = crossFillCandidates(slotZone, slotCat, selectedRow);
+      const sameZone = cands.filter(a => a.zone === slotZone);
+      const otherZone = cands.filter(a => a.zone !== slotZone);
+      const block = (label, list) => list.length ? `
+        <optgroup label="${esc(label)}">
+          ${list.map(a => `<option value="${a.row}" ${selectedRow === a.row ? "selected" : ""}>${esc(crossOptionLabel(a, slotId))}</option>`).join("")}
+        </optgroup>` : "";
+      return block(`โซนเดียวกัน (${slotZone})`, sameZone) + block("โซนอื่น", otherZone);
+    }
+
+    function renderShopBoard(g, list, { crossFill = false } = {}) {
+      const reportMap = Object.fromEntries((state.data.shop_report || []).map(r => [r.slot, r]));
+      const isEmptyCat = !list.length || crossFill;
+      return `
+        <div class="shop-board ${isEmptyCat ? "cross-fill" : ""}">
+          <h4>${isEmptyCat ? "จัดผู้ประกอบการจากรายการอื่นลงล็อคว่าง" : "คัดเลือกผู้ประกอบการตามล็อคร้าน"}</h4>
+          <p class="board-hint">${isEmptyCat
+            ? "ประเภทนี้ยังไม่มีผู้สมัคร — เลือกผู้สมัครจากประเภท/โซนอื่นมาลงขายได้ · บันทึกเป็นสถานะใน Excel เท่านั้น ไม่ลบรายการ"
+            : "เลือกผู้สมัครเข้าแต่ละล็อค · บันทึกเป็นสถานะใน Excel เท่านั้น ไม่ลบรายการ"}</p>
+          <div class="shop-slots">
+            ${g.slots.map(sid => {
+              const info = reportMap[sid];
+              const op = info?.operator;
+              const selectedRow = op?.row ?? null;
+              let options;
+              if (isEmptyCat) {
+                options = renderCrossOptions(sid, g.zone, g.cat, selectedRow);
+              } else {
+                options = list.map(a => {
+                  const takenElsewhere = a.assigned_slot && a.assigned_slot !== sid && a.selection === "ได้รับการคัดเลือก";
+                  const label = `${a.name}${takenElsewhere ? ` (ล็อค ${a.assigned_slot})` : ""}`;
+                  const selected = selectedRow === a.row ? "selected" : "";
+                  return `<option value="${a.row}" ${selected}>${esc(label)}</option>`;
+                }).join("");
+              }
+              const crossBadge = info?.cross_assigned
+                ? `<span class="chip warn">จากรายการอื่น · สมัคร ${esc(op.applied_category || "")}</span>`
+                : "";
+              return `
+                <div class="shop-slot ${op ? "filled" : ""} ${isEmptyCat ? "cross-slot" : ""}">
+                  <div class="slot-id">${esc(sid)}</div>
+                  <div class="slot-op">
+                    ${op
+                      ? `<b>${esc(op.name)}</b>
+                         <span>โทร ${esc(op.phone || "-")} · แถว ${op.row}</span>
+                         ${crossBadge}`
+                      : `<b style="color:var(--muted)">${isEmptyCat ? "ยังไม่มีผู้ประกอบการ (ล็อคว่าง)" : "ยังไม่มีผู้ประกอบการ"}</b>
+                         <span>${isEmptyCat ? "เลือกจากผู้สมัครรายการอื่น" : "รอการคัดเลือก"}</span>`}
+                  </div>
+                  <div style="display:flex;gap:.3rem;flex-wrap:wrap;justify-content:end;align-items:center">
+                    <select data-shop-assign="${esc(sid)}" ${isEmptyCat ? 'data-allow-cross="1"' : ""} title="เลือกผู้ประกอบการเข้าล็อค ${esc(sid)}" style="min-width:14rem;max-width:22rem">
+                      <option value="">— ${isEmptyCat ? "เลือกจากรายการอื่น" : "เลือกผู้สมัคร"} —</option>
+                      ${options}
+                    </select>
+                    ${op ? `<button type="button" class="btn" data-shop-clear="${op.row}" style="padding:.28rem .55rem">ถอน</button>` : ""}
+                  </div>
+                </div>`;
+            }).join("")}
+          </div>
+        </div>`;
+    }
+
+    function renderReportView() {
+      const data = state.data;
+      const zones = state.zone === "ALL" ? ["A","B","C","D"] : [state.zone];
+      const report = (data.shop_report || []).filter(r => zones.includes(r.zone));
+      const filled = report.filter(r => r.filled).length;
+      const q = state.q.trim().toLowerCase();
+      const filtered = report.filter(r => {
+        if (!q) return true;
+        const op = r.operator;
+        return [r.slot, r.zone, r.category, op?.name, op?.phone].join(" ").toLowerCase().includes(q);
+      });
+
+      const noApplicantGroups = data.groups
+        .filter(g => zones.includes(g.zone))
+        .filter(g => appsForGroup(g, data.applicants).length === 0)
+        .filter(g => {
+          if (!q) return true;
+          return [g.label, g.cat, g.zone, ...(g.slots || [])].join(" ").toLowerCase().includes(q);
+        });
+
+      const noApplicantSlots = noApplicantGroups.reduce((n, g) => n + (g.slots?.length || 0), 0);
+
+      let html = `
+        <div class="report-wrap">
+          <div>
+            <h2 style="margin:0 0 .35rem;font-family:'Chakra Petch',sans-serif">รายงานผู้ประกอบการแต่ละร้าน</h2>
+            <p style="margin:0;color:var(--muted)">แสดงว่าแต่ละล็อคร้านมีผู้ประกอบการเป็นใคร (จากสถานะคัดเลือกใน Excel)</p>
+          </div>
+          <div class="report-stats">
+            <span class="chip ok">มีผู้ประกอบการ ${filled}/${report.length} ร้าน</span>
+            <span class="chip ${report.length-filled ? "warn" : "ok"}">ยังไม่คัดเลือก ${report.length - filled} ร้าน</span>
+            <span class="chip ${noApplicantGroups.length ? "warn" : "ok"}">ยังไม่มีผู้สมัคร ${noApplicantGroups.length} ประเภท (${noApplicantSlots} ล็อค)</span>
+            <span class="chip">โซนที่ดู: ${state.zone === "ALL" ? "ทุกโซน" : zoneMeta[state.zone].label}</span>
+          </div>
+
+          <div class="report-empty-box">
+            <h3>สรุปรายการที่ยังไม่มีผู้สมัคร</h3>
+            <p class="sub">ประเภท/ล็อคที่ยังไม่มีใครสมัคร — สามารถเลือกผู้ประกอบการจากรายการอื่นมาลงขายได้${q ? " (ตามคำค้น)" : ""}</p>
+            ${noApplicantGroups.length ? `
+              ${zones.map(z => {
+                const items = noApplicantGroups.filter(g => g.zone === z);
+                if (!items.length) return "";
+                return `
+                  <div class="report-empty-zone">${zoneMeta[z].label} · ว่าง ${items.length} ประเภท</div>
+                  <div class="report-empty-list">
+                    ${items.map(g => {
+                      const reportMap = Object.fromEntries((data.shop_report || []).map(r => [r.slot, r]));
+                      return `
+                      <div class="report-empty-item" style="grid-template-columns:1fr;gap:.55rem">
+                        <div style="display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:space-between">
+                          <div>
+                            <span class="chip empty">ว่าง</span>
+                            <b style="font-family:'Chakra Petch',sans-serif;margin-left:.35rem">${esc(g.cat)}</b>
+                            <div style="color:var(--muted);font-size:.85rem;margin-top:.2rem">รับประมาณ ${g.limit} ล็อค · ยังไม่มีผู้สมัครประเภทนี้</div>
+                          </div>
+                          <div class="slots">${(g.slots||[]).map(s => `<span class="slot-pill">${esc(s)}</span>`).join("")}</div>
+                        </div>
+                        <div class="shop-slots">
+                          ${(g.slots||[]).map(sid => {
+                            const info = reportMap[sid];
+                            const op = info?.operator;
+                            return `
+                              <div class="shop-slot ${op ? "filled" : ""} cross-slot">
+                                <div class="slot-id">${esc(sid)}</div>
+                                <div class="slot-op">
+                                  ${op
+                                    ? `<b>${esc(op.name)}</b>
+                                       <span>สมัครเดิม: โซน ${esc(op.applied_zone || "-")} · ${esc(op.applied_category || "-")}</span>`
+                                    : `<b style="color:var(--muted)">เลือกผู้ประกอบการจากรายการอื่น</b>`}
+                                </div>
+                                <div style="display:flex;gap:.3rem;flex-wrap:wrap;justify-content:end">
+                                  <select data-shop-assign="${esc(sid)}" data-allow-cross="1" style="min-width:14rem;max-width:22rem">
+                                    <option value="">— เลือกจากรายการอื่น —</option>
+                                    ${renderCrossOptions(sid, g.zone, g.cat, op?.row ?? null)}
+                                  </select>
+                                  ${op ? `<button type="button" class="btn" data-shop-clear="${op.row}" style="padding:.28rem .55rem">ถอน</button>` : ""}
+                                </div>
+                              </div>`;
+                          }).join("")}
+                        </div>
+                      </div>`;
+                    }).join("")}
+                  </div>`;
+              }).join("")}
+            ` : `<div class="chip ok">ครบทุกประเภทในมุมมองนี้ มีผู้สมัครแล้ว</div>`}
+          </div>`;
+
+      zones.forEach(z => {
+        const rows = filtered.filter(r => r.zone === z);
+        if (!rows.length && q) return;
+        const zRows = (q ? rows : report.filter(r => r.zone === z));
+        const zFilled = zRows.filter(r => r.filled).length;
+        const zNoApp = noApplicantGroups.filter(g => g.zone === z).length;
+        html += `
+          <div>
+            <h3 class="report-zone">${zoneMeta[z].label} · มีผู้ประกอบการ ${zFilled}/${zRows.length} · ไม่มีผู้สมัคร ${zNoApp} ประเภท</h3>
+            <table class="report-table">
+              <thead>
+                <tr>
+                  <th>ล็อค</th>
+                  <th>ประเภท</th>
+                  <th>ผู้ประกอบการ</th>
+                  <th>สถานะเอกสาร</th>
+                  <th>ผู้สมัคร</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${zRows.map(r => {
+                  const op = r.operator;
+                  const hasApplicant = data.applicants.some(a => a.zone === r.zone && matchCat(a.category, r.category));
+                  return `
+                    <tr class="${r.filled ? "filled" : "empty"}">
+                      <td><span class="slot-pill">${esc(r.slot)}</span></td>
+                      <td>${esc(r.category)}</td>
+                      <td>${op
+                        ? `<div class="op-name">${esc(op.name)}</div>
+                           <div style="color:var(--muted);font-size:.85rem">โทร ${esc(op.phone || "-")} · แถว Excel ${op.row}</div>
+                           ${r.cross_assigned ? `<div style="margin-top:.25rem"><span class="chip warn">จากรายการอื่น · สมัคร ${esc(op.applied_category || "")}</span></div>` : ""}`
+                        : `<span class="chip empty">ยังไม่มีผู้ประกอบการ</span>`}</td>
+                      <td>${op ? esc(op.status || "-") : "—"}</td>
+                      <td>${hasApplicant
+                        ? `<span class="chip ok">มีผู้สมัคร</span>`
+                        : `<span class="chip empty">ไม่มีผู้สมัคร</span>`}</td>
+                    </tr>`;
+                }).join("")}
+              </tbody>
+            </table>
+          </div>`;
+      });
+
+      html += `</div>`;
+      return html;
+    }
+
+    function statusBadge(label, value, kind, iconName) {
+      return `
+        <span class="status-badge ${kind}" title="${esc(label)}: ${esc(value)}">
+          <span class="badge-ico">${ico(iconName)}</span>
+          <span class="badge-text">
+            <span class="badge-label">${esc(label)}</span>
+            <span class="badge-value">${esc(value)}</span>
+          </span>
+        </span>`;
+    }
+
+    function docCheckOf(a) {
+      if (a.doc_check) return a.doc_check;
+      const missing = a.auto_missing || [];
+      const sysPass = missing.length === 0;
+      return {
+        system: { pass: sysPass, label: sysPass ? "ครบถ้วน" : "ไม่ครบถ้วน", missing },
+        admin: { reviewed: false, status: "", pass: false, fail: false, missing_detail: a.missing_detail || "", review_note: a.review_note || "", reviewed_at: a.reviewed_at || "" },
+        effective: {
+          source: "system",
+          source_label: "ยึดตามที่ระบบตรวจ (รอ Admin)",
+          pass: sysPass,
+          label: sysPass ? "ครบถ้วน (ระบบ)" : "ไม่ครบถ้วน (ระบบ)",
+          reason: sysPass ? "" : ("ระบบตรวจพบขาด: " + missing.join(", ")),
+        },
+      };
+    }
+
+    function statusChip(a) {
+      const dc = docCheckOf(a);
+      const eff = dc.effective;
+      if (eff.pass) {
+        return statusBadge(eff.source === "admin" ? "สถานะเอกสาร (Admin)" : "สถานะเอกสาร (ระบบ)", eff.label, "doc-ok", "check");
+      }
+      if (dc.admin?.status === "ขาดคุณสมบัติ") {
+        return statusBadge("สถานะเอกสาร (Admin)", eff.label, "doc-danger", "x");
+      }
+      return statusBadge(eff.source === "admin" ? "สถานะเอกสาร (Admin)" : "สถานะเอกสาร (ระบบ)", eff.label, "doc-warn", "alert");
+    }
+
+    function selectionChip(a) {
+      const s = a.selection || "รอพิจารณา";
+      if (s === "ได้รับการคัดเลือก") {
+        const slot = a.assigned_slot ? ` · ล็อค ${a.assigned_slot}` : "";
+        return statusBadge("ผลการคัดเลือก", s + slot, "sel-ok", "star");
+      }
+      if (s === "ไม่ได้รับการคัดเลือก") {
+        return statusBadge("ผลการคัดเลือก", s, "sel-no", "x");
+      }
+      return statusBadge("ผลการคัดเลือก", s, "sel-wait", "wait");
+    }
+
+    function renderDocOverview(a) {
+      const dc = docCheckOf(a);
+      const sys = dc.system;
+      const adm = dc.admin;
+      const eff = dc.effective;
+      const checklist = [
+        ["บัตร ปชช.", a.docs?.id_card],
+        ["ทะเบียนบ้าน", a.docs?.house_reg],
+        ["รูปถ่าย", a.docs?.photo],
+        ["รูปอาหาร", a.docs?.food],
+        ["คุณสมบัติ", a.docs?.qualify],
+      ];
+
+      const sysReason = !sys.pass
+        ? `<div class="reason">ไม่ครบ เพราะขาด: ${esc((sys.missing || []).join(", ") || "-")}</div>`
+        : `<div style="margin-top:.3rem;font-size:.85rem;color:var(--ok);font-weight:600">ระบบตรวจพบไฟล์แนบครบ</div>`;
+
+      let adminBody;
+      if (!adm.reviewed) {
+        adminBody = `<div class="box-v">ยังไม่ตรวจ</div><div style="margin-top:.3rem;font-size:.85rem;color:var(--muted)">รอ Admin บันทึกผลตรวจ</div>`;
+      } else if (adm.pass) {
+        adminBody = `<div class="box-v">ครบถ้วน</div>${adm.reviewed_at ? `<div style="margin-top:.25rem;font-size:.8rem;color:var(--muted)">ตรวจเมื่อ ${esc(adm.reviewed_at)}</div>` : ""}`;
+      } else {
+        const why = adm.missing_detail
+          || (adm.status === "ขาดคุณสมบัติ" ? (adm.review_note || "ขาดคุณสมบัติ") : "เอกสารไม่ครบถ้วน");
+        adminBody = `
+          <div class="box-v">${esc(adm.status || "ไม่ผ่าน")}</div>
+          <div class="reason">ไม่ผ่าน เพราะ: ${esc(why)}</div>
+          ${adm.review_note && adm.status !== "ขาดคุณสมบัติ" ? `<div style="margin-top:.2rem;font-size:.85rem;color:var(--muted)">หมายเหตุ: ${esc(adm.review_note)}</div>` : ""}
+          ${adm.reviewed_at ? `<div style="margin-top:.25rem;font-size:.8rem;color:var(--muted)">ตรวจเมื่อ ${esc(adm.reviewed_at)}</div>` : ""}`;
+      }
+
+      return `
+        <div class="doc-overview">
+          <div class="ov-title">
+            ภาพรวมตรวจเอกสาร
+            <span class="chip ${eff.pass ? "ok" : "warn"}">${esc(eff.source_label)}</span>
+            <span class="chip ${eff.pass ? "ok" : "danger"}">${eff.pass ? "ผ่าน" : "ไม่ผ่าน"} · ${esc(eff.label)}</span>
+          </div>
+          ${!eff.pass && eff.reason ? `<div class="chip danger" style="justify-self:start;white-space:normal;height:auto;border-radius:10px;line-height:1.35">${esc(eff.reason)}</div>` : ""}
+          <div class="ov-grid">
+            <div class="doc-box ${sys.pass ? "ok" : "fail"}">
+              <div class="box-h">ระบบตรวจ (ไฟล์แนบ)</div>
+              <div class="box-v">${sys.pass ? "ครบถ้วน" : "ไม่ครบถ้วน"}</div>
+              ${sysReason}
+              <div class="doc-checklist">
+                ${checklist.map(([lab, ok]) => `<span class="chip ${ok ? "ok" : "danger"}">${ok ? "✓" : "✗"} ${esc(lab)}</span>`).join("")}
+              </div>
+            </div>
+            <div class="doc-box admin ${!adm.reviewed ? "" : (adm.pass ? "ok" : "fail")}">
+              <div class="box-h">Admin ตรวจ (ใช้ตัดสิน)</div>
+              ${adminBody}
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function thumbButton(photo, i) {
+      const src = photo.thumb || "";
+      const full = photo.full || photo.url;
+      return `
+        <button type="button" class="thumb" data-full="${esc(full)}" title="คลิกดูรูปใหญ่">
+          ${src
+            ? `<img src="${esc(src)}" alt="อาหาร ${i+1}" referrerpolicy="no-referrer" loading="lazy"
+                 onerror="this.parentElement.innerHTML='<div class=ph>อาหาร ${i+1}<br>เปิดลิงก์</div>'; this.parentElement.dataset.full='${esc(photo.url)}';" />`
+            : `<div class="ph">อาหาร ${i+1}</div>`}
+        </button>`;
+    }
+
+    function renderApplicant(a, rank) {
+      const docs = [
+        a.photo && { label: "รูปถ่าย", href: a.photo },
+        a.id_card && { label: "บัตร ปชช.", href: a.id_card },
+        a.house_reg && { label: "ทะเบียนบ้าน", href: a.house_reg },
+      ].filter(Boolean);
+
+      return `
+        <article class="applicant ${rank===1?"first":""} ${selectionClass(a.selection)}" data-key="${esc(a.key)}">
+          <div class="app-top">
+            <div class="rank">#${rank}</div>
+            <div>
+              <h4 class="app-name">${esc(a.name)}</h4>
+              <p class="app-sub">โทร ${esc(a.phone||"-")} · แถว Excel ${a.row}</p>
+            </div>
+            <div class="time" title="เวลาสมัคร (Asia/Bangkok)">${esc(fmtTime(a))}</div>
+          </div>
+          <div class="status-panel">
+            <div class="status-row">
+              ${selectionChip(a)}
+              ${statusChip(a)}
+              <button class="btn btn-check" type="button" data-check="${esc(a.key)}" title="คลิกเพื่อตรวจและบันทึกสถานะเอกสาร">
+                <span class="btn-ico">${ico("doc")}</span>
+                <span>เช็คเอกสาร</span>
+              </button>
+            </div>
+            ${renderDocOverview(a)}
+            <div class="sel-actions">
+              <button type="button" class="btn ok btn-quick ${a.selection==="ได้รับการคัดเลือก"?"active-sel":""}" data-quick-sel="${esc(a.key)}" data-sel="ได้รับการคัดเลือก">
+                <span class="btn-ico">${ico("star")}</span> คัดเลือกเข้าล็อค
+              </button>
+              <button type="button" class="btn danger btn-quick ${a.selection==="ไม่ได้รับการคัดเลือก"?"active-sel":""}" data-quick-sel="${esc(a.key)}" data-sel="ไม่ได้รับการคัดเลือก">
+                <span class="btn-ico">${ico("x")}</span> ไม่คัดเลือก
+              </button>
+              ${a.assigned_slot ? `<span class="chip ok">ล็อค ${esc(a.assigned_slot)}</span>` : ""}
+            </div>
+          </div>
+          <p class="detail">${esc(a.detail || "ไม่ระบุจุดเด่น")}</p>
+          <div class="docs-row">
+            ${docs.map(d => `<a href="${esc(d.href)}" target="_blank" rel="noopener">${esc(d.label)}</a>`).join("")}
+          </div>
+          <div class="thumbs">
+            ${(a.food_photos||[]).map((p,i)=>thumbButton(p,i)).join("") || `<span class="chip empty">ไม่มีรูปอาหาร</span>`}
+          </div>
+        </article>`;
+    }
+
+    function render() {
+      const data = state.data;
+      if (!data) return;
+
+      const byZone = {A:0,B:0,C:0,D:0};
+      data.applicants.forEach(a => { if (byZone[a.zone]!=null) byZone[a.zone]++; });
+      const filledByZone = {A:0,B:0,C:0,D:0};
+      data.slots.forEach(s => {
+        const has = data.applicants.some(a => a.zone === s.zone && matchCat(a.category, s.cat));
+        if (has) filledByZone[s.zone]++;
+      });
+      const shopFilled = (data.shop_report || []).filter(r => r.filled).length;
+      const selCounts = countBySelection(data.applicants, state.zone);
+      const totalCapacity = Object.values(zoneMeta).reduce((n, z) => n + z.shops, 0);
+
+      document.getElementById("tabReview").classList.toggle("active", state.view === "review");
+      document.getElementById("tabReport").classList.toggle("active", state.view === "report");
+      document.getElementById("statusSideBlock").style.display = state.view === "review" ? "" : "none";
+      document.getElementById("docSummarySideBlock").style.display = state.view === "review" ? "" : "none";
+      document.getElementById("emptySideBlock").style.display = state.view === "review" ? "" : "none";
+
+      const ds = data.doc_summary || {};
+      const scopeApps = state.zone === "ALL" ? data.applicants : data.applicants.filter(a => a.zone === state.zone);
+      const scopeSummary = (() => {
+        if (state.zone === "ALL") return ds;
+        let sysOk=0,sysFail=0,adminOk=0,adminFail=0,adminPending=0,effOk=0,effFail=0;
+        scopeApps.forEach(a => {
+          const dc = docCheckOf(a);
+          if (dc.system.pass) sysOk++; else sysFail++;
+          if (dc.admin.reviewed) {
+            if (dc.admin.pass) adminOk++;
+            else if (dc.admin.fail) adminFail++;
+            else adminPending++;
+          } else adminPending++;
+          if (dc.effective.pass) effOk++; else effFail++;
+        });
+        return { total: scopeApps.length, system_ok: sysOk, system_fail: sysFail, admin_ok: adminOk, admin_fail: adminFail, admin_pending: adminPending, effective_ok: effOk, effective_fail: effFail };
+      })();
+
+      document.getElementById("docSummaryPanel").innerHTML = `
+        <div class="row"><span>ขอบเขต</span><b>${state.zone === "ALL" ? "ทุกโซน" : zoneMeta[state.zone].label}</b></div>
+        <div class="row"><span>ผลที่ใช้ตัดสิน</span><span class="chip ${scopeSummary.effective_fail ? "warn" : "ok"}">ผ่าน ${scopeSummary.effective_ok||0} · ไม่ผ่าน ${scopeSummary.effective_fail||0}</span></div>
+        <div class="row"><span>ระบบตรวจครบ</span><span class="chip ok">${scopeSummary.system_ok||0}</span></div>
+        <div class="row"><span>ระบบพบไม่ครบ</span><span class="chip ${scopeSummary.system_fail ? "warn" : "ok"}">${scopeSummary.system_fail||0}</span></div>
+        <div class="row"><span>Admin ผ่าน</span><span class="chip ok">${scopeSummary.admin_ok||0}</span></div>
+        <div class="row"><span>Admin ไม่ผ่าน</span><span class="chip ${scopeSummary.admin_fail ? "danger" : "ok"}">${scopeSummary.admin_fail||0}</span></div>
+        <div class="row"><span>รอ Admin ตรวจ</span><span class="chip ${scopeSummary.admin_pending ? "warn" : "ok"}">${scopeSummary.admin_pending||0}</span></div>
+        <p class="policy-note" style="margin:.2rem 0 0">เมื่อ Admin บันทึกแล้ว ระบบจะยึดสถานะ Admin เป็นหลัก</p>
+      `;
+
+      document.getElementById("topMeta").innerHTML =
+        `ผู้สมัคร <b>${data.total_applicants}</b> คน · ร้านมีผู้ประกอบการ <b>${shopFilled}/${data.slots.length}</b> · รอ <b>${countBySelection(data.applicants,"ALL")["รอพิจารณา"]}</b> · อนุมัติ <b>${countBySelection(data.applicants,"ALL")["ได้รับการคัดเลือก"]}</b>`;
+
+      document.getElementById("zoneList").innerHTML = ["A","B","C","D"].map(z => `
+        <button type="button" data-zone="${z}" class="${state.zone===z?"active":""}">
+          <span class="z-title">${zoneMeta[z].label}</span>
+          <span class="z-meta">รับ ${zoneMeta[z].shops} ร้าน · สมัครแล้ว ${byZone[z]} ร้าน</span>
+        </button>`).join("") + `
+        <button type="button" data-zone="ALL" class="${state.zone==="ALL"?"active":""}">
+          <span class="z-title">ทุกโซน</span>
+          <span class="z-meta">รับ ${totalCapacity} ร้าน · สมัครแล้ว ${data.total_applicants} ร้าน</span>
+        </button>`;
+
+      document.getElementById("statusFilters").innerHTML = `
+        <button type="button" class="f-all ${state.selFilter==="ALL"?"active":""}" data-sel-filter="ALL"><span>ทั้งหมด</span><span>${selCounts.ALL}</span></button>
+        <button type="button" class="f-pending ${state.selFilter==="รอพิจารณา"?"active":""}" data-sel-filter="รอพิจารณา"><span>รอพิจารณา</span><span>${selCounts["รอพิจารณา"]}</span></button>
+        <button type="button" class="f-ok ${state.selFilter==="ได้รับการคัดเลือก"?"active":""}" data-sel-filter="ได้รับการคัดเลือก"><span>อนุมัติแล้ว</span><span>${selCounts["ได้รับการคัดเลือก"]}</span></button>
+        <button type="button" class="f-no ${state.selFilter==="ไม่ได้รับการคัดเลือก"?"active":""}" data-sel-filter="ไม่ได้รับการคัดเลือก"><span>ไม่อนุมัติ</span><span>${selCounts["ไม่ได้รับการคัดเลือก"]}</span></button>
+      `;
+
+      const zones = state.zone === "ALL" ? ["A","B","C","D"] : [state.zone];
+      const emptyNow = state.zone === "ALL"
+        ? data.groups.filter(g => appsForGroup(g, data.applicants).length === 0)
+        : emptyGroups(state.zone, data);
+
+      document.getElementById("emptyPanel").innerHTML = emptyNow.length
+        ? `<div>ว่าง ${emptyNow.length} กลุ่มประเภท</div><div class="tags">${emptyNow.map(g =>
+            `<span class="chip empty">${esc(g.label)} · ${esc(g.cat)}</span>`).join("")}</div>`
+        : `<div class="chip ok">ไม่มีล็อคว่างในมุมมองนี้</div>`;
+
+      if (state.view === "report") {
+        document.getElementById("main").innerHTML = renderReportView();
+        bindDynamic();
+        return;
+      }
+
+      const q = state.q.trim().toLowerCase();
+      let html = `<div class="notice">${esc(data.notice || "")} · เวลาที่แสดงเป็น <b>เวลาไทย (Asia/Bangkok)</b></div>`;
+
+      zones.forEach(z => {
+        const groups = data.groups.filter(g => g.zone === z);
+        const zCounts = countBySelection(data.applicants, z);
+        const zShop = (data.shop_report || []).filter(r => r.zone === z);
+        const zFilledShop = zShop.filter(r => r.filled).length;
+        html += `<div style="margin: .2rem 0 .8rem; display:flex; justify-content:space-between; align-items:end; gap:1rem; flex-wrap:wrap">
+          <h2 style="margin:0;font-family:'Chakra Petch',sans-serif">${zoneMeta[z].label}</h2>
+          <span style="color:var(--muted)">ร้านมีผู้ประกอบการ ${zFilledShop}/${zShop.length} · สมัคร ${byZone[z]} · รอ ${zCounts["รอพิจารณา"]} · อนุมัติ ${zCounts["ได้รับการคัดเลือก"]}</span>
+        </div>`;
+
+        groups.forEach(g => {
+          const list = appsForGroup(g, data.applicants);
+          const filtered = list.filter(a => {
+            if (!passSelFilter(a)) return false;
+            if (!q) return true;
+            return [a.name,a.phone,a.category,a.detail,g.label,g.cat,a.status,a.selection,a.assigned_slot].join(" ").toLowerCase().includes(q);
+          });
+          if (q && !filtered.length && !(`${g.label} ${g.cat}`.toLowerCase().includes(q))) return;
+          const assignedCount = g.slots.filter(sid => operatorOnSlot(sid)?.filled).length;
+          // Empty categories always stay visible (cross-fill). Filtered native lists hide as usual.
+          if (state.selFilter !== "ALL" && list.length > 0 && !filtered.length) return;
+
+          const approved = list.filter(a => a.selection === "ได้รับการคัดเลือก").length;
+          html += `
+            <section class="group" id="group-${esc(g.primary)}">
+              <div class="group-head" style="${assignedCount ? "background:linear-gradient(90deg,#d8f5e4,#fff1b8)" : ""}">
+                <div>
+                  <h2>${esc(g.cat)}</h2>
+                  <p>รับประมาณ ${g.limit} ล็อค · คิวร่วมเรียงเวลาเร็วสุดก่อน</p>
+                  <div class="slot-pills">${g.slots.map(s => `<span class="slot-pill">${esc(s)}</span>`).join("")}</div>
+                </div>
+                <div class="head-badges">
+                  ${list.length
+                    ? `<span class="chip ${list.length > g.limit ? "warn" : "ok"}">${list.length} ผู้สมัคร</span>`
+                    : `<span class="chip empty">ยังว่าง</span>`}
+                  <span class="chip ${assignedCount ? "ok" : ""}">ล็อคมีผู้ประกอบการ ${assignedCount}/${g.slots.length}</span>
+                  ${approved ? `<span class="chip ok">สถานะคัดเลือก ${approved}</span>` : `<span class="chip">รอพิจารณา</span>`}
+                </div>
+              </div>
+              <div class="group-body">
+                ${list.length ? renderShopBoard(g, list) : renderShopBoard(g, [], { crossFill: true })}
+                ${filtered.length
+                  ? filtered.map(a => renderApplicant(a, list.indexOf(a)+1)).join("")
+                  : `<div class="empty-state">${list.length ? "ไม่มีรายการตามตัวกรอง" : "ยังไม่มีผู้สมัครประเภทนี้ — ใช้แผงด้านบนเพื่อจัดผู้ประกอบการจากรายการอื่นมาลงขาย"}</div>`}
+              </div>
+            </section>`;
+        });
+      });
+
+      document.getElementById("main").innerHTML = html;
+      bindDynamic();
+    }
+
+    function bindDynamic() {
+      document.querySelectorAll("#zoneList button").forEach(btn => {
+        btn.onclick = () => { state.zone = btn.dataset.zone; render(); };
+      });
+
+      document.querySelectorAll("[data-sel-filter]").forEach(btn => {
+        btn.onclick = () => { state.selFilter = btn.dataset.selFilter; render(); };
+      });
+
+      document.querySelectorAll("[data-check]").forEach(btn => {
+        btn.onclick = () => openStatus(btn.dataset.check);
+      });
+
+      document.querySelectorAll("[data-quick-sel]").forEach(btn => {
+        btn.onclick = () => quickSelect(btn.dataset.quickSel, btn.dataset.sel);
+      });
+
+      document.querySelectorAll("[data-shop-assign]").forEach(sel => {
+        sel.onchange = async () => {
+          const slot = sel.dataset.shopAssign;
+          const row = parseInt(sel.value, 10);
+          const allowCross = sel.dataset.allowCross === "1";
+          if (!row) { sel.value = ""; return; }
+          try {
+            await assignShop(row, slot, allowCross);
+          } catch (e) {
+            alert("บันทึกไม่สำเร็จ: " + e.message);
+            render();
+          }
+        };
+      });
+
+      document.querySelectorAll("[data-shop-clear]").forEach(btn => {
+        btn.onclick = async () => {
+          if (!confirm("ถอนผู้ประกอบการออกจากล็อค? (ไม่ลบรายการใน Excel — เปลี่ยนเป็นสถานะรอพิจารณา)")) return;
+          try {
+            await unassignShop(parseInt(btn.dataset.shopClear, 10), "รอพิจารณา");
+          } catch (e) {
+            alert("บันทึกไม่สำเร็จ: " + e.message);
+          }
+        };
+      });
+
+      document.querySelectorAll(".thumb").forEach(btn => {
+        btn.onclick = () => {
+          const full = btn.dataset.full;
+          if (!full) return;
+          if (!/thumbnail\?id=/.test(full)) {
+            window.open(full, "_blank");
+            return;
+          }
+          const lb = document.getElementById("lightbox");
+          const im = document.getElementById("lbImg");
+          im.onerror = () => {
+            lb.classList.remove("show");
+            const id = (full.match(/id=([a-zA-Z0-9_-]+)/) || [])[1];
+            window.open(id ? `https://drive.google.com/file/d/${id}/view` : full, "_blank");
+          };
+          im.src = full;
+          lb.classList.add("show");
+        };
+      });
+    }
+
+    function openStatusSummary() {
+      const data = state.data;
+      const scope = state.zone;
+      const list = scope === "ALL" ? data.applicants : data.applicants.filter(a => a.zone === scope);
+      const buckets = {
+        "รอพิจารณา": list.filter(a => a.selection === "รอพิจารณา"),
+        "ได้รับการคัดเลือก": list.filter(a => a.selection === "ได้รับการคัดเลือก"),
+        "ไม่ได้รับการคัดเลือก": list.filter(a => a.selection === "ไม่ได้รับการคัดเลือก"),
+      };
+      document.getElementById("statusSummarySub").textContent =
+        (scope === "ALL" ? "ทุกโซน" : zoneMeta[scope].label) + ` · รวม ${list.length} คน`;
+
+      const block = (title, arr, tone) => `
+        <div style="margin-bottom:1rem">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem">
+            <h4 style="margin:0;font-family:'Chakra Petch',sans-serif">${title}</h4>
+            <span class="chip ${tone}">${arr.length} คน</span>
+          </div>
+          <div class="sum-list">
+            ${arr.length ? arr.map(a => `
+              <div class="sum-item">
+                <b>${esc(a.name)}</b> · โซน ${esc(a.zone)} · ${esc(a.category)}
+                <div style="color:var(--muted);font-size:.85rem">${esc(fmtTime(a))}</div>
+              </div>`).join("") : `<div class="sum-item" style="color:var(--muted)">ไม่มีรายการ</div>`}
+          </div>
+        </div>`;
+
+      document.getElementById("statusSummaryBody").innerHTML =
+        block("รอพิจารณา", buckets["รอพิจารณา"], "") +
+        block("พิจารณาอนุมัติ (ได้รับการคัดเลือก)", buckets["ได้รับการคัดเลือก"], "ok") +
+        block("พิจารณาไม่อนุมัติ", buckets["ไม่ได้รับการคัดเลือก"], "danger");
+
+      document.getElementById("statusSummaryModal").classList.add("show");
+    }
+
+    function fillSlotOptions(selectEl, a, includeEmpty = true) {
+      const slots = slotsForApplicant(a);
+      const cur = a.assigned_slot || "";
+      selectEl.innerHTML = (includeEmpty ? `<option value="">— ยังไม่ระบุล็อค —</option>` : "") +
+        slots.map(s => {
+          const occ = operatorOnSlot(s.id);
+          const busy = occ?.filled && occ.operator?.row !== a.row;
+          const label = busy ? `${s.id} (มี ${occ.operator.name} แล้ว — จะแทนที่)` : s.id;
+          return `<option value="${s.id}" ${cur === s.id ? "selected" : ""}>${esc(label)}</option>`;
+        }).join("");
+    }
+
+    function openStatus(key) {
+      const a = state.data.applicants.find(x => x.key === key);
+      if (!a) return;
+      state.editing = a;
+      const dc = docCheckOf(a);
+      document.getElementById("statusSub").textContent = `${a.name} · โซน ${a.zone} · ${a.category}`;
+      const items = [
+        ["สำเนาบัตรประชาชน", a.docs.id_card],
+        ["สำเนาทะเบียนบ้าน", a.docs.house_reg],
+        ["รูปถ่ายหน้าตรง", a.docs.photo],
+        ["ภาพถ่ายอาหาร/สินค้า", a.docs.food],
+        ["ระบุคุณสมบัติในแบบฟอร์ม", a.docs.qualify],
+      ];
+      const sysHint = dc.system.pass
+        ? `<div class="chip ok" style="margin-bottom:.45rem">ระบบตรวจ: ไฟล์แนบครบ</div>`
+        : `<div class="chip warn" style="margin-bottom:.45rem;white-space:normal;height:auto;border-radius:10px;line-height:1.35">ระบบตรวจ: ไม่ครบ — ขาด ${esc((dc.system.missing||[]).join(", "))}</div>`;
+      document.getElementById("autoChecks").innerHTML = sysHint + items.map(([label, ok]) => `
+        <label><input type="checkbox" disabled ${ok?"checked":""} /> ${esc(label)} ${ok?"✓":"— ขาด"}</label>`).join("")
+        + `<p class="policy-note" style="margin:.5rem 0 0">บันทึกด้านล่างคือผลตรวจของ Admin (จะถูกใช้ตัดสินแทนระบบเมื่อบันทึกแล้ว)</p>`;
+
+      const sel = document.getElementById("fStatus");
+      const adm = dc.admin;
+      if (adm.reviewed && [...sel.options].some(o => o.value === adm.status)) {
+        sel.value = adm.status;
+      } else {
+        sel.value = dc.system.pass ? "ครบถ้วน" : "ไม่ครบถ้วน";
+      }
+      document.getElementById("fMissing").value = a.missing_detail || (a.auto_missing||[]).join(", ");
+      document.getElementById("fNote").value = a.review_note || "";
+      setSelectionButtons(a.selection || "รอพิจารณา");
+      fillSlotOptions(document.getElementById("fSlot"), a, true);
+      document.getElementById("statusModal").classList.add("show");
+    }
+
+    function setSelectionButtons(value) {
+      document.getElementById("fSelection").value = value;
+      document.querySelectorAll("#selButtons [data-sel]").forEach(btn => {
+        btn.classList.toggle("active-sel", btn.dataset.sel === value);
+      });
+      const slotWrap = document.getElementById("slotPickWrap");
+      if (slotWrap) slotWrap.style.opacity = value === "ได้รับการคัดเลือก" ? "1" : ".55";
+    }
+
+    async function persistStatus(a, overrides = {}) {
+      const selection = overrides.selection ?? (a.selection || "รอพิจารณา");
+      let assigned = overrides.assigned_slot;
+      if (assigned === undefined) assigned = a.assigned_slot || "";
+      if (selection !== "ได้รับการคัดเลือก") assigned = "";
+
+      const payload = {
+        row: a.row,
+        status: (overrides.status ?? a.status?.replace(/\s*\(อัตโนมัติ\)\s*/g, "") ?? "รอตรวจสอบ").replace(/\s*\(ระบบ\)\s*/g, "") || "รอตรวจสอบ",
+        missing_detail: overrides.missing_detail ?? (a.missing_detail || ""),
+        review_note: overrides.review_note ?? (a.review_note || ""),
+        selection,
+        assigned_slot: assigned,
+        reviewed_at: new Date().toISOString().slice(0,19).replace("T"," "),
+      };
+      const res = await fetch("api.php?action=save_status", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const json = await res.json();
+      if (!json.ok) throw new Error(json.error || "บันทึกไม่สำเร็จ");
+      state.data = json.data;
+      render();
+      return json;
+    }
+
+    async function assignShop(row, slot, allowCross = false) {
+      const res = await fetch("api.php?action=assign_shop", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ row, slot, allow_cross: !!allowCross }),
+      });
+      const json = await res.json();
+      if (!json.ok) throw new Error(json.error || "บันทึกไม่สำเร็จ");
+      state.data = json.data;
+      render();
+      return json;
+    }
+
+    async function unassignShop(row, selection = "รอพิจารณา") {
+      const res = await fetch("api.php?action=unassign_shop", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ row, selection }),
+      });
+      const json = await res.json();
+      if (!json.ok) throw new Error(json.error || "บันทึกไม่สำเร็จ");
+      state.data = json.data;
+      render();
+      return json;
+    }
+
+    function openAssignModal(a) {
+      state.assignKey = a.key;
+      document.getElementById("assignSub").textContent = `${a.name} · ${a.category} · โซน ${a.zone}`;
+      const sel = document.getElementById("assignSlotSelect");
+      fillSlotOptions(sel, a, false);
+      const free = freeSlotsForApplicant(a, true);
+      if (free.length && !a.assigned_slot) sel.value = free[0].id;
+      else if (a.assigned_slot) sel.value = a.assigned_slot;
+      document.getElementById("assignModal").classList.add("show");
+    }
+
+    async function quickSelect(key, selection) {
+      const a = state.data.applicants.find(x => x.key === key);
+      if (!a) return;
+      try {
+        if (selection === "ได้รับการคัดเลือก") {
+          openAssignModal(a);
+          return;
+        }
+        await unassignShop(a.row, selection);
+      } catch (e) {
+        alert("บันทึกไม่สำเร็จ: " + e.message + "\n\nถ้าไฟล์ Excel เปิดค้างอยู่ ให้ปิดก่อนแล้วลองใหม่");
+      }
+    }
+
+    async function saveStatus() {
+      const a = state.editing;
+      if (!a) return;
+      const btn = document.getElementById("btnSaveStatus");
+      btn.disabled = true; btn.textContent = "กำลังบันทึก...";
+      try {
+        const selection = document.getElementById("fSelection").value;
+        const slot = document.getElementById("fSlot").value;
+        const docFields = {
+          status: document.getElementById("fStatus").value,
+          missing_detail: document.getElementById("fMissing").value.trim(),
+          review_note: document.getElementById("fNote").value.trim(),
+        };
+        if (selection === "ได้รับการคัดเลือก" && slot) {
+          await assignShop(a.row, slot);
+          const updated = state.data.applicants.find(x => x.row === a.row);
+          if (updated) {
+            await persistStatus(updated, {
+              ...docFields,
+              selection: "ได้รับการคัดเลือก",
+              assigned_slot: slot,
+            });
+          }
+        } else {
+          await persistStatus(a, {
+            ...docFields,
+            selection,
+            assigned_slot: "",
+          });
+        }
+        document.getElementById("statusModal").classList.remove("show");
+      } catch (e) {
+        alert("บันทึกไม่สำเร็จ: " + e.message + "\n\nถ้าไฟล์ Excel เปิดค้างอยู่ ให้ปิดก่อนแล้วลองใหม่");
+      } finally {
+        btn.disabled = false; btn.textContent = "บันทึกลง Excel";
+      }
+    }
+
+    async function loadData() {
+      const res = await fetch("api.php?action=data&_=" + Date.now());
+      const json = await res.json();
+      if (json.error) throw new Error(json.error);
+      state.data = json;
+      render();
+    }
+
+    document.getElementById("btnRebuild").onclick = async () => {
+      const res = await fetch("api.php?action=rebuild&_=" + Date.now());
+      const json = await res.json();
+      if (!json.ok) return alert(json.error || "รีเฟรชไม่สำเร็จ");
+      state.data = json.data;
+      render();
+    };
+
+    document.getElementById("fileUpload").onchange = async (e) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      const fd = new FormData();
+      fd.append("file", file);
+      fd.append("action", "upload");
+      try {
+        const res = await fetch("api.php?action=upload", { method: "POST", body: fd });
+        const json = await res.json();
+        if (!json.ok) throw new Error(json.error || "อัปโหลดไม่สำเร็จ");
+        state.data = json.data;
+        render();
+        alert(`นำเข้าสำเร็จ ${json.total} คน จากไฟล์ใหม่`);
+      } catch (err) {
+        alert("นำเข้าไม่สำเร็จ: " + err.message);
+      } finally {
+        e.target.value = "";
+      }
+    };
+
+    document.getElementById("btnEmptySummary").onclick = () => {
+      const data = state.data;
+      const list = state.zone === "ALL"
+        ? data.groups.filter(g => appsForGroup(g, data.applicants).length === 0)
+        : emptyGroups(state.zone, data);
+      document.getElementById("emptyModalTitle").textContent =
+        state.zone === "ALL" ? "สรุปล็อคว่างทุกโซน" : `สรุปล็อคว่าง ${zoneMeta[state.zone].label}`;
+      document.getElementById("emptyModalBody").innerHTML = list.length
+        ? `<div class="tags">${list.map(g =>
+            `<span class="chip empty" style="margin:.2rem">${esc(g.label)} — ${esc(g.cat)}</span>`).join("")}</div>`
+        : `<div class="chip ok">ไม่มีล็อคว่าง</div>`;
+      document.getElementById("emptyModal").classList.add("show");
+    };
+
+    document.getElementById("btnStatusSummary").onclick = openStatusSummary;
+    document.getElementById("btnCloseStatusSummary").onclick = () => document.getElementById("statusSummaryModal").classList.remove("show");
+    document.querySelectorAll("[data-jump-sel]").forEach(btn => {
+      btn.onclick = () => {
+        state.selFilter = btn.dataset.jumpSel;
+        document.getElementById("statusSummaryModal").classList.remove("show");
+        render();
+      };
+    });
+
+    document.getElementById("btnCloseEmpty").onclick = () => document.getElementById("emptyModal").classList.remove("show");
+    document.getElementById("btnCancelStatus").onclick = () => document.getElementById("statusModal").classList.remove("show");
+    document.getElementById("btnSaveStatus").onclick = saveStatus;
+    document.querySelectorAll("#selButtons [data-sel]").forEach(btn => {
+      btn.onclick = () => setSelectionButtons(btn.dataset.sel);
+    });
+    document.getElementById("btnCloseLb").onclick = () => document.getElementById("lightbox").classList.remove("show");
+    document.getElementById("lightbox").onclick = (e) => {
+      if (e.target.id === "lightbox") document.getElementById("lightbox").classList.remove("show");
+    };
+
+    document.getElementById("tabReview").onclick = () => { state.view = "review"; render(); };
+    document.getElementById("tabReport").onclick = () => { state.view = "report"; render(); };
+
+    document.getElementById("btnCancelAssign").onclick = () => {
+      state.assignKey = null;
+      document.getElementById("assignModal").classList.remove("show");
+    };
+    document.getElementById("btnConfirmAssign").onclick = async () => {
+      const a = state.data.applicants.find(x => x.key === state.assignKey);
+      const slot = document.getElementById("assignSlotSelect").value;
+      if (!a || !slot) return alert("กรุณาเลือกล็อคร้าน");
+      try {
+        await assignShop(a.row, slot);
+        document.getElementById("assignModal").classList.remove("show");
+        state.assignKey = null;
+      } catch (e) {
+        alert("บันทึกไม่สำเร็จ: " + e.message + "\n\nถ้าไฟล์ Excel เปิดค้างอยู่ ให้ปิดก่อนแล้วลองใหม่");
+      }
+    };
+
+    let t;
+    document.getElementById("q").oninput = (e) => {
+      clearTimeout(t);
+      t = setTimeout(() => { state.q = e.target.value; render(); }, 160);
+    };
+
+    loadData().catch(err => {
+      document.getElementById("main").innerHTML = `<div class="empty-state">โหลดไม่สำเร็จ: ${esc(err.message)}</div>`;
+    });
+  </script>
+</body>
+</html>

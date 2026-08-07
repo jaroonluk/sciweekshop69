@@ -1,0 +1,7 @@
+.idea/
+*.bak
+*.tmp.zip
+*.tmp
+rebuild_out.json
+.DS_Store
+Thumbs.db
