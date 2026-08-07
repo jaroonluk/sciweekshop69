@@ -429,7 +429,7 @@ function sci_parse_applicants(?string $path = null): array {
     'shop_report' => $shopReport,
     'doc_summary' => $docSummary,
     'policy' => 'ระบบอัปเดตเฉพาะคอลัมน์สถานะ (P–U) เท่านั้น ไม่ลบรายการผู้สมัครใน Excel',
-    'notice' => 'หากไม่พบชื่อในระบบ ให้ดาวน์โหลดไฟล์ล่าสุดจาก Google Sheet แล้วอัปโหลดทับผ่านปุ่มนำเข้าข้อมูล · การเช็คเอกสาร/คัดเลือกเป็นการอัปเดตสถานะเท่านั้น ไม่ลบแถวข้อมูล · สถานะเอกสารยึดตามที่ Admin ตรวจเมื่อมีการบันทึกแล้ว',
+    'notice' => 'นำเข้า Excel ล่าสุดจาก Google Sheet ได้ที่ปุ่มนำเข้าข้อมูล · การเช็คเอกสาร/คัดเลือกเป็นการอัปเดตสถานะเท่านั้น ไม่ลบแถวผู้สมัคร · สถานะเอกสารยึดตาม Admin เมื่อบันทึกแล้ว · เวลาที่แสดงเป็นเวลาไทย (Asia/Bangkok)',
   ];
 }
 
@@ -528,14 +528,91 @@ function sci_col_index(string $col): int {
   return $n;
 }
 
+/**
+ * Replace or insert a shared-string cell without risky cross-tag regex.
+ * Handles both <c ...>...</c> and self-closing <c .../>.
+ */
+function sci_sheet_set_shared_cell(string &$xml, string $cellRef, int $sharedIdx): bool {
+  if ($xml === '' || !str_contains($xml, '<sheetData')) return false;
+
+  $cellXml = '<c r="' . $cellRef . '" t="s"><v>' . $sharedIdx . '</v></c>';
+  $needle = 'r="' . $cellRef . '"';
+  $searchFrom = 0;
+
+  while (($pos = strpos($xml, $needle, $searchFrom)) !== false) {
+    $prefix = substr($xml, 0, $pos);
+    $start = strrpos($prefix, '<c');
+    if ($start === false) {
+      $searchFrom = $pos + strlen($needle);
+      continue;
+    }
+    // Confirm this is a <c ...> element (not something else starting with <c)
+    $startSlice = substr($xml, $start, 3);
+    if ($startSlice !== '<c ' && $startSlice !== '<c>' && !str_starts_with(substr($xml, $start), '<c\t')) {
+      // also allow <c\r\n
+      if (!preg_match('/^<c(\s|>)/', substr($xml, $start, 8))) {
+        $searchFrom = $pos + strlen($needle);
+        continue;
+      }
+    }
+    // The r="REF" must belong to this opening tag (before '>')
+    $openEnd = strpos($xml, '>', $start);
+    if ($openEnd === false || $openEnd < $pos) {
+      $searchFrom = $pos + strlen($needle);
+      continue;
+    }
+
+    // Self-closing <c ... />
+    if ($openEnd > $start && $xml[$openEnd - 1] === '/') {
+      $xml = substr($xml, 0, $start) . $cellXml . substr($xml, $openEnd + 1);
+      return true;
+    }
+
+    $close = strpos($xml, '</c>', $openEnd);
+    if ($close === false) return false;
+    $xml = substr($xml, 0, $start) . $cellXml . substr($xml, $close + 4);
+    return true;
+  }
+
+  if (!preg_match('/^([A-Z]+)(\d+)$/', $cellRef, $m)) return false;
+  $rowNum = $m[2];
+
+  if (preg_match('/<row r="' . preg_quote($rowNum, '/') . '"[^>]*>/', $xml, $rm, PREG_OFFSET_CAPTURE)) {
+    $rowPos = $rm[0][1];
+    $rowTagLen = strlen($rm[0][0]);
+    $xml = substr($xml, 0, $rowPos + $rowTagLen) . $cellXml . substr($xml, $rowPos + $rowTagLen);
+    return true;
+  }
+
+  $closeSheet = strpos($xml, '</sheetData>');
+  if ($closeSheet === false) return false;
+  $insert = '<row r="' . $rowNum . '">' . $cellXml . '</row>';
+  $xml = substr($xml, 0, $closeSheet) . $insert . substr($xml, $closeSheet);
+  return true;
+}
+
+function sci_count_sheet_rows(string $sheetXml): int {
+  return preg_match_all('/<row\b/i', $sheetXml) ?: 0;
+}
+
 function sci_ensure_status_and_write(array $updates): array {
   // Status-only write (P–U). NEVER deletes applicant rows or alters form columns A–O.
   $path = sci_xlsx_path();
+  $beforeCount = 0;
+  try {
+    $beforeCount = (int)(sci_parse_applicants($path)['total_applicants'] ?? 0);
+  } catch (Throwable $e) {
+    $beforeCount = 0;
+  }
+
   $tmp = $path . '.tmp.zip';
-  copy($path, $tmp);
+  if (!@copy($path, $tmp)) {
+    throw new RuntimeException('สร้างไฟล์ชั่วคราวไม่สำเร็จ (ตรวจสิทธิ์โฟลเดอร์บนเซิร์ฟเวอร์)');
+  }
 
   $zip = sci_new_zip();
   if ($zip->open($tmp) !== true) {
+    @unlink($tmp);
     throw new RuntimeException('เปิดไฟล์ชั่วคราวไม่ได้');
   }
 
@@ -543,18 +620,29 @@ function sci_ensure_status_and_write(array $updates): array {
   $sheetXml = $zip->getFromName('xl/worksheets/sheet1.xml');
   if (!$ssXml || !$sheetXml) {
     $zip->close();
+    @unlink($tmp);
     throw new RuntimeException('โครงสร้าง Excel ไม่ครบ');
   }
 
-  // Parse shared strings into array and rebuild later
+  $rowsBefore = sci_count_sheet_rows($sheetXml);
+  $ssLenBefore = strlen($ssXml);
+  $sheetLenBefore = strlen($sheetXml);
+
+  // Parse shared strings into array and rebuild later (append-only index)
   $strings = [];
-  $sx = simplexml_load_string($ssXml);
+  $sx = @simplexml_load_string($ssXml);
+  if ($sx === false) {
+    $zip->close();
+    @unlink($tmp);
+    throw new RuntimeException('อ่าน sharedStrings ไม่สำเร็จ');
+  }
   foreach ($sx->si as $si) {
     $t = '';
     if (isset($si->t)) $t = (string)$si->t;
     else foreach ($si->r as $r) $t .= (string)$r->t;
     $strings[] = $t;
   }
+  $origStringCount = count($strings);
 
   $stringIndex = function (string $value) use (&$strings): int {
     foreach ($strings as $i => $s) {
@@ -564,7 +652,6 @@ function sci_ensure_status_and_write(array $updates): array {
     return count($strings) - 1;
   };
 
-  // Ensure header strings
   foreach (SCI_STATUS_HEADERS as $h) {
     $stringIndex($h);
   }
@@ -574,58 +661,32 @@ function sci_ensure_status_and_write(array $updates): array {
     }
   }
 
-  // Rebuild sharedStrings.xml
+  if (count($strings) < $origStringCount) {
+    $zip->close();
+    @unlink($tmp);
+    throw new RuntimeException('ตารางข้อความเสียหาย ยกเลิกการบันทึก');
+  }
+
   $count = count($strings);
   $ssOut = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
     . '<sst xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" count="' . $count . '" uniqueCount="' . $count . '">';
   foreach ($strings as $s) {
-    // preserve whitespace
     $ssOut .= '<si><t xml:space="preserve">' . sci_xml_escape($s) . '</t></si>';
   }
   $ssOut .= '</sst>';
-  $zip->addFromString('xl/sharedStrings.xml', $ssOut);
-
-  // Patch sheet XML: set cell values for header row and update rows
-  $setCell = function (string &$xml, string $cellRef, int $sharedIdx) {
-    // If cell exists, replace; else insert into its row
-    if (preg_match('/<c r="' . preg_quote($cellRef, '/') . '"[^>]*>.*?<\/c>/s', $xml)) {
-      $xml = preg_replace(
-        '/<c r="' . preg_quote($cellRef, '/') . '"[^>]*>.*?<\/c>/s',
-        '<c r="' . $cellRef . '" t="s"><v>' . $sharedIdx . '</v></c>',
-        $xml,
-        1
-      );
-      return;
-    }
-    preg_match('/^([A-Z]+)(\d+)$/', $cellRef, $m);
-    $rowNum = $m[2];
-    $cellXml = '<c r="' . $cellRef . '" t="s"><v>' . $sharedIdx . '</v></c>';
-    if (preg_match('/<row r="' . $rowNum . '"[^>]*>/', $xml)) {
-      $xml = preg_replace(
-        '/(<row r="' . $rowNum . '"[^>]*>)/',
-        '$1' . $cellXml,
-        $xml,
-        1
-      );
-    } else {
-      // append new row before </sheetData>
-      $xml = str_replace(
-        '</sheetData>',
-        '<row r="' . $rowNum . '">' . $cellXml . '</row></sheetData>',
-        $xml
-      );
-    }
-  };
 
   // Headers on row 1
   foreach (SCI_STATUS_HEADERS as $col => $title) {
-    $setCell($sheetXml, $col . '1', $stringIndex($title));
+    if (!sci_sheet_set_shared_cell($sheetXml, $col . '1', $stringIndex($title))) {
+      $zip->close();
+      @unlink($tmp);
+      throw new RuntimeException('อัปเดตหัวตารางสถานะไม่สำเร็จ');
+    }
   }
 
   foreach ($updates as $u) {
     $row = (int)$u['row'];
     if ($row < 2) continue;
-    // IMPORTANT: only patch status cells P–U — never remove <row> or touch A–O
     $map = [
       'P' => (string)($u['status'] ?? ''),
       'Q' => (string)($u['missing_detail'] ?? ''),
@@ -635,26 +696,59 @@ function sci_ensure_status_and_write(array $updates): array {
       'U' => strtoupper(trim((string)($u['assigned_slot'] ?? ''))),
     ];
     foreach ($map as $col => $val) {
-      $setCell($sheetXml, $col . $row, $stringIndex($val));
+      if (!sci_sheet_set_shared_cell($sheetXml, $col . $row, $stringIndex($val))) {
+        $zip->close();
+        @unlink($tmp);
+        throw new RuntimeException('อัปเดตสถานะแถว ' . $row . ' ไม่สำเร็จ');
+      }
     }
   }
 
-  $zip->addFromString('xl/worksheets/sheet1.xml', $sheetXml);
+  $rowsAfter = sci_count_sheet_rows($sheetXml);
+  if ($rowsAfter < $rowsBefore || strlen($sheetXml) < (int)($sheetLenBefore * 0.5) || strlen($ssOut) < (int)($ssLenBefore * 0.5)) {
+    $zip->close();
+    @unlink($tmp);
+    throw new RuntimeException('ตรวจพบว่าชีตจะเสียหาย จึงยกเลิกการบันทึก (แถวเดิมถูกเก็บไว้)');
+  }
+
+  if (!$zip->addFromString('xl/sharedStrings.xml', $ssOut) || !$zip->addFromString('xl/worksheets/sheet1.xml', $sheetXml)) {
+    $zip->close();
+    @unlink($tmp);
+    throw new RuntimeException('เขียนข้อมูลเข้าไฟล์ชั่วคราวไม่สำเร็จ');
+  }
   $zip->close();
 
-  // Backup then replace
+  // Backup then replace — never leave a half-written workbook
   $bak = $path . '.bak';
-  if (!copy($path, $bak)) {
+  if (!@copy($path, $bak)) {
     @unlink($tmp);
-    throw new RuntimeException('สำรองไฟล์เดิมไม่สำเร็จ');
+    throw new RuntimeException('สำรองไฟล์เดิมไม่สำเร็จ (ตรวจสิทธิ์โฟลเดอร์)');
   }
-  if (!rename($tmp, $path)) {
-    // Windows may need unlink first
-    @unlink($path);
-    if (!rename($tmp, $path)) {
-      copy($bak, $path);
-      throw new RuntimeException('บันทึกไฟล์ Excel ไม่สำเร็จ (ไฟล์อาจถูกเปิดอยู่)');
+
+  $swapped = @rename($tmp, $path);
+  if (!$swapped) {
+    // Windows / some hosts need unlink first; keep bak for restore
+    $removed = @unlink($path);
+    $swapped = @rename($tmp, $path);
+    if (!$swapped) {
+      if ($removed) @copy($bak, $path);
+      @unlink($tmp);
+      throw new RuntimeException('บันทึกไฟล์ Excel ไม่สำเร็จ (ไฟล์อาจถูกเปิดอยู่หรือโฟลเดอร์เขียนไม่ได้)');
     }
+  }
+
+  // Verify applicants still present; restore bak if catastrophic loss
+  try {
+    $afterCount = (int)(sci_parse_applicants($path)['total_applicants'] ?? 0);
+  } catch (Throwable $e) {
+    @copy($bak, $path);
+    throw new RuntimeException('ไฟล์หลังบันทึกอ่านไม่ได้ จึงคืนค่าจาก .bak — ' . $e->getMessage());
+  }
+  if ($beforeCount > 0 && $afterCount < max(1, (int)floor($beforeCount * 0.8))) {
+    @copy($bak, $path);
+    throw new RuntimeException(
+      "บันทึกแล้วแต่จำนวนผู้สมัครลดลงผิดปกติ ({$beforeCount} → {$afterCount}) จึงคืนค่าจาก .bak อัตโนมัติ"
+    );
   }
 
   return [
@@ -662,6 +756,8 @@ function sci_ensure_status_and_write(array $updates): array {
     'path' => basename($path),
     'updated' => count($updates),
     'mode' => 'status_only',
+    'applicants_before' => $beforeCount,
+    'applicants_after' => $afterCount,
   ];
 }
 

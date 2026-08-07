@@ -165,18 +165,12 @@ class SciZipArchive
       if ($name === '' || str_ends_with($name, '/')) continue;
 
       $content = (string)$content;
-      $crc = crc32($content);
-      // PHP crc32 is signed on some builds
-      if ($crc < 0) $crc = $crc & 0xFFFFFFFF;
+      // Use unsigned CRC32 safely for pack('V')
+      $crc = hexdec(hash('crc32b', $content));
 
-      $deflated = gzdeflate($content, 6);
-      if ($deflated !== false && strlen($deflated) < strlen($content)) {
-        $method = 8;
-        $payload = $deflated;
-      } else {
-        $method = 0;
-        $payload = $content;
-      }
+      // Prefer Stored for reliability (Excel OOXML accepts it; avoids deflate quirks)
+      $method = 0;
+      $payload = $content;
 
       $compSize = strlen($payload);
       $uncompSize = strlen($content);
