@@ -1,0 +1,866 @@
+{
+    "version": 1,
+    "updated_at": "2026-08-10T12:56:52+07:00",
+    "by_row": {
+        "2": {
+            "row": 2,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "ทดสอบระบบบันทึก",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:36:30",
+            "assigned_slot": "A5",
+            "saved_at": "2026-08-10T12:36:30+07:00"
+        },
+        "4": {
+            "row": 4,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:35:16",
+            "assigned_slot": "A1",
+            "saved_at": "2026-08-10T12:35:16+07:00"
+        },
+        "8": {
+            "row": 8,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:35:20",
+            "assigned_slot": "A4",
+            "saved_at": "2026-08-10T12:35:20+07:00"
+        },
+        "10": {
+            "row": 10,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:35:23",
+            "assigned_slot": "A10",
+            "saved_at": "2026-08-10T12:35:23+07:00"
+        },
+        "22": {
+            "row": 22,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-08 14:48:09",
+            "assigned_slot": "",
+            "saved_at": "2026-08-08T21:48:12+07:00"
+        },
+        "29": {
+            "row": 29,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-08 14:50:30",
+            "assigned_slot": "",
+            "saved_at": "2026-08-08T21:50:33+07:00"
+        },
+        "33": {
+            "row": 33,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-08 14:51:29",
+            "assigned_slot": "",
+            "saved_at": "2026-08-08T21:51:32+07:00"
+        },
+        "35": {
+            "row": 35,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-08 14:52:31",
+            "assigned_slot": "",
+            "saved_at": "2026-08-08T21:52:34+07:00"
+        },
+        "54": {
+            "row": 54,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-08 14:54:39",
+            "assigned_slot": "",
+            "saved_at": "2026-08-08T21:54:42+07:00"
+        },
+        "63": {
+            "row": 63,
+            "status": "ขาดคุณสมบัติ",
+            "missing_detail": "บัตรประชาชนหมดอายุ",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-08 14:57:57",
+            "assigned_slot": "",
+            "saved_at": "2026-08-08T21:58:00+07:00"
+        },
+        "65": {
+            "row": 65,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-08 14:59:19",
+            "assigned_slot": "",
+            "saved_at": "2026-08-08T21:59:22+07:00"
+        },
+        "71": {
+            "row": 71,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-08 15:01:07",
+            "assigned_slot": "",
+            "saved_at": "2026-08-08T22:01:10+07:00"
+        },
+        "74": {
+            "row": 74,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-08 15:06:29",
+            "assigned_slot": "",
+            "saved_at": "2026-08-08T22:06:32+07:00"
+        },
+        "75": {
+            "row": 75,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-08 15:10:02",
+            "assigned_slot": "",
+            "saved_at": "2026-08-08T22:10:05+07:00"
+        },
+        "6": {
+            "row": 6,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:33:52",
+            "assigned_slot": "A2",
+            "saved_at": "2026-08-10T12:33:52+07:00"
+        },
+        "12": {
+            "row": 12,
+            "status": "ไม่ครบถ้วน",
+            "missing_detail": "บัตรประชาชนหมดอายุ",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-08 15:20:22",
+            "assigned_slot": "",
+            "saved_at": "2026-08-08T22:20:25+07:00"
+        },
+        "23": {
+            "row": 23,
+            "status": "ขาดคุณสมบัติ",
+            "missing_detail": "เอกสารครบ แต่ขายไข่ปิ้งไม่ตรงกับข้อกำหนด",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 01:45:55",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T08:45:57+07:00"
+        },
+        "28": {
+            "row": 28,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-08 15:25:16",
+            "assigned_slot": "",
+            "saved_at": "2026-08-08T22:25:19+07:00"
+        },
+        "59": {
+            "row": 59,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-08 15:27:45",
+            "assigned_slot": "",
+            "saved_at": "2026-08-08T22:27:48+07:00"
+        },
+        "62": {
+            "row": 62,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-08 15:30:23",
+            "assigned_slot": "",
+            "saved_at": "2026-08-08T22:30:26+07:00"
+        },
+        "76": {
+            "row": 76,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-08 15:32:19",
+            "assigned_slot": "",
+            "saved_at": "2026-08-08T22:32:22+07:00"
+        },
+        "3": {
+            "row": 3,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:35:06",
+            "assigned_slot": "A3",
+            "saved_at": "2026-08-10T12:35:06+07:00"
+        },
+        "88": {
+            "row": 88,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-08 15:37:40",
+            "assigned_slot": "",
+            "saved_at": "2026-08-08T22:37:43+07:00"
+        },
+        "61": {
+            "row": 61,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-08 15:41:38",
+            "assigned_slot": "",
+            "saved_at": "2026-08-08T22:41:41+07:00"
+        },
+        "78": {
+            "row": 78,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-08 15:43:21",
+            "assigned_slot": "",
+            "saved_at": "2026-08-08T22:43:24+07:00"
+        },
+        "15": {
+            "row": 15,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:37:05",
+            "assigned_slot": "A6",
+            "saved_at": "2026-08-10T12:37:05+07:00"
+        },
+        "66": {
+            "row": 66,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 01:51:12",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T08:51:13+07:00"
+        },
+        "84": {
+            "row": 84,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 01:52:33",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T08:52:34+07:00"
+        },
+        "38": {
+            "row": 38,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:37:35",
+            "assigned_slot": "A7",
+            "saved_at": "2026-08-10T12:37:35+07:00"
+        },
+        "42": {
+            "row": 42,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:37:57",
+            "assigned_slot": "A8",
+            "saved_at": "2026-08-10T12:37:57+07:00"
+        },
+        "11": {
+            "row": 11,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:38:59",
+            "assigned_slot": "A9",
+            "saved_at": "2026-08-10T12:38:59+07:00"
+        },
+        "39": {
+            "row": 39,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 01:57:10",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T08:57:11+07:00"
+        },
+        "73": {
+            "row": 73,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 01:58:00",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T08:58:02+07:00"
+        },
+        "27": {
+            "row": 27,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:40:03",
+            "assigned_slot": "B1",
+            "saved_at": "2026-08-10T12:40:03+07:00"
+        },
+        "34": {
+            "row": 34,
+            "status": "ไม่ครบถ้วน",
+            "missing_detail": "เอกสารไม่ตรงกับที่กำหนด และเป็นรถ FoodTruck ใหญ่กว่าพื้นที่ที่กำหนด",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 09:10:21",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T16:10:22+07:00"
+        },
+        "48": {
+            "row": 48,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 09:11:19",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T16:11:19+07:00"
+        },
+        "18": {
+            "row": 18,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:40:48",
+            "assigned_slot": "B2",
+            "saved_at": "2026-08-10T12:40:48+07:00"
+        },
+        "31": {
+            "row": 31,
+            "status": "ไม่ครบถ้วน",
+            "missing_detail": "ขาด ทะเบียนบ้าน",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 09:13:26",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T16:13:26+07:00"
+        },
+        "77": {
+            "row": 77,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 09:14:08",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T16:14:08+07:00"
+        },
+        "7": {
+            "row": 7,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:41:56",
+            "assigned_slot": "B3",
+            "saved_at": "2026-08-10T12:41:56+07:00"
+        },
+        "32": {
+            "row": 32,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 09:15:31",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T16:15:31+07:00"
+        },
+        "50": {
+            "row": 50,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 09:17:07",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T16:17:08+07:00"
+        },
+        "64": {
+            "row": 64,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 09:18:09",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T16:18:10+07:00"
+        },
+        "30": {
+            "row": 30,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:42:41",
+            "assigned_slot": "B4",
+            "saved_at": "2026-08-10T12:42:41+07:00"
+        },
+        "45": {
+            "row": 45,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 09:20:09",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T16:20:09+07:00"
+        },
+        "68": {
+            "row": 68,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 09:20:56",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T16:20:56+07:00"
+        },
+        "69": {
+            "row": 69,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 09:21:53",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T16:21:53+07:00"
+        },
+        "83": {
+            "row": 83,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 09:22:31",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T16:22:31+07:00"
+        },
+        "60": {
+            "row": 60,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:43:14",
+            "assigned_slot": "B5",
+            "saved_at": "2026-08-10T12:43:14+07:00"
+        },
+        "20": {
+            "row": 20,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:43:36",
+            "assigned_slot": "B6",
+            "saved_at": "2026-08-10T12:43:36+07:00"
+        },
+        "16": {
+            "row": 16,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:44:13",
+            "assigned_slot": "C1",
+            "saved_at": "2026-08-10T12:44:13+07:00"
+        },
+        "51": {
+            "row": 51,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 09:26:24",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T16:26:25+07:00"
+        },
+        "89": {
+            "row": 89,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:45:27",
+            "assigned_slot": "C2",
+            "saved_at": "2026-08-10T12:45:27+07:00"
+        },
+        "86": {
+            "row": 86,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:45:45",
+            "assigned_slot": "C3",
+            "saved_at": "2026-08-10T12:45:45+07:00"
+        },
+        "19": {
+            "row": 19,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:46:09",
+            "assigned_slot": "C4",
+            "saved_at": "2026-08-10T12:46:09+07:00"
+        },
+        "67": {
+            "row": 67,
+            "status": "ไม่ครบถ้วน",
+            "missing_detail": "ทะเบียนบ้านข้อมูลไม่ครบ",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 09:31:24",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T16:31:24+07:00"
+        },
+        "9": {
+            "row": 9,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:46:57",
+            "assigned_slot": "C5",
+            "saved_at": "2026-08-10T12:46:57+07:00"
+        },
+        "24": {
+            "row": 24,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 09:33:03",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T16:33:03+07:00"
+        },
+        "72": {
+            "row": 72,
+            "status": "ขาดคุณสมบัติ",
+            "missing_detail": "ประกาศ ก๋วยจั๊บแจ่วฮ้อน ขายหมูกระทะ",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:48:46",
+            "assigned_slot": "C6",
+            "saved_at": "2026-08-10T12:48:46+07:00"
+        },
+        "53": {
+            "row": 53,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:49:34",
+            "assigned_slot": "C7",
+            "saved_at": "2026-08-10T12:49:34+07:00"
+        },
+        "80": {
+            "row": 80,
+            "status": "ขาดคุณสมบัติ",
+            "missing_detail": "สินค้าไม่ตรงประเภท",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 09:38:17",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T16:38:18+07:00"
+        },
+        "44": {
+            "row": 44,
+            "status": "ขาดคุณสมบัติ",
+            "missing_detail": "สินค้าไม่ตรงประเภท",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 09:39:13",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T16:39:13+07:00"
+        },
+        "52": {
+            "row": 52,
+            "status": "ขาดคุณสมบัติ",
+            "missing_detail": "สินค้าไม่ตรงประเภท",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 09:40:01",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T16:40:02+07:00"
+        },
+        "81": {
+            "row": 81,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:51:30",
+            "assigned_slot": "C10",
+            "saved_at": "2026-08-10T12:51:30+07:00"
+        },
+        "5": {
+            "row": 5,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:51:41",
+            "assigned_slot": "C11",
+            "saved_at": "2026-08-10T12:51:41+07:00"
+        },
+        "13": {
+            "row": 13,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:52:33",
+            "assigned_slot": "C12",
+            "saved_at": "2026-08-10T12:52:33+07:00"
+        },
+        "26": {
+            "row": 26,
+            "status": "ไม่ครบถ้วน",
+            "missing_detail": "-บัตรประชาชนหมดอายุ\n- ทะเบียนบ้านไม่ชัด",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 09:45:09",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T16:45:10+07:00"
+        },
+        "55": {
+            "row": 55,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 09:45:58",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T16:45:58+07:00"
+        },
+        "56": {
+            "row": 56,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 09:46:33",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T16:46:34+07:00"
+        },
+        "57": {
+            "row": 57,
+            "status": "ครบถ้วน",
+            "missing_detail": "อาหารไม่ตรงประเภท",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 15:40:16",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T22:40:17+07:00"
+        },
+        "79": {
+            "row": 79,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 09:49:02",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T16:49:02+07:00"
+        },
+        "87": {
+            "row": 87,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 15:41:36",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T22:41:37+07:00"
+        },
+        "37": {
+            "row": 37,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:52:58",
+            "assigned_slot": "C13",
+            "saved_at": "2026-08-10T12:52:58+07:00"
+        },
+        "82": {
+            "row": 82,
+            "status": "ไม่ครบถ้วน",
+            "missing_detail": "ไม่มีสำเนาบัตรประจำตัวประชาชน",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 15:45:11",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T22:45:12+07:00"
+        },
+        "40": {
+            "row": 40,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:54:20",
+            "assigned_slot": "C14",
+            "saved_at": "2026-08-10T12:54:20+07:00"
+        },
+        "85": {
+            "row": 85,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 15:52:05",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T22:52:06+07:00"
+        },
+        "36": {
+            "row": 36,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:54:53",
+            "assigned_slot": "D1",
+            "saved_at": "2026-08-10T12:54:53+07:00"
+        },
+        "49": {
+            "row": 49,
+            "status": "ขาดคุณสมบัติ",
+            "missing_detail": "สินค้าไม่ตรงประเภทที่กำหนด",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 15:56:20",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T22:56:21+07:00"
+        },
+        "41": {
+            "row": 41,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:55:16",
+            "assigned_slot": "D2",
+            "saved_at": "2026-08-10T12:55:16+07:00"
+        },
+        "47": {
+            "row": 47,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 15:59:12",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T22:59:13+07:00"
+        },
+        "17": {
+            "row": 17,
+            "status": "ขาดคุณสมบัติ",
+            "missing_detail": "อาหารไม่ตรงประเภท",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 16:00:22",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T23:00:23+07:00"
+        },
+        "21": {
+            "row": 21,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:56:17",
+            "assigned_slot": "D3",
+            "saved_at": "2026-08-10T12:56:17+07:00"
+        },
+        "43": {
+            "row": 43,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 16:02:16",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T23:02:17+07:00"
+        },
+        "58": {
+            "row": 58,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-09 16:03:26",
+            "assigned_slot": "",
+            "saved_at": "2026-08-09T23:03:28+07:00"
+        },
+        "14": {
+            "row": 14,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:56:52",
+            "assigned_slot": "D4",
+            "saved_at": "2026-08-10T12:56:52+07:00"
+        },
+        "46": {
+            "row": 46,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:39:21",
+            "assigned_slot": "A11",
+            "saved_at": "2026-08-10T12:39:21+07:00"
+        }
+    }
+}

@@ -513,6 +513,108 @@
       gap: .25rem;
       justify-content: end;
     }
+    .summary-kpis {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: .55rem;
+      margin-bottom: .85rem;
+    }
+    .kpi {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: .75rem .85rem;
+      box-shadow: 0 6px 16px rgba(180,120,0,.06);
+    }
+    .kpi .k-label { font-size: .82rem; color: var(--muted); font-weight: 600; }
+    .kpi .k-val {
+      font-family: "Chakra Petch", sans-serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-top: .15rem;
+    }
+    .kpi.ok { background: linear-gradient(180deg, #e8f8ef, #fff); border-color: #b7e4c7; }
+    .kpi.warn { background: linear-gradient(180deg, #fff7df, #fff); border-color: #f0c44a; }
+    .kpi.danger { background: linear-gradient(180deg, #fdecea, #fff); border-color: #f5c2bd; }
+    .kpi.teal { background: linear-gradient(180deg, #e7f7f5, #fff); border-color: #b8e4df; }
+    .summary-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-bottom: .85rem;
+    }
+    .summary-table-wrap {
+      overflow: auto;
+      border-radius: 14px;
+      border: 1px solid rgba(240,180,0,.28);
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(180,120,0,.06);
+    }
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+      min-width: 920px;
+    }
+    .summary-table th, .summary-table td {
+      padding: .65rem .7rem;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+    .summary-table th {
+      position: sticky;
+      top: 0;
+      background: linear-gradient(90deg, #fff1b8, #ffe4bd);
+      font-family: "Chakra Petch", sans-serif;
+      z-index: 1;
+    }
+    .summary-table tr:hover td { background: #fffaf0; }
+    .summary-table tr.row-ok td { background: #f4fbf7; }
+    .summary-table tr.row-no td { background: #fdf4f3; }
+    .summary-table .name { font-weight: 700; font-family: "Chakra Petch", sans-serif; }
+    .summary-table .muted { color: var(--muted); font-size: .82rem; }
+    .dup-box {
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: .9rem 1rem;
+      margin-bottom: .85rem;
+      box-shadow: 0 6px 16px rgba(180,120,0,.06);
+    }
+    .dup-box.has-dup { border-color: #f0a070; background: linear-gradient(180deg, #fff6ee, #fff); }
+    .dup-box.no-dup { border-color: #b7e4c7; background: linear-gradient(180deg, #eefaf3, #fff); }
+    .dup-box h3 {
+      margin: 0 0 .35rem;
+      font-family: "Chakra Petch", sans-serif;
+      font-size: 1.05rem;
+    }
+    .dup-box .sub { margin: 0 0 .65rem; color: var(--muted); font-size: .9rem; }
+    .dup-group {
+      border: 1px solid rgba(240,160,80,.35);
+      border-radius: 12px;
+      padding: .65rem .75rem;
+      margin-bottom: .55rem;
+      background: #fffdf9;
+    }
+    .dup-group .dup-head {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      align-items: center;
+      margin-bottom: .45rem;
+      font-weight: 700;
+    }
+    .dup-group table { width: 100%; border-collapse: collapse; font-size: .86rem; }
+    .dup-group th, .dup-group td {
+      text-align: left;
+      padding: .35rem .4rem;
+      border-top: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .dup-group th { color: var(--muted); font-weight: 600; }
+
     .report-empty-zone {
       margin: .75rem 0 .35rem;
       font-family: "Chakra Petch", sans-serif;
@@ -936,9 +1038,10 @@
           <h3>มุมมอง</h3>
           <div class="view-tabs">
             <button type="button" id="tabReview" class="active">พิจารณา</button>
+            <button type="button" id="tabSummary">สรุปผู้สมัคร</button>
             <button type="button" id="tabReport">รายงานร้าน</button>
           </div>
-          <p class="policy-note">อัปเดตเฉพาะสถานะใน Excel (คอลัมน์ P–U) · ไม่ลบรายการผู้สมัคร</p>
+          <p class="policy-note" id="policyNote">บันทึกสถานะที่ data/status_store.json · ซิงก์ Excel เมื่อเขียนได้ · ไม่ลบผู้สมัคร</p>
         </div>
         <div class="side-block search">
           <h3>ค้นหา</h3>
@@ -961,7 +1064,7 @@
         </div>
         <div class="side-block" id="emptySideBlock">
           <div style="display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin-bottom:.5rem">
-            <h3 style="margin:0">ล็อคว่างในโซนนี้</h3>
+            <h3 style="margin:0">ล็อกว่างในโซนนี้</h3>
             <button class="btn warn" type="button" id="btnEmptySummary" style="padding:.35rem .7rem">สรุป</button>
           </div>
           <div class="empty-panel" id="emptyPanel">-</div>
@@ -1004,9 +1107,9 @@
           </div>
           <input type="hidden" id="fSelection" value="รอพิจารณา" />
         </div>
-        <label id="slotPickWrap">ล็อคร้านที่ได้รับ (เมื่อคัดเลือก)
+        <label id="slotPickWrap">ล็อกร้านที่ได้รับ (เมื่อคัดเลือก)
           <select id="fSlot">
-            <option value="">— ยังไม่ระบุล็อค —</option>
+            <option value="">— ยังไม่ระบุล็อก —</option>
           </select>
         </label>
         <p class="policy-note" style="margin:0">บันทึกเป็นสถานะใน Excel เท่านั้น ไม่ลบรายการผู้สมัคร</p>
@@ -1020,8 +1123,8 @@
 
   <div class="modal-backdrop" id="emptyModal">
     <div class="modal">
-      <h3 id="emptyModalTitle">สรุปล็อคว่าง</h3>
-      <p class="sub">ล็อคที่ยังไม่มีผู้สมัครในโซนที่เลือก</p>
+      <h3 id="emptyModalTitle">สรุปล็อกว่าง</h3>
+      <p class="sub">ล็อกที่ยังไม่มีผู้สมัครในโซนที่เลือก</p>
       <div id="emptyModalBody"></div>
       <div class="modal-actions">
         <button class="btn primary" type="button" id="btnCloseEmpty">ปิด</button>
@@ -1045,12 +1148,12 @@
 
   <div class="modal-backdrop" id="assignModal">
     <div class="modal">
-      <h3>คัดเลือกเข้าล็อคร้าน</h3>
+      <h3>คัดเลือกเข้าล็อกร้าน</h3>
       <p class="sub" id="assignSub"></p>
-      <label>เลือกล็อคร้าน
+      <label>เลือกล็อกร้าน
         <select id="assignSlotSelect"></select>
       </label>
-      <p class="policy-note">ระบบจะอัปเดตสถานะ “ได้รับการคัดเลือก” และระบุล็อคใน Excel · หากล็อคมีผู้คัดเลือกเดิม จะเปลี่ยนสถานะผู้นั้นเป็น “รอพิจารณา” (ไม่ลบรายการ)</p>
+      <p class="policy-note">ระบบจะอัปเดตสถานะ “ได้รับการคัดเลือก” และระบุล็อกใน Excel · หากล็อกมีผู้คัดเลือกเดิม จะเปลี่ยนสถานะผู้นั้นเป็น “รอพิจารณา” (ไม่ลบรายการ)</p>
       <div class="modal-actions">
         <button class="btn" type="button" id="btnCancelAssign">ยกเลิก</button>
         <button class="btn primary" type="button" id="btnConfirmAssign">ยืนยันคัดเลือก</button>
@@ -1076,8 +1179,9 @@
       zone: "A",
       q: "",
       selFilter: "ALL",
+      docFilter: "ALL", // ALL | admin_ok | admin_fail | admin_pending | admin_wait
       editing: null,
-      view: "review", // review | report
+      view: "review", // review | summary | report
       assignKey: null,
     };
 
@@ -1161,30 +1265,32 @@
       });
     }
 
+    /** Already placed into a selected shop lock (cannot pick again for empty locks) */
+    function isAlreadyAssignedShop(a, currentRow = null) {
+      if (currentRow != null && a.row === currentRow) return false;
+      if (a.selection === "ได้รับการคัดเลือก" && a.assigned_slot) return true;
+      if (a.selection === "ได้รับการคัดเลือก") return true;
+      return false;
+    }
+
     /** Candidates from other categories to fill a shop with no native applicants */
     function crossFillCandidates(slotZone, slotCat, currentRow = null) {
       const apps = state.data?.applicants || [];
       return apps
         .filter(a => !matchCat(a.category, slotCat) || a.zone !== slotZone)
         .filter(a => a.selection !== "ไม่ได้รับการคัดเลือก")
+        // Exclude shops already selected into a lock — only unused applicants
+        .filter(a => !isAlreadyAssignedShop(a, currentRow))
         .sort((x, y) => {
-          // Prefer same zone, then not yet assigned, then earlier time
           const zX = x.zone === slotZone ? 0 : 1;
           const zY = y.zone === slotZone ? 0 : 1;
           if (zX !== zY) return zX - zY;
-          const aX = x.assigned_slot && x.selection === "ได้รับการคัดเลือก" ? 1 : 0;
-          const aY = y.assigned_slot && y.selection === "ได้รับการคัดเลือก" ? 1 : 0;
-          if (aX !== aY) return aX - aY;
           return x.timestamp - y.timestamp;
         });
     }
 
     function crossOptionLabel(a, slotId) {
-      const parts = [`โซน ${a.zone}`, a.category, a.name];
-      if (a.assigned_slot && a.assigned_slot !== slotId && a.selection === "ได้รับการคัดเลือก") {
-        parts.push(`(ล็อค ${a.assigned_slot})`);
-      }
-      return parts.join(" · ");
+      return [`โซน ${a.zone}`, a.category, a.name].join(" · ");
     }
 
     function renderCrossOptions(slotId, slotZone, slotCat, selectedRow = null) {
@@ -1195,7 +1301,11 @@
         <optgroup label="${esc(label)}">
           ${list.map(a => `<option value="${a.row}" ${selectedRow === a.row ? "selected" : ""}>${esc(crossOptionLabel(a, slotId))}</option>`).join("")}
         </optgroup>` : "";
-      return block(`โซนเดียวกัน (${slotZone})`, sameZone) + block("โซนอื่น", otherZone);
+      const html = block(`โซนเดียวกัน (${slotZone})`, sameZone) + block("โซนอื่น", otherZone);
+      if (!html && selectedRow == null) {
+        return `<option disabled>ไม่มีร้านว่างให้เลือก — ทุกร้านที่เข้าข่ายถูกคัดเลือกเข้าล็อกแล้ว</option>`;
+      }
+      return html;
     }
 
     function renderShopBoard(g, list, { crossFill = false } = {}) {
@@ -1203,10 +1313,10 @@
       const isEmptyCat = !list.length || crossFill;
       return `
         <div class="shop-board ${isEmptyCat ? "cross-fill" : ""}">
-          <h4>${isEmptyCat ? "จัดผู้ประกอบการจากรายการอื่นลงล็อคว่าง" : "คัดเลือกผู้ประกอบการตามล็อคร้าน"}</h4>
+          <h4>${isEmptyCat ? "จัดผู้ประกอบการจากรายการอื่นลงล็อกว่าง" : "คัดเลือกผู้ประกอบการตามล็อกร้าน"}</h4>
           <p class="board-hint">${isEmptyCat
-            ? "ประเภทนี้ยังไม่มีผู้สมัคร — เลือกผู้สมัครจากประเภท/โซนอื่นมาลงขายได้ · บันทึกเป็นสถานะใน Excel เท่านั้น ไม่ลบรายการ"
-            : "เลือกผู้สมัครเข้าแต่ละล็อค · บันทึกเป็นสถานะใน Excel เท่านั้น ไม่ลบรายการ"}</p>
+            ? "ประเภทนี้ยังไม่มีผู้สมัคร — เลือกเฉพาะร้านที่ยังไม่ถูกคัดเลือกเข้าล็อกอื่น · บันทึกเป็นสถานะใน Excel เท่านั้น ไม่ลบรายการ"
+            : "เลือกผู้สมัครเข้าแต่ละล็อก · บันทึกเป็นสถานะใน Excel เท่านั้น ไม่ลบรายการ"}</p>
           <div class="shop-slots">
             ${g.slots.map(sid => {
               const info = reportMap[sid];
@@ -1218,7 +1328,7 @@
               } else {
                 options = list.map(a => {
                   const takenElsewhere = a.assigned_slot && a.assigned_slot !== sid && a.selection === "ได้รับการคัดเลือก";
-                  const label = `${a.name}${takenElsewhere ? ` (ล็อค ${a.assigned_slot})` : ""}`;
+                  const label = `${a.name}${takenElsewhere ? ` (ล็อก ${a.assigned_slot})` : ""}`;
                   const selected = selectedRow === a.row ? "selected" : "";
                   return `<option value="${a.row}" ${selected}>${esc(label)}</option>`;
                 }).join("");
@@ -1234,11 +1344,11 @@
                       ? `<b>${esc(op.name)}</b>
                          <span>โทร ${esc(op.phone || "-")} · แถว ${op.row}</span>
                          ${crossBadge}`
-                      : `<b style="color:var(--muted)">${isEmptyCat ? "ยังไม่มีผู้ประกอบการ (ล็อคว่าง)" : "ยังไม่มีผู้ประกอบการ"}</b>
+                      : `<b style="color:var(--muted)">${isEmptyCat ? "ยังไม่มีผู้ประกอบการ (ล็อกว่าง)" : "ยังไม่มีผู้ประกอบการ"}</b>
                          <span>${isEmptyCat ? "เลือกจากผู้สมัครรายการอื่น" : "รอการคัดเลือก"}</span>`}
                   </div>
                   <div style="display:flex;gap:.3rem;flex-wrap:wrap;justify-content:end;align-items:center">
-                    <select data-shop-assign="${esc(sid)}" ${isEmptyCat ? 'data-allow-cross="1"' : ""} title="เลือกผู้ประกอบการเข้าล็อค ${esc(sid)}" style="min-width:14rem;max-width:22rem">
+                    <select data-shop-assign="${esc(sid)}" ${isEmptyCat ? 'data-allow-cross="1"' : ""} title="เลือกผู้ประกอบการเข้าล็อก ${esc(sid)}" style="min-width:14rem;max-width:22rem">
                       <option value="">— ${isEmptyCat ? "เลือกจากรายการอื่น" : "เลือกผู้สมัคร"} —</option>
                       ${options}
                     </select>
@@ -1276,18 +1386,18 @@
         <div class="report-wrap">
           <div>
             <h2 style="margin:0 0 .35rem;font-family:'Chakra Petch',sans-serif">รายงานผู้ประกอบการแต่ละร้าน</h2>
-            <p style="margin:0;color:var(--muted)">แสดงว่าแต่ละล็อคร้านมีผู้ประกอบการเป็นใคร (จากสถานะคัดเลือกใน Excel)</p>
+            <p style="margin:0;color:var(--muted)">แสดงว่าแต่ละล็อกร้านมีผู้ประกอบการเป็นใคร (จากสถานะคัดเลือกใน Excel)</p>
           </div>
           <div class="report-stats">
             <span class="chip ok">มีผู้ประกอบการ ${filled}/${report.length} ร้าน</span>
             <span class="chip ${report.length-filled ? "warn" : "ok"}">ยังไม่คัดเลือก ${report.length - filled} ร้าน</span>
-            <span class="chip ${noApplicantGroups.length ? "warn" : "ok"}">ยังไม่มีผู้สมัคร ${noApplicantGroups.length} ประเภท (${noApplicantSlots} ล็อค)</span>
+            <span class="chip ${noApplicantGroups.length ? "warn" : "ok"}">ยังไม่มีผู้สมัคร ${noApplicantGroups.length} ประเภท (${noApplicantSlots} ล็อก)</span>
             <span class="chip">โซนที่ดู: ${state.zone === "ALL" ? "ทุกโซน" : zoneMeta[state.zone].label}</span>
           </div>
 
           <div class="report-empty-box">
             <h3>สรุปรายการที่ยังไม่มีผู้สมัคร</h3>
-            <p class="sub">ประเภท/ล็อคที่ยังไม่มีใครสมัคร — สามารถเลือกผู้ประกอบการจากรายการอื่นมาลงขายได้${q ? " (ตามคำค้น)" : ""}</p>
+            <p class="sub">ประเภท/ล็อกที่ยังไม่มีใครสมัคร — เลือกร้านจากรายการอื่นที่ยังไม่ถูกคัดเลือกเข้าล็อกใด${q ? " (ตามคำค้น)" : ""}</p>
             ${noApplicantGroups.length ? `
               ${zones.map(z => {
                 const items = noApplicantGroups.filter(g => g.zone === z);
@@ -1303,7 +1413,7 @@
                           <div>
                             <span class="chip empty">ว่าง</span>
                             <b style="font-family:'Chakra Petch',sans-serif;margin-left:.35rem">${esc(g.cat)}</b>
-                            <div style="color:var(--muted);font-size:.85rem;margin-top:.2rem">รับประมาณ ${g.limit} ล็อค · ยังไม่มีผู้สมัครประเภทนี้</div>
+                            <div style="color:var(--muted);font-size:.85rem;margin-top:.2rem">รับประมาณ ${g.limit} ล็อก · ยังไม่มีผู้สมัครประเภทนี้</div>
                           </div>
                           <div class="slots">${(g.slots||[]).map(s => `<span class="slot-pill">${esc(s)}</span>`).join("")}</div>
                         </div>
@@ -1349,7 +1459,7 @@
             <table class="report-table">
               <thead>
                 <tr>
-                  <th>ล็อค</th>
+                  <th>ล็อก</th>
                   <th>ประเภท</th>
                   <th>ผู้ประกอบการ</th>
                   <th>สถานะเอกสาร</th>
@@ -1427,7 +1537,7 @@
     function selectionChip(a) {
       const s = a.selection || "รอพิจารณา";
       if (s === "ได้รับการคัดเลือก") {
-        const slot = a.assigned_slot ? ` · ล็อค ${a.assigned_slot}` : "";
+        const slot = a.assigned_slot ? ` · ล็อก ${a.assigned_slot}` : "";
         return statusBadge("ผลการคัดเลือก", s + slot, "sel-ok", "star");
       }
       if (s === "ไม่ได้รับการคัดเลือก") {
@@ -1505,6 +1615,314 @@
         </button>`;
     }
 
+    function adminDocBucket(a) {
+      const adm = docCheckOf(a).admin;
+      if (!adm.reviewed) return "admin_pending";
+      if (adm.pass) return "admin_ok";
+      if (adm.status === "รอตรวจสอบ") return "admin_wait";
+      if (adm.fail) return "admin_fail";
+      return "admin_pending";
+    }
+
+    function adminDocLabel(a) {
+      const adm = docCheckOf(a).admin;
+      if (!adm.reviewed) return { text: "รอ Admin ตรวจ", tone: "warn" };
+      if (adm.pass) return { text: "ครบถ้วน", tone: "ok" };
+      if (adm.status === "รอตรวจสอบ") return { text: "รอตรวจสอบ", tone: "warn" };
+      if (adm.status === "ขาดคุณสมบัติ") return { text: "ขาดคุณสมบัติ", tone: "danger" };
+      if (adm.status === "ไม่ครบถ้วน") return { text: "ไม่ครบถ้วน", tone: "danger" };
+      return { text: adm.status || "ไม่ทราบ", tone: "" };
+    }
+
+    function normalizePersonName(name) {
+      return String(name || "")
+        .replace(/^(นาย|นางสาว|นาง|น\.ส\.|น\s*ส\.|นส\.|Mr\.|Mrs\.|Ms\.)\s*/i, "")
+        .replace(/[\s\u00A0\u200B]+/g, " ")
+        .trim()
+        .toLowerCase();
+    }
+
+    function normalizePhone(phone) {
+      const digits = String(phone || "").replace(/\D/g, "");
+      if (digits.length >= 9 && digits.startsWith("66")) return digits.slice(-9);
+      if (digits.length >= 9) return digits.slice(-9);
+      return digits;
+    }
+
+    /** Find duplicate applicants by phone and/or name within a list */
+    function findDuplicateApplicants(apps) {
+      const byPhone = new Map();
+      const byName = new Map();
+      apps.forEach(a => {
+        const phone = normalizePhone(a.phone);
+        const name = normalizePersonName(a.name);
+        if (phone && phone.length >= 9) {
+          if (!byPhone.has(phone)) byPhone.set(phone, []);
+          byPhone.get(phone).push(a);
+        }
+        if (name && name.length >= 4) {
+          if (!byName.has(name)) byName.set(name, []);
+          byName.get(name).push(a);
+        }
+      });
+
+      const groups = [];
+      const seenKeys = new Set();
+
+      byPhone.forEach((rows, phone) => {
+        if (rows.length < 2) return;
+        const key = "phone:" + phone;
+        seenKeys.add(key);
+        // also mark name keys covered to avoid near-duplicate panels
+        rows.forEach(r => seenKeys.add("name:" + normalizePersonName(r.name)));
+        groups.push({
+          kind: "เบอร์โทรซ้ำ",
+          label: `โทร ${rows[0].phone || phone}`,
+          key,
+          rows: [...rows].sort((x, y) => x.timestamp - y.timestamp),
+        });
+      });
+
+      byName.forEach((rows, name) => {
+        if (rows.length < 2) return;
+        const key = "name:" + name;
+        if (seenKeys.has(key)) return;
+        // skip if every row already in a phone group
+        const allInPhone = rows.every(r => {
+          const p = normalizePhone(r.phone);
+          return p && byPhone.has(p) && byPhone.get(p).length >= 2;
+        });
+        if (allInPhone) return;
+        groups.push({
+          kind: "ชื่อซ้ำ",
+          label: rows[0].name,
+          key,
+          rows: [...rows].sort((x, y) => x.timestamp - y.timestamp),
+        });
+      });
+
+      groups.sort((a, b) => b.rows.length - a.rows.length || a.label.localeCompare(b.label, "th"));
+      const dupPeople = new Set();
+      groups.forEach(g => g.rows.forEach(r => dupPeople.add(r.row)));
+      return { groups, dupCount: dupPeople.size, groupCount: groups.length };
+    }
+
+    function renderDuplicateSection(apps, scopeLabel) {
+      const { groups, dupCount, groupCount } = findDuplicateApplicants(apps);
+      if (!groupCount) {
+        return `
+          <div class="dup-box no-dup">
+            <h3>ตรวจสอบผู้สมัครซ้ำ</h3>
+            <p class="sub">ขอบเขต: ${esc(scopeLabel)} · ตรวจจากชื่อ (ตัดคำนำหน้า) และเบอร์โทร</p>
+            <div class="chip ok">ไม่พบผู้สมัครซ้ำในขอบเขตนี้</div>
+          </div>`;
+      }
+      return `
+        <div class="dup-box has-dup">
+          <h3>ตรวจสอบผู้สมัครซ้ำ</h3>
+          <p class="sub">ขอบเขต: ${esc(scopeLabel)} · พบ <b>${groupCount}</b> กลุ่ม · เกี่ยวข้อง <b>${dupCount}</b> รายการ · ตรวจจากชื่อและเบอร์โทร</p>
+          ${groups.map(g => `
+            <div class="dup-group">
+              <div class="dup-head">
+                <span class="chip warn">${esc(g.kind)}</span>
+                <span>${esc(g.label)}</span>
+                <span class="chip danger">${g.rows.length} ครั้ง</span>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>เวลา</th>
+                    <th>ชื่อ</th>
+                    <th>เบอร์</th>
+                    <th>โซน / ประเภท</th>
+                    <th>คัดเลือก</th>
+                    <th>แถว</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${g.rows.map(a => `
+                    <tr>
+                      <td>${esc(fmtTime(a))}</td>
+                      <td><b>${esc(a.name)}</b></td>
+                      <td>${esc(a.phone || "-")}</td>
+                      <td>โซน ${esc(a.zone)} · ${esc(a.category)}</td>
+                      <td><span class="chip ${a.selection === "ได้รับการคัดเลือก" ? "ok" : a.selection === "ไม่ได้รับการคัดเลือก" ? "danger" : "warn"}">${esc(a.selection || "รอพิจารณา")}</span>${a.assigned_slot ? ` <span class="muted">ล็อก ${esc(a.assigned_slot)}</span>` : ""}</td>
+                      <td>${a.row}</td>
+                    </tr>`).join("")}
+                </tbody>
+              </table>
+            </div>`).join("")}
+        </div>`;
+    }
+
+    function renderApplicantsSummaryView() {
+      const data = state.data;
+      const zones = state.zone === "ALL" ? ["A","B","C","D"] : [state.zone];
+      const scopeApps = data.applicants.filter(a => zones.includes(a.zone));
+      let list = scopeApps;
+      const selCounts = {
+        ALL: list.length,
+        "รอพิจารณา": list.filter(a => a.selection === "รอพิจารณา").length,
+        "ได้รับการคัดเลือก": list.filter(a => a.selection === "ได้รับการคัดเลือก").length,
+        "ไม่ได้รับการคัดเลือก": list.filter(a => a.selection === "ไม่ได้รับการคัดเลือก").length,
+      };
+      let adminOk = 0, adminFail = 0, adminPending = 0, adminWait = 0, sysOk = 0;
+      list.forEach(a => {
+        const dc = docCheckOf(a);
+        if (dc.system.pass) sysOk++;
+        const b = adminDocBucket(a);
+        if (b === "admin_ok") adminOk++;
+        else if (b === "admin_fail") adminFail++;
+        else if (b === "admin_wait") adminWait++;
+        else adminPending++;
+      });
+
+      const q = state.q.trim().toLowerCase();
+      list = list.filter(a => {
+        if (state.selFilter !== "ALL" && a.selection !== state.selFilter) return false;
+        if (state.docFilter !== "ALL" && adminDocBucket(a) !== state.docFilter) return false;
+        if (!q) return true;
+        const dc = docCheckOf(a);
+        return [a.name, a.phone, a.zone, a.category, a.selection, a.assigned_slot, a.status,
+          dc.admin?.status, dc.effective?.label].join(" ").toLowerCase().includes(q);
+      });
+      list = [...list].sort((x, y) => x.timestamp - y.timestamp);
+
+      const scopeLabel = state.zone === "ALL" ? "ทุกโซน" : zoneMeta[state.zone].label;
+      const dupReport = findDuplicateApplicants(scopeApps);
+
+      return `
+        <div class="report-wrap">
+          <div>
+            <h2 style="margin:0 0 .35rem;font-family:'Chakra Petch',sans-serif">สรุปรายการผู้สมัคร</h2>
+            <p style="margin:0;color:var(--muted)">ภาพรวมการตรวจเอกสารโดย Admin และผลการคัดเลือก · ขอบเขต: <b>${esc(scopeLabel)}</b></p>
+          </div>
+
+          <div class="summary-kpis">
+            <div class="kpi teal">
+              <div class="k-label">สมัครทั้งหมด</div>
+              <div class="k-val">${selCounts.ALL}</div>
+            </div>
+            <div class="kpi ${dupReport.groupCount ? "danger" : "ok"}">
+              <div class="k-label">กลุ่มสมัครซ้ำ</div>
+              <div class="k-val">${dupReport.groupCount}</div>
+            </div>
+            <div class="kpi ok">
+              <div class="k-label">Admin เอกสารครบ</div>
+              <div class="k-val">${adminOk}</div>
+            </div>
+            <div class="kpi danger">
+              <div class="k-label">Admin ไม่ผ่าน/ไม่ครบ</div>
+              <div class="k-val">${adminFail}</div>
+            </div>
+            <div class="kpi warn">
+              <div class="k-label">รอ Admin ตรวจ</div>
+              <div class="k-val">${adminPending + adminWait}</div>
+            </div>
+            <div class="kpi ok">
+              <div class="k-label">คัดเลือกแล้ว</div>
+              <div class="k-val">${selCounts["ได้รับการคัดเลือก"]}</div>
+            </div>
+            <div class="kpi danger">
+              <div class="k-label">ไม่คัดเลือก</div>
+              <div class="k-val">${selCounts["ไม่ได้รับการคัดเลือก"]}</div>
+            </div>
+            <div class="kpi warn">
+              <div class="k-label">รอพิจารณา</div>
+              <div class="k-val">${selCounts["รอพิจารณา"]}</div>
+            </div>
+            <div class="kpi">
+              <div class="k-label">ระบบพบไฟล์แนบครบ</div>
+              <div class="k-val">${sysOk}</div>
+            </div>
+          </div>
+
+          ${renderDuplicateSection(scopeApps, scopeLabel)}
+
+          <div>
+            <div style="font-weight:700;margin-bottom:.35rem;font-family:'Chakra Petch',sans-serif">กรองสถานะเอกสาร (Admin)</div>
+            <div class="summary-filters" id="docFilters">
+              <button type="button" class="btn ${state.docFilter==="ALL"?"primary":""}" data-doc-filter="ALL">ทั้งหมด</button>
+              <button type="button" class="btn ok ${state.docFilter==="admin_ok"?"active-sel":""}" data-doc-filter="admin_ok">ครบถ้วน (${adminOk})</button>
+              <button type="button" class="btn danger ${state.docFilter==="admin_fail"?"active-sel":""}" data-doc-filter="admin_fail">ไม่ผ่าน (${adminFail})</button>
+              <button type="button" class="btn warn ${state.docFilter==="admin_pending"?"active-sel":""}" data-doc-filter="admin_pending">รอตรวจ (${adminPending})</button>
+              <button type="button" class="btn warn ${state.docFilter==="admin_wait"?"active-sel":""}" data-doc-filter="admin_wait">รอตรวจสอบ (${adminWait})</button>
+            </div>
+          </div>
+
+          <div>
+            <div style="font-weight:700;margin-bottom:.35rem;font-family:'Chakra Petch',sans-serif">กรองผลการคัดเลือก</div>
+            <div class="summary-filters" id="summarySelFilters">
+              <button type="button" class="btn ${state.selFilter==="ALL"?"primary":""}" data-sel-filter="ALL">ทั้งหมด (${selCounts.ALL})</button>
+              <button type="button" class="btn ${state.selFilter==="รอพิจารณา"?"active-sel":""}" data-sel-filter="รอพิจารณา">รอพิจารณา (${selCounts["รอพิจารณา"]})</button>
+              <button type="button" class="btn ok ${state.selFilter==="ได้รับการคัดเลือก"?"active-sel":""}" data-sel-filter="ได้รับการคัดเลือก">คัดเลือกแล้ว (${selCounts["ได้รับการคัดเลือก"]})</button>
+              <button type="button" class="btn danger ${state.selFilter==="ไม่ได้รับการคัดเลือก"?"active-sel":""}" data-sel-filter="ไม่ได้รับการคัดเลือก">ไม่คัดเลือก (${selCounts["ไม่ได้รับการคัดเลือก"]})</button>
+            </div>
+          </div>
+
+          <div class="chip" style="justify-self:start">แสดง ${list.length} รายการตามตัวกรอง</div>
+
+          <div class="summary-table-wrap">
+            <table class="summary-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>เวลาสมัคร</th>
+                  <th>ชื่อ / ติดต่อ</th>
+                  <th>โซน · ประเภท</th>
+                  <th>เอกสาร (Admin)</th>
+                  <th>ระบบตรวจ</th>
+                  <th>ผลการคัดเลือก</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                ${list.length ? list.map((a, i) => {
+                  const dc = docCheckOf(a);
+                  const admL = adminDocLabel(a);
+                  const sysTone = dc.system.pass ? "ok" : "warn";
+                  const rowClass = a.selection === "ได้รับการคัดเลือก" ? "row-ok"
+                    : a.selection === "ไม่ได้รับการคัดเลือก" ? "row-no" : "";
+                  const selTone = a.selection === "ได้รับการคัดเลือก" ? "ok"
+                    : a.selection === "ไม่ได้รับการคัดเลือก" ? "danger" : "warn";
+                  const reason = dc.admin.reviewed && !dc.admin.pass
+                    ? (dc.admin.missing_detail || dc.admin.review_note || "")
+                    : (!dc.admin.reviewed && !dc.system.pass ? (dc.system.missing||[]).join(", ") : "");
+                  return `
+                    <tr class="${rowClass}">
+                      <td>${i + 1}</td>
+                      <td><div class="muted">${esc(fmtTime(a))}</div></td>
+                      <td>
+                        <div class="name">${esc(a.name)}</div>
+                        <div class="muted">โทร ${esc(a.phone || "-")} · แถว ${a.row}</div>
+                      </td>
+                      <td>
+                        <div><b>โซน ${esc(a.zone)}</b></div>
+                        <div class="muted">${esc(a.category)}</div>
+                      </td>
+                      <td>
+                        <span class="chip ${admL.tone}">${esc(admL.text)}</span>
+                        ${reason ? `<div class="muted" style="margin-top:.25rem">${esc(reason)}</div>` : ""}
+                        ${dc.admin.reviewed_at ? `<div class="muted">ตรวจ ${esc(dc.admin.reviewed_at)}</div>` : ""}
+                      </td>
+                      <td>
+                        <span class="chip ${sysTone}">${dc.system.pass ? "ครบ" : "ไม่ครบ"}</span>
+                      </td>
+                      <td>
+                        <span class="chip ${selTone}">${esc(a.selection || "รอพิจารณา")}</span>
+                        ${a.assigned_slot ? `<div class="muted" style="margin-top:.25rem">ล็อก ${esc(a.assigned_slot)}</div>` : ""}
+                      </td>
+                      <td>
+                        <button type="button" class="btn teal" data-check="${esc(a.key)}" style="padding:.28rem .55rem">เช็คเอกสาร</button>
+                      </td>
+                    </tr>`;
+                }).join("") : `<tr><td colspan="8" style="text-align:center;color:var(--muted);padding:1.5rem">ไม่พบรายการตามตัวกรอง</td></tr>`}
+              </tbody>
+            </table>
+          </div>
+        </div>`;
+    }
+
     function renderApplicant(a, rank) {
       const docs = [
         a.photo && { label: "รูปถ่าย", href: a.photo },
@@ -1534,12 +1952,12 @@
             ${renderDocOverview(a)}
             <div class="sel-actions">
               <button type="button" class="btn ok btn-quick ${a.selection==="ได้รับการคัดเลือก"?"active-sel":""}" data-quick-sel="${esc(a.key)}" data-sel="ได้รับการคัดเลือก">
-                <span class="btn-ico">${ico("star")}</span> คัดเลือกเข้าล็อค
+                <span class="btn-ico">${ico("star")}</span> คัดเลือกเข้าล็อก
               </button>
               <button type="button" class="btn danger btn-quick ${a.selection==="ไม่ได้รับการคัดเลือก"?"active-sel":""}" data-quick-sel="${esc(a.key)}" data-sel="ไม่ได้รับการคัดเลือก">
                 <span class="btn-ico">${ico("x")}</span> ไม่คัดเลือก
               </button>
-              ${a.assigned_slot ? `<span class="chip ok">ล็อค ${esc(a.assigned_slot)}</span>` : ""}
+              ${a.assigned_slot ? `<span class="chip ok">ล็อก ${esc(a.assigned_slot)}</span>` : ""}
             </div>
           </div>
           <p class="detail">${esc(a.detail || "ไม่ระบุจุดเด่น")}</p>
@@ -1568,9 +1986,10 @@
       const totalCapacity = Object.values(zoneMeta).reduce((n, z) => n + z.shops, 0);
 
       document.getElementById("tabReview").classList.toggle("active", state.view === "review");
+      document.getElementById("tabSummary").classList.toggle("active", state.view === "summary");
       document.getElementById("tabReport").classList.toggle("active", state.view === "report");
-      document.getElementById("statusSideBlock").style.display = state.view === "review" ? "" : "none";
-      document.getElementById("docSummarySideBlock").style.display = state.view === "review" ? "" : "none";
+      document.getElementById("statusSideBlock").style.display = (state.view === "review" || state.view === "summary") ? "" : "none";
+      document.getElementById("docSummarySideBlock").style.display = (state.view === "review" || state.view === "summary") ? "" : "none";
       document.getElementById("emptySideBlock").style.display = state.view === "review" ? "" : "none";
 
       const ds = data.doc_summary || {};
@@ -1602,8 +2021,14 @@
         <p class="policy-note" style="margin:.2rem 0 0">เมื่อ Admin บันทึกแล้ว ระบบจะยึดสถานะ Admin เป็นหลัก</p>
       `;
 
+      const st = data.storage || {};
+      const saveHint = st.can_save_status
+        ? (st.xlsx_writable ? "บันทึกสถานะได้" : "บันทึกสถานะได้ (ไฟล์สถานะ)")
+        : "ยังบันทึกสถานะไม่ได้ — ตั้งสิทธิ์โฟลเดอร์ data/";
       document.getElementById("topMeta").innerHTML =
-        `ผู้สมัคร <b>${data.total_applicants}</b> คน · ร้านมีผู้ประกอบการ <b>${shopFilled}/${data.slots.length}</b> · รอ <b>${countBySelection(data.applicants,"ALL")["รอพิจารณา"]}</b> · อนุมัติ <b>${countBySelection(data.applicants,"ALL")["ได้รับการคัดเลือก"]}</b>`;
+        `ผู้สมัคร <b>${data.total_applicants}</b> คน · ร้านมีผู้ประกอบการ <b>${shopFilled}/${data.slots.length}</b> · รอ <b>${countBySelection(data.applicants,"ALL")["รอพิจารณา"]}</b> · อนุมัติ <b>${countBySelection(data.applicants,"ALL")["ได้รับการคัดเลือก"]}</b> · <b>${esc(saveHint)}</b>`;
+      const pn = document.getElementById("policyNote");
+      if (pn) pn.textContent = st.hint || "บันทึกสถานะที่ data/status_store.json · ไม่ลบผู้สมัคร";
 
       document.getElementById("zoneList").innerHTML = ["A","B","C","D"].map(z => `
         <button type="button" data-zone="${z}" class="${state.zone===z?"active":""}">
@@ -1630,10 +2055,16 @@
       document.getElementById("emptyPanel").innerHTML = emptyNow.length
         ? `<div>ว่าง ${emptyNow.length} กลุ่มประเภท</div><div class="tags">${emptyNow.map(g =>
             `<span class="chip empty">${esc(g.label)} · ${esc(g.cat)}</span>`).join("")}</div>`
-        : `<div class="chip ok">ไม่มีล็อคว่างในมุมมองนี้</div>`;
+        : `<div class="chip ok">ไม่มีล็อกว่างในมุมมองนี้</div>`;
 
       if (state.view === "report") {
         document.getElementById("main").innerHTML = renderReportView();
+        bindDynamic();
+        return;
+      }
+
+      if (state.view === "summary") {
+        document.getElementById("main").innerHTML = renderApplicantsSummaryView();
         bindDynamic();
         return;
       }
@@ -1669,14 +2100,14 @@
               <div class="group-head" style="${assignedCount ? "background:linear-gradient(90deg,#d8f5e4,#fff1b8)" : ""}">
                 <div>
                   <h2>${esc(g.cat)}</h2>
-                  <p>รับประมาณ ${g.limit} ล็อค · คิวร่วมเรียงเวลาเร็วสุดก่อน</p>
+                  <p>รับประมาณ ${g.limit} ล็อก · คิวร่วมเรียงเวลาเร็วสุดก่อน</p>
                   <div class="slot-pills">${g.slots.map(s => `<span class="slot-pill">${esc(s)}</span>`).join("")}</div>
                 </div>
                 <div class="head-badges">
                   ${list.length
                     ? `<span class="chip ${list.length > g.limit ? "warn" : "ok"}">${list.length} ผู้สมัคร</span>`
                     : `<span class="chip empty">ยังว่าง</span>`}
-                  <span class="chip ${assignedCount ? "ok" : ""}">ล็อคมีผู้ประกอบการ ${assignedCount}/${g.slots.length}</span>
+                  <span class="chip ${assignedCount ? "ok" : ""}">ล็อกมีผู้ประกอบการ ${assignedCount}/${g.slots.length}</span>
                   ${approved ? `<span class="chip ok">สถานะคัดเลือก ${approved}</span>` : `<span class="chip">รอพิจารณา</span>`}
                 </div>
               </div>
@@ -1701,6 +2132,10 @@
 
       document.querySelectorAll("[data-sel-filter]").forEach(btn => {
         btn.onclick = () => { state.selFilter = btn.dataset.selFilter; render(); };
+      });
+
+      document.querySelectorAll("[data-doc-filter]").forEach(btn => {
+        btn.onclick = () => { state.docFilter = btn.dataset.docFilter; render(); };
       });
 
       document.querySelectorAll("[data-check]").forEach(btn => {
@@ -1728,7 +2163,7 @@
 
       document.querySelectorAll("[data-shop-clear]").forEach(btn => {
         btn.onclick = async () => {
-          if (!confirm("ถอนผู้ประกอบการออกจากล็อค? (ไม่ลบรายการใน Excel — เปลี่ยนเป็นสถานะรอพิจารณา)")) return;
+          if (!confirm("ถอนผู้ประกอบการออกจากล็อก? (ไม่ลบรายการใน Excel — เปลี่ยนเป็นสถานะรอพิจารณา)")) return;
           try {
             await unassignShop(parseInt(btn.dataset.shopClear, 10), "รอพิจารณา");
           } catch (e) {
@@ -1796,7 +2231,7 @@
     function fillSlotOptions(selectEl, a, includeEmpty = true) {
       const slots = slotsForApplicant(a);
       const cur = a.assigned_slot || "";
-      selectEl.innerHTML = (includeEmpty ? `<option value="">— ยังไม่ระบุล็อค —</option>` : "") +
+      selectEl.innerHTML = (includeEmpty ? `<option value="">— ยังไม่ระบุล็อก —</option>` : "") +
         slots.map(s => {
           const occ = operatorOnSlot(s.id);
           const busy = occ?.filled && occ.operator?.row !== a.row;
@@ -1878,6 +2313,10 @@
       if (!json.ok) throw new Error(json.error || "บันทึกไม่สำเร็จ");
       state.data = json.data;
       render();
+      // Inform when Excel could not sync — status still saved in status_store.json
+      if (json.result && json.result.excel_synced === false && json.result.excel_error) {
+        console.warn("Excel sync skipped:", json.result.excel_error);
+      }
       return json;
     }
 
@@ -2042,11 +2481,11 @@
         ? data.groups.filter(g => appsForGroup(g, data.applicants).length === 0)
         : emptyGroups(state.zone, data);
       document.getElementById("emptyModalTitle").textContent =
-        state.zone === "ALL" ? "สรุปล็อคว่างทุกโซน" : `สรุปล็อคว่าง ${zoneMeta[state.zone].label}`;
+        state.zone === "ALL" ? "สรุปล็อกว่างทุกโซน" : `สรุปล็อกว่าง ${zoneMeta[state.zone].label}`;
       document.getElementById("emptyModalBody").innerHTML = list.length
         ? `<div class="tags">${list.map(g =>
             `<span class="chip empty" style="margin:.2rem">${esc(g.label)} — ${esc(g.cat)}</span>`).join("")}</div>`
-        : `<div class="chip ok">ไม่มีล็อคว่าง</div>`;
+        : `<div class="chip ok">ไม่มีล็อกว่าง</div>`;
       document.getElementById("emptyModal").classList.add("show");
     };
 
@@ -2072,6 +2511,7 @@
     };
 
     document.getElementById("tabReview").onclick = () => { state.view = "review"; render(); };
+    document.getElementById("tabSummary").onclick = () => { state.view = "summary"; render(); };
     document.getElementById("tabReport").onclick = () => { state.view = "report"; render(); };
 
     document.getElementById("btnCancelAssign").onclick = () => {
@@ -2081,7 +2521,7 @@
     document.getElementById("btnConfirmAssign").onclick = async () => {
       const a = state.data.applicants.find(x => x.key === state.assignKey);
       const slot = document.getElementById("assignSlotSelect").value;
-      if (!a || !slot) return alert("กรุณาเลือกล็อคร้าน");
+      if (!a || !slot) return alert("กรุณาเลือกล็อกร้าน");
       try {
         await assignShop(a.row, slot);
         document.getElementById("assignModal").classList.remove("show");

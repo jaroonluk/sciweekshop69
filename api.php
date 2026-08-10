@@ -28,6 +28,10 @@ function sci_read_json_body(): array {
 try {
   $action = $_GET['action'] ?? $_POST['action'] ?? 'data';
 
+  if ($action === 'health' || $action === 'storage') {
+    sci_json_out(['ok' => true, 'storage' => sci_storage_health()]);
+  }
+
   if ($action === 'data') {
     $data = sci_parse_applicants();
     sci_save_payload_json($data);
@@ -37,7 +41,7 @@ try {
   if ($action === 'rebuild') {
     $data = sci_parse_applicants();
     sci_save_payload_json($data);
-    sci_json_out(['ok' => true, 'total' => $data['total_applicants'], 'source' => $data['source'], 'data' => $data]);
+    sci_json_out(['ok' => true, 'total' => $data['total_applicants'], 'source' => $data['source'], 'data' => $data, 'storage' => $data['storage'] ?? sci_storage_health()]);
   }
 
   if ($action === 'save_status') {
@@ -51,7 +55,7 @@ try {
 
     $assignedSlot = strtoupper(trim((string)($body['assigned_slot'] ?? '')));
     if ($assignedSlot !== '' && !preg_match('/^[ABCD]\d{1,2}$/', $assignedSlot)) {
-      sci_json_out(['ok' => false, 'error' => 'ล็อคร้านไม่ถูกต้อง'], 400);
+      sci_json_out(['ok' => false, 'error' => 'ล็อกร้านไม่ถูกต้อง'], 400);
     }
     if ($selection !== 'ได้รับการคัดเลือก') {
       $assignedSlot = '';
@@ -67,11 +71,16 @@ try {
       'assigned_slot' => $assignedSlot,
     ];
 
-    // Status-only write — never deletes Excel applicant rows
     $result = sci_ensure_status_and_write([$update]);
     $data = sci_parse_applicants();
     sci_save_payload_json($data);
-    sci_json_out(['ok' => true, 'result' => $result, 'data' => $data]);
+    sci_json_out([
+      'ok' => true,
+      'result' => $result,
+      'message' => $result['message'] ?? 'บันทึกสถานะสำเร็จ',
+      'storage' => $data['storage'] ?? sci_storage_health(),
+      'data' => $data,
+    ]);
   }
 
   if ($action === 'assign_shop') {
@@ -85,7 +94,13 @@ try {
     $result = sci_assign_shop($row, $slot, null, $allowCross);
     $data = sci_parse_applicants();
     sci_save_payload_json($data);
-    sci_json_out(['ok' => true, 'result' => $result, 'data' => $data]);
+    sci_json_out([
+      'ok' => true,
+      'result' => $result,
+      'message' => $result['message'] ?? 'คัดเลือกร้านสำเร็จ',
+      'storage' => $data['storage'] ?? sci_storage_health(),
+      'data' => $data,
+    ]);
   }
 
   if ($action === 'unassign_shop') {
@@ -97,7 +112,13 @@ try {
     $result = sci_unassign_shop($row, $selection);
     $data = sci_parse_applicants();
     sci_save_payload_json($data);
-    sci_json_out(['ok' => true, 'result' => $result, 'data' => $data]);
+    sci_json_out([
+      'ok' => true,
+      'result' => $result,
+      'message' => $result['message'] ?? 'ถอนสถานะสำเร็จ',
+      'storage' => $data['storage'] ?? sci_storage_health(),
+      'data' => $data,
+    ]);
   }
 
   if ($action === 'shop_report') {
@@ -126,7 +147,6 @@ try {
     }
 
     $target = sci_xlsx_path();
-    // If csv, save beside and tell user to export xlsx - or convert simple csv
     if ($ext === 'csv') {
       sci_json_out(['ok' => false, 'error' => 'กรุณา Export เป็น Excel (.xlsx) จาก Google Sheet แล้วอัปโหลด'], 400);
     }
@@ -134,7 +154,6 @@ try {
     $bak = $target . '.preupload.bak';
     @copy($target, $bak);
     if (!move_uploaded_file($f['tmp_name'], $target)) {
-      // Windows fallback
       if (!copy($f['tmp_name'], $target)) {
         sci_json_out(['ok' => false, 'error' => 'บันทึกไฟล์ไม่สำเร็จ'], 500);
       }

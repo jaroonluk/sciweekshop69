@@ -1,8 +1,8 @@
 {
-    "generated_at": "2026-08-07T11:06:03+02:00",
+    "generated_at": "2026-08-10T08:40:59+02:00",
     "source": "แบบตอบรับ.xlsx",
-    "source_mtime": "2026-08-07T11:06:03+02:00",
-    "total_applicants": 84,
+    "source_mtime": "2026-08-08T03:51:37+02:00",
+    "total_applicants": 86,
     "slots": [
         {
             "id": "A1",
@@ -772,8 +772,8 @@
                     "pass": true,
                     "fail": false,
                     "missing_detail": "",
-                    "review_note": "ทดสอบระบบ",
-                    "reviewed_at": "2026-08-07 11:00:06"
+                    "review_note": "ทดสอบระบบบันทึก",
+                    "reviewed_at": "2026-08-10 12:36:30"
                 },
                 "effective": {
                     "source": "admin",
@@ -786,11 +786,12 @@
             "status": "ครบถ้วน",
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
-            "review_note": "ทดสอบระบบ",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-07 11:00:06",
-            "assigned_slot": "",
-            "key": "a52f1661f11d83dad73f0a525624f735"
+            "review_note": "ทดสอบระบบบันทึก",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:36:30",
+            "assigned_slot": "A5",
+            "key": "a52f1661f11d83dad73f0a525624f735",
+            "status_from_store": true
         },
         {
             "row": 3,
@@ -839,30 +840,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:35:06"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "39a7001f2418ef7b55f615611edbd6cc"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:35:06",
+            "assigned_slot": "A3",
+            "key": "39a7001f2418ef7b55f615611edbd6cc",
+            "status_from_store": true
         },
         {
             "row": 4,
@@ -935,7 +937,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-07 11:06:03"
+                    "reviewed_at": "2026-08-10 12:35:16"
                 },
                 "effective": {
                     "source": "admin",
@@ -950,9 +952,10 @@
             "missing_detail": "",
             "review_note": "",
             "selection": "ได้รับการคัดเลือก",
-            "reviewed_at": "2026-08-07 11:06:03",
+            "reviewed_at": "2026-08-10 12:35:16",
             "assigned_slot": "A1",
-            "key": "b21ab18be4e8dca7b3a3316d62a51b71"
+            "key": "b21ab18be4e8dca7b3a3316d62a51b71",
+            "status_from_store": true
         },
         {
             "row": 5,
@@ -1019,30 +1022,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:51:41"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "66a5ede124086ced0ec8d926f1201393"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:51:41",
+            "assigned_slot": "C11",
+            "key": "66a5ede124086ced0ec8d926f1201393",
+            "status_from_store": true
         },
         {
             "row": 6,
@@ -1109,30 +1113,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:33:52"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "8d86fc32322cbc52801e1e7cc84e2ad6"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:33:52",
+            "assigned_slot": "A2",
+            "key": "8d86fc32322cbc52801e1e7cc84e2ad6",
+            "status_from_store": true
         },
         {
             "row": 7,
@@ -1193,30 +1198,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:41:56"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "b35c6bde8f99385a8af33c73bbcea287"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:41:56",
+            "assigned_slot": "B3",
+            "key": "b35c6bde8f99385a8af33c73bbcea287",
+            "status_from_store": true
         },
         {
             "row": 8,
@@ -1277,30 +1283,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:35:20"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "2d4aee88716a6cb41efb907ce95cb24e"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:35:20",
+            "assigned_slot": "A4",
+            "key": "2d4aee88716a6cb41efb907ce95cb24e",
+            "status_from_store": true
         },
         {
             "row": 9,
@@ -1367,30 +1374,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:46:57"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "1541501ba1c1afa130098e4fb41ce60b"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:46:57",
+            "assigned_slot": "C5",
+            "key": "1541501ba1c1afa130098e4fb41ce60b",
+            "status_from_store": true
         },
         {
             "row": 10,
@@ -1451,30 +1459,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:35:23"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "59bfd2f7ae3e1952250965f7a22a54ce"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:35:23",
+            "assigned_slot": "A10",
+            "key": "59bfd2f7ae3e1952250965f7a22a54ce",
+            "status_from_store": true
         },
         {
             "row": 11,
@@ -1517,30 +1526,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:38:59"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "892257caff5e24d7d24a5bd38c1a1d54"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:38:59",
+            "assigned_slot": "A9",
+            "key": "892257caff5e24d7d24a5bd38c1a1d54",
+            "status_from_store": true
         },
         {
             "row": 12,
@@ -1589,30 +1599,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
+                    "reviewed": true,
+                    "status": "ไม่ครบถ้วน",
                     "pass": false,
-                    "fail": false,
-                    "missing_detail": "",
+                    "fail": true,
+                    "missing_detail": "บัตรประชาชนหมดอายุ",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-08 15:20:22"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
-                    "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
-                    "reason": ""
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
+                    "pass": false,
+                    "label": "ไม่ครบถ้วน",
+                    "reason": "บัตรประชาชนหมดอายุ"
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
-            "missing_detail": "",
+            "status": "ไม่ครบถ้วน",
+            "status_raw": "ไม่ครบถ้วน",
+            "missing_detail": "บัตรประชาชนหมดอายุ",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-08 15:20:22",
             "assigned_slot": "",
-            "key": "be1e871c34ba82515e445f87e589f9d7"
+            "key": "be1e871c34ba82515e445f87e589f9d7",
+            "status_from_store": true
         },
         {
             "row": 13,
@@ -1661,30 +1672,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:52:33"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "04887490daa4905d603d73a21ebacdfe"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:52:33",
+            "assigned_slot": "C12",
+            "key": "04887490daa4905d603d73a21ebacdfe",
+            "status_from_store": true
         },
         {
             "row": 14,
@@ -1733,30 +1745,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:56:52"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "12f5136fc493e97aa81146dbfb54782c"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:56:52",
+            "assigned_slot": "D4",
+            "key": "12f5136fc493e97aa81146dbfb54782c",
+            "status_from_store": true
         },
         {
             "row": 15,
@@ -1805,30 +1818,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:37:05"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "35da10fbb73e35303f6b1d4966c49177"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:37:05",
+            "assigned_slot": "A6",
+            "key": "35da10fbb73e35303f6b1d4966c49177",
+            "status_from_store": true
         },
         {
             "row": 16,
@@ -1871,30 +1885,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:44:13"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "deaebd5ed89763b8a6936c01aa26e87f"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:44:13",
+            "assigned_slot": "C1",
+            "key": "deaebd5ed89763b8a6936c01aa26e87f",
+            "status_from_store": true
         },
         {
             "row": 17,
@@ -1937,30 +1952,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
+                    "reviewed": true,
+                    "status": "ขาดคุณสมบัติ",
                     "pass": false,
-                    "fail": false,
-                    "missing_detail": "",
+                    "fail": true,
+                    "missing_detail": "อาหารไม่ตรงประเภท",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 16:00:22"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
-                    "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
-                    "reason": ""
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
+                    "pass": false,
+                    "label": "ขาดคุณสมบัติ",
+                    "reason": "อาหารไม่ตรงประเภท"
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
-            "missing_detail": "",
+            "status": "ขาดคุณสมบัติ",
+            "status_raw": "ขาดคุณสมบัติ",
+            "missing_detail": "อาหารไม่ตรงประเภท",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 16:00:22",
             "assigned_slot": "",
-            "key": "91e9995aa12f12584a685174b26fc8c9"
+            "key": "91e9995aa12f12584a685174b26fc8c9",
+            "status_from_store": true
         },
         {
             "row": 18,
@@ -2027,30 +2043,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:40:48"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "d87088e814f617fa58b6957f6e16b64f"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:40:48",
+            "assigned_slot": "B2",
+            "key": "d87088e814f617fa58b6957f6e16b64f",
+            "status_from_store": true
         },
         {
             "row": 19,
@@ -2117,30 +2134,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:46:09"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "2abe776dbb1a3660b4d189f4fcc9baee"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:46:09",
+            "assigned_slot": "C4",
+            "key": "2abe776dbb1a3660b4d189f4fcc9baee",
+            "status_from_store": true
         },
         {
             "row": 20,
@@ -2195,30 +2213,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:43:36"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "17a947469e06ab08caf06fbb7943372d"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:43:36",
+            "assigned_slot": "B6",
+            "key": "17a947469e06ab08caf06fbb7943372d",
+            "status_from_store": true
         },
         {
             "row": 21,
@@ -2267,30 +2286,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:56:17"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "a823d95d8342e2acaa104cb22e2d538a"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:56:17",
+            "assigned_slot": "D3",
+            "key": "a823d95d8342e2acaa104cb22e2d538a",
+            "status_from_store": true
         },
         {
             "row": 22,
@@ -2339,30 +2359,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-08 14:48:09"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-08 14:48:09",
             "assigned_slot": "",
-            "key": "7d52c703f097473ec4756c08a32044be"
+            "key": "7d52c703f097473ec4756c08a32044be",
+            "status_from_store": true
         },
         {
             "row": 23,
@@ -2411,30 +2432,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
+                    "reviewed": true,
+                    "status": "ขาดคุณสมบัติ",
                     "pass": false,
-                    "fail": false,
-                    "missing_detail": "",
+                    "fail": true,
+                    "missing_detail": "เอกสารครบ แต่ขายไข่ปิ้งไม่ตรงกับข้อกำหนด",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 01:45:55"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
-                    "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
-                    "reason": ""
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
+                    "pass": false,
+                    "label": "ขาดคุณสมบัติ",
+                    "reason": "เอกสารครบ แต่ขายไข่ปิ้งไม่ตรงกับข้อกำหนด"
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
-            "missing_detail": "",
+            "status": "ขาดคุณสมบัติ",
+            "status_raw": "ขาดคุณสมบัติ",
+            "missing_detail": "เอกสารครบ แต่ขายไข่ปิ้งไม่ตรงกับข้อกำหนด",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 01:45:55",
             "assigned_slot": "",
-            "key": "530dbcbc7d3bc1a8a8778e97166ddc13"
+            "key": "530dbcbc7d3bc1a8a8778e97166ddc13",
+            "status_from_store": true
         },
         {
             "row": 24,
@@ -2501,30 +2523,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 09:33:03"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 09:33:03",
             "assigned_slot": "",
-            "key": "f97f07e1371730a0844734806d7e7b29"
+            "key": "f97f07e1371730a0844734806d7e7b29",
+            "status_from_store": true
         },
         {
             "row": 26,
@@ -2567,30 +2590,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
+                    "reviewed": true,
+                    "status": "ไม่ครบถ้วน",
                     "pass": false,
-                    "fail": false,
-                    "missing_detail": "",
+                    "fail": true,
+                    "missing_detail": "-บัตรประชาชนหมดอายุ\n- ทะเบียนบ้านไม่ชัด",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 09:45:09"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
-                    "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
-                    "reason": ""
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
+                    "pass": false,
+                    "label": "ไม่ครบถ้วน",
+                    "reason": "-บัตรประชาชนหมดอายุ\n- ทะเบียนบ้านไม่ชัด"
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
-            "missing_detail": "",
+            "status": "ไม่ครบถ้วน",
+            "status_raw": "ไม่ครบถ้วน",
+            "missing_detail": "-บัตรประชาชนหมดอายุ\n- ทะเบียนบ้านไม่ชัด",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 09:45:09",
             "assigned_slot": "",
-            "key": "8b6c22014a60f8f8b45ffae8802b8035"
+            "key": "8b6c22014a60f8f8b45ffae8802b8035",
+            "status_from_store": true
         },
         {
             "row": 27,
@@ -2633,30 +2657,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:40:03"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "1f1bc6ea9cdd9ee19a4bb7cc2bb67b1e"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:40:03",
+            "assigned_slot": "B1",
+            "key": "1f1bc6ea9cdd9ee19a4bb7cc2bb67b1e",
+            "status_from_store": true
         },
         {
             "row": 28,
@@ -2723,30 +2748,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-08 15:25:16"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-08 15:25:16",
             "assigned_slot": "",
-            "key": "f341478b85d982c6bdb243505f9adf29"
+            "key": "f341478b85d982c6bdb243505f9adf29",
+            "status_from_store": true
         },
         {
             "row": 29,
@@ -2813,30 +2839,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-08 14:50:30"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-08 14:50:30",
             "assigned_slot": "",
-            "key": "3c450ae70e82156faee1e3804271ccfe"
+            "key": "3c450ae70e82156faee1e3804271ccfe",
+            "status_from_store": true
         },
         {
             "row": 30,
@@ -2891,30 +2918,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:42:41"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "f46d6de5d12491a97645b22ed9a2031a"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:42:41",
+            "assigned_slot": "B4",
+            "key": "f46d6de5d12491a97645b22ed9a2031a",
+            "status_from_store": true
         },
         {
             "row": 31,
@@ -2957,30 +2985,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
+                    "reviewed": true,
+                    "status": "ไม่ครบถ้วน",
                     "pass": false,
-                    "fail": false,
-                    "missing_detail": "",
+                    "fail": true,
+                    "missing_detail": "ขาด ทะเบียนบ้าน",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 09:13:26"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
-                    "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
-                    "reason": ""
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
+                    "pass": false,
+                    "label": "ไม่ครบถ้วน",
+                    "reason": "ขาด ทะเบียนบ้าน"
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
-            "missing_detail": "",
+            "status": "ไม่ครบถ้วน",
+            "status_raw": "ไม่ครบถ้วน",
+            "missing_detail": "ขาด ทะเบียนบ้าน",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 09:13:26",
             "assigned_slot": "",
-            "key": "5d72c078b061cef754965352c8952f02"
+            "key": "5d72c078b061cef754965352c8952f02",
+            "status_from_store": true
         },
         {
             "row": 32,
@@ -3023,30 +3052,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 09:15:31"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 09:15:31",
             "assigned_slot": "",
-            "key": "87ff39f52d7aff8b9b995628e7f7737e"
+            "key": "87ff39f52d7aff8b9b995628e7f7737e",
+            "status_from_store": true
         },
         {
             "row": 33,
@@ -3089,30 +3119,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-08 14:51:29"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-08 14:51:29",
             "assigned_slot": "",
-            "key": "ea126965334ee8c34e6dfeb654106d3b"
+            "key": "ea126965334ee8c34e6dfeb654106d3b",
+            "status_from_store": true
         },
         {
             "row": 34,
@@ -3179,30 +3210,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
+                    "reviewed": true,
+                    "status": "ไม่ครบถ้วน",
                     "pass": false,
-                    "fail": false,
-                    "missing_detail": "",
+                    "fail": true,
+                    "missing_detail": "เอกสารไม่ตรงกับที่กำหนด และเป็นรถ FoodTruck ใหญ่กว่าพื้นที่ที่กำหนด",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 09:10:21"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
-                    "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
-                    "reason": ""
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
+                    "pass": false,
+                    "label": "ไม่ครบถ้วน",
+                    "reason": "เอกสารไม่ตรงกับที่กำหนด และเป็นรถ FoodTruck ใหญ่กว่าพื้นที่ที่กำหนด"
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
-            "missing_detail": "",
+            "status": "ไม่ครบถ้วน",
+            "status_raw": "ไม่ครบถ้วน",
+            "missing_detail": "เอกสารไม่ตรงกับที่กำหนด และเป็นรถ FoodTruck ใหญ่กว่าพื้นที่ที่กำหนด",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 09:10:21",
             "assigned_slot": "",
-            "key": "2e22961c325340764a2cceb75bc9f75e"
+            "key": "2e22961c325340764a2cceb75bc9f75e",
+            "status_from_store": true
         },
         {
             "row": 35,
@@ -3269,30 +3301,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-08 14:52:31"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-08 14:52:31",
             "assigned_slot": "",
-            "key": "ae4d2945544859004cb490099d762a65"
+            "key": "ae4d2945544859004cb490099d762a65",
+            "status_from_store": true
         },
         {
             "row": 36,
@@ -3335,30 +3368,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:54:53"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "4d1597c28ac321ccb676c6e1e73f62b2"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:54:53",
+            "assigned_slot": "D1",
+            "key": "4d1597c28ac321ccb676c6e1e73f62b2",
+            "status_from_store": true
         },
         {
             "row": 37,
@@ -3401,30 +3435,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:52:58"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "583be451dd19bfb2dc87e0d5cbc983a9"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:52:58",
+            "assigned_slot": "C13",
+            "key": "583be451dd19bfb2dc87e0d5cbc983a9",
+            "status_from_store": true
         },
         {
             "row": 38,
@@ -3491,30 +3526,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:37:35"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "1d0dbf99cc2d09d3d192cd0661481a34"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:37:35",
+            "assigned_slot": "A7",
+            "key": "1d0dbf99cc2d09d3d192cd0661481a34",
+            "status_from_store": true
         },
         {
             "row": 39,
@@ -3557,30 +3593,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 01:57:10"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 01:57:10",
             "assigned_slot": "",
-            "key": "cfdf03b71dc44ada361fbe2ba5151aa2"
+            "key": "cfdf03b71dc44ada361fbe2ba5151aa2",
+            "status_from_store": true
         },
         {
             "row": 40,
@@ -3635,30 +3672,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:54:20"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "e7d5343c3fc93e852e5a2ecdb8a8ec05"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:54:20",
+            "assigned_slot": "C14",
+            "key": "e7d5343c3fc93e852e5a2ecdb8a8ec05",
+            "status_from_store": true
         },
         {
             "row": 41,
@@ -3701,30 +3739,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:55:16"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "07a7c5f74fad71ded2a32f0525ad5789"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:55:16",
+            "assigned_slot": "D2",
+            "key": "07a7c5f74fad71ded2a32f0525ad5789",
+            "status_from_store": true
         },
         {
             "row": 42,
@@ -3767,30 +3806,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:37:57"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "a558986ee5081408ead0fa6f5c972429"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:37:57",
+            "assigned_slot": "A8",
+            "key": "a558986ee5081408ead0fa6f5c972429",
+            "status_from_store": true
         },
         {
             "row": 43,
@@ -3833,30 +3873,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 16:02:16"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 16:02:16",
             "assigned_slot": "",
-            "key": "fed9e404c1ee10212cea38db6788f37f"
+            "key": "fed9e404c1ee10212cea38db6788f37f",
+            "status_from_store": true
         },
         {
             "row": 44,
@@ -3923,30 +3964,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
+                    "reviewed": true,
+                    "status": "ขาดคุณสมบัติ",
                     "pass": false,
-                    "fail": false,
-                    "missing_detail": "",
+                    "fail": true,
+                    "missing_detail": "สินค้าไม่ตรงประเภท",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 09:39:13"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
-                    "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
-                    "reason": ""
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
+                    "pass": false,
+                    "label": "ขาดคุณสมบัติ",
+                    "reason": "สินค้าไม่ตรงประเภท"
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
-            "missing_detail": "",
+            "status": "ขาดคุณสมบัติ",
+            "status_raw": "ขาดคุณสมบัติ",
+            "missing_detail": "สินค้าไม่ตรงประเภท",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 09:39:13",
             "assigned_slot": "",
-            "key": "730961dcac02b15c5146e0c9e7ede92b"
+            "key": "730961dcac02b15c5146e0c9e7ede92b",
+            "status_from_store": true
         },
         {
             "row": 45,
@@ -3989,30 +4031,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 09:20:09"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 09:20:09",
             "assigned_slot": "",
-            "key": "8811e0629a5cfcddef77d69c3e53b2ee"
+            "key": "8811e0629a5cfcddef77d69c3e53b2ee",
+            "status_from_store": true
         },
         {
             "row": 46,
@@ -4061,30 +4104,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:39:21"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "ead61b6d41517bca6f7bf6d3b7baea8b"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:39:21",
+            "assigned_slot": "A11",
+            "key": "ead61b6d41517bca6f7bf6d3b7baea8b",
+            "status_from_store": true
         },
         {
             "row": 47,
@@ -4127,30 +4171,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 15:59:12"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 15:59:12",
             "assigned_slot": "",
-            "key": "4e791cd351557d0692a2446ddd503ebf"
+            "key": "4e791cd351557d0692a2446ddd503ebf",
+            "status_from_store": true
         },
         {
             "row": 48,
@@ -4211,30 +4256,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 09:11:19"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 09:11:19",
             "assigned_slot": "",
-            "key": "61a1e440d15d54a894cda8ce15a70dff"
+            "key": "61a1e440d15d54a894cda8ce15a70dff",
+            "status_from_store": true
         },
         {
             "row": 49,
@@ -4295,30 +4341,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
+                    "reviewed": true,
+                    "status": "ขาดคุณสมบัติ",
                     "pass": false,
-                    "fail": false,
-                    "missing_detail": "",
+                    "fail": true,
+                    "missing_detail": "สินค้าไม่ตรงประเภทที่กำหนด",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 15:56:20"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
-                    "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
-                    "reason": ""
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
+                    "pass": false,
+                    "label": "ขาดคุณสมบัติ",
+                    "reason": "สินค้าไม่ตรงประเภทที่กำหนด"
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
-            "missing_detail": "",
+            "status": "ขาดคุณสมบัติ",
+            "status_raw": "ขาดคุณสมบัติ",
+            "missing_detail": "สินค้าไม่ตรงประเภทที่กำหนด",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 15:56:20",
             "assigned_slot": "",
-            "key": "cab4f5efc9f318fc3a5507e2ec194d31"
+            "key": "cab4f5efc9f318fc3a5507e2ec194d31",
+            "status_from_store": true
         },
         {
             "row": 50,
@@ -4379,30 +4426,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 09:17:07"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 09:17:07",
             "assigned_slot": "",
-            "key": "5eef8595255d1ab0ef9f03bd995d7807"
+            "key": "5eef8595255d1ab0ef9f03bd995d7807",
+            "status_from_store": true
         },
         {
             "row": 51,
@@ -4451,30 +4499,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 09:26:24"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 09:26:24",
             "assigned_slot": "",
-            "key": "979be454b98cef11309127fe512650c6"
+            "key": "979be454b98cef11309127fe512650c6",
+            "status_from_store": true
         },
         {
             "row": 52,
@@ -4517,30 +4566,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
+                    "reviewed": true,
+                    "status": "ขาดคุณสมบัติ",
                     "pass": false,
-                    "fail": false,
-                    "missing_detail": "",
+                    "fail": true,
+                    "missing_detail": "สินค้าไม่ตรงประเภท",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 09:40:01"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
-                    "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
-                    "reason": ""
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
+                    "pass": false,
+                    "label": "ขาดคุณสมบัติ",
+                    "reason": "สินค้าไม่ตรงประเภท"
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
-            "missing_detail": "",
+            "status": "ขาดคุณสมบัติ",
+            "status_raw": "ขาดคุณสมบัติ",
+            "missing_detail": "สินค้าไม่ตรงประเภท",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 09:40:01",
             "assigned_slot": "",
-            "key": "a13c99d5cddc636a89400ae6141b06c5"
+            "key": "a13c99d5cddc636a89400ae6141b06c5",
+            "status_from_store": true
         },
         {
             "row": 53,
@@ -4595,30 +4645,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:49:34"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "ae3bad5aea649f03e6c3f64a68dfa808"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:49:34",
+            "assigned_slot": "C7",
+            "key": "ae3bad5aea649f03e6c3f64a68dfa808",
+            "status_from_store": true
         },
         {
             "row": 54,
@@ -4661,30 +4712,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-08 14:54:39"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-08 14:54:39",
             "assigned_slot": "",
-            "key": "8b9602bea0fcf243009ce6a5e228fe44"
+            "key": "8b9602bea0fcf243009ce6a5e228fe44",
+            "status_from_store": true
         },
         {
             "row": 55,
@@ -4745,30 +4797,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 09:45:58"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 09:45:58",
             "assigned_slot": "",
-            "key": "3a27daf65defdb0cb09cfc92f2ca6242"
+            "key": "3a27daf65defdb0cb09cfc92f2ca6242",
+            "status_from_store": true
         },
         {
             "row": 56,
@@ -4829,30 +4882,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 09:46:33"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 09:46:33",
             "assigned_slot": "",
-            "key": "3da72c7fa53eafc76ba00b9c14bb25d9"
+            "key": "3da72c7fa53eafc76ba00b9c14bb25d9",
+            "status_from_store": true
         },
         {
             "row": 57,
@@ -4901,30 +4955,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
-                    "missing_detail": "",
+                    "missing_detail": "อาหารไม่ตรงประเภท",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 15:40:16"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
-            "missing_detail": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
+            "missing_detail": "อาหารไม่ตรงประเภท",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 15:40:16",
             "assigned_slot": "",
-            "key": "972729f323b097e53897222fdc9c2c8a"
+            "key": "972729f323b097e53897222fdc9c2c8a",
+            "status_from_store": true
         },
         {
             "row": 58,
@@ -4967,30 +5022,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 16:03:26"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 16:03:26",
             "assigned_slot": "",
-            "key": "db60e644af087738722c483263f0643f"
+            "key": "db60e644af087738722c483263f0643f",
+            "status_from_store": true
         },
         {
             "row": 59,
@@ -5057,30 +5113,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-08 15:27:45"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-08 15:27:45",
             "assigned_slot": "",
-            "key": "9dd808723948cf15ab6bf021434c8234"
+            "key": "9dd808723948cf15ab6bf021434c8234",
+            "status_from_store": true
         },
         {
             "row": 60,
@@ -5135,30 +5192,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:43:14"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "fc7be85452a77691b3779aadd43e6cbb"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:43:14",
+            "assigned_slot": "B5",
+            "key": "fc7be85452a77691b3779aadd43e6cbb",
+            "status_from_store": true
         },
         {
             "row": 61,
@@ -5219,30 +5277,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-08 15:41:38"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-08 15:41:38",
             "assigned_slot": "",
-            "key": "4f78d769e5c7a7b842264913adac5905"
+            "key": "4f78d769e5c7a7b842264913adac5905",
+            "status_from_store": true
         },
         {
             "row": 62,
@@ -5285,30 +5344,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-08 15:30:23"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-08 15:30:23",
             "assigned_slot": "",
-            "key": "fe2e4f85368fd28a32a12e28b98f55ac"
+            "key": "fe2e4f85368fd28a32a12e28b98f55ac",
+            "status_from_store": true
         },
         {
             "row": 63,
@@ -5351,30 +5411,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
+                    "reviewed": true,
+                    "status": "ขาดคุณสมบัติ",
                     "pass": false,
-                    "fail": false,
-                    "missing_detail": "",
+                    "fail": true,
+                    "missing_detail": "บัตรประชาชนหมดอายุ",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-08 14:57:57"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
-                    "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
-                    "reason": ""
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
+                    "pass": false,
+                    "label": "ขาดคุณสมบัติ",
+                    "reason": "บัตรประชาชนหมดอายุ"
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
-            "missing_detail": "",
+            "status": "ขาดคุณสมบัติ",
+            "status_raw": "ขาดคุณสมบัติ",
+            "missing_detail": "บัตรประชาชนหมดอายุ",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-08 14:57:57",
             "assigned_slot": "",
-            "key": "4d116d5ecd200df828db0a587a193e4b"
+            "key": "4d116d5ecd200df828db0a587a193e4b",
+            "status_from_store": true
         },
         {
             "row": 64,
@@ -5417,30 +5478,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 09:18:09"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 09:18:09",
             "assigned_slot": "",
-            "key": "ecc6ee82572b6e91dd1d620562cdb80b"
+            "key": "ecc6ee82572b6e91dd1d620562cdb80b",
+            "status_from_store": true
         },
         {
             "row": 65,
@@ -5507,30 +5569,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-08 14:59:19"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-08 14:59:19",
             "assigned_slot": "",
-            "key": "36861a09868ef5968497e3ba60a80d82"
+            "key": "36861a09868ef5968497e3ba60a80d82",
+            "status_from_store": true
         },
         {
             "row": 66,
@@ -5579,30 +5642,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 01:51:12"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 01:51:12",
             "assigned_slot": "",
-            "key": "88082d0fc3489858bd0fe1f140ccb32d"
+            "key": "88082d0fc3489858bd0fe1f140ccb32d",
+            "status_from_store": true
         },
         {
             "row": 67,
@@ -5645,30 +5709,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
+                    "reviewed": true,
+                    "status": "ไม่ครบถ้วน",
                     "pass": false,
-                    "fail": false,
-                    "missing_detail": "",
+                    "fail": true,
+                    "missing_detail": "ทะเบียนบ้านข้อมูลไม่ครบ",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 09:31:24"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
-                    "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
-                    "reason": ""
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
+                    "pass": false,
+                    "label": "ไม่ครบถ้วน",
+                    "reason": "ทะเบียนบ้านข้อมูลไม่ครบ"
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
-            "missing_detail": "",
+            "status": "ไม่ครบถ้วน",
+            "status_raw": "ไม่ครบถ้วน",
+            "missing_detail": "ทะเบียนบ้านข้อมูลไม่ครบ",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 09:31:24",
             "assigned_slot": "",
-            "key": "81e0c798c634d516ac9e07aef4ccbfde"
+            "key": "81e0c798c634d516ac9e07aef4ccbfde",
+            "status_from_store": true
         },
         {
             "row": 68,
@@ -5729,30 +5794,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 09:20:56"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 09:20:56",
             "assigned_slot": "",
-            "key": "ba00b259d9702ab8c3b18b45612b982e"
+            "key": "ba00b259d9702ab8c3b18b45612b982e",
+            "status_from_store": true
         },
         {
             "row": 69,
@@ -5801,30 +5867,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 09:21:53"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 09:21:53",
             "assigned_slot": "",
-            "key": "35d57636cbfb4ed516e2578a105a354f"
+            "key": "35d57636cbfb4ed516e2578a105a354f",
+            "status_from_store": true
         },
         {
             "row": 71,
@@ -5873,30 +5940,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-08 15:01:07"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-08 15:01:07",
             "assigned_slot": "",
-            "key": "c029221bd483b6a6a61cfc32b05cbf62"
+            "key": "c029221bd483b6a6a61cfc32b05cbf62",
+            "status_from_store": true
         },
         {
             "row": 72,
@@ -5957,30 +6025,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
+                    "reviewed": true,
+                    "status": "ขาดคุณสมบัติ",
                     "pass": false,
-                    "fail": false,
-                    "missing_detail": "",
+                    "fail": true,
+                    "missing_detail": "ประกาศ ก๋วยจั๊บแจ่วฮ้อน ขายหมูกระทะ",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:48:46"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
-                    "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
-                    "reason": ""
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
+                    "pass": false,
+                    "label": "ขาดคุณสมบัติ",
+                    "reason": "ประกาศ ก๋วยจั๊บแจ่วฮ้อน ขายหมูกระทะ"
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
-            "missing_detail": "",
+            "status": "ขาดคุณสมบัติ",
+            "status_raw": "ขาดคุณสมบัติ",
+            "missing_detail": "ประกาศ ก๋วยจั๊บแจ่วฮ้อน ขายหมูกระทะ",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "ca39e235f970e39ed2fe37d2e211b324"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:48:46",
+            "assigned_slot": "C6",
+            "key": "ca39e235f970e39ed2fe37d2e211b324",
+            "status_from_store": true
         },
         {
             "row": 73,
@@ -6047,30 +6116,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 01:58:00"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 01:58:00",
             "assigned_slot": "",
-            "key": "682cf9dd95c69b6f28546cd3684f7210"
+            "key": "682cf9dd95c69b6f28546cd3684f7210",
+            "status_from_store": true
         },
         {
             "row": 74,
@@ -6119,30 +6189,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-08 15:06:29"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-08 15:06:29",
             "assigned_slot": "",
-            "key": "eae38579616a7daa89d6919051428597"
+            "key": "eae38579616a7daa89d6919051428597",
+            "status_from_store": true
         },
         {
             "row": 75,
@@ -6209,30 +6280,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-08 15:10:02"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-08 15:10:02",
             "assigned_slot": "",
-            "key": "020ba67c288a8e33cec03f60a9e42434"
+            "key": "020ba67c288a8e33cec03f60a9e42434",
+            "status_from_store": true
         },
         {
             "row": 76,
@@ -6299,30 +6371,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-08 15:32:19"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-08 15:32:19",
             "assigned_slot": "",
-            "key": "aee7833d6d7d086e3087de1cd8b826c3"
+            "key": "aee7833d6d7d086e3087de1cd8b826c3",
+            "status_from_store": true
         },
         {
             "row": 77,
@@ -6371,30 +6444,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 09:14:08"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 09:14:08",
             "assigned_slot": "",
-            "key": "d4c650fc8429c8b802974f62be0e9ff5"
+            "key": "d4c650fc8429c8b802974f62be0e9ff5",
+            "status_from_store": true
         },
         {
             "row": 78,
@@ -6437,30 +6511,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-08 15:43:21"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-08 15:43:21",
             "assigned_slot": "",
-            "key": "ef1001c2f49c22bdea07fb427cbed604"
+            "key": "ef1001c2f49c22bdea07fb427cbed604",
+            "status_from_store": true
         },
         {
             "row": 79,
@@ -6527,30 +6602,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 09:49:02"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 09:49:02",
             "assigned_slot": "",
-            "key": "98c2e0d09f1e8a3ee1e277004976eb62"
+            "key": "98c2e0d09f1e8a3ee1e277004976eb62",
+            "status_from_store": true
         },
         {
             "row": 80,
@@ -6617,30 +6693,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
+                    "reviewed": true,
+                    "status": "ขาดคุณสมบัติ",
                     "pass": false,
-                    "fail": false,
-                    "missing_detail": "",
+                    "fail": true,
+                    "missing_detail": "สินค้าไม่ตรงประเภท",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 09:38:17"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
-                    "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
-                    "reason": ""
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
+                    "pass": false,
+                    "label": "ขาดคุณสมบัติ",
+                    "reason": "สินค้าไม่ตรงประเภท"
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
-            "missing_detail": "",
+            "status": "ขาดคุณสมบัติ",
+            "status_raw": "ขาดคุณสมบัติ",
+            "missing_detail": "สินค้าไม่ตรงประเภท",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 09:38:17",
             "assigned_slot": "",
-            "key": "32b52fbea0495bee162a41bd476bc536"
+            "key": "32b52fbea0495bee162a41bd476bc536",
+            "status_from_store": true
         },
         {
             "row": 81,
@@ -6695,30 +6772,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:51:30"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "c7db9d69c172188e14a149f648817fc8"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:51:30",
+            "assigned_slot": "C10",
+            "key": "c7db9d69c172188e14a149f648817fc8",
+            "status_from_store": true
         },
         {
             "row": 82,
@@ -6785,30 +6863,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
+                    "reviewed": true,
+                    "status": "ไม่ครบถ้วน",
                     "pass": false,
-                    "fail": false,
-                    "missing_detail": "",
+                    "fail": true,
+                    "missing_detail": "ไม่มีสำเนาบัตรประจำตัวประชาชน",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 15:45:11"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
-                    "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
-                    "reason": ""
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
+                    "pass": false,
+                    "label": "ไม่ครบถ้วน",
+                    "reason": "ไม่มีสำเนาบัตรประจำตัวประชาชน"
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
-            "missing_detail": "",
+            "status": "ไม่ครบถ้วน",
+            "status_raw": "ไม่ครบถ้วน",
+            "missing_detail": "ไม่มีสำเนาบัตรประจำตัวประชาชน",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 15:45:11",
             "assigned_slot": "",
-            "key": "8310e444e8867a1600da73f88469e401"
+            "key": "8310e444e8867a1600da73f88469e401",
+            "status_from_store": true
         },
         {
             "row": 83,
@@ -6851,30 +6930,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 09:22:31"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 09:22:31",
             "assigned_slot": "",
-            "key": "29eec93274ad28358c2ee5ac0ed9669f"
+            "key": "29eec93274ad28358c2ee5ac0ed9669f",
+            "status_from_store": true
         },
         {
             "row": 84,
@@ -6941,30 +7021,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 01:52:33"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 01:52:33",
             "assigned_slot": "",
-            "key": "9d58d2644135d32a12e3fa0257854e44"
+            "key": "9d58d2644135d32a12e3fa0257854e44",
+            "status_from_store": true
         },
         {
             "row": 85,
@@ -7031,30 +7112,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 15:52:05"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 15:52:05",
             "assigned_slot": "",
-            "key": "b301e3c8cc0bf4d1b82cf76b61dc5859"
+            "key": "b301e3c8cc0bf4d1b82cf76b61dc5859",
+            "status_from_store": true
         },
         {
             "row": 86,
@@ -7097,30 +7179,31 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-10 12:45:45"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "",
-            "assigned_slot": "",
-            "key": "d57ed0b04f7799637f8c0a26a712f24d"
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:45:45",
+            "assigned_slot": "C3",
+            "key": "d57ed0b04f7799637f8c0a26a712f24d",
+            "status_from_store": true
         },
         {
             "row": 87,
@@ -7169,30 +7252,201 @@
                     "missing": []
                 },
                 "admin": {
-                    "reviewed": false,
-                    "status": "",
-                    "pass": false,
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": ""
+                    "reviewed_at": "2026-08-09 15:41:36"
                 },
                 "effective": {
-                    "source": "system",
-                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
                     "pass": true,
-                    "label": "ครบถ้วน (ระบบ)",
+                    "label": "ครบถ้วน",
                     "reason": ""
                 }
             },
-            "status": "ครบถ้วน (อัตโนมัติ)",
-            "status_raw": "",
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
             "selection": "รอพิจารณา",
-            "reviewed_at": "",
+            "reviewed_at": "2026-08-09 15:41:36",
             "assigned_slot": "",
-            "key": "5721105c3a55f494e5277bac9c935cb5"
+            "key": "5721105c3a55f494e5277bac9c935cb5",
+            "status_from_store": true
+        },
+        {
+            "row": 88,
+            "timestamp": 1786093315,
+            "datetime": "2026-08-07 16:01:55",
+            "datetime_th": "7 ส.ค. 2569 · 16:01:55 น.",
+            "time_label": "7 ส.ค. 2569 · 16:01:55 น.",
+            "timestamp_raw": "7\/8\/2026, 16:01:55",
+            "name": "นายสุวิจักขณ์ จั่นบรรจง",
+            "phone": "627145023",
+            "zone": "A",
+            "zone_raw": "โซน A",
+            "category": "มันฝรั่งทอด",
+            "category_raw": "มันฝรั่งทอด (จำกัด 1 ล็อค)",
+            "detail": "ไก่ทอดเกาหลี และข้าวไก่ทอดเกาหลี ข้าวกล่อง",
+            "qualifications": "เป็นผู้ที่มีอายุตั้งแต่ 18 ปี ขึ้นไป, เป็นผู้จำหน่ายสินค้าด้วยตนเอง, ไม่เป็นบุคคลที่มีข้อพิพาททางคดีกับมหาวิทยาลัยขอนแก่น และหน่วยงานอื่น ๆ, ไม่เคยกระทำผิดกฎหมาย หรือต้องคำพิพากษาถึงที่สุดว่ากระทำผิดกฎหมาย ยกเว้นการกระทำผิดที่กระทำโดยประมาท หรือความผิดลหุโทษ, ไม่เป็นโรคที่สังคมรังเกียจ หรือโรคติดต่อที่เป็นอันตรายร้ายแรงต่อสังคม และไม่เป็นบุคคลวิกลจริตหรือเป็นบุคคลเสมือนไร้ความสามารถ",
+            "id_card": "https:\/\/drive.google.com\/file\/d\/1mk3DN0dIeOUgSU3XIfvT_EV74bY_VuE1\/view",
+            "house_reg": "https:\/\/drive.google.com\/file\/d\/104cJ1vN2oI_yyEzpWvETSpXl_acVjIOd\/view",
+            "photo": "https:\/\/drive.google.com\/file\/d\/1iZj8gaJ0XYK5fLjkLsYkih5sspCXCbVf\/view",
+            "food_photos": [
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1XqdZVQORc788w1WJzzMXPRjsCtjFe46E\/view",
+                    "id": "1XqdZVQORc788w1WJzzMXPRjsCtjFe46E",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1XqdZVQORc788w1WJzzMXPRjsCtjFe46E&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1XqdZVQORc788w1WJzzMXPRjsCtjFe46E&sz=w1600"
+                },
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1jdclLNpQCab4rLQrfA4KIO_NAnc-OXy1\/view",
+                    "id": "1jdclLNpQCab4rLQrfA4KIO_NAnc-OXy1",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1jdclLNpQCab4rLQrfA4KIO_NAnc-OXy1&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1jdclLNpQCab4rLQrfA4KIO_NAnc-OXy1&sz=w1600"
+                },
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1IPtdDKadJ4_vOT04YNo1jgInAEozCJi7\/view",
+                    "id": "1IPtdDKadJ4_vOT04YNo1jgInAEozCJi7",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1IPtdDKadJ4_vOT04YNo1jgInAEozCJi7&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1IPtdDKadJ4_vOT04YNo1jgInAEozCJi7&sz=w1600"
+                }
+            ],
+            "docs": {
+                "id_card": true,
+                "house_reg": true,
+                "photo": true,
+                "food": true,
+                "qualify": true
+            },
+            "auto_missing": [],
+            "doc_check": {
+                "system": {
+                    "pass": true,
+                    "label": "ครบถ้วน",
+                    "missing": []
+                },
+                "admin": {
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
+                    "fail": false,
+                    "missing_detail": "",
+                    "review_note": "",
+                    "reviewed_at": "2026-08-08 15:37:40"
+                },
+                "effective": {
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
+                    "pass": true,
+                    "label": "ครบถ้วน",
+                    "reason": ""
+                }
+            },
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-08 15:37:40",
+            "assigned_slot": "",
+            "key": "3107b895867253d27a2a6e44a9a737d2",
+            "status_from_store": true
+        },
+        {
+            "row": 89,
+            "timestamp": 1786094321,
+            "datetime": "2026-08-07 16:18:41",
+            "datetime_th": "7 ส.ค. 2569 · 16:18:41 น.",
+            "time_label": "7 ส.ค. 2569 · 16:18:41 น.",
+            "timestamp_raw": "7\/8\/2026, 16:18:41",
+            "name": "ภานุพงษ์ พยัคมะเริง",
+            "phone": "851593544",
+            "zone": "C",
+            "zone_raw": "โซน C",
+            "category": "ลูกชุบ\/ขนมเบื้อง\/ขนมไทย",
+            "category_raw": "ลูกชุบ\/ขนมเบื้อง\/ขนมไทย (จำกัด 1 ล็อค)",
+            "detail": "ขนมเปี๊ยะลาวา และมาการองชิ้นละ 10 บาท",
+            "qualifications": "เป็นผู้ที่มีอายุตั้งแต่ 18 ปี ขึ้นไป, เป็นผู้จำหน่ายสินค้าด้วยตนเอง, ไม่เป็นบุคคลที่มีข้อพิพาททางคดีกับมหาวิทยาลัยขอนแก่น และหน่วยงานอื่น ๆ, ไม่เคยกระทำผิดกฎหมาย หรือต้องคำพิพากษาถึงที่สุดว่ากระทำผิดกฎหมาย ยกเว้นการกระทำผิดที่กระทำโดยประมาท หรือความผิดลหุโทษ, ไม่เป็นโรคที่สังคมรังเกียจ หรือโรคติดต่อที่เป็นอันตรายร้ายแรงต่อสังคม และไม่เป็นบุคคลวิกลจริตหรือเป็นบุคคลเสมือนไร้ความสามารถ",
+            "id_card": "https:\/\/drive.google.com\/file\/d\/19H06w9MZ_NarOGBXwn_YK-XV5H7tDBV8\/view",
+            "house_reg": "https:\/\/drive.google.com\/file\/d\/16lgBgKpjDUTKqRl0RC1fMLWxKSkbKuNo\/view",
+            "photo": "https:\/\/drive.google.com\/file\/d\/1Lr2BL7bSfjFgqMV3YN86BSTi8NRSjc7h\/view",
+            "food_photos": [
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1X1rgW97mGMZgtjT6PyQjRaFtOlL2NUwY\/view",
+                    "id": "1X1rgW97mGMZgtjT6PyQjRaFtOlL2NUwY",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1X1rgW97mGMZgtjT6PyQjRaFtOlL2NUwY&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1X1rgW97mGMZgtjT6PyQjRaFtOlL2NUwY&sz=w1600"
+                },
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1_wFJ5wN4uxqi6WI01jtl9mTFUOn8o19y\/view",
+                    "id": "1_wFJ5wN4uxqi6WI01jtl9mTFUOn8o19y",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1_wFJ5wN4uxqi6WI01jtl9mTFUOn8o19y&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1_wFJ5wN4uxqi6WI01jtl9mTFUOn8o19y&sz=w1600"
+                },
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/15biVdbHyTj-mGeuRPAtlb31_o4x2YZyl\/view",
+                    "id": "15biVdbHyTj-mGeuRPAtlb31_o4x2YZyl",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=15biVdbHyTj-mGeuRPAtlb31_o4x2YZyl&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=15biVdbHyTj-mGeuRPAtlb31_o4x2YZyl&sz=w1600"
+                },
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1aoL_P2lI5thRmDXMDz9tSrIIwMAuzGco\/view",
+                    "id": "1aoL_P2lI5thRmDXMDz9tSrIIwMAuzGco",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1aoL_P2lI5thRmDXMDz9tSrIIwMAuzGco&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1aoL_P2lI5thRmDXMDz9tSrIIwMAuzGco&sz=w1600"
+                },
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1-G1ht_VI70KMuztW3_vVsRduy102p0M9\/view",
+                    "id": "1-G1ht_VI70KMuztW3_vVsRduy102p0M9",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1-G1ht_VI70KMuztW3_vVsRduy102p0M9&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1-G1ht_VI70KMuztW3_vVsRduy102p0M9&sz=w1600"
+                }
+            ],
+            "docs": {
+                "id_card": true,
+                "house_reg": true,
+                "photo": true,
+                "food": true,
+                "qualify": true
+            },
+            "auto_missing": [],
+            "doc_check": {
+                "system": {
+                    "pass": true,
+                    "label": "ครบถ้วน",
+                    "missing": []
+                },
+                "admin": {
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
+                    "fail": false,
+                    "missing_detail": "",
+                    "review_note": "",
+                    "reviewed_at": "2026-08-10 12:45:27"
+                },
+                "effective": {
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
+                    "pass": true,
+                    "label": "ครบถ้วน",
+                    "reason": ""
+                }
+            },
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 12:45:27",
+            "assigned_slot": "C2",
+            "key": "627e32488d32b517b601fafb3baaea76",
+            "status_from_store": true
         }
     ],
     "shop_report": [
@@ -7209,7 +7463,7 @@
                 "phone": "634030759",
                 "status": "ครบถ้วน",
                 "selection": "ได้รับการคัดเลือก",
-                "reviewed_at": "2026-08-07 11:06:03",
+                "reviewed_at": "2026-08-10 12:35:16",
                 "time_label": "6 ส.ค. 2569 · 08:34:43 น.",
                 "applied_zone": "A",
                 "applied_category": "เครื่องดื่มไม่มีแอลกอฮอล์",
@@ -7220,81 +7474,201 @@
             "slot": "A2",
             "zone": "A",
             "category": "ข้าวไข่เจียว อาหารตามสั่ง",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 6,
+                "key": "8d86fc32322cbc52801e1e7cc84e2ad6",
+                "name": "อมรรัตน์ พันธุ์ยาง",
+                "phone": "648697713",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:33:52",
+                "time_label": "6 ส.ค. 2569 · 08:36:35 น.",
+                "applied_zone": "A",
+                "applied_category": "ข้าวไข่เจียว อาหารตามสั่ง",
+                "review_note": ""
+            }
         },
         {
             "slot": "A3",
             "zone": "A",
             "category": "มันฝรั่งทอด",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 3,
+                "key": "39a7001f2418ef7b55f615611edbd6cc",
+                "name": "นายสุพรม แก้วเปี้ย",
+                "phone": "930938913",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:35:06",
+                "time_label": "6 ส.ค. 2569 · 08:33:39 น.",
+                "applied_zone": "A",
+                "applied_category": "มันฝรั่งทอด",
+                "review_note": ""
+            }
         },
         {
             "slot": "A4",
             "zone": "A",
             "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 8,
+                "key": "2d4aee88716a6cb41efb907ce95cb24e",
+                "name": "นายปรัญชา คูณเเก้ว",
+                "phone": "827874489",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:35:20",
+                "time_label": "6 ส.ค. 2569 · 08:37:46 น.",
+                "applied_zone": "A",
+                "applied_category": "เครื่องดื่มไม่มีแอลกอฮอล์",
+                "review_note": ""
+            }
         },
         {
             "slot": "A5",
             "zone": "A",
             "category": "ข้าวราดแกง",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 2,
+                "key": "a52f1661f11d83dad73f0a525624f735",
+                "name": "รชานนท์ คงทอง",
+                "phone": "830322922",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:36:30",
+                "time_label": "6 ส.ค. 2569 · 08:33:32 น.",
+                "applied_zone": "A",
+                "applied_category": "ข้าวราดแกง",
+                "review_note": "ทดสอบระบบบันทึก"
+            }
         },
         {
             "slot": "A6",
             "zone": "A",
             "category": "ผัดไทย\/หอยทอด",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 15,
+                "key": "35da10fbb73e35303f6b1d4966c49177",
+                "name": "ธัญญาณี แสนทวีสุข",
+                "phone": "821237083",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:37:05",
+                "time_label": "6 ส.ค. 2569 · 08:40:48 น.",
+                "applied_zone": "A",
+                "applied_category": "ผัดไทย\/หอยทอด",
+                "review_note": ""
+            }
         },
         {
             "slot": "A7",
             "zone": "A",
             "category": "ขนมจีนน้ำยา (น้ำยาหลากหลาย)\/หมี่กะทิ",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 38,
+                "key": "1d0dbf99cc2d09d3d192cd0661481a34",
+                "name": "ธิติอาภา ขอดคำ",
+                "phone": "823033665",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:37:35",
+                "time_label": "6 ส.ค. 2569 · 09:17:11 น.",
+                "applied_zone": "A",
+                "applied_category": "ขนมจีนน้ำยา (น้ำยาหลากหลาย)\/หมี่กะทิ",
+                "review_note": ""
+            }
         },
         {
             "slot": "A8",
             "zone": "A",
             "category": "ปอเปี๊ยะ\/แหนมคลุก",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 42,
+                "key": "a558986ee5081408ead0fa6f5c972429",
+                "name": "บุญตา แซ่เล็ก",
+                "phone": "971796872",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:37:57",
+                "time_label": "6 ส.ค. 2569 · 09:26:18 น.",
+                "applied_zone": "A",
+                "applied_category": "ปอเปี๊ยะ\/แหนมคลุก",
+                "review_note": ""
+            }
         },
         {
             "slot": "A9",
             "zone": "A",
             "category": "หม่าล่าย่าง (เสียบไม้)",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 11,
+                "key": "892257caff5e24d7d24a5bd38c1a1d54",
+                "name": "ศศิภรณ์ แก้วกงพาน",
+                "phone": "934359495",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:38:59",
+                "time_label": "6 ส.ค. 2569 · 08:38:00 น.",
+                "applied_zone": "A",
+                "applied_category": "หม่าล่าย่าง (เสียบไม้)",
+                "review_note": ""
+            }
         },
         {
             "slot": "A10",
             "zone": "A",
             "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 10,
+                "key": "59bfd2f7ae3e1952250965f7a22a54ce",
+                "name": "ธัญพิชชา ฤาไกรศรี",
+                "phone": "893986251",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:35:23",
+                "time_label": "6 ส.ค. 2569 · 08:37:59 น.",
+                "applied_zone": "A",
+                "applied_category": "เครื่องดื่มไม่มีแอลกอฮอล์",
+                "review_note": ""
+            }
         },
         {
             "slot": "A11",
             "zone": "A",
             "category": "ไส้กรอกอีสาน",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 46,
+                "key": "ead61b6d41517bca6f7bf6d3b7baea8b",
+                "name": "นางณิชาภา มิตรศรี",
+                "phone": "825274825",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:39:21",
+                "time_label": "6 ส.ค. 2569 · 09:59:31 น.",
+                "applied_zone": "A",
+                "applied_category": "ไส้กรอกอีสาน",
+                "review_note": ""
+            }
         },
         {
             "slot": "A12",
@@ -7308,105 +7682,261 @@
             "slot": "B1",
             "zone": "B",
             "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 27,
+                "key": "1f1bc6ea9cdd9ee19a4bb7cc2bb67b1e",
+                "name": "เดชา คูณแก้ว",
+                "phone": "611148980",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:40:03",
+                "time_label": "6 ส.ค. 2569 · 08:57:39 น.",
+                "applied_zone": "B",
+                "applied_category": "เครื่องดื่มไม่มีแอลกอฮอล์",
+                "review_note": ""
+            }
         },
         {
             "slot": "B2",
             "zone": "B",
             "category": "ลูกชิ้นทอด\/นึ่ง",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 18,
+                "key": "d87088e814f617fa58b6957f6e16b64f",
+                "name": "นาง อุปถัมภ์ พรมทา",
+                "phone": "962235816",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:40:48",
+                "time_label": "6 ส.ค. 2569 · 08:43:39 น.",
+                "applied_zone": "B",
+                "applied_category": "ลูกชิ้นทอด\/นึ่ง",
+                "review_note": ""
+            }
         },
         {
             "slot": "B3",
             "zone": "B",
             "category": "ซูชิ\/อาหารญี่ปุ่น",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 7,
+                "key": "b35c6bde8f99385a8af33c73bbcea287",
+                "name": "สุธารัตน์ ลุนพิลา",
+                "phone": "818051907",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:41:56",
+                "time_label": "6 ส.ค. 2569 · 08:37:23 น.",
+                "applied_zone": "B",
+                "applied_category": "ซูชิ\/อาหารญี่ปุ่น",
+                "review_note": ""
+            }
         },
         {
             "slot": "B4",
             "zone": "B",
             "category": "อาหารทอดทานเล่น",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 30,
+                "key": "f46d6de5d12491a97645b22ed9a2031a",
+                "name": "กรทิพย์ สุขณรงค์",
+                "phone": "956451269",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:42:41",
+                "time_label": "6 ส.ค. 2569 · 08:59:23 น.",
+                "applied_zone": "B",
+                "applied_category": "อาหารทอดทานเล่น",
+                "review_note": ""
+            }
         },
         {
             "slot": "B5",
             "zone": "B",
             "category": "ผลไม้",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 60,
+                "key": "fc7be85452a77691b3779aadd43e6cbb",
+                "name": "บัณฑิต แสงแก้ว",
+                "phone": "628077603",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:43:14",
+                "time_label": "6 ส.ค. 2569 · 11:47:21 น.",
+                "applied_zone": "B",
+                "applied_category": "ผลไม้",
+                "review_note": ""
+            }
         },
         {
             "slot": "B6",
             "zone": "B",
             "category": "ยำ",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 20,
+                "key": "17a947469e06ab08caf06fbb7943372d",
+                "name": "น.ส.เจนจิรา สุทโธ",
+                "phone": "873200196",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:43:36",
+                "time_label": "6 ส.ค. 2569 · 08:46:25 น.",
+                "applied_zone": "B",
+                "applied_category": "ยำ",
+                "review_note": ""
+            }
         },
         {
             "slot": "C1",
             "zone": "C",
             "category": "ไอศกรีม",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 16,
+                "key": "deaebd5ed89763b8a6936c01aa26e87f",
+                "name": "ฉัทท์ชยาน์ เบ้าเงิน",
+                "phone": "891145054",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:44:13",
+                "time_label": "6 ส.ค. 2569 · 08:42:55 น.",
+                "applied_zone": "C",
+                "applied_category": "ไอศกรีม",
+                "review_note": ""
+            }
         },
         {
             "slot": "C2",
             "zone": "C",
             "category": "ลูกชุบ\/ขนมเบื้อง\/ขนมไทย",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 89,
+                "key": "627e32488d32b517b601fafb3baaea76",
+                "name": "ภานุพงษ์ พยัคมะเริง",
+                "phone": "851593544",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:45:27",
+                "time_label": "7 ส.ค. 2569 · 16:18:41 น.",
+                "applied_zone": "C",
+                "applied_category": "ลูกชุบ\/ขนมเบื้อง\/ขนมไทย",
+                "review_note": ""
+            }
         },
         {
             "slot": "C3",
             "zone": "C",
             "category": "พิซซ่า",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 86,
+                "key": "d57ed0b04f7799637f8c0a26a712f24d",
+                "name": "นางสาวกาญจนาภรณ์ อัครปัญญา",
+                "phone": "660648893",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:45:45",
+                "time_label": "7 ส.ค. 2569 · 15:13:30 น.",
+                "applied_zone": "C",
+                "applied_category": "พิซซ่า",
+                "review_note": ""
+            }
         },
         {
             "slot": "C4",
             "zone": "C",
             "category": "ข้าวเหนียวหมูปิ้ง",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 19,
+                "key": "2abe776dbb1a3660b4d189f4fcc9baee",
+                "name": "สรทิตย์เมศ ยะหว่ามื่อ",
+                "phone": "949195862",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:46:09",
+                "time_label": "6 ส.ค. 2569 · 08:45:51 น.",
+                "applied_zone": "C",
+                "applied_category": "ข้าวเหนียวหมูปิ้ง",
+                "review_note": ""
+            }
         },
         {
             "slot": "C5",
             "zone": "C",
             "category": "ข้าวไข่เจียว อาหารตามสั่ง",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 9,
+                "key": "1541501ba1c1afa130098e4fb41ce60b",
+                "name": "นภสร วัฒนสุวกุล",
+                "phone": "897135865",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:46:57",
+                "time_label": "6 ส.ค. 2569 · 08:37:54 น.",
+                "applied_zone": "C",
+                "applied_category": "ข้าวไข่เจียว อาหารตามสั่ง",
+                "review_note": ""
+            }
         },
         {
             "slot": "C6",
             "zone": "C",
             "category": "แจ่วฮ้อน\/ก๋วยจั๊บ",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 72,
+                "key": "ca39e235f970e39ed2fe37d2e211b324",
+                "name": "จีรัชญ์ณา มณีขัติย์",
+                "phone": "642624289",
+                "status": "ขาดคุณสมบัติ",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:48:46",
+                "time_label": "6 ส.ค. 2569 · 23:24:50 น.",
+                "applied_zone": "C",
+                "applied_category": "แจ่วฮ้อน\/ก๋วยจั๊บ",
+                "review_note": ""
+            }
         },
         {
             "slot": "C7",
             "zone": "C",
             "category": "สื่อเกมการศึกษา\/บอร์ดเกม",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 53,
+                "key": "ae3bad5aea649f03e6c3f64a68dfa808",
+                "name": "นายดนัย มั่นกลิ่น",
+                "phone": "856022688",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:49:34",
+                "time_label": "6 ส.ค. 2569 · 10:42:46 น.",
+                "applied_zone": "C",
+                "applied_category": "สื่อเกมการศึกษา\/บอร์ดเกม",
+                "review_note": ""
+            }
         },
         {
             "slot": "C8",
@@ -7428,73 +7958,181 @@
             "slot": "C10",
             "zone": "C",
             "category": "วาฟเฟิล",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 81,
+                "key": "c7db9d69c172188e14a149f648817fc8",
+                "name": "น.ส.มาลินี ศิริขันธ์",
+                "phone": "626364254",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:51:30",
+                "time_label": "7 ส.ค. 2569 · 11:32:41 น.",
+                "applied_zone": "C",
+                "applied_category": "วาฟเฟิล",
+                "review_note": ""
+            }
         },
         {
             "slot": "C11",
             "zone": "C",
             "category": "ขนมจีบ\/ซาลาเปา",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 5,
+                "key": "66a5ede124086ced0ec8d926f1201393",
+                "name": "วีระชาติ วงละคร",
+                "phone": "611635197",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:51:41",
+                "time_label": "6 ส.ค. 2569 · 08:36:21 น.",
+                "applied_zone": "C",
+                "applied_category": "ขนมจีบ\/ซาลาเปา",
+                "review_note": ""
+            }
         },
         {
             "slot": "C12",
             "zone": "C",
             "category": "สุกี้โรล\/เกี๊ยวต้ม\/ชาบู",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 13,
+                "key": "04887490daa4905d603d73a21ebacdfe",
+                "name": "นายสุพงค์ พันธ์แก่น",
+                "phone": "862812234",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:52:33",
+                "time_label": "6 ส.ค. 2569 · 08:39:55 น.",
+                "applied_zone": "C",
+                "applied_category": "สุกี้โรล\/เกี๊ยวต้ม\/ชาบู",
+                "review_note": ""
+            }
         },
         {
             "slot": "C13",
             "zone": "C",
             "category": "ยำ",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 37,
+                "key": "583be451dd19bfb2dc87e0d5cbc983a9",
+                "name": "ธนกร นิมิตนันท์",
+                "phone": "834489957",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:52:58",
+                "time_label": "6 ส.ค. 2569 · 09:15:06 น.",
+                "applied_zone": "C",
+                "applied_category": "ยำ",
+                "review_note": ""
+            }
         },
         {
             "slot": "C14",
             "zone": "C",
             "category": "ผลไม้",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 40,
+                "key": "e7d5343c3fc93e852e5a2ecdb8a8ec05",
+                "name": "นางรัชนี ชัยจักร",
+                "phone": "877997601",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:54:20",
+                "time_label": "6 ส.ค. 2569 · 09:19:44 น.",
+                "applied_zone": "C",
+                "applied_category": "ผลไม้",
+                "review_note": ""
+            }
         },
         {
             "slot": "D1",
             "zone": "D",
             "category": "หม่าล่าย่าง (เสียบไม้)",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 36,
+                "key": "4d1597c28ac321ccb676c6e1e73f62b2",
+                "name": "สมหมาย คำตา",
+                "phone": "650525445",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:54:53",
+                "time_label": "6 ส.ค. 2569 · 09:07:17 น.",
+                "applied_zone": "D",
+                "applied_category": "หม่าล่าย่าง (เสียบไม้)",
+                "review_note": ""
+            }
         },
         {
             "slot": "D2",
             "zone": "D",
             "category": "ลูกชิ้นทอด\/นึ่ง",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 41,
+                "key": "07a7c5f74fad71ded2a32f0525ad5789",
+                "name": "นาย กิตติชัย เชื้ิอพรมมา",
+                "phone": "614531524",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:55:16",
+                "time_label": "6 ส.ค. 2569 · 09:26:10 น.",
+                "applied_zone": "D",
+                "applied_category": "ลูกชิ้นทอด\/นึ่ง",
+                "review_note": ""
+            }
         },
         {
             "slot": "D3",
             "zone": "D",
             "category": "ซูชิ\/อาหารญี่ปุ่น",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 21,
+                "key": "a823d95d8342e2acaa104cb22e2d538a",
+                "name": "น.ส พีรญา โชคสว่างงาม",
+                "phone": "923792594",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:56:17",
+                "time_label": "6 ส.ค. 2569 · 08:47:18 น.",
+                "applied_zone": "D",
+                "applied_category": "ซูชิ\/อาหารญี่ปุ่น",
+                "review_note": ""
+            }
         },
         {
             "slot": "D4",
             "zone": "D",
             "category": "สโมกี้ไบท์",
-            "filled": false,
+            "filled": true,
             "cross_assigned": false,
-            "operator": null
+            "operator": {
+                "row": 14,
+                "key": "12f5136fc493e97aa81146dbfb54782c",
+                "name": "นางสาวกฤษฎาภรณ์ สรรพวุธ",
+                "phone": "854514091",
+                "status": "ครบถ้วน",
+                "selection": "ได้รับการคัดเลือก",
+                "reviewed_at": "2026-08-10 12:56:52",
+                "time_label": "6 ส.ค. 2569 · 08:40:25 น.",
+                "applied_zone": "D",
+                "applied_category": "สโมกี้ไบท์",
+                "review_note": ""
+            }
         },
         {
             "slot": "D5",
@@ -7530,15 +8168,30 @@
         }
     ],
     "doc_summary": {
-        "total": 84,
-        "system_ok": 84,
+        "total": 86,
+        "system_ok": 86,
         "system_fail": 0,
-        "admin_ok": 2,
-        "admin_fail": 0,
-        "admin_pending": 82,
-        "effective_ok": 84,
-        "effective_fail": 0
+        "admin_ok": 72,
+        "admin_fail": 14,
+        "admin_pending": 0,
+        "effective_ok": 72,
+        "effective_fail": 14
     },
-    "policy": "ระบบอัปเดตเฉพาะคอลัมน์สถานะ (P–U) เท่านั้น ไม่ลบรายการผู้สมัครใน Excel",
-    "notice": "นำเข้า Excel ล่าสุดจาก Google Sheet ได้ที่ปุ่มนำเข้าข้อมูล · การเช็คเอกสาร\/คัดเลือกเป็นการอัปเดตสถานะเท่านั้น ไม่ลบแถวผู้สมัคร · สถานะเอกสารยึดตาม Admin เมื่อบันทึกแล้ว · เวลาที่แสดงเป็นเวลาไทย (Asia\/Bangkok)"
+    "storage": {
+        "data_dir": "data",
+        "data_writable": true,
+        "status_store": "status_store.json",
+        "status_store_writable": true,
+        "xlsx": "แบบตอบรับ.xlsx",
+        "xlsx_writable": true,
+        "can_save_status": true,
+        "hint": "บันทึกสถานะได้ทั้งไฟล์สถานะและ Excel"
+    },
+    "status_store": {
+        "merged": 86,
+        "store_rows": 86,
+        "store_updated_at": "2026-08-10T12:56:52+07:00"
+    },
+    "policy": "บันทึกเฉพาะสถานะตรวจเอกสาร\/คัดเลือก\/ล็อก — ไม่ลบรายการผู้สมัคร · บนเซิร์ฟเวอร์สถานะเก็บที่ data\/status_store.json เป็นหลัก และซิงก์ Excel เมื่อเขียนได้",
+    "notice": "ข้อมูลผู้สมัครอ่านจาก Excel เสมอ · สถานะ Admin\/คัดเลือกระบบบันทึกที่ data\/status_store.json (แม้ Excel บนเซิร์ฟเวอร์ล็อกสิทธิ์เขียน) · ไม่ลบแถวผู้สมัคร · เวลาที่แสดงเป็นเวลาไทย"
 }

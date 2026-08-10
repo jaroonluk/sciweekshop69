@@ -9,7 +9,7 @@ const SCI_STATUS_HEADERS = [
   'R' => 'คุณสมบัติ / หมายเหตุการพิจารณา',
   'S' => 'ผลการคัดเลือก',
   'T' => 'วันเวลาที่ตรวจ',
-  'U' => 'ล็อคร้านที่ได้รับ',
+  'U' => 'ล็อกร้านที่ได้รับ',
 ];
 
 /** Columns that the system may UPDATE. Never delete applicant rows or alter A–O form data. */
@@ -17,6 +17,230 @@ const SCI_WRITABLE_STATUS_COLS = ['P', 'Q', 'R', 'S', 'T', 'U'];
 
 function sci_dir(): string {
   return __DIR__;
+}
+
+/**
+ * Writable data directory for status persistence on servers
+ * where Excel (.xlsx) may be read-only.
+ */
+function sci_data_dir(): string {
+  $dir = sci_dir() . DIRECTORY_SEPARATOR . 'data';
+  if (!is_dir($dir)) {
+    @mkdir($dir, 0775, true);
+  }
+  return $dir;
+}
+
+function sci_status_store_path(): string {
+  return sci_data_dir() . DIRECTORY_SEPARATOR . 'status_store.json';
+}
+
+function sci_is_writable_path(string $path): bool {
+  if (is_dir($path)) {
+    $probe = rtrim($path, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . '.write_probe_' . getmypid();
+    $ok = @file_put_contents($probe, 'ok') !== false;
+    if ($ok) @unlink($probe);
+    return $ok;
+  }
+  if (file_exists($path)) {
+    return is_writable($path);
+  }
+  $parent = dirname($path);
+  return is_dir($parent) && is_writable($parent);
+}
+
+function sci_storage_health(): array {
+  $xlsx = null;
+  $xlsxWritable = false;
+  try {
+    $xlsx = sci_xlsx_path();
+    $xlsxWritable = sci_is_writable_path($xlsx) && sci_is_writable_path(dirname($xlsx));
+  } catch (Throwable $e) {
+    $xlsx = null;
+  }
+  $dataDir = sci_data_dir();
+  $store = sci_status_store_path();
+  $dataWritable = sci_is_writable_path($dataDir);
+  return [
+    'data_dir' => basename($dataDir),
+    'data_writable' => $dataWritable,
+    'status_store' => basename($store),
+    'status_store_writable' => $dataWritable && sci_is_writable_path(dirname($store)),
+    'xlsx' => $xlsx ? basename($xlsx) : null,
+    'xlsx_writable' => $xlsxWritable,
+    'can_save_status' => $dataWritable,
+    'hint' => $dataWritable
+      ? ($xlsxWritable
+        ? 'บันทึกสถานะได้ทั้งไฟล์สถานะและ Excel'
+        : 'บันทึกสถานะได้ที่ data/status_store.json (Excel บนเซิร์ฟเวอร์เขียนไม่ได้ — ข้อมูลผู้สมัครยังอ่านจาก Excel ได้ตามปกติ)')
+      : 'โฟลเดอร์ data/ ยังเขียนไม่ได้ — ให้ตั้งสิทธิ์ chmod 775 หรือ 777 ที่โฟลเดอร์ sci_shop/data',
+  ];
+}
+
+function sci_load_status_store(): array {
+  $path = sci_status_store_path();
+  if (!is_file($path)) {
+    return ['version' => 1, 'updated_at' => null, 'by_row' => []];
+  }
+  $raw = @file_get_contents($path);
+  $data = json_decode($raw ?: '{}', true);
+  if (!is_array($data)) {
+    return ['version' => 1, 'updated_at' => null, 'by_row' => []];
+  }
+  if (!isset($data['by_row']) || !is_array($data['by_row'])) {
+    $data['by_row'] = [];
+  }
+  $data['version'] = 1;
+  return $data;
+}
+
+function sci_save_status_store(array $store): void {
+  $dir = sci_data_dir();
+  if (!sci_is_writable_path($dir)) {
+    throw new RuntimeException(
+      'ไม่สามารถบันทึกสถานะได้: โฟลเดอร์ data/ เขียนไม่ได้บนเซิร์ฟเวอร์ — ตั้งสิทธิ์ chmod 775 หรือ 777 ให้โฟลเดอร์ data (และ sci_shop ถ้าจำเป็น)'
+    );
+  }
+  $store['version'] = 1;
+  $store['updated_at'] = date('c');
+  if (!isset($store['by_row']) || !is_array($store['by_row'])) {
+    $store['by_row'] = [];
+  }
+  $path = sci_status_store_path();
+  $json = json_encode($store, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+  $tmp = $path . '.tmp';
+  if (@file_put_contents($tmp, $json, LOCK_EX) === false) {
+    throw new RuntimeException('เขียนไฟล์สถานะชั่วคราวไม่สำเร็จ (ตรวจสิทธิ์ data/)');
+  }
+  if (!@rename($tmp, $path)) {
+    @unlink($path);
+    if (!@rename($tmp, $path)) {
+      @unlink($tmp);
+      throw new RuntimeException('บันทึก data/status_store.json ไม่สำเร็จ');
+    }
+  }
+}
+
+/**
+ * Recompute display status + doc_check from stored admin fields + attachment checklist.
+ */
+function sci_recompute_app_status(array &$app): void {
+  $autoMissing = $app['auto_missing'] ?? [];
+  $statusRaw = (string)($app['status_raw'] ?? $app['status'] ?? '');
+  $missingDetail = (string)($app['missing_detail'] ?? '');
+  $note = (string)($app['review_note'] ?? '');
+  $reviewedAt = (string)($app['reviewed_at'] ?? '');
+  $selection = (string)($app['selection'] ?? 'รอพิจารณา');
+  $assignedSlot = strtoupper(trim((string)($app['assigned_slot'] ?? '')));
+
+  $selectionValues = ['ได้รับการคัดเลือก', 'ไม่ได้รับการคัดเลือก', 'รอพิจารณา'];
+  if ($selection !== '' && !in_array($selection, $selectionValues, true)) {
+    $selection = 'รอพิจารณา';
+  }
+  if ($selection === '') $selection = 'รอพิจารณา';
+  if ($assignedSlot !== '' && !preg_match('/^[ABCD]\d{1,2}$/', $assignedSlot)) {
+    $assignedSlot = '';
+  }
+  if ($selection !== 'ได้รับการคัดเลือก') {
+    $assignedSlot = '';
+  }
+
+  $sysPass = count($autoMissing) === 0;
+  $sysLabel = $sysPass ? 'ครบถ้วน' : 'ไม่ครบถ้วน';
+  $adminClean = trim(preg_replace('/\s*\(อัตโนมัติ\)\s*/u', '', $statusRaw));
+  $isAutoOnly = ($statusRaw === '' || mb_strpos($statusRaw, 'อัตโนมัติ') !== false);
+  $adminStatuses = ['รอตรวจสอบ', 'ครบถ้วน', 'ไม่ครบถ้วน', 'ขาดคุณสมบัติ'];
+  $adminReviewed = !$isAutoOnly && in_array($adminClean, $adminStatuses, true);
+  $adminStatus = $adminReviewed ? $adminClean : '';
+  $adminPass = $adminReviewed && $adminStatus === 'ครบถ้วน';
+  $adminFail = $adminReviewed && in_array($adminStatus, ['ไม่ครบถ้วน', 'ขาดคุณสมบัติ'], true);
+
+  if ($adminReviewed) {
+    $status = $adminStatus;
+    $effSource = 'admin';
+    $effPass = $adminPass;
+    $effLabel = $adminStatus;
+    $effReason = '';
+    if ($adminFail) {
+      $effReason = $missingDetail !== '' ? $missingDetail : (
+        $adminStatus === 'ขาดคุณสมบัติ'
+          ? 'Admin ระบุว่าขาดคุณสมบัติ'
+          : 'Admin ระบุว่าเอกสารไม่ครบถ้วน'
+      );
+      if ($note !== '' && $adminStatus === 'ขาดคุณสมบัติ') {
+        $effReason = trim($effReason . ($effReason ? ' · ' : '') . $note);
+      }
+    }
+  } else {
+    $status = $sysPass ? 'ครบถ้วน (อัตโนมัติ)' : 'รอตรวจสอบ';
+    $effSource = 'system';
+    $effPass = $sysPass;
+    $effLabel = $sysPass ? 'ครบถ้วน (ระบบ)' : 'ไม่ครบถ้วน (ระบบ)';
+    $effReason = $sysPass ? '' : ('ระบบตรวจพบขาด: ' . implode(', ', $autoMissing));
+  }
+
+  $app['selection'] = $selection;
+  $app['assigned_slot'] = $assignedSlot;
+  $app['status_raw'] = $statusRaw;
+  $app['status'] = $status;
+  $app['missing_detail'] = $missingDetail;
+  $app['review_note'] = $note;
+  $app['reviewed_at'] = $reviewedAt;
+  $app['doc_check'] = [
+    'system' => [
+      'pass' => $sysPass,
+      'label' => $sysLabel,
+      'missing' => $autoMissing,
+    ],
+    'admin' => [
+      'reviewed' => $adminReviewed,
+      'status' => $adminStatus,
+      'pass' => $adminPass,
+      'fail' => $adminFail,
+      'missing_detail' => $missingDetail,
+      'review_note' => $note,
+      'reviewed_at' => $reviewedAt,
+    ],
+    'effective' => [
+      'source' => $effSource,
+      'source_label' => $effSource === 'admin' ? 'ยึดตามที่ Admin ตรวจ' : 'ยึดตามที่ระบบตรวจ (รอ Admin)',
+      'pass' => $effPass,
+      'label' => $effLabel,
+      'reason' => $effReason,
+    ],
+  ];
+}
+
+/**
+ * Overlay durable status store onto applicants (never removes applicant rows).
+ * Store wins over Excel columns P–U so servers can save without writable xlsx.
+ */
+function sci_merge_status_store(array &$apps): array {
+  $store = sci_load_status_store();
+  $byRow = $store['by_row'] ?? [];
+  $merged = 0;
+  foreach ($apps as &$app) {
+    $rowKey = (string)(int)$app['row'];
+    if (!isset($byRow[$rowKey]) || !is_array($byRow[$rowKey])) {
+      continue;
+    }
+    $o = $byRow[$rowKey];
+    if (array_key_exists('status', $o)) $app['status_raw'] = (string)$o['status'];
+    if (array_key_exists('missing_detail', $o)) $app['missing_detail'] = (string)$o['missing_detail'];
+    if (array_key_exists('review_note', $o)) $app['review_note'] = (string)$o['review_note'];
+    if (array_key_exists('selection', $o)) $app['selection'] = (string)$o['selection'];
+    if (array_key_exists('reviewed_at', $o)) $app['reviewed_at'] = (string)$o['reviewed_at'];
+    if (array_key_exists('assigned_slot', $o)) $app['assigned_slot'] = (string)$o['assigned_slot'];
+    sci_recompute_app_status($app);
+    $app['status_from_store'] = true;
+    $merged++;
+  }
+  unset($app);
+  return [
+    'merged' => $merged,
+    'store_rows' => count($byRow),
+    'store_updated_at' => $store['updated_at'] ?? null,
+  ];
 }
 
 function sci_xlsx_path(): string {
@@ -390,6 +614,10 @@ function sci_parse_applicants(?string $path = null): array {
 
   usort($apps, fn($a, $b) => $a['timestamp'] <=> $b['timestamp']);
 
+  // Durable status overlay (works even when Excel is read-only on the server)
+  $storeMeta = sci_merge_status_store($apps);
+  $health = sci_storage_health();
+
   $slots = sci_slots();
   $shared = [];
   foreach ($slots as $s) {
@@ -428,8 +656,10 @@ function sci_parse_applicants(?string $path = null): array {
     'applicants' => $apps,
     'shop_report' => $shopReport,
     'doc_summary' => $docSummary,
-    'policy' => 'ระบบอัปเดตเฉพาะคอลัมน์สถานะ (P–U) เท่านั้น ไม่ลบรายการผู้สมัครใน Excel',
-    'notice' => 'นำเข้า Excel ล่าสุดจาก Google Sheet ได้ที่ปุ่มนำเข้าข้อมูล · การเช็คเอกสาร/คัดเลือกเป็นการอัปเดตสถานะเท่านั้น ไม่ลบแถวผู้สมัคร · สถานะเอกสารยึดตาม Admin เมื่อบันทึกแล้ว · เวลาที่แสดงเป็นเวลาไทย (Asia/Bangkok)',
+    'storage' => $health,
+    'status_store' => $storeMeta,
+    'policy' => 'บันทึกเฉพาะสถานะตรวจเอกสาร/คัดเลือก/ล็อก — ไม่ลบรายการผู้สมัคร · บนเซิร์ฟเวอร์สถานะเก็บที่ data/status_store.json เป็นหลัก และซิงก์ Excel เมื่อเขียนได้',
+    'notice' => 'ข้อมูลผู้สมัครอ่านจาก Excel เสมอ · สถานะ Admin/คัดเลือกระบบบันทึกที่ data/status_store.json (แม้ Excel บนเซิร์ฟเวอร์ล็อกสิทธิ์เขียน) · ไม่ลบแถวผู้สมัคร · เวลาที่แสดงเป็นเวลาไทย',
   ];
 }
 
@@ -595,12 +825,82 @@ function sci_count_sheet_rows(string $sheetXml): int {
   return preg_match_all('/<row\b/i', $sheetXml) ?: 0;
 }
 
+/**
+ * Persist status updates:
+ * 1) Always write data/status_store.json (works on most servers)
+ * 2) Best-effort sync into Excel P–U (never deletes applicant rows A–O)
+ */
 function sci_ensure_status_and_write(array $updates): array {
-  // Status-only write (P–U). NEVER deletes applicant rows or alters form columns A–O.
+  if (!$updates) {
+    throw new InvalidArgumentException('ไม่มีรายการอัปเดต');
+  }
+
+  // ---- 1) Durable JSON store (primary on servers) ----
+  $store = sci_load_status_store();
+  foreach ($updates as $u) {
+    $row = (int)($u['row'] ?? 0);
+    if ($row < 2) continue;
+    $key = (string)$row;
+    $prev = isset($store['by_row'][$key]) && is_array($store['by_row'][$key]) ? $store['by_row'][$key] : [];
+    $store['by_row'][$key] = array_merge($prev, [
+      'row' => $row,
+      'status' => (string)($u['status'] ?? ($prev['status'] ?? '')),
+      'missing_detail' => (string)($u['missing_detail'] ?? ($prev['missing_detail'] ?? '')),
+      'review_note' => (string)($u['review_note'] ?? ($prev['review_note'] ?? '')),
+      'selection' => (string)($u['selection'] ?? ($prev['selection'] ?? 'รอพิจารณา')),
+      'reviewed_at' => (string)($u['reviewed_at'] ?? ($prev['reviewed_at'] ?? date('Y-m-d H:i:s'))),
+      'assigned_slot' => strtoupper(trim((string)($u['assigned_slot'] ?? ($prev['assigned_slot'] ?? '')))),
+      'saved_at' => date('c'),
+    ]);
+    if (($store['by_row'][$key]['selection'] ?? '') !== 'ได้รับการคัดเลือก') {
+      $store['by_row'][$key]['assigned_slot'] = '';
+    }
+  }
+  sci_save_status_store($store);
+
+  $result = [
+    'ok' => true,
+    'updated' => count($updates),
+    'mode' => 'status_store',
+    'storage' => 'json',
+    'status_store' => 'data/status_store.json',
+    'excel_synced' => false,
+    'excel_error' => null,
+    'path' => null,
+    'applicants_before' => null,
+    'applicants_after' => null,
+    'message' => 'บันทึกสถานะใน data/status_store.json สำเร็จ (ข้อมูลผู้สมัครใน Excel ไม่ถูกลบ)',
+  ];
+
+  // ---- 2) Best-effort Excel sync (optional) ----
+  try {
+    $excelResult = sci_sync_status_to_excel($updates);
+    $result = array_merge($result, $excelResult);
+    $result['storage'] = 'json+excel';
+    $result['excel_synced'] = true;
+    $result['message'] = 'บันทึกสถานะแล้วทั้งไฟล์สถานะและ Excel (ไม่ลบผู้สมัคร)';
+  } catch (Throwable $e) {
+    $result['excel_synced'] = false;
+    $result['excel_error'] = $e->getMessage();
+    $result['message'] = 'บันทึกสถานะในระบบสำเร็จแล้ว แต่ซิงก์ Excel ไม่ได้: ' . $e->getMessage();
+  }
+
+  return $result;
+}
+
+/**
+ * Status-only Excel write (P–U). NEVER deletes applicant rows or alters A–O.
+ */
+function sci_sync_status_to_excel(array $updates): array {
   $path = sci_xlsx_path();
+  if (!sci_is_writable_path(dirname($path)) || (file_exists($path) && !is_writable($path))) {
+    throw new RuntimeException('ไฟล์/โฟลเดอร์ Excel เขียนไม่ได้บนเซิร์ฟเวอร์');
+  }
+
   $beforeCount = 0;
   try {
-    $beforeCount = (int)(sci_parse_applicants($path)['total_applicants'] ?? 0);
+    $rows = sci_read_sheet_rows($path);
+    $beforeCount = max(0, count($rows) - 1);
   } catch (Throwable $e) {
     $beforeCount = 0;
   }
@@ -628,7 +928,6 @@ function sci_ensure_status_and_write(array $updates): array {
   $ssLenBefore = strlen($ssXml);
   $sheetLenBefore = strlen($sheetXml);
 
-  // Parse shared strings into array and rebuild later (append-only index)
   $strings = [];
   $sx = @simplexml_load_string($ssXml);
   if ($sx === false) {
@@ -664,7 +963,7 @@ function sci_ensure_status_and_write(array $updates): array {
   if (count($strings) < $origStringCount) {
     $zip->close();
     @unlink($tmp);
-    throw new RuntimeException('ตารางข้อความเสียหาย ยกเลิกการบันทึก');
+    throw new RuntimeException('ตารางข้อความเสียหาย ยกเลิกการซิงก์ Excel');
   }
 
   $count = count($strings);
@@ -675,7 +974,6 @@ function sci_ensure_status_and_write(array $updates): array {
   }
   $ssOut .= '</sst>';
 
-  // Headers on row 1
   foreach (SCI_STATUS_HEADERS as $col => $title) {
     if (!sci_sheet_set_shared_cell($sheetXml, $col . '1', $stringIndex($title))) {
       $zip->close();
@@ -708,7 +1006,7 @@ function sci_ensure_status_and_write(array $updates): array {
   if ($rowsAfter < $rowsBefore || strlen($sheetXml) < (int)($sheetLenBefore * 0.5) || strlen($ssOut) < (int)($ssLenBefore * 0.5)) {
     $zip->close();
     @unlink($tmp);
-    throw new RuntimeException('ตรวจพบว่าชีตจะเสียหาย จึงยกเลิกการบันทึก (แถวเดิมถูกเก็บไว้)');
+    throw new RuntimeException('ตรวจพบว่าชีตจะเสียหาย จึงยกเลิกการซิงก์ Excel');
   }
 
   if (!$zip->addFromString('xl/sharedStrings.xml', $ssOut) || !$zip->addFromString('xl/worksheets/sheet1.xml', $sheetXml)) {
@@ -718,7 +1016,6 @@ function sci_ensure_status_and_write(array $updates): array {
   }
   $zip->close();
 
-  // Backup then replace — never leave a half-written workbook
   $bak = $path . '.bak';
   if (!@copy($path, $bak)) {
     @unlink($tmp);
@@ -727,7 +1024,6 @@ function sci_ensure_status_and_write(array $updates): array {
 
   $swapped = @rename($tmp, $path);
   if (!$swapped) {
-    // Windows / some hosts need unlink first; keep bak for restore
     $removed = @unlink($path);
     $swapped = @rename($tmp, $path);
     if (!$swapped) {
@@ -737,9 +1033,9 @@ function sci_ensure_status_and_write(array $updates): array {
     }
   }
 
-  // Verify applicants still present; restore bak if catastrophic loss
   try {
-    $afterCount = (int)(sci_parse_applicants($path)['total_applicants'] ?? 0);
+    $afterRows = sci_read_sheet_rows($path);
+    $afterCount = max(0, count($afterRows) - 1);
   } catch (Throwable $e) {
     @copy($bak, $path);
     throw new RuntimeException('ไฟล์หลังบันทึกอ่านไม่ได้ จึงคืนค่าจาก .bak — ' . $e->getMessage());
@@ -747,14 +1043,12 @@ function sci_ensure_status_and_write(array $updates): array {
   if ($beforeCount > 0 && $afterCount < max(1, (int)floor($beforeCount * 0.8))) {
     @copy($bak, $path);
     throw new RuntimeException(
-      "บันทึกแล้วแต่จำนวนผู้สมัครลดลงผิดปกติ ({$beforeCount} → {$afterCount}) จึงคืนค่าจาก .bak อัตโนมัติ"
+      "ซิงก์ Excel แล้วแต่จำนวนผู้สมัครลดลงผิดปกติ ({$beforeCount} → {$afterCount}) จึงคืนค่าจาก .bak"
     );
   }
 
   return [
-    'ok' => true,
     'path' => basename($path),
-    'updated' => count($updates),
     'mode' => 'status_only',
     'applicants_before' => $beforeCount,
     'applicants_after' => $afterCount,
@@ -775,7 +1069,7 @@ function sci_assign_shop(int $row, string $slotId, ?array $currentData = null, b
     if ($s['id'] === $slotId) { $slot = $s; break; }
   }
   if (!$slot) {
-    throw new InvalidArgumentException('ไม่พบล็อคร้าน ' . $slotId);
+    throw new InvalidArgumentException('ไม่พบล็อกร้าน ' . $slotId);
   }
 
   $data = $currentData ?? sci_parse_applicants();
@@ -794,7 +1088,7 @@ function sci_assign_shop(int $row, string $slotId, ?array $currentData = null, b
 
   if ($isCross) {
     if (!$allowCross) {
-      throw new InvalidArgumentException('ผู้สมัครไม่ตรงประเภทของล็อค ' . $slotId);
+      throw new InvalidArgumentException('ผู้สมัครไม่ตรงประเภทของล็อก ' . $slotId);
     }
     // Only fill empty categories (no native applicants for this slot type)
     $hasNative = false;
@@ -804,9 +1098,19 @@ function sci_assign_shop(int $row, string $slotId, ?array $currentData = null, b
         break;
       }
     }
-    // Also check other zones with same cat? User said empty shops - per slot category in that zone
     if ($hasNative) {
-      throw new InvalidArgumentException('ล็อคนี้ยังมีผู้สมัครประเภทตรงอยู่ ใช้การคัดเลือกปกติ');
+      throw new InvalidArgumentException('ล็อกนี้ยังมีผู้สมัครประเภทตรงอยู่ ใช้การคัดเลือกปกติ');
+    }
+    // Cross-fill: exclude shops already selected into another lock
+    if (($target['selection'] ?? '') === 'ได้รับการคัดเลือก') {
+      $alreadySlot = strtoupper(trim((string)($target['assigned_slot'] ?? '')));
+      if ($alreadySlot !== $slotId) {
+        throw new InvalidArgumentException(
+          $alreadySlot !== ''
+            ? 'ร้านนี้ถูกคัดเลือกเข้าล็อก ' . $alreadySlot . ' แล้ว — เลือกร้านที่ยังไม่ถูกคัดเลือก'
+            : 'ร้านนี้ได้รับการคัดเลือกแล้ว — เลือกร้านที่ยังไม่ถูกคัดเลือก'
+        );
+      }
     }
   }
 
@@ -829,8 +1133,8 @@ function sci_assign_shop(int $row, string $slotId, ?array $currentData = null, b
 
   $note = (string)($target['review_note'] ?? '');
   if ($isCross) {
-    $tag = 'จัดลงล็อคว่าง ' . $slotId . ' / ' . $slot['cat'] . ' (สมัครเดิม: โซน ' . $target['zone'] . ' · ' . $target['category'] . ')';
-    if (mb_strpos($note, 'จัดลงล็อคว่าง ' . $slotId) === false) {
+    $tag = 'จัดลงล็อกว่าง ' . $slotId . ' / ' . $slot['cat'] . ' (สมัครเดิม: โซน ' . $target['zone'] . ' · ' . $target['category'] . ')';
+    if (mb_strpos($note, 'จัดลงล็อกว่าง ' . $slotId) === false) {
       $note = trim($note . ($note !== '' ? ' · ' : '') . $tag);
     }
   }
