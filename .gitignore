@@ -10,3 +10,8 @@ Thumbs.db
 แบบตอบรับ.xlsx
 *.xlsx
 _test_*.php
+data/idcard_title_cache.json
+data/auth_secrets.php
+_export_*.py
+_fid.txt
+_idbin.bin

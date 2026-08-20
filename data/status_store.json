@@ -1,6 +1,6 @@
 {
     "version": 1,
-    "updated_at": "2026-08-10T12:56:52+07:00",
+    "updated_at": "2026-08-14T20:22:41+07:00",
     "by_row": {
         "2": {
             "row": 2,
@@ -10,7 +10,10 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:36:30",
             "assigned_slot": "A5",
-            "saved_at": "2026-08-10T12:36:30+07:00"
+            "saved_at": "2026-08-14T20:14:09+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:14:09",
+            "payment_note": ""
         },
         "4": {
             "row": 4,
@@ -20,7 +23,10 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:35:16",
             "assigned_slot": "A1",
-            "saved_at": "2026-08-10T12:35:16+07:00"
+            "saved_at": "2026-08-14T20:19:25+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:19:25",
+            "payment_note": ""
         },
         "8": {
             "row": 8,
@@ -30,7 +36,10 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:35:20",
             "assigned_slot": "A4",
-            "saved_at": "2026-08-10T12:35:20+07:00"
+            "saved_at": "2026-08-14T20:16:35+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:16:35",
+            "payment_note": ""
         },
         "10": {
             "row": 10,
@@ -40,107 +49,110 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:35:23",
             "assigned_slot": "A10",
-            "saved_at": "2026-08-10T12:35:23+07:00"
+            "saved_at": "2026-08-14T20:22:32+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:22:32",
+            "payment_note": ""
         },
         "22": {
             "row": 22,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 14:48:09",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 22:23:31",
             "assigned_slot": "",
-            "saved_at": "2026-08-08T21:48:12+07:00"
+            "saved_at": "2026-08-10T22:23:31+07:00"
         },
         "29": {
             "row": 29,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 14:50:30",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 22:23:38",
             "assigned_slot": "",
-            "saved_at": "2026-08-08T21:50:33+07:00"
+            "saved_at": "2026-08-10T22:23:38+07:00"
         },
         "33": {
             "row": 33,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 14:51:29",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 22:23:42",
             "assigned_slot": "",
-            "saved_at": "2026-08-08T21:51:32+07:00"
+            "saved_at": "2026-08-10T22:23:42+07:00"
         },
         "35": {
             "row": 35,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 14:52:31",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 22:23:44",
             "assigned_slot": "",
-            "saved_at": "2026-08-08T21:52:34+07:00"
+            "saved_at": "2026-08-10T22:23:44+07:00"
         },
         "54": {
             "row": 54,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 14:54:39",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 22:23:49",
             "assigned_slot": "",
-            "saved_at": "2026-08-08T21:54:42+07:00"
+            "saved_at": "2026-08-10T22:23:49+07:00"
         },
         "63": {
             "row": 63,
             "status": "ขาดคุณสมบัติ",
             "missing_detail": "บัตรประชาชนหมดอายุ",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 14:57:57",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 22:23:56",
             "assigned_slot": "",
-            "saved_at": "2026-08-08T21:58:00+07:00"
+            "saved_at": "2026-08-10T22:23:56+07:00"
         },
         "65": {
             "row": 65,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 14:59:19",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 22:23:59",
             "assigned_slot": "",
-            "saved_at": "2026-08-08T21:59:22+07:00"
+            "saved_at": "2026-08-10T22:23:59+07:00"
         },
         "71": {
             "row": 71,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 15:01:07",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 22:24:04",
             "assigned_slot": "",
-            "saved_at": "2026-08-08T22:01:10+07:00"
+            "saved_at": "2026-08-10T22:24:04+07:00"
         },
         "74": {
             "row": 74,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 15:06:29",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 22:24:08",
             "assigned_slot": "",
-            "saved_at": "2026-08-08T22:06:32+07:00"
+            "saved_at": "2026-08-10T22:24:08+07:00"
         },
         "75": {
             "row": 75,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 15:10:02",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 22:24:12",
             "assigned_slot": "",
-            "saved_at": "2026-08-08T22:10:05+07:00"
+            "saved_at": "2026-08-10T22:24:12+07:00"
         },
         "6": {
             "row": 6,
@@ -150,67 +162,70 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:33:52",
             "assigned_slot": "A2",
-            "saved_at": "2026-08-10T12:33:52+07:00"
+            "saved_at": "2026-08-14T20:18:42+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:18:42",
+            "payment_note": ""
         },
         "12": {
             "row": 12,
             "status": "ไม่ครบถ้วน",
             "missing_detail": "บัตรประชาชนหมดอายุ",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 15:20:22",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 22:24:20",
             "assigned_slot": "",
-            "saved_at": "2026-08-08T22:20:25+07:00"
+            "saved_at": "2026-08-10T22:24:20+07:00"
         },
         "23": {
             "row": 23,
             "status": "ขาดคุณสมบัติ",
             "missing_detail": "เอกสารครบ แต่ขายไข่ปิ้งไม่ตรงกับข้อกำหนด",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 01:45:55",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:12:42",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T08:45:57+07:00"
+            "saved_at": "2026-08-10T23:12:42+07:00"
         },
         "28": {
             "row": 28,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 15:25:16",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:12:48",
             "assigned_slot": "",
-            "saved_at": "2026-08-08T22:25:19+07:00"
+            "saved_at": "2026-08-10T23:12:48+07:00"
         },
         "59": {
             "row": 59,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 15:27:45",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:13:00",
             "assigned_slot": "",
-            "saved_at": "2026-08-08T22:27:48+07:00"
+            "saved_at": "2026-08-10T23:13:00+07:00"
         },
         "62": {
             "row": 62,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 15:30:23",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:13:11",
             "assigned_slot": "",
-            "saved_at": "2026-08-08T22:30:26+07:00"
+            "saved_at": "2026-08-10T23:13:11+07:00"
         },
         "76": {
             "row": 76,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 15:32:19",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:13:19",
             "assigned_slot": "",
-            "saved_at": "2026-08-08T22:32:22+07:00"
+            "saved_at": "2026-08-10T23:13:19+07:00"
         },
         "3": {
             "row": 3,
@@ -219,38 +234,43 @@
             "review_note": "",
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:35:06",
-            "assigned_slot": "A3",
-            "saved_at": "2026-08-10T12:35:06+07:00"
+            "assigned_slot": "B6",
+            "zone": "B",
+            "saved_at": "2026-08-14T20:19:13+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:19:13",
+            "payment_note": ""
         },
         "88": {
             "row": 88,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 15:37:40",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:13:34",
             "assigned_slot": "",
-            "saved_at": "2026-08-08T22:37:43+07:00"
+            "zone": "B",
+            "saved_at": "2026-08-14T11:05:00+07:00"
         },
         "61": {
             "row": 61,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 15:41:38",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:13:50",
             "assigned_slot": "",
-            "saved_at": "2026-08-08T22:41:41+07:00"
+            "saved_at": "2026-08-10T23:13:50+07:00"
         },
         "78": {
             "row": 78,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 15:43:21",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:28:04",
             "assigned_slot": "",
-            "saved_at": "2026-08-08T22:43:24+07:00"
+            "saved_at": "2026-08-10T23:28:04+07:00"
         },
         "15": {
             "row": 15,
@@ -260,27 +280,30 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:37:05",
             "assigned_slot": "A6",
-            "saved_at": "2026-08-10T12:37:05+07:00"
+            "saved_at": "2026-08-14T20:17:32+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:17:32",
+            "payment_note": ""
         },
         "66": {
             "row": 66,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 01:51:12",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:13:58",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T08:51:13+07:00"
+            "saved_at": "2026-08-10T23:13:58+07:00"
         },
         "84": {
             "row": 84,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 01:52:33",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:14:06",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T08:52:34+07:00"
+            "saved_at": "2026-08-10T23:14:06+07:00"
         },
         "38": {
             "row": 38,
@@ -297,10 +320,10 @@
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "ได้รับการคัดเลือก",
-            "reviewed_at": "2026-08-10 12:37:57",
-            "assigned_slot": "A8",
-            "saved_at": "2026-08-10T12:37:57+07:00"
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-14 12:35:19",
+            "assigned_slot": "",
+            "saved_at": "2026-08-14T12:35:19+07:00"
         },
         "11": {
             "row": 11,
@@ -310,17 +333,20 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:38:59",
             "assigned_slot": "A9",
-            "saved_at": "2026-08-10T12:38:59+07:00"
+            "saved_at": "2026-08-14T20:18:58+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:18:58",
+            "payment_note": ""
         },
         "39": {
             "row": 39,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 01:57:10",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:14:25",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T08:57:11+07:00"
+            "saved_at": "2026-08-10T23:14:25+07:00"
         },
         "73": {
             "row": 73,
@@ -340,27 +366,30 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:40:03",
             "assigned_slot": "B1",
-            "saved_at": "2026-08-10T12:40:03+07:00"
+            "saved_at": "2026-08-14T20:16:47+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:16:47",
+            "payment_note": ""
         },
         "34": {
             "row": 34,
             "status": "ไม่ครบถ้วน",
             "missing_detail": "เอกสารไม่ตรงกับที่กำหนด และเป็นรถ FoodTruck ใหญ่กว่าพื้นที่ที่กำหนด",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:10:21",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:14:44",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T16:10:22+07:00"
+            "saved_at": "2026-08-10T23:14:44+07:00"
         },
         "48": {
             "row": 48,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:11:19",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:14:47",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T16:11:19+07:00"
+            "saved_at": "2026-08-10T23:14:47+07:00"
         },
         "18": {
             "row": 18,
@@ -370,27 +399,30 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:40:48",
             "assigned_slot": "B2",
-            "saved_at": "2026-08-10T12:40:48+07:00"
+            "saved_at": "2026-08-14T20:22:23+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:22:23",
+            "payment_note": ""
         },
         "31": {
             "row": 31,
             "status": "ไม่ครบถ้วน",
             "missing_detail": "ขาด ทะเบียนบ้าน",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:13:26",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:14:52",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T16:13:26+07:00"
+            "saved_at": "2026-08-10T23:14:52+07:00"
         },
         "77": {
             "row": 77,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:14:08",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:14:56",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T16:14:08+07:00"
+            "saved_at": "2026-08-10T23:14:56+07:00"
         },
         "7": {
             "row": 7,
@@ -400,37 +432,40 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:41:56",
             "assigned_slot": "B3",
-            "saved_at": "2026-08-10T12:41:56+07:00"
+            "saved_at": "2026-08-14T20:20:54+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:20:54",
+            "payment_note": ""
         },
         "32": {
             "row": 32,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:15:31",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:15:00",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T16:15:31+07:00"
+            "saved_at": "2026-08-10T23:15:00+07:00"
         },
         "50": {
             "row": 50,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:17:07",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:15:02",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T16:17:08+07:00"
+            "saved_at": "2026-08-10T23:15:02+07:00"
         },
         "64": {
             "row": 64,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:18:09",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:15:07",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T16:18:10+07:00"
+            "saved_at": "2026-08-10T23:15:07+07:00"
         },
         "30": {
             "row": 30,
@@ -440,47 +475,50 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:42:41",
             "assigned_slot": "B4",
-            "saved_at": "2026-08-10T12:42:41+07:00"
+            "saved_at": "2026-08-14T20:19:34+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:19:34",
+            "payment_note": ""
         },
         "45": {
             "row": 45,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:20:09",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:15:12",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T16:20:09+07:00"
+            "saved_at": "2026-08-10T23:15:12+07:00"
         },
         "68": {
             "row": 68,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:20:56",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:15:16",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T16:20:56+07:00"
+            "saved_at": "2026-08-10T23:15:16+07:00"
         },
         "69": {
             "row": 69,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:21:53",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:15:22",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T16:21:53+07:00"
+            "saved_at": "2026-08-10T23:15:22+07:00"
         },
         "83": {
             "row": 83,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:22:31",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:15:27",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T16:22:31+07:00"
+            "saved_at": "2026-08-10T23:15:27+07:00"
         },
         "60": {
             "row": 60,
@@ -490,7 +528,10 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:43:14",
             "assigned_slot": "B5",
-            "saved_at": "2026-08-10T12:43:14+07:00"
+            "saved_at": "2026-08-14T20:12:54+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:12:54",
+            "payment_note": ""
         },
         "20": {
             "row": 20,
@@ -499,8 +540,12 @@
             "review_note": "",
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:43:36",
-            "assigned_slot": "B6",
-            "saved_at": "2026-08-10T12:43:36+07:00"
+            "assigned_slot": "A3",
+            "zone": "A",
+            "saved_at": "2026-08-14T20:13:38+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:13:38",
+            "payment_note": ""
         },
         "16": {
             "row": 16,
@@ -510,17 +555,20 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:44:13",
             "assigned_slot": "C1",
-            "saved_at": "2026-08-10T12:44:13+07:00"
+            "saved_at": "2026-08-14T20:21:59+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:21:59",
+            "payment_note": ""
         },
         "51": {
             "row": 51,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:26:24",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:15:51",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T16:26:25+07:00"
+            "saved_at": "2026-08-10T23:15:51+07:00"
         },
         "89": {
             "row": 89,
@@ -528,9 +576,12 @@
             "missing_detail": "",
             "review_note": "",
             "selection": "ได้รับการคัดเลือก",
-            "reviewed_at": "2026-08-10 12:45:27",
-            "assigned_slot": "C2",
-            "saved_at": "2026-08-10T12:45:27+07:00"
+            "reviewed_at": "2026-08-14 11:55:01",
+            "assigned_slot": "C10",
+            "saved_at": "2026-08-14T20:20:44+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:20:44",
+            "payment_note": ""
         },
         "86": {
             "row": 86,
@@ -540,7 +591,10 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:45:45",
             "assigned_slot": "C3",
-            "saved_at": "2026-08-10T12:45:45+07:00"
+            "saved_at": "2026-08-14T20:21:03+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:21:03",
+            "payment_note": ""
         },
         "19": {
             "row": 19,
@@ -550,17 +604,20 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:46:09",
             "assigned_slot": "C4",
-            "saved_at": "2026-08-10T12:46:09+07:00"
+            "saved_at": "2026-08-14T20:14:23+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:14:23",
+            "payment_note": ""
         },
         "67": {
             "row": 67,
             "status": "ไม่ครบถ้วน",
             "missing_detail": "ทะเบียนบ้านข้อมูลไม่ครบ",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:31:24",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:16:03",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T16:31:24+07:00"
+            "saved_at": "2026-08-10T23:16:03+07:00"
         },
         "9": {
             "row": 9,
@@ -570,17 +627,20 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:46:57",
             "assigned_slot": "C5",
-            "saved_at": "2026-08-10T12:46:57+07:00"
+            "saved_at": "2026-08-14T20:12:30+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:12:30",
+            "payment_note": ""
         },
         "24": {
             "row": 24,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:33:03",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:16:11",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T16:33:03+07:00"
+            "saved_at": "2026-08-10T23:16:11+07:00"
         },
         "72": {
             "row": 72,
@@ -590,7 +650,10 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:48:46",
             "assigned_slot": "C6",
-            "saved_at": "2026-08-10T12:48:46+07:00"
+            "saved_at": "2026-08-14T20:13:53+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:13:53",
+            "payment_note": ""
         },
         "53": {
             "row": 53,
@@ -600,37 +663,40 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:49:34",
             "assigned_slot": "C7",
-            "saved_at": "2026-08-10T12:49:34+07:00"
+            "saved_at": "2026-08-14T20:22:07+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:22:07",
+            "payment_note": ""
         },
         "80": {
             "row": 80,
             "status": "ขาดคุณสมบัติ",
             "missing_detail": "สินค้าไม่ตรงประเภท",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:38:17",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:16:37",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T16:38:18+07:00"
+            "saved_at": "2026-08-10T23:16:37+07:00"
         },
         "44": {
             "row": 44,
             "status": "ขาดคุณสมบัติ",
             "missing_detail": "สินค้าไม่ตรงประเภท",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:39:13",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:22:07",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T16:39:13+07:00"
+            "saved_at": "2026-08-10T23:22:07+07:00"
         },
         "52": {
             "row": 52,
             "status": "ขาดคุณสมบัติ",
             "missing_detail": "สินค้าไม่ตรงประเภท",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:40:01",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:22:10",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T16:40:02+07:00"
+            "saved_at": "2026-08-10T23:22:10+07:00"
         },
         "81": {
             "row": 81,
@@ -638,9 +704,12 @@
             "missing_detail": "",
             "review_note": "",
             "selection": "ได้รับการคัดเลือก",
-            "reviewed_at": "2026-08-10 12:51:30",
-            "assigned_slot": "C10",
-            "saved_at": "2026-08-10T12:51:30+07:00"
+            "reviewed_at": "2026-08-14 11:54:09",
+            "assigned_slot": "C2",
+            "saved_at": "2026-08-14T20:21:33+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:21:33",
+            "payment_note": ""
         },
         "5": {
             "row": 5,
@@ -650,7 +719,10 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:51:41",
             "assigned_slot": "C11",
-            "saved_at": "2026-08-10T12:51:41+07:00"
+            "saved_at": "2026-08-14T20:13:16+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:13:16",
+            "payment_note": ""
         },
         "13": {
             "row": 13,
@@ -660,67 +732,70 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:52:33",
             "assigned_slot": "C12",
-            "saved_at": "2026-08-10T12:52:33+07:00"
+            "saved_at": "2026-08-14T20:14:52+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:14:52",
+            "payment_note": ""
         },
         "26": {
             "row": 26,
             "status": "ไม่ครบถ้วน",
             "missing_detail": "-บัตรประชาชนหมดอายุ\n- ทะเบียนบ้านไม่ชัด",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:45:09",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:21:18",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T16:45:10+07:00"
+            "saved_at": "2026-08-10T23:21:18+07:00"
         },
         "55": {
             "row": 55,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:45:58",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:21:25",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T16:45:58+07:00"
+            "saved_at": "2026-08-10T23:21:25+07:00"
         },
         "56": {
             "row": 56,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:46:33",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:21:33",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T16:46:34+07:00"
+            "saved_at": "2026-08-10T23:21:33+07:00"
         },
         "57": {
             "row": 57,
             "status": "ครบถ้วน",
             "missing_detail": "อาหารไม่ตรงประเภท",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 15:40:16",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:21:41",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T22:40:17+07:00"
+            "saved_at": "2026-08-10T23:21:41+07:00"
         },
         "79": {
             "row": 79,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:49:02",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:21:46",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T16:49:02+07:00"
+            "saved_at": "2026-08-10T23:21:46+07:00"
         },
         "87": {
             "row": 87,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 15:41:36",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:21:52",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T22:41:37+07:00"
+            "saved_at": "2026-08-10T23:21:52+07:00"
         },
         "37": {
             "row": 37,
@@ -730,17 +805,20 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:52:58",
             "assigned_slot": "C13",
-            "saved_at": "2026-08-10T12:52:58+07:00"
+            "saved_at": "2026-08-14T20:21:14+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:21:14",
+            "payment_note": ""
         },
         "82": {
             "row": 82,
             "status": "ไม่ครบถ้วน",
             "missing_detail": "ไม่มีสำเนาบัตรประจำตัวประชาชน",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 15:45:11",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:22:19",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T22:45:12+07:00"
+            "saved_at": "2026-08-10T23:22:19+07:00"
         },
         "40": {
             "row": 40,
@@ -750,17 +828,20 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:54:20",
             "assigned_slot": "C14",
-            "saved_at": "2026-08-10T12:54:20+07:00"
+            "saved_at": "2026-08-14T20:17:49+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:17:49",
+            "payment_note": ""
         },
         "85": {
             "row": 85,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 15:52:05",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:22:29",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T22:52:06+07:00"
+            "saved_at": "2026-08-10T23:22:29+07:00"
         },
         "36": {
             "row": 36,
@@ -770,17 +851,20 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:54:53",
             "assigned_slot": "D1",
-            "saved_at": "2026-08-10T12:54:53+07:00"
+            "saved_at": "2026-08-14T20:17:01+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:17:01",
+            "payment_note": ""
         },
         "49": {
             "row": 49,
             "status": "ขาดคุณสมบัติ",
             "missing_detail": "สินค้าไม่ตรงประเภทที่กำหนด",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 15:56:20",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:22:42",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T22:56:21+07:00"
+            "saved_at": "2026-08-10T23:22:42+07:00"
         },
         "41": {
             "row": 41,
@@ -790,27 +874,30 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:55:16",
             "assigned_slot": "D2",
-            "saved_at": "2026-08-10T12:55:16+07:00"
+            "saved_at": "2026-08-14T20:22:41+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:22:41",
+            "payment_note": ""
         },
         "47": {
             "row": 47,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 15:59:12",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:22:48",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T22:59:13+07:00"
+            "saved_at": "2026-08-10T23:22:48+07:00"
         },
         "17": {
             "row": 17,
             "status": "ขาดคุณสมบัติ",
             "missing_detail": "อาหารไม่ตรงประเภท",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 16:00:22",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:22:54",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T23:00:23+07:00"
+            "saved_at": "2026-08-10T23:22:54+07:00"
         },
         "21": {
             "row": 21,
@@ -820,27 +907,30 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:56:17",
             "assigned_slot": "D3",
-            "saved_at": "2026-08-10T12:56:17+07:00"
+            "saved_at": "2026-08-14T20:21:24+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:21:24",
+            "payment_note": ""
         },
         "43": {
             "row": 43,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 16:02:16",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:22:59",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T23:02:17+07:00"
+            "saved_at": "2026-08-10T23:22:59+07:00"
         },
         "58": {
             "row": 58,
             "status": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 16:03:26",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:23:03",
             "assigned_slot": "",
-            "saved_at": "2026-08-09T23:03:28+07:00"
+            "saved_at": "2026-08-10T23:23:03+07:00"
         },
         "14": {
             "row": 14,
@@ -850,7 +940,10 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:56:52",
             "assigned_slot": "D4",
-            "saved_at": "2026-08-10T12:56:52+07:00"
+            "saved_at": "2026-08-14T20:14:36+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:14:36",
+            "payment_note": ""
         },
         "46": {
             "row": 46,
@@ -860,7 +953,11 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:39:21",
             "assigned_slot": "A11",
-            "saved_at": "2026-08-10T12:39:21+07:00"
+            "saved_at": "2026-08-14T20:18:02+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:18:02",
+            "payment_note": ""
         }
-    }
+    },
+    "round": 1
 }

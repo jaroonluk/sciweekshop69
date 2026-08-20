@@ -1,7 +1,7 @@
 {
-    "generated_at": "2026-08-10T08:40:59+02:00",
+    "generated_at": "2026-08-14T08:54:03+02:00",
     "source": "แบบตอบรับ.xlsx",
-    "source_mtime": "2026-08-08T03:51:37+02:00",
+    "source_mtime": "2026-08-14T08:54:03+02:00",
     "total_applicants": 86,
     "slots": [
         {
@@ -19,7 +19,7 @@
         {
             "id": "A3",
             "zone": "A",
-            "cat": "มันฝรั่งทอด",
+            "cat": "ยำ",
             "limit": 1
         },
         {
@@ -109,7 +109,7 @@
         {
             "id": "B6",
             "zone": "B",
-            "cat": "ยำ",
+            "cat": "มันฝรั่งทอด",
             "limit": 1
         },
         {
@@ -121,7 +121,7 @@
         {
             "id": "C2",
             "zone": "C",
-            "cat": "ลูกชุบ\/ขนมเบื้อง\/ขนมไทย",
+            "cat": "วาฟเฟิล",
             "limit": 1
         },
         {
@@ -157,19 +157,19 @@
         {
             "id": "C8",
             "zone": "C",
-            "cat": "สื่อเกมการศึกษา\/บอร์ดเกม",
+            "cat": "สุกี้โรล\/เกี๊ยวต้ม\/ชาบู",
             "limit": 1
         },
         {
             "id": "C9",
             "zone": "C",
-            "cat": "สื่อเกมการศึกษา\/บอร์ดเกม",
+            "cat": "เฉาก๊วยนมสดและเครื่องดื่ม",
             "limit": 1
         },
         {
             "id": "C10",
             "zone": "C",
-            "cat": "วาฟเฟิล",
+            "cat": "ลูกชุบ\/ขนมเบื้อง\/ขนมไทย",
             "limit": 1
         },
         {
@@ -223,25 +223,25 @@
         {
             "id": "D5",
             "zone": "D",
-            "cat": "ขนมจีบ\/ซาลาเปา",
+            "cat": "เครื่องดื่มไม่มีแอลกอฮอล์",
             "limit": 1
         },
         {
             "id": "D6",
             "zone": "D",
-            "cat": "ไอศกรีม",
+            "cat": "เบเกอร์รี่",
             "limit": 1
         },
         {
             "id": "D7",
             "zone": "D",
-            "cat": "แจ่วฮ้อน\/ก๋วยจั๊บ",
+            "cat": "ข้าวไข่เจียว\/ข้าวราดแกง",
             "limit": 1
         },
         {
             "id": "D8",
             "zone": "D",
-            "cat": "ไก่ย่าง\/ส้มตำ",
+            "cat": "ผลไม้\/ขนมหวาน\/ขนมไทย",
             "limit": 1
         }
     ],
@@ -270,7 +270,7 @@
         },
         {
             "zone": "A",
-            "cat": "มันฝรั่งทอด",
+            "cat": "ยำ",
             "slots": [
                 "A3"
             ],
@@ -400,7 +400,7 @@
         },
         {
             "zone": "B",
-            "cat": "ยำ",
+            "cat": "มันฝรั่งทอด",
             "slots": [
                 "B6"
             ],
@@ -420,7 +420,7 @@
         },
         {
             "zone": "C",
-            "cat": "ลูกชุบ\/ขนมเบื้อง\/ขนมไทย",
+            "cat": "วาฟเฟิล",
             "slots": [
                 "C2"
             ],
@@ -472,17 +472,36 @@
             "zone": "C",
             "cat": "สื่อเกมการศึกษา\/บอร์ดเกม",
             "slots": [
-                "C7",
-                "C8",
-                "C9"
+                "C7"
             ],
-            "label": "C7, C8, C9",
+            "label": "C7",
             "limit": 1,
             "primary": "C7"
         },
         {
             "zone": "C",
-            "cat": "วาฟเฟิล",
+            "cat": "สุกี้โรล\/เกี๊ยวต้ม\/ชาบู",
+            "slots": [
+                "C8",
+                "C12"
+            ],
+            "label": "C8, C12",
+            "limit": 1,
+            "primary": "C8"
+        },
+        {
+            "zone": "C",
+            "cat": "เฉาก๊วยนมสดและเครื่องดื่ม",
+            "slots": [
+                "C9"
+            ],
+            "label": "C9",
+            "limit": 1,
+            "primary": "C9"
+        },
+        {
+            "zone": "C",
+            "cat": "ลูกชุบ\/ขนมเบื้อง\/ขนมไทย",
             "slots": [
                 "C10"
             ],
@@ -499,16 +518,6 @@
             "label": "C11",
             "limit": 1,
             "primary": "C11"
-        },
-        {
-            "zone": "C",
-            "cat": "สุกี้โรล\/เกี๊ยวต้ม\/ชาบู",
-            "slots": [
-                "C12"
-            ],
-            "label": "C12",
-            "limit": 1,
-            "primary": "C12"
         },
         {
             "zone": "C",
@@ -572,7 +581,7 @@
         },
         {
             "zone": "D",
-            "cat": "ขนมจีบ\/ซาลาเปา",
+            "cat": "เครื่องดื่มไม่มีแอลกอฮอล์",
             "slots": [
                 "D5"
             ],
@@ -582,7 +591,7 @@
         },
         {
             "zone": "D",
-            "cat": "ไอศกรีม",
+            "cat": "เบเกอร์รี่",
             "slots": [
                 "D6"
             ],
@@ -592,7 +601,7 @@
         },
         {
             "zone": "D",
-            "cat": "แจ่วฮ้อน\/ก๋วยจั๊บ",
+            "cat": "ข้าวไข่เจียว\/ข้าวราดแกง",
             "slots": [
                 "D7"
             ],
@@ -602,7 +611,7 @@
         },
         {
             "zone": "D",
-            "cat": "ไก่ย่าง\/ส้มตำ",
+            "cat": "ผลไม้\/ขนมหวาน\/ขนมไทย",
             "slots": [
                 "D8"
             ],
@@ -620,7 +629,7 @@
         "A|ข้าวไข่เจียว อาหารตามสั่ง": [
             "A2"
         ],
-        "A|มันฝรั่งทอด": [
+        "A|ยำ": [
             "A3"
         ],
         "A|ข้าวราดแกง": [
@@ -659,13 +668,13 @@
         "B|ผลไม้": [
             "B5"
         ],
-        "B|ยำ": [
+        "B|มันฝรั่งทอด": [
             "B6"
         ],
         "C|ไอศกรีม": [
             "C1"
         ],
-        "C|ลูกชุบ\/ขนมเบื้อง\/ขนมไทย": [
+        "C|วาฟเฟิล": [
             "C2"
         ],
         "C|พิซซ่า": [
@@ -681,18 +690,20 @@
             "C6"
         ],
         "C|สื่อเกมการศึกษา\/บอร์ดเกม": [
-            "C7",
+            "C7"
+        ],
+        "C|สุกี้โรล\/เกี๊ยวต้ม\/ชาบู": [
             "C8",
+            "C12"
+        ],
+        "C|เฉาก๊วยนมสดและเครื่องดื่ม": [
             "C9"
         ],
-        "C|วาฟเฟิล": [
+        "C|ลูกชุบ\/ขนมเบื้อง\/ขนมไทย": [
             "C10"
         ],
         "C|ขนมจีบ\/ซาลาเปา": [
             "C11"
-        ],
-        "C|สุกี้โรล\/เกี๊ยวต้ม\/ชาบู": [
-            "C12"
         ],
         "C|ยำ": [
             "C13"
@@ -712,18 +723,28 @@
         "D|สโมกี้ไบท์": [
             "D4"
         ],
-        "D|ขนมจีบ\/ซาลาเปา": [
+        "D|เครื่องดื่มไม่มีแอลกอฮอล์": [
             "D5"
         ],
-        "D|ไอศกรีม": [
+        "D|เบเกอร์รี่": [
             "D6"
         ],
-        "D|แจ่วฮ้อน\/ก๋วยจั๊บ": [
+        "D|ข้าวไข่เจียว\/ข้าวราดแกง": [
             "D7"
         ],
-        "D|ไก่ย่าง\/ส้มตำ": [
+        "D|ผลไม้\/ขนมหวาน\/ขนมไทย": [
             "D8"
         ]
+    },
+    "round1_occupied": {
+        "enabled": false,
+        "count": 0,
+        "total": 40,
+        "remaining": 40,
+        "slots": [],
+        "closed_categories": [],
+        "prior_label": "รอบที่ 1",
+        "prior_rounds": []
     },
     "applicants": [
         {
@@ -790,8 +811,21 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:36:30",
             "assigned_slot": "A5",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "a52f1661f11d83dad73f0a525624f735",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": true,
+            "alumni": {
+                "year": 2568,
+                "label": "SCI Week 2568",
+                "name": "นายรชานนท์ คงทอง",
+                "slot": "A5",
+                "category": "ข้าวราดแกง",
+                "score": 1,
+                "match": "exact"
+            }
         },
         {
             "row": 3,
@@ -802,8 +836,8 @@
             "timestamp_raw": "6\/8\/2026, 8:33:39",
             "name": "นายสุพรม แก้วเปี้ย",
             "phone": "930938913",
-            "zone": "A",
-            "zone_raw": "โซน A",
+            "zone": "B",
+            "zone_raw": "โซน B",
             "category": "มันฝรั่งทอด",
             "category_raw": "มันฝรั่งทอด (จำกัด 1 ล็อค)",
             "detail": "มันฝรั่งทอด เฟรนฟราย ไก่เขย่า คลุกผง",
@@ -862,9 +896,22 @@
             "review_note": "",
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:35:06",
-            "assigned_slot": "A3",
+            "assigned_slot": "B6",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "39a7001f2418ef7b55f615611edbd6cc",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": true,
+            "alumni": {
+                "year": 2568,
+                "label": "SCI Week 2568",
+                "name": "นายสุพรม แก้วเบี้ย",
+                "slot": "A3",
+                "category": "มันฝรั่งทอด",
+                "score": 1,
+                "match": "exact"
+            }
         },
         {
             "row": 4,
@@ -954,8 +1001,13 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:35:16",
             "assigned_slot": "A1",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "b21ab18be4e8dca7b3a3316d62a51b71",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 5,
@@ -1045,8 +1097,13 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:51:41",
             "assigned_slot": "C11",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "66a5ede124086ced0ec8d926f1201393",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 6,
@@ -1136,8 +1193,13 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:33:52",
             "assigned_slot": "A2",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "8d86fc32322cbc52801e1e7cc84e2ad6",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 7,
@@ -1221,8 +1283,21 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:41:56",
             "assigned_slot": "B3",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "b35c6bde8f99385a8af33c73bbcea287",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": true,
+            "alumni": {
+                "year": 2568,
+                "label": "SCI Week 2568",
+                "name": "นางสาวสุธารัตน์ ลุนพิลา",
+                "slot": "B3",
+                "category": "ซูชิ\/อาหารญี่ปุ่น",
+                "score": 1,
+                "match": "exact"
+            }
         },
         {
             "row": 8,
@@ -1306,8 +1381,21 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:35:20",
             "assigned_slot": "A4",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "2d4aee88716a6cb41efb907ce95cb24e",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": true,
+            "alumni": {
+                "year": 2568,
+                "label": "SCI Week 2568",
+                "name": "นายปรัญชา คูณแก้ว",
+                "slot": "B1",
+                "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
+                "score": 1,
+                "match": "exact"
+            }
         },
         {
             "row": 9,
@@ -1397,8 +1485,13 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:46:57",
             "assigned_slot": "C5",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "1541501ba1c1afa130098e4fb41ce60b",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 10,
@@ -1482,8 +1575,13 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:35:23",
             "assigned_slot": "A10",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "59bfd2f7ae3e1952250965f7a22a54ce",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 11,
@@ -1549,8 +1647,13 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:38:59",
             "assigned_slot": "A9",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "892257caff5e24d7d24a5bd38c1a1d54",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 12,
@@ -1605,7 +1708,7 @@
                     "fail": true,
                     "missing_detail": "บัตรประชาชนหมดอายุ",
                     "review_note": "",
-                    "reviewed_at": "2026-08-08 15:20:22"
+                    "reviewed_at": "2026-08-10 22:24:20"
                 },
                 "effective": {
                     "source": "admin",
@@ -1619,11 +1722,24 @@
             "status_raw": "ไม่ครบถ้วน",
             "missing_detail": "บัตรประชาชนหมดอายุ",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 15:20:22",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 22:24:20",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "be1e871c34ba82515e445f87e589f9d7",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": true,
+            "alumni": {
+                "year": 2568,
+                "label": "SCI Week 2568",
+                "name": "นางสาวอรุโณทัย ปัทมะแสง",
+                "slot": "A2",
+                "category": "ข้าวไข่เจียว อาหารตามสั่ง",
+                "score": 1,
+                "match": "exact"
+            }
         },
         {
             "row": 13,
@@ -1695,8 +1811,13 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:52:33",
             "assigned_slot": "C12",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "04887490daa4905d603d73a21ebacdfe",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 14,
@@ -1768,8 +1889,13 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:56:52",
             "assigned_slot": "D4",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "12f5136fc493e97aa81146dbfb54782c",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 15,
@@ -1841,8 +1967,13 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:37:05",
             "assigned_slot": "A6",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "35da10fbb73e35303f6b1d4966c49177",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 16,
@@ -1908,8 +2039,13 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:44:13",
             "assigned_slot": "C1",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "deaebd5ed89763b8a6936c01aa26e87f",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 17,
@@ -1958,7 +2094,7 @@
                     "fail": true,
                     "missing_detail": "อาหารไม่ตรงประเภท",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 16:00:22"
+                    "reviewed_at": "2026-08-10 23:22:54"
                 },
                 "effective": {
                     "source": "admin",
@@ -1972,11 +2108,16 @@
             "status_raw": "ขาดคุณสมบัติ",
             "missing_detail": "อาหารไม่ตรงประเภท",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 16:00:22",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:22:54",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "91e9995aa12f12584a685174b26fc8c9",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 18,
@@ -2066,8 +2207,13 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:40:48",
             "assigned_slot": "B2",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "d87088e814f617fa58b6957f6e16b64f",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 19,
@@ -2157,8 +2303,13 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:46:09",
             "assigned_slot": "C4",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "2abe776dbb1a3660b4d189f4fcc9baee",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 20,
@@ -2169,8 +2320,8 @@
             "timestamp_raw": "6\/8\/2026, 8:46:25",
             "name": "น.ส.เจนจิรา สุทโธ",
             "phone": "873200196",
-            "zone": "B",
-            "zone_raw": "โซต B",
+            "zone": "A",
+            "zone_raw": "โซน A",
             "category": "ยำ",
             "category_raw": "ยำ (จำกัด 1 ล็อค)",
             "detail": "สะอาด ถูกสุขอนามัย ราคาถูก",
@@ -2235,9 +2386,22 @@
             "review_note": "",
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:43:36",
-            "assigned_slot": "B6",
+            "assigned_slot": "A3",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "17a947469e06ab08caf06fbb7943372d",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": true,
+            "alumni": {
+                "year": 2568,
+                "label": "SCI Week 2568",
+                "name": "นางสาวเจนจิรา สุทโธ",
+                "slot": "B6",
+                "category": "ยำ",
+                "score": 1,
+                "match": "exact"
+            }
         },
         {
             "row": 21,
@@ -2309,8 +2473,13 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:56:17",
             "assigned_slot": "D3",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "a823d95d8342e2acaa104cb22e2d538a",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 22,
@@ -2365,7 +2534,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-08 14:48:09"
+                    "reviewed_at": "2026-08-10 22:23:31"
                 },
                 "effective": {
                     "source": "admin",
@@ -2379,11 +2548,24 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 14:48:09",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 22:23:31",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "7d52c703f097473ec4756c08a32044be",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": true,
+            "alumni": {
+                "year": 2568,
+                "label": "SCI Week 2568",
+                "name": "นางสาวยุพิน อนุมาตย์",
+                "slot": "A1",
+                "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
+                "score": 1,
+                "match": "exact"
+            }
         },
         {
             "row": 23,
@@ -2438,7 +2620,7 @@
                     "fail": true,
                     "missing_detail": "เอกสารครบ แต่ขายไข่ปิ้งไม่ตรงกับข้อกำหนด",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 01:45:55"
+                    "reviewed_at": "2026-08-10 23:12:42"
                 },
                 "effective": {
                     "source": "admin",
@@ -2452,11 +2634,16 @@
             "status_raw": "ขาดคุณสมบัติ",
             "missing_detail": "เอกสารครบ แต่ขายไข่ปิ้งไม่ตรงกับข้อกำหนด",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 01:45:55",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:12:42",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "530dbcbc7d3bc1a8a8778e97166ddc13",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 24,
@@ -2529,7 +2716,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 09:33:03"
+                    "reviewed_at": "2026-08-10 23:16:11"
                 },
                 "effective": {
                     "source": "admin",
@@ -2543,11 +2730,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:33:03",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:16:11",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "f97f07e1371730a0844734806d7e7b29",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 26,
@@ -2596,7 +2788,7 @@
                     "fail": true,
                     "missing_detail": "-บัตรประชาชนหมดอายุ\n- ทะเบียนบ้านไม่ชัด",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 09:45:09"
+                    "reviewed_at": "2026-08-10 23:21:18"
                 },
                 "effective": {
                     "source": "admin",
@@ -2610,11 +2802,16 @@
             "status_raw": "ไม่ครบถ้วน",
             "missing_detail": "-บัตรประชาชนหมดอายุ\n- ทะเบียนบ้านไม่ชัด",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:45:09",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:21:18",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "8b6c22014a60f8f8b45ffae8802b8035",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 27,
@@ -2680,8 +2877,21 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:40:03",
             "assigned_slot": "B1",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "1f1bc6ea9cdd9ee19a4bb7cc2bb67b1e",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": true,
+            "alumni": {
+                "year": 2568,
+                "label": "SCI Week 2568",
+                "name": "นายเดชา คูณแก้ว",
+                "slot": "A4",
+                "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
+                "score": 1,
+                "match": "exact"
+            }
         },
         {
             "row": 28,
@@ -2754,7 +2964,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-08 15:25:16"
+                    "reviewed_at": "2026-08-10 23:12:48"
                 },
                 "effective": {
                     "source": "admin",
@@ -2768,11 +2978,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 15:25:16",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:12:48",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "f341478b85d982c6bdb243505f9adf29",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 29,
@@ -2845,7 +3060,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-08 14:50:30"
+                    "reviewed_at": "2026-08-10 22:23:38"
                 },
                 "effective": {
                     "source": "admin",
@@ -2859,11 +3074,24 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 14:50:30",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 22:23:38",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "3c450ae70e82156faee1e3804271ccfe",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": true,
+            "alumni": {
+                "year": 2568,
+                "label": "SCI Week 2568",
+                "name": "จ.ส.ต.หญิง อังศุมาลิน มั่งมีธนพรชัย",
+                "slot": "A10",
+                "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
+                "score": 1,
+                "match": "exact"
+            }
         },
         {
             "row": 30,
@@ -2941,8 +3169,21 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:42:41",
             "assigned_slot": "B4",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "f46d6de5d12491a97645b22ed9a2031a",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": true,
+            "alumni": {
+                "year": 2568,
+                "label": "SCI Week 2568",
+                "name": "นางสาวกรทิพย์ สุขณรงค์",
+                "slot": "B4",
+                "category": "อาหารทอดทานเล่น",
+                "score": 1,
+                "match": "exact"
+            }
         },
         {
             "row": 31,
@@ -2991,7 +3232,7 @@
                     "fail": true,
                     "missing_detail": "ขาด ทะเบียนบ้าน",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 09:13:26"
+                    "reviewed_at": "2026-08-10 23:14:52"
                 },
                 "effective": {
                     "source": "admin",
@@ -3005,11 +3246,24 @@
             "status_raw": "ไม่ครบถ้วน",
             "missing_detail": "ขาด ทะเบียนบ้าน",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:13:26",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:14:52",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "5d72c078b061cef754965352c8952f02",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": true,
+            "alumni": {
+                "year": 2568,
+                "label": "SCI Week 2568",
+                "name": "นางศิริเกยูร เชื้อพรมมา",
+                "slot": "B2",
+                "category": "ลูกชิ้นทอด\/นึ่ง",
+                "score": 1,
+                "match": "exact"
+            }
         },
         {
             "row": 32,
@@ -3058,7 +3312,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 09:15:31"
+                    "reviewed_at": "2026-08-10 23:15:00"
                 },
                 "effective": {
                     "source": "admin",
@@ -3072,11 +3326,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:15:31",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:15:00",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "87ff39f52d7aff8b9b995628e7f7737e",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 33,
@@ -3125,7 +3384,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-08 14:51:29"
+                    "reviewed_at": "2026-08-10 22:23:42"
                 },
                 "effective": {
                     "source": "admin",
@@ -3139,11 +3398,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 14:51:29",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 22:23:42",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "ea126965334ee8c34e6dfeb654106d3b",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 34,
@@ -3216,7 +3480,7 @@
                     "fail": true,
                     "missing_detail": "เอกสารไม่ตรงกับที่กำหนด และเป็นรถ FoodTruck ใหญ่กว่าพื้นที่ที่กำหนด",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 09:10:21"
+                    "reviewed_at": "2026-08-10 23:14:44"
                 },
                 "effective": {
                     "source": "admin",
@@ -3230,11 +3494,16 @@
             "status_raw": "ไม่ครบถ้วน",
             "missing_detail": "เอกสารไม่ตรงกับที่กำหนด และเป็นรถ FoodTruck ใหญ่กว่าพื้นที่ที่กำหนด",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:10:21",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:14:44",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "2e22961c325340764a2cceb75bc9f75e",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 35,
@@ -3307,7 +3576,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-08 14:52:31"
+                    "reviewed_at": "2026-08-10 22:23:44"
                 },
                 "effective": {
                     "source": "admin",
@@ -3321,11 +3590,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 14:52:31",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 22:23:44",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "ae4d2945544859004cb490099d762a65",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 36,
@@ -3391,8 +3665,13 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:54:53",
             "assigned_slot": "D1",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "4d1597c28ac321ccb676c6e1e73f62b2",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 37,
@@ -3458,8 +3737,13 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:52:58",
             "assigned_slot": "C13",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "583be451dd19bfb2dc87e0d5cbc983a9",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 38,
@@ -3549,8 +3833,21 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:37:35",
             "assigned_slot": "A7",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "1d0dbf99cc2d09d3d192cd0661481a34",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": true,
+            "alumni": {
+                "year": 2568,
+                "label": "SCI Week 2568",
+                "name": "นางสาวธิติอาภา ขอดคำ",
+                "slot": "A7",
+                "category": "ขนมจีนน้ำยา (น้ำยาหลากหลาย)\/หมี่กะทิ",
+                "score": 1,
+                "match": "exact"
+            }
         },
         {
             "row": 39,
@@ -3599,7 +3896,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 01:57:10"
+                    "reviewed_at": "2026-08-10 23:14:25"
                 },
                 "effective": {
                     "source": "admin",
@@ -3613,11 +3910,24 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 01:57:10",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:14:25",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "cfdf03b71dc44ada361fbe2ba5151aa2",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": true,
+            "alumni": {
+                "year": 2568,
+                "label": "SCI Week 2568",
+                "name": "นายรักษ์ ผันผาด",
+                "slot": "A9",
+                "category": "หม่าล่าย่าง (เสียบไม้)",
+                "score": 1,
+                "match": "exact"
+            }
         },
         {
             "row": 40,
@@ -3695,8 +4005,13 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:54:20",
             "assigned_slot": "C14",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "e7d5343c3fc93e852e5a2ecdb8a8ec05",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 41,
@@ -3762,8 +4077,13 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:55:16",
             "assigned_slot": "D2",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "07a7c5f74fad71ded2a32f0525ad5789",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 42,
@@ -3812,7 +4132,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-10 12:37:57"
+                    "reviewed_at": "2026-08-14 08:54:03"
                 },
                 "effective": {
                     "source": "admin",
@@ -3826,11 +4146,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "ได้รับการคัดเลือก",
-            "reviewed_at": "2026-08-10 12:37:57",
-            "assigned_slot": "A8",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-14 08:54:03",
+            "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "a558986ee5081408ead0fa6f5c972429",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 43,
@@ -3879,7 +4204,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 16:02:16"
+                    "reviewed_at": "2026-08-10 23:22:59"
                 },
                 "effective": {
                     "source": "admin",
@@ -3893,11 +4218,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 16:02:16",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:22:59",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "fed9e404c1ee10212cea38db6788f37f",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 44,
@@ -3970,7 +4300,7 @@
                     "fail": true,
                     "missing_detail": "สินค้าไม่ตรงประเภท",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 09:39:13"
+                    "reviewed_at": "2026-08-10 23:22:07"
                 },
                 "effective": {
                     "source": "admin",
@@ -3984,11 +4314,16 @@
             "status_raw": "ขาดคุณสมบัติ",
             "missing_detail": "สินค้าไม่ตรงประเภท",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:39:13",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:22:07",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "730961dcac02b15c5146e0c9e7ede92b",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 45,
@@ -4037,7 +4372,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 09:20:09"
+                    "reviewed_at": "2026-08-10 23:15:12"
                 },
                 "effective": {
                     "source": "admin",
@@ -4051,11 +4386,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:20:09",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:15:12",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "8811e0629a5cfcddef77d69c3e53b2ee",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 46,
@@ -4127,8 +4467,21 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:39:21",
             "assigned_slot": "A11",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "ead61b6d41517bca6f7bf6d3b7baea8b",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": true,
+            "alumni": {
+                "year": 2568,
+                "label": "SCI Week 2568",
+                "name": "นางณิชาภา มิตรศรี",
+                "slot": "A11",
+                "category": "ไส้กรอกอีสาน",
+                "score": 1,
+                "match": "exact"
+            }
         },
         {
             "row": 47,
@@ -4177,7 +4530,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 15:59:12"
+                    "reviewed_at": "2026-08-10 23:22:48"
                 },
                 "effective": {
                     "source": "admin",
@@ -4191,11 +4544,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 15:59:12",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:22:48",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "4e791cd351557d0692a2446ddd503ebf",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 48,
@@ -4262,7 +4620,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 09:11:19"
+                    "reviewed_at": "2026-08-10 23:14:47"
                 },
                 "effective": {
                     "source": "admin",
@@ -4276,11 +4634,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:11:19",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:14:47",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "61a1e440d15d54a894cda8ce15a70dff",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 49,
@@ -4347,7 +4710,7 @@
                     "fail": true,
                     "missing_detail": "สินค้าไม่ตรงประเภทที่กำหนด",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 15:56:20"
+                    "reviewed_at": "2026-08-10 23:22:42"
                 },
                 "effective": {
                     "source": "admin",
@@ -4361,11 +4724,24 @@
             "status_raw": "ขาดคุณสมบัติ",
             "missing_detail": "สินค้าไม่ตรงประเภทที่กำหนด",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 15:56:20",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:22:42",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "cab4f5efc9f318fc3a5507e2ec194d31",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": true,
+            "alumni": {
+                "year": 2568,
+                "label": "SCI Week 2568",
+                "name": "นางสาวศิริพร โคตรโนนกอก",
+                "slot": "B5",
+                "category": "ผลไม้",
+                "score": 1,
+                "match": "exact"
+            }
         },
         {
             "row": 50,
@@ -4432,7 +4808,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 09:17:07"
+                    "reviewed_at": "2026-08-10 23:15:02"
                 },
                 "effective": {
                     "source": "admin",
@@ -4446,11 +4822,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:17:07",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:15:02",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "5eef8595255d1ab0ef9f03bd995d7807",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 51,
@@ -4505,7 +4886,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 09:26:24"
+                    "reviewed_at": "2026-08-10 23:15:51"
                 },
                 "effective": {
                     "source": "admin",
@@ -4519,11 +4900,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:26:24",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:15:51",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "979be454b98cef11309127fe512650c6",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 52,
@@ -4572,7 +4958,7 @@
                     "fail": true,
                     "missing_detail": "สินค้าไม่ตรงประเภท",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 09:40:01"
+                    "reviewed_at": "2026-08-10 23:22:10"
                 },
                 "effective": {
                     "source": "admin",
@@ -4586,11 +4972,16 @@
             "status_raw": "ขาดคุณสมบัติ",
             "missing_detail": "สินค้าไม่ตรงประเภท",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:40:01",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:22:10",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "a13c99d5cddc636a89400ae6141b06c5",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 53,
@@ -4668,8 +5059,13 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:49:34",
             "assigned_slot": "C7",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "ae3bad5aea649f03e6c3f64a68dfa808",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 54,
@@ -4718,7 +5114,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-08 14:54:39"
+                    "reviewed_at": "2026-08-10 22:23:49"
                 },
                 "effective": {
                     "source": "admin",
@@ -4732,11 +5128,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 14:54:39",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 22:23:49",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "8b9602bea0fcf243009ce6a5e228fe44",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 55,
@@ -4803,7 +5204,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 09:45:58"
+                    "reviewed_at": "2026-08-10 23:21:25"
                 },
                 "effective": {
                     "source": "admin",
@@ -4817,11 +5218,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:45:58",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:21:25",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "3a27daf65defdb0cb09cfc92f2ca6242",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 56,
@@ -4888,7 +5294,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 09:46:33"
+                    "reviewed_at": "2026-08-10 23:21:33"
                 },
                 "effective": {
                     "source": "admin",
@@ -4902,11 +5308,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:46:33",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:21:33",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "3da72c7fa53eafc76ba00b9c14bb25d9",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 57,
@@ -4961,7 +5372,7 @@
                     "fail": false,
                     "missing_detail": "อาหารไม่ตรงประเภท",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 15:40:16"
+                    "reviewed_at": "2026-08-10 23:21:41"
                 },
                 "effective": {
                     "source": "admin",
@@ -4975,11 +5386,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "อาหารไม่ตรงประเภท",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 15:40:16",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:21:41",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "972729f323b097e53897222fdc9c2c8a",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 58,
@@ -5028,7 +5444,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 16:03:26"
+                    "reviewed_at": "2026-08-10 23:23:03"
                 },
                 "effective": {
                     "source": "admin",
@@ -5042,11 +5458,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 16:03:26",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:23:03",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "db60e644af087738722c483263f0643f",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 59,
@@ -5119,7 +5540,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-08 15:27:45"
+                    "reviewed_at": "2026-08-10 23:13:00"
                 },
                 "effective": {
                     "source": "admin",
@@ -5133,11 +5554,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 15:27:45",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:13:00",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "9dd808723948cf15ab6bf021434c8234",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 60,
@@ -5215,8 +5641,13 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:43:14",
             "assigned_slot": "B5",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "fc7be85452a77691b3779aadd43e6cbb",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 61,
@@ -5283,7 +5714,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-08 15:41:38"
+                    "reviewed_at": "2026-08-10 23:13:50"
                 },
                 "effective": {
                     "source": "admin",
@@ -5297,11 +5728,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 15:41:38",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:13:50",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "4f78d769e5c7a7b842264913adac5905",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 62,
@@ -5350,7 +5786,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-08 15:30:23"
+                    "reviewed_at": "2026-08-10 23:13:11"
                 },
                 "effective": {
                     "source": "admin",
@@ -5364,11 +5800,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 15:30:23",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:13:11",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "fe2e4f85368fd28a32a12e28b98f55ac",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 63,
@@ -5417,7 +5858,7 @@
                     "fail": true,
                     "missing_detail": "บัตรประชาชนหมดอายุ",
                     "review_note": "",
-                    "reviewed_at": "2026-08-08 14:57:57"
+                    "reviewed_at": "2026-08-10 22:23:56"
                 },
                 "effective": {
                     "source": "admin",
@@ -5431,11 +5872,16 @@
             "status_raw": "ขาดคุณสมบัติ",
             "missing_detail": "บัตรประชาชนหมดอายุ",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 14:57:57",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 22:23:56",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "4d116d5ecd200df828db0a587a193e4b",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 64,
@@ -5484,7 +5930,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 09:18:09"
+                    "reviewed_at": "2026-08-10 23:15:07"
                 },
                 "effective": {
                     "source": "admin",
@@ -5498,11 +5944,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:18:09",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:15:07",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "ecc6ee82572b6e91dd1d620562cdb80b",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 65,
@@ -5575,7 +6026,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-08 14:59:19"
+                    "reviewed_at": "2026-08-10 22:23:59"
                 },
                 "effective": {
                     "source": "admin",
@@ -5589,11 +6040,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 14:59:19",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 22:23:59",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "36861a09868ef5968497e3ba60a80d82",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 66,
@@ -5648,7 +6104,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 01:51:12"
+                    "reviewed_at": "2026-08-10 23:13:58"
                 },
                 "effective": {
                     "source": "admin",
@@ -5662,11 +6118,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 01:51:12",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:13:58",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "88082d0fc3489858bd0fe1f140ccb32d",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 67,
@@ -5715,7 +6176,7 @@
                     "fail": true,
                     "missing_detail": "ทะเบียนบ้านข้อมูลไม่ครบ",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 09:31:24"
+                    "reviewed_at": "2026-08-10 23:16:03"
                 },
                 "effective": {
                     "source": "admin",
@@ -5729,11 +6190,16 @@
             "status_raw": "ไม่ครบถ้วน",
             "missing_detail": "ทะเบียนบ้านข้อมูลไม่ครบ",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:31:24",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:16:03",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "81e0c798c634d516ac9e07aef4ccbfde",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 68,
@@ -5800,7 +6266,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 09:20:56"
+                    "reviewed_at": "2026-08-10 23:15:16"
                 },
                 "effective": {
                     "source": "admin",
@@ -5814,11 +6280,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:20:56",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:15:16",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "ba00b259d9702ab8c3b18b45612b982e",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 69,
@@ -5873,7 +6344,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 09:21:53"
+                    "reviewed_at": "2026-08-10 23:15:22"
                 },
                 "effective": {
                     "source": "admin",
@@ -5887,11 +6358,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:21:53",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:15:22",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "35d57636cbfb4ed516e2578a105a354f",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 71,
@@ -5946,7 +6422,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-08 15:01:07"
+                    "reviewed_at": "2026-08-10 22:24:04"
                 },
                 "effective": {
                     "source": "admin",
@@ -5960,11 +6436,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 15:01:07",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 22:24:04",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "c029221bd483b6a6a61cfc32b05cbf62",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 72,
@@ -6048,8 +6529,13 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:48:46",
             "assigned_slot": "C6",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "ca39e235f970e39ed2fe37d2e211b324",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 73,
@@ -6139,8 +6625,13 @@
             "selection": "รอพิจารณา",
             "reviewed_at": "2026-08-09 01:58:00",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "682cf9dd95c69b6f28546cd3684f7210",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 74,
@@ -6195,7 +6686,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-08 15:06:29"
+                    "reviewed_at": "2026-08-10 22:24:08"
                 },
                 "effective": {
                     "source": "admin",
@@ -6209,11 +6700,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 15:06:29",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 22:24:08",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "eae38579616a7daa89d6919051428597",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 75,
@@ -6286,7 +6782,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-08 15:10:02"
+                    "reviewed_at": "2026-08-10 22:24:12"
                 },
                 "effective": {
                     "source": "admin",
@@ -6300,11 +6796,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 15:10:02",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 22:24:12",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "020ba67c288a8e33cec03f60a9e42434",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 76,
@@ -6377,7 +6878,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-08 15:32:19"
+                    "reviewed_at": "2026-08-10 23:13:19"
                 },
                 "effective": {
                     "source": "admin",
@@ -6391,11 +6892,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 15:32:19",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:13:19",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "aee7833d6d7d086e3087de1cd8b826c3",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 77,
@@ -6450,7 +6956,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 09:14:08"
+                    "reviewed_at": "2026-08-10 23:14:56"
                 },
                 "effective": {
                     "source": "admin",
@@ -6464,11 +6970,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:14:08",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:14:56",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "d4c650fc8429c8b802974f62be0e9ff5",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 78,
@@ -6517,7 +7028,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-08 15:43:21"
+                    "reviewed_at": "2026-08-10 23:28:04"
                 },
                 "effective": {
                     "source": "admin",
@@ -6531,11 +7042,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 15:43:21",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:28:04",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "ef1001c2f49c22bdea07fb427cbed604",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 79,
@@ -6608,7 +7124,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 09:49:02"
+                    "reviewed_at": "2026-08-10 23:21:46"
                 },
                 "effective": {
                     "source": "admin",
@@ -6622,11 +7138,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:49:02",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:21:46",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "98c2e0d09f1e8a3ee1e277004976eb62",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 80,
@@ -6699,7 +7220,7 @@
                     "fail": true,
                     "missing_detail": "สินค้าไม่ตรงประเภท",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 09:38:17"
+                    "reviewed_at": "2026-08-10 23:16:37"
                 },
                 "effective": {
                     "source": "admin",
@@ -6713,11 +7234,16 @@
             "status_raw": "ขาดคุณสมบัติ",
             "missing_detail": "สินค้าไม่ตรงประเภท",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:38:17",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:16:37",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "32b52fbea0495bee162a41bd476bc536",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 81,
@@ -6795,8 +7321,13 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:51:30",
             "assigned_slot": "C10",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "c7db9d69c172188e14a149f648817fc8",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 82,
@@ -6869,7 +7400,7 @@
                     "fail": true,
                     "missing_detail": "ไม่มีสำเนาบัตรประจำตัวประชาชน",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 15:45:11"
+                    "reviewed_at": "2026-08-10 23:22:19"
                 },
                 "effective": {
                     "source": "admin",
@@ -6883,11 +7414,16 @@
             "status_raw": "ไม่ครบถ้วน",
             "missing_detail": "ไม่มีสำเนาบัตรประจำตัวประชาชน",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 15:45:11",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:22:19",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "8310e444e8867a1600da73f88469e401",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 83,
@@ -6936,7 +7472,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 09:22:31"
+                    "reviewed_at": "2026-08-10 23:15:27"
                 },
                 "effective": {
                     "source": "admin",
@@ -6950,11 +7486,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 09:22:31",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:15:27",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "29eec93274ad28358c2ee5ac0ed9669f",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 84,
@@ -7027,7 +7568,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 01:52:33"
+                    "reviewed_at": "2026-08-10 23:14:06"
                 },
                 "effective": {
                     "source": "admin",
@@ -7041,11 +7582,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 01:52:33",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:14:06",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "9d58d2644135d32a12e3fa0257854e44",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 85,
@@ -7118,7 +7664,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 15:52:05"
+                    "reviewed_at": "2026-08-10 23:22:29"
                 },
                 "effective": {
                     "source": "admin",
@@ -7132,11 +7678,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 15:52:05",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:22:29",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "b301e3c8cc0bf4d1b82cf76b61dc5859",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 86,
@@ -7202,8 +7753,13 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:45:45",
             "assigned_slot": "C3",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "d57ed0b04f7799637f8c0a26a712f24d",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 87,
@@ -7258,7 +7814,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-09 15:41:36"
+                    "reviewed_at": "2026-08-10 23:21:52"
                 },
                 "effective": {
                     "source": "admin",
@@ -7272,11 +7828,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-09 15:41:36",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:21:52",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "5721105c3a55f494e5277bac9c935cb5",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 88,
@@ -7287,8 +7848,8 @@
             "timestamp_raw": "7\/8\/2026, 16:01:55",
             "name": "นายสุวิจักขณ์ จั่นบรรจง",
             "phone": "627145023",
-            "zone": "A",
-            "zone_raw": "โซน A",
+            "zone": "B",
+            "zone_raw": "โซน B",
             "category": "มันฝรั่งทอด",
             "category_raw": "มันฝรั่งทอด (จำกัด 1 ล็อค)",
             "detail": "ไก่ทอดเกาหลี และข้าวไก่ทอดเกาหลี ข้าวกล่อง",
@@ -7337,7 +7898,7 @@
                     "fail": false,
                     "missing_detail": "",
                     "review_note": "",
-                    "reviewed_at": "2026-08-08 15:37:40"
+                    "reviewed_at": "2026-08-10 23:13:34"
                 },
                 "effective": {
                     "source": "admin",
@@ -7351,11 +7912,16 @@
             "status_raw": "ครบถ้วน",
             "missing_detail": "",
             "review_note": "",
-            "selection": "รอพิจารณา",
-            "reviewed_at": "2026-08-08 15:37:40",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-10 23:13:34",
             "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "3107b895867253d27a2a6e44a9a737d2",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         },
         {
             "row": 89,
@@ -7445,8 +8011,13 @@
             "selection": "ได้รับการคัดเลือก",
             "reviewed_at": "2026-08-10 12:45:27",
             "assigned_slot": "C2",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
             "key": "627e32488d32b517b601fafb3baaea76",
-            "status_from_store": true
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
         }
     ],
     "shop_report": [
@@ -7467,7 +8038,12 @@
                 "time_label": "6 ส.ค. 2569 · 08:34:43 น.",
                 "applied_zone": "A",
                 "applied_category": "เครื่องดื่มไม่มีแอลกอฮอล์",
-                "review_note": ""
+                "review_note": "",
+                "returning": false,
+                "alumni": null,
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -7487,27 +8063,45 @@
                 "time_label": "6 ส.ค. 2569 · 08:36:35 น.",
                 "applied_zone": "A",
                 "applied_category": "ข้าวไข่เจียว อาหารตามสั่ง",
-                "review_note": ""
+                "review_note": "",
+                "returning": false,
+                "alumni": null,
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
             "slot": "A3",
             "zone": "A",
-            "category": "มันฝรั่งทอด",
+            "category": "ยำ",
             "filled": true,
             "cross_assigned": false,
             "operator": {
-                "row": 3,
-                "key": "39a7001f2418ef7b55f615611edbd6cc",
-                "name": "นายสุพรม แก้วเปี้ย",
-                "phone": "930938913",
+                "row": 20,
+                "key": "17a947469e06ab08caf06fbb7943372d",
+                "name": "น.ส.เจนจิรา สุทโธ",
+                "phone": "873200196",
                 "status": "ครบถ้วน",
                 "selection": "ได้รับการคัดเลือก",
-                "reviewed_at": "2026-08-10 12:35:06",
-                "time_label": "6 ส.ค. 2569 · 08:33:39 น.",
+                "reviewed_at": "2026-08-10 12:43:36",
+                "time_label": "6 ส.ค. 2569 · 08:46:25 น.",
                 "applied_zone": "A",
-                "applied_category": "มันฝรั่งทอด",
-                "review_note": ""
+                "applied_category": "ยำ",
+                "review_note": "",
+                "returning": true,
+                "alumni": {
+                    "year": 2568,
+                    "label": "SCI Week 2568",
+                    "name": "นางสาวเจนจิรา สุทโธ",
+                    "slot": "B6",
+                    "category": "ยำ",
+                    "score": 1,
+                    "match": "exact"
+                },
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -7527,7 +8121,20 @@
                 "time_label": "6 ส.ค. 2569 · 08:37:46 น.",
                 "applied_zone": "A",
                 "applied_category": "เครื่องดื่มไม่มีแอลกอฮอล์",
-                "review_note": ""
+                "review_note": "",
+                "returning": true,
+                "alumni": {
+                    "year": 2568,
+                    "label": "SCI Week 2568",
+                    "name": "นายปรัญชา คูณแก้ว",
+                    "slot": "B1",
+                    "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
+                    "score": 1,
+                    "match": "exact"
+                },
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -7547,7 +8154,20 @@
                 "time_label": "6 ส.ค. 2569 · 08:33:32 น.",
                 "applied_zone": "A",
                 "applied_category": "ข้าวราดแกง",
-                "review_note": "ทดสอบระบบบันทึก"
+                "review_note": "ทดสอบระบบบันทึก",
+                "returning": true,
+                "alumni": {
+                    "year": 2568,
+                    "label": "SCI Week 2568",
+                    "name": "นายรชานนท์ คงทอง",
+                    "slot": "A5",
+                    "category": "ข้าวราดแกง",
+                    "score": 1,
+                    "match": "exact"
+                },
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -7567,7 +8187,12 @@
                 "time_label": "6 ส.ค. 2569 · 08:40:48 น.",
                 "applied_zone": "A",
                 "applied_category": "ผัดไทย\/หอยทอด",
-                "review_note": ""
+                "review_note": "",
+                "returning": false,
+                "alumni": null,
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -7587,28 +8212,29 @@
                 "time_label": "6 ส.ค. 2569 · 09:17:11 น.",
                 "applied_zone": "A",
                 "applied_category": "ขนมจีนน้ำยา (น้ำยาหลากหลาย)\/หมี่กะทิ",
-                "review_note": ""
+                "review_note": "",
+                "returning": true,
+                "alumni": {
+                    "year": 2568,
+                    "label": "SCI Week 2568",
+                    "name": "นางสาวธิติอาภา ขอดคำ",
+                    "slot": "A7",
+                    "category": "ขนมจีนน้ำยา (น้ำยาหลากหลาย)\/หมี่กะทิ",
+                    "score": 1,
+                    "match": "exact"
+                },
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
             "slot": "A8",
             "zone": "A",
             "category": "ปอเปี๊ยะ\/แหนมคลุก",
-            "filled": true,
+            "filled": false,
             "cross_assigned": false,
-            "operator": {
-                "row": 42,
-                "key": "a558986ee5081408ead0fa6f5c972429",
-                "name": "บุญตา แซ่เล็ก",
-                "phone": "971796872",
-                "status": "ครบถ้วน",
-                "selection": "ได้รับการคัดเลือก",
-                "reviewed_at": "2026-08-10 12:37:57",
-                "time_label": "6 ส.ค. 2569 · 09:26:18 น.",
-                "applied_zone": "A",
-                "applied_category": "ปอเปี๊ยะ\/แหนมคลุก",
-                "review_note": ""
-            }
+            "operator": null
         },
         {
             "slot": "A9",
@@ -7627,7 +8253,12 @@
                 "time_label": "6 ส.ค. 2569 · 08:38:00 น.",
                 "applied_zone": "A",
                 "applied_category": "หม่าล่าย่าง (เสียบไม้)",
-                "review_note": ""
+                "review_note": "",
+                "returning": false,
+                "alumni": null,
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -7647,7 +8278,12 @@
                 "time_label": "6 ส.ค. 2569 · 08:37:59 น.",
                 "applied_zone": "A",
                 "applied_category": "เครื่องดื่มไม่มีแอลกอฮอล์",
-                "review_note": ""
+                "review_note": "",
+                "returning": false,
+                "alumni": null,
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -7667,7 +8303,20 @@
                 "time_label": "6 ส.ค. 2569 · 09:59:31 น.",
                 "applied_zone": "A",
                 "applied_category": "ไส้กรอกอีสาน",
-                "review_note": ""
+                "review_note": "",
+                "returning": true,
+                "alumni": {
+                    "year": 2568,
+                    "label": "SCI Week 2568",
+                    "name": "นางณิชาภา มิตรศรี",
+                    "slot": "A11",
+                    "category": "ไส้กรอกอีสาน",
+                    "score": 1,
+                    "match": "exact"
+                },
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -7695,7 +8344,20 @@
                 "time_label": "6 ส.ค. 2569 · 08:57:39 น.",
                 "applied_zone": "B",
                 "applied_category": "เครื่องดื่มไม่มีแอลกอฮอล์",
-                "review_note": ""
+                "review_note": "",
+                "returning": true,
+                "alumni": {
+                    "year": 2568,
+                    "label": "SCI Week 2568",
+                    "name": "นายเดชา คูณแก้ว",
+                    "slot": "A4",
+                    "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
+                    "score": 1,
+                    "match": "exact"
+                },
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -7715,7 +8377,12 @@
                 "time_label": "6 ส.ค. 2569 · 08:43:39 น.",
                 "applied_zone": "B",
                 "applied_category": "ลูกชิ้นทอด\/นึ่ง",
-                "review_note": ""
+                "review_note": "",
+                "returning": false,
+                "alumni": null,
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -7735,7 +8402,20 @@
                 "time_label": "6 ส.ค. 2569 · 08:37:23 น.",
                 "applied_zone": "B",
                 "applied_category": "ซูชิ\/อาหารญี่ปุ่น",
-                "review_note": ""
+                "review_note": "",
+                "returning": true,
+                "alumni": {
+                    "year": 2568,
+                    "label": "SCI Week 2568",
+                    "name": "นางสาวสุธารัตน์ ลุนพิลา",
+                    "slot": "B3",
+                    "category": "ซูชิ\/อาหารญี่ปุ่น",
+                    "score": 1,
+                    "match": "exact"
+                },
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -7755,7 +8435,20 @@
                 "time_label": "6 ส.ค. 2569 · 08:59:23 น.",
                 "applied_zone": "B",
                 "applied_category": "อาหารทอดทานเล่น",
-                "review_note": ""
+                "review_note": "",
+                "returning": true,
+                "alumni": {
+                    "year": 2568,
+                    "label": "SCI Week 2568",
+                    "name": "นางสาวกรทิพย์ สุขณรงค์",
+                    "slot": "B4",
+                    "category": "อาหารทอดทานเล่น",
+                    "score": 1,
+                    "match": "exact"
+                },
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -7775,27 +8468,45 @@
                 "time_label": "6 ส.ค. 2569 · 11:47:21 น.",
                 "applied_zone": "B",
                 "applied_category": "ผลไม้",
-                "review_note": ""
+                "review_note": "",
+                "returning": false,
+                "alumni": null,
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
             "slot": "B6",
             "zone": "B",
-            "category": "ยำ",
+            "category": "มันฝรั่งทอด",
             "filled": true,
             "cross_assigned": false,
             "operator": {
-                "row": 20,
-                "key": "17a947469e06ab08caf06fbb7943372d",
-                "name": "น.ส.เจนจิรา สุทโธ",
-                "phone": "873200196",
+                "row": 3,
+                "key": "39a7001f2418ef7b55f615611edbd6cc",
+                "name": "นายสุพรม แก้วเปี้ย",
+                "phone": "930938913",
                 "status": "ครบถ้วน",
                 "selection": "ได้รับการคัดเลือก",
-                "reviewed_at": "2026-08-10 12:43:36",
-                "time_label": "6 ส.ค. 2569 · 08:46:25 น.",
+                "reviewed_at": "2026-08-10 12:35:06",
+                "time_label": "6 ส.ค. 2569 · 08:33:39 น.",
                 "applied_zone": "B",
-                "applied_category": "ยำ",
-                "review_note": ""
+                "applied_category": "มันฝรั่งทอด",
+                "review_note": "",
+                "returning": true,
+                "alumni": {
+                    "year": 2568,
+                    "label": "SCI Week 2568",
+                    "name": "นายสุพรม แก้วเบี้ย",
+                    "slot": "A3",
+                    "category": "มันฝรั่งทอด",
+                    "score": 1,
+                    "match": "exact"
+                },
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -7815,15 +8526,20 @@
                 "time_label": "6 ส.ค. 2569 · 08:42:55 น.",
                 "applied_zone": "C",
                 "applied_category": "ไอศกรีม",
-                "review_note": ""
+                "review_note": "",
+                "returning": false,
+                "alumni": null,
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
             "slot": "C2",
             "zone": "C",
-            "category": "ลูกชุบ\/ขนมเบื้อง\/ขนมไทย",
+            "category": "วาฟเฟิล",
             "filled": true,
-            "cross_assigned": false,
+            "cross_assigned": true,
             "operator": {
                 "row": 89,
                 "key": "627e32488d32b517b601fafb3baaea76",
@@ -7835,7 +8551,12 @@
                 "time_label": "7 ส.ค. 2569 · 16:18:41 น.",
                 "applied_zone": "C",
                 "applied_category": "ลูกชุบ\/ขนมเบื้อง\/ขนมไทย",
-                "review_note": ""
+                "review_note": "",
+                "returning": false,
+                "alumni": null,
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -7855,7 +8576,12 @@
                 "time_label": "7 ส.ค. 2569 · 15:13:30 น.",
                 "applied_zone": "C",
                 "applied_category": "พิซซ่า",
-                "review_note": ""
+                "review_note": "",
+                "returning": false,
+                "alumni": null,
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -7875,7 +8601,12 @@
                 "time_label": "6 ส.ค. 2569 · 08:45:51 น.",
                 "applied_zone": "C",
                 "applied_category": "ข้าวเหนียวหมูปิ้ง",
-                "review_note": ""
+                "review_note": "",
+                "returning": false,
+                "alumni": null,
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -7895,7 +8626,12 @@
                 "time_label": "6 ส.ค. 2569 · 08:37:54 น.",
                 "applied_zone": "C",
                 "applied_category": "ข้าวไข่เจียว อาหารตามสั่ง",
-                "review_note": ""
+                "review_note": "",
+                "returning": false,
+                "alumni": null,
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -7915,7 +8651,12 @@
                 "time_label": "6 ส.ค. 2569 · 23:24:50 น.",
                 "applied_zone": "C",
                 "applied_category": "แจ่วฮ้อน\/ก๋วยจั๊บ",
-                "review_note": ""
+                "review_note": "",
+                "returning": false,
+                "alumni": null,
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -7935,13 +8676,18 @@
                 "time_label": "6 ส.ค. 2569 · 10:42:46 น.",
                 "applied_zone": "C",
                 "applied_category": "สื่อเกมการศึกษา\/บอร์ดเกม",
-                "review_note": ""
+                "review_note": "",
+                "returning": false,
+                "alumni": null,
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
             "slot": "C8",
             "zone": "C",
-            "category": "สื่อเกมการศึกษา\/บอร์ดเกม",
+            "category": "สุกี้โรล\/เกี๊ยวต้ม\/ชาบู",
             "filled": false,
             "cross_assigned": false,
             "operator": null
@@ -7949,7 +8695,7 @@
         {
             "slot": "C9",
             "zone": "C",
-            "category": "สื่อเกมการศึกษา\/บอร์ดเกม",
+            "category": "เฉาก๊วยนมสดและเครื่องดื่ม",
             "filled": false,
             "cross_assigned": false,
             "operator": null
@@ -7957,9 +8703,9 @@
         {
             "slot": "C10",
             "zone": "C",
-            "category": "วาฟเฟิล",
+            "category": "ลูกชุบ\/ขนมเบื้อง\/ขนมไทย",
             "filled": true,
-            "cross_assigned": false,
+            "cross_assigned": true,
             "operator": {
                 "row": 81,
                 "key": "c7db9d69c172188e14a149f648817fc8",
@@ -7971,7 +8717,12 @@
                 "time_label": "7 ส.ค. 2569 · 11:32:41 น.",
                 "applied_zone": "C",
                 "applied_category": "วาฟเฟิล",
-                "review_note": ""
+                "review_note": "",
+                "returning": false,
+                "alumni": null,
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -7991,7 +8742,12 @@
                 "time_label": "6 ส.ค. 2569 · 08:36:21 น.",
                 "applied_zone": "C",
                 "applied_category": "ขนมจีบ\/ซาลาเปา",
-                "review_note": ""
+                "review_note": "",
+                "returning": false,
+                "alumni": null,
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -8011,7 +8767,12 @@
                 "time_label": "6 ส.ค. 2569 · 08:39:55 น.",
                 "applied_zone": "C",
                 "applied_category": "สุกี้โรล\/เกี๊ยวต้ม\/ชาบู",
-                "review_note": ""
+                "review_note": "",
+                "returning": false,
+                "alumni": null,
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -8031,7 +8792,12 @@
                 "time_label": "6 ส.ค. 2569 · 09:15:06 น.",
                 "applied_zone": "C",
                 "applied_category": "ยำ",
-                "review_note": ""
+                "review_note": "",
+                "returning": false,
+                "alumni": null,
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -8051,7 +8817,12 @@
                 "time_label": "6 ส.ค. 2569 · 09:19:44 น.",
                 "applied_zone": "C",
                 "applied_category": "ผลไม้",
-                "review_note": ""
+                "review_note": "",
+                "returning": false,
+                "alumni": null,
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -8071,7 +8842,12 @@
                 "time_label": "6 ส.ค. 2569 · 09:07:17 น.",
                 "applied_zone": "D",
                 "applied_category": "หม่าล่าย่าง (เสียบไม้)",
-                "review_note": ""
+                "review_note": "",
+                "returning": false,
+                "alumni": null,
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -8091,7 +8867,12 @@
                 "time_label": "6 ส.ค. 2569 · 09:26:10 น.",
                 "applied_zone": "D",
                 "applied_category": "ลูกชิ้นทอด\/นึ่ง",
-                "review_note": ""
+                "review_note": "",
+                "returning": false,
+                "alumni": null,
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -8111,7 +8892,12 @@
                 "time_label": "6 ส.ค. 2569 · 08:47:18 น.",
                 "applied_zone": "D",
                 "applied_category": "ซูชิ\/อาหารญี่ปุ่น",
-                "review_note": ""
+                "review_note": "",
+                "returning": false,
+                "alumni": null,
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
@@ -8131,13 +8917,18 @@
                 "time_label": "6 ส.ค. 2569 · 08:40:25 น.",
                 "applied_zone": "D",
                 "applied_category": "สโมกี้ไบท์",
-                "review_note": ""
+                "review_note": "",
+                "returning": false,
+                "alumni": null,
+                "payment_status": "unpaid",
+                "payment_at": "",
+                "payment_note": ""
             }
         },
         {
             "slot": "D5",
             "zone": "D",
-            "category": "ขนมจีบ\/ซาลาเปา",
+            "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
             "filled": false,
             "cross_assigned": false,
             "operator": null
@@ -8145,7 +8936,7 @@
         {
             "slot": "D6",
             "zone": "D",
-            "category": "ไอศกรีม",
+            "category": "เบเกอร์รี่",
             "filled": false,
             "cross_assigned": false,
             "operator": null
@@ -8153,7 +8944,7 @@
         {
             "slot": "D7",
             "zone": "D",
-            "category": "แจ่วฮ้อน\/ก๋วยจั๊บ",
+            "category": "ข้าวไข่เจียว\/ข้าวราดแกง",
             "filled": false,
             "cross_assigned": false,
             "operator": null
@@ -8161,7 +8952,7 @@
         {
             "slot": "D8",
             "zone": "D",
-            "category": "ไก่ย่าง\/ส้มตำ",
+            "category": "ผลไม้\/ขนมหวาน\/ขนมไทย",
             "filled": false,
             "cross_assigned": false,
             "operator": null
@@ -8177,6 +8968,14 @@
         "effective_ok": 72,
         "effective_fail": 14
     },
+    "alumni": {
+        "year": 2568,
+        "label": "SCI Week 2568",
+        "source": "Shop-Sci-Week 2025-signed.pdf",
+        "source_ref": "ประกาศคณะวิทยาศาสตร์ ที่ 107\/2568",
+        "total_prev_selected": 18,
+        "returning_count": 15
+    },
     "storage": {
         "data_dir": "data",
         "data_writable": true,
@@ -8185,13 +8984,77 @@
         "xlsx": "แบบตอบรับ.xlsx",
         "xlsx_writable": true,
         "can_save_status": true,
-        "hint": "บันทึกสถานะได้ทั้งไฟล์สถานะและ Excel"
+        "round": {
+            "id": 1,
+            "year": 2569,
+            "label": "รอบที่ 1",
+            "short": "รอบ 1",
+            "title": "ร้านค้าประจำปี 2569 รอบที่ 1",
+            "status_store": "status_store.json",
+            "payload": "applicants.json",
+            "xlsx_canonical": "แบบตอบรับ.xlsx"
+        },
+        "hint": "บันทึกสถานะได้ทั้งไฟล์สถานะและ Excel (ร้านค้าประจำปี 2569 รอบที่ 1)"
     },
     "status_store": {
         "merged": 86,
         "store_rows": 86,
-        "store_updated_at": "2026-08-10T12:56:52+07:00"
+        "store_updated_at": "2026-08-14T08:54:03+02:00"
     },
     "policy": "บันทึกเฉพาะสถานะตรวจเอกสาร\/คัดเลือก\/ล็อก — ไม่ลบรายการผู้สมัคร · บนเซิร์ฟเวอร์สถานะเก็บที่ data\/status_store.json เป็นหลัก และซิงก์ Excel เมื่อเขียนได้",
-    "notice": "ข้อมูลผู้สมัครอ่านจาก Excel เสมอ · สถานะ Admin\/คัดเลือกระบบบันทึกที่ data\/status_store.json (แม้ Excel บนเซิร์ฟเวอร์ล็อกสิทธิ์เขียน) · ไม่ลบแถวผู้สมัคร · เวลาที่แสดงเป็นเวลาไทย"
+    "notice": "ข้อมูลผู้สมัครอ่านจาก Excel เสมอ · สถานะ Admin\/คัดเลือกระบบบันทึกที่ data\/status_store.json (แม้ Excel บนเซิร์ฟเวอร์ล็อกสิทธิ์เขียน) · ไม่ลบแถวผู้สมัคร · เวลาที่แสดงเป็นเวลาไทย",
+    "round": {
+        "id": 1,
+        "year": 2569,
+        "label": "รอบที่ 1",
+        "short": "รอบ 1",
+        "title": "ร้านค้าประจำปี 2569 รอบที่ 1",
+        "status_store": "status_store.json",
+        "payload": "applicants.json",
+        "xlsx_canonical": "แบบตอบรับ.xlsx"
+    },
+    "rounds": [
+        {
+            "id": 1,
+            "year": 2569,
+            "label": "รอบที่ 1",
+            "short": "รอบ 1",
+            "title": "ร้านค้าประจำปี 2569 รอบที่ 1",
+            "status_store": "status_store.json",
+            "payload": "applicants.json",
+            "xlsx_canonical": "แบบตอบรับ.xlsx",
+            "xlsx": "แบบตอบรับ.xlsx",
+            "available": true,
+            "error": null,
+            "active": true
+        },
+        {
+            "id": 2,
+            "year": 2569,
+            "label": "รอบที่ 2",
+            "short": "รอบ 2",
+            "title": "ร้านค้าประจำปี 2569 รอบที่ 2",
+            "status_store": "status_store_r2.json",
+            "payload": "applicants_r2.json",
+            "xlsx_canonical": "แบบตอบรับ69_รอบ2.xlsx",
+            "xlsx": "แบบตอบรับ69_รอบ2.xlsx",
+            "available": true,
+            "error": null,
+            "active": false
+        },
+        {
+            "id": 3,
+            "year": 2569,
+            "label": "รอบที่ 3",
+            "short": "รอบ 3",
+            "title": "ร้านค้าประจำปี 2569 รอบที่ 3",
+            "status_store": "status_store_r3.json",
+            "payload": "applicants_r3.json",
+            "xlsx_canonical": "แบบตอบรับ69_รอบ3.xlsx",
+            "xlsx": "แบบตอบรับ69_รอบ3.xlsx",
+            "available": true,
+            "error": null,
+            "active": false
+        }
+    ]
 }

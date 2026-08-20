@@ -4,10 +4,11 @@ ini_set('display_errors', '0');
 error_reporting(E_ALL);
 ob_start();
 
-header('Content-Type: application/json; charset=utf-8');
-header('Cache-Control: no-store');
-
 require_once __DIR__ . '/xlsx_lib.php';
+require_once __DIR__ . '/docx_export.php';
+require_once __DIR__ . '/auth_lib.php';
+
+sci_auth_require_login(true);
 
 function sci_json_out($data, int $code = 200): void {
   http_response_code($code);
@@ -15,6 +16,7 @@ function sci_json_out($data, int $code = 200): void {
     ob_end_clean();
   }
   header('Content-Type: application/json; charset=utf-8');
+  header('Cache-Control: no-store');
   echo json_encode($data, JSON_UNESCAPED_UNICODE);
   exit;
 }
@@ -27,9 +29,31 @@ function sci_read_json_body(): array {
 
 try {
   $action = $_GET['action'] ?? $_POST['action'] ?? 'data';
+  sci_apply_round_from_request();
+
+  // Binary download — must run before JSON Content-Type headers
+  if ($action === 'export_selected_docx') {
+    sci_stream_selected_announcement_docx();
+  }
+
+  header('Content-Type: application/json; charset=utf-8');
+  header('Cache-Control: no-store');
 
   if ($action === 'health' || $action === 'storage') {
-    sci_json_out(['ok' => true, 'storage' => sci_storage_health()]);
+    sci_json_out([
+      'ok' => true,
+      'round' => sci_round_meta(),
+      'rounds' => sci_available_rounds(),
+      'storage' => sci_storage_health(),
+    ]);
+  }
+
+  if ($action === 'rounds') {
+    sci_json_out([
+      'ok' => true,
+      'round' => sci_round_meta(),
+      'rounds' => sci_available_rounds(),
+    ]);
   }
 
   if ($action === 'data') {
@@ -46,6 +70,7 @@ try {
 
   if ($action === 'save_status') {
     $body = sci_read_json_body();
+    sci_apply_round_from_request($body);
     $row = (int)($body['row'] ?? 0);
     if ($row < 2) sci_json_out(['ok' => false, 'error' => 'row ไม่ถูกต้อง'], 400);
 
@@ -83,8 +108,29 @@ try {
     ]);
   }
 
+  if ($action === 'save_payment') {
+    $body = sci_read_json_body();
+    sci_apply_round_from_request($body);
+    $row = (int)($body['row'] ?? 0);
+    if ($row < 2) sci_json_out(['ok' => false, 'error' => 'row ไม่ถูกต้อง'], 400);
+
+    $paymentStatus = (string)($body['payment_status'] ?? 'unpaid');
+    $paymentNote = trim((string)($body['payment_note'] ?? ''));
+    $result = sci_save_payment_status($row, $paymentStatus, $paymentNote);
+    $data = sci_parse_applicants();
+    sci_save_payload_json($data);
+    sci_json_out([
+      'ok' => true,
+      'result' => $result,
+      'message' => $result['message'] ?? 'บันทึกสถานะชำระเงินสำเร็จ',
+      'storage' => $data['storage'] ?? sci_storage_health(),
+      'data' => $data,
+    ]);
+  }
+
   if ($action === 'assign_shop') {
     $body = sci_read_json_body();
+    sci_apply_round_from_request($body);
     $row = (int)($body['row'] ?? 0);
     $slot = strtoupper(trim((string)($body['slot'] ?? '')));
     $allowCross = !empty($body['allow_cross']);
@@ -105,6 +151,7 @@ try {
 
   if ($action === 'unassign_shop') {
     $body = sci_read_json_body();
+    sci_apply_round_from_request($body);
     $row = (int)($body['row'] ?? 0);
     $selection = trim((string)($body['selection'] ?? 'รอพิจารณา'));
     if ($row < 2) sci_json_out(['ok' => false, 'error' => 'row ไม่ถูกต้อง'], 400);
@@ -146,7 +193,7 @@ try {
       sci_json_out(['ok' => false, 'error' => 'รองรับเฉพาะ .xlsx หรือ .csv'], 400);
     }
 
-    $target = sci_xlsx_path();
+    $target = sci_xlsx_write_path();
     if ($ext === 'csv') {
       sci_json_out(['ok' => false, 'error' => 'กรุณา Export เป็น Excel (.xlsx) จาก Google Sheet แล้วอัปโหลด'], 400);
     }

@@ -1,0 +1,1575 @@
+{
+    "generated_at": "2026-08-14T10:40:21+02:00",
+    "source": "แบบตอบรับ69_รอบ3.xlsx",
+    "source_mtime": "2026-08-14T10:24:19+02:00",
+    "total_applicants": 6,
+    "slots": [
+        {
+            "id": "A8",
+            "zone": "A",
+            "cat": "ปอเปี๊ยะ\/แหนมคลุก",
+            "limit": 1
+        },
+        {
+            "id": "D7",
+            "zone": "D",
+            "cat": "ข้าวไข่เจียว\/ข้าวราดแกง",
+            "limit": 1
+        },
+        {
+            "id": "D8",
+            "zone": "D",
+            "cat": "ผลไม้\/ขนมหวาน\/ขนมไทย",
+            "limit": 1
+        }
+    ],
+    "groups": [
+        {
+            "zone": "A",
+            "cat": "ปอเปี๊ยะ\/แหนมคลุก",
+            "slots": [
+                "A8"
+            ],
+            "label": "A8",
+            "limit": 1,
+            "primary": "A8"
+        },
+        {
+            "zone": "D",
+            "cat": "ข้าวไข่เจียว\/ข้าวราดแกง",
+            "slots": [
+                "D7"
+            ],
+            "label": "D7",
+            "limit": 1,
+            "primary": "D7"
+        },
+        {
+            "zone": "D",
+            "cat": "ผลไม้\/ขนมหวาน\/ขนมไทย",
+            "slots": [
+                "D8"
+            ],
+            "label": "D8",
+            "limit": 1,
+            "primary": "D8"
+        }
+    ],
+    "shared": {
+        "A|ปอเปี๊ยะ\/แหนมคลุก": [
+            "A8"
+        ],
+        "D|ข้าวไข่เจียว\/ข้าวราดแกง": [
+            "D7"
+        ],
+        "D|ผลไม้\/ขนมหวาน\/ขนมไทย": [
+            "D8"
+        ]
+    },
+    "round1_occupied": {
+        "enabled": true,
+        "count": 37,
+        "total": 40,
+        "remaining": 3,
+        "slots": [
+            {
+                "slot": "A5",
+                "name": "รชานนท์ คงทอง",
+                "row": 2,
+                "zone": "A",
+                "category": "ข้าวราดแกง",
+                "from_round": 1
+            },
+            {
+                "slot": "B6",
+                "name": "นายสุพรม แก้วเปี้ย",
+                "row": 3,
+                "zone": "B",
+                "category": "มันฝรั่งทอด",
+                "from_round": 1
+            },
+            {
+                "slot": "A1",
+                "name": "หทัยวรรณ ทาให้งาม",
+                "row": 4,
+                "zone": "A",
+                "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
+                "from_round": 1
+            },
+            {
+                "slot": "C11",
+                "name": "วีระชาติ วงละคร",
+                "row": 5,
+                "zone": "C",
+                "category": "ขนมจีบ\/ซาลาเปา",
+                "from_round": 1
+            },
+            {
+                "slot": "A2",
+                "name": "อมรรัตน์ พันธุ์ยาง",
+                "row": 6,
+                "zone": "A",
+                "category": "ข้าวไข่เจียว อาหารตามสั่ง",
+                "from_round": 1
+            },
+            {
+                "slot": "B3",
+                "name": "สุธารัตน์ ลุนพิลา",
+                "row": 7,
+                "zone": "B",
+                "category": "ซูชิ\/อาหารญี่ปุ่น",
+                "from_round": 1
+            },
+            {
+                "slot": "A4",
+                "name": "นายปรัญชา คูณเเก้ว",
+                "row": 8,
+                "zone": "A",
+                "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
+                "from_round": 1
+            },
+            {
+                "slot": "C5",
+                "name": "นภสร วัฒนสุวกุล",
+                "row": 9,
+                "zone": "C",
+                "category": "ข้าวไข่เจียว อาหารตามสั่ง",
+                "from_round": 1
+            },
+            {
+                "slot": "A10",
+                "name": "ธัญพิชชา ฤาไกรศรี",
+                "row": 10,
+                "zone": "A",
+                "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
+                "from_round": 1
+            },
+            {
+                "slot": "A9",
+                "name": "ศศิภรณ์ แก้วกงพาน",
+                "row": 11,
+                "zone": "A",
+                "category": "หม่าล่าย่าง (เสียบไม้)",
+                "from_round": 1
+            },
+            {
+                "slot": "C12",
+                "name": "นายสุพงค์ พันธ์แก่น",
+                "row": 13,
+                "zone": "C",
+                "category": "สุกี้โรล\/เกี๊ยวต้ม\/ชาบู",
+                "from_round": 1
+            },
+            {
+                "slot": "D4",
+                "name": "นางสาวกฤษฎาภรณ์ สรรพวุธ",
+                "row": 14,
+                "zone": "D",
+                "category": "สโมกี้ไบท์",
+                "from_round": 1
+            },
+            {
+                "slot": "A6",
+                "name": "ธัญญาณี แสนทวีสุข",
+                "row": 15,
+                "zone": "A",
+                "category": "ผัดไทย\/หอยทอด",
+                "from_round": 1
+            },
+            {
+                "slot": "C1",
+                "name": "ฉัทท์ชยาน์ เบ้าเงิน",
+                "row": 16,
+                "zone": "C",
+                "category": "ไอศกรีม",
+                "from_round": 1
+            },
+            {
+                "slot": "B2",
+                "name": "นาง อุปถัมภ์ พรมทา",
+                "row": 18,
+                "zone": "B",
+                "category": "ลูกชิ้นทอด\/นึ่ง",
+                "from_round": 1
+            },
+            {
+                "slot": "C4",
+                "name": "สรทิตย์เมศ ยะหว่ามื่อ",
+                "row": 19,
+                "zone": "C",
+                "category": "ข้าวเหนียวหมูปิ้ง",
+                "from_round": 1
+            },
+            {
+                "slot": "A3",
+                "name": "น.ส.เจนจิรา สุทโธ",
+                "row": 20,
+                "zone": "A",
+                "category": "ยำ",
+                "from_round": 1
+            },
+            {
+                "slot": "D3",
+                "name": "น.ส พีรญา โชคสว่างงาม",
+                "row": 21,
+                "zone": "D",
+                "category": "ซูชิ\/อาหารญี่ปุ่น",
+                "from_round": 1
+            },
+            {
+                "slot": "B1",
+                "name": "เดชา คูณแก้ว",
+                "row": 27,
+                "zone": "B",
+                "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
+                "from_round": 1
+            },
+            {
+                "slot": "B4",
+                "name": "กรทิพย์ สุขณรงค์",
+                "row": 30,
+                "zone": "B",
+                "category": "อาหารทอดทานเล่น",
+                "from_round": 1
+            },
+            {
+                "slot": "D1",
+                "name": "สมหมาย คำตา",
+                "row": 36,
+                "zone": "D",
+                "category": "หม่าล่าย่าง (เสียบไม้)",
+                "from_round": 1
+            },
+            {
+                "slot": "C13",
+                "name": "ธนกร นิมิตนันท์",
+                "row": 37,
+                "zone": "C",
+                "category": "ยำ",
+                "from_round": 1
+            },
+            {
+                "slot": "A7",
+                "name": "ธิติอาภา ขอดคำ",
+                "row": 38,
+                "zone": "A",
+                "category": "ขนมจีนน้ำยา (น้ำยาหลากหลาย)\/หมี่กะทิ",
+                "from_round": 1
+            },
+            {
+                "slot": "C14",
+                "name": "นางรัชนี ชัยจักร",
+                "row": 40,
+                "zone": "C",
+                "category": "ผลไม้",
+                "from_round": 1
+            },
+            {
+                "slot": "D2",
+                "name": "นาย กิตติชัย เชื้ิอพรมมา",
+                "row": 41,
+                "zone": "D",
+                "category": "ลูกชิ้นทอด\/นึ่ง",
+                "from_round": 1
+            },
+            {
+                "slot": "A11",
+                "name": "นางณิชาภา มิตรศรี",
+                "row": 46,
+                "zone": "A",
+                "category": "ไส้กรอกอีสาน",
+                "from_round": 1
+            },
+            {
+                "slot": "C7",
+                "name": "นายดนัย มั่นกลิ่น",
+                "row": 53,
+                "zone": "C",
+                "category": "สื่อเกมการศึกษา\/บอร์ดเกม",
+                "from_round": 1
+            },
+            {
+                "slot": "B5",
+                "name": "บัณฑิต แสงแก้ว",
+                "row": 60,
+                "zone": "B",
+                "category": "ผลไม้",
+                "from_round": 1
+            },
+            {
+                "slot": "C6",
+                "name": "จีรัชญ์ณา มณีขัติย์",
+                "row": 72,
+                "zone": "C",
+                "category": "แจ่วฮ้อน\/ก๋วยจั๊บ",
+                "from_round": 1
+            },
+            {
+                "slot": "C10",
+                "name": "น.ส.มาลินี ศิริขันธ์",
+                "row": 81,
+                "zone": "C",
+                "category": "วาฟเฟิล",
+                "from_round": 1
+            },
+            {
+                "slot": "C3",
+                "name": "นางสาวกาญจนาภรณ์ อัครปัญญา",
+                "row": 86,
+                "zone": "C",
+                "category": "พิซซ่า",
+                "from_round": 1
+            },
+            {
+                "slot": "C2",
+                "name": "ภานุพงษ์ พยัคมะเริง",
+                "row": 89,
+                "zone": "C",
+                "category": "ลูกชุบ\/ขนมเบื้อง\/ขนมไทย",
+                "from_round": 1
+            },
+            {
+                "slot": "D5",
+                "name": "นางสาวยุพิน อนุมาตย์",
+                "row": 2,
+                "zone": "D",
+                "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
+                "from_round": 2
+            },
+            {
+                "slot": "C9",
+                "name": "นายธนวัฒน์ มั่งมีธนพรชัย",
+                "row": 3,
+                "zone": "C",
+                "category": "เฉาก๊วยนมสดและเครื่องดื่ม",
+                "from_round": 2
+            },
+            {
+                "slot": "C8",
+                "name": "สุภาวดี พรมแสน",
+                "row": 4,
+                "zone": "C",
+                "category": "สุกี้โรล\/เกี๊ยวต้ม\/ชาบู",
+                "from_round": 2
+            },
+            {
+                "slot": "A12",
+                "name": "นางวิไลพร มาหลี",
+                "row": 15,
+                "zone": "A",
+                "category": "ไก่ย่าง\/ส้มตำ",
+                "from_round": 2
+            },
+            {
+                "slot": "D6",
+                "name": "อดิศักดิ์ โฮมไชยา",
+                "row": 16,
+                "zone": "D",
+                "category": "เบเกอร์รี่",
+                "from_round": 2
+            }
+        ],
+        "closed_categories": [
+            {
+                "zone": "A",
+                "cat": "เครื่องดื่มไม่มีแอลกอฮอล์",
+                "slots": [
+                    "A1",
+                    "A4",
+                    "A10"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "A1",
+                        "name": "หทัยวรรณ ทาให้งาม",
+                        "row": 4,
+                        "zone": "A",
+                        "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
+                        "from_round": 1
+                    },
+                    {
+                        "slot": "A4",
+                        "name": "นายปรัญชา คูณเเก้ว",
+                        "row": 8,
+                        "zone": "A",
+                        "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
+                        "from_round": 1
+                    },
+                    {
+                        "slot": "A10",
+                        "name": "ธัญพิชชา ฤาไกรศรี",
+                        "row": 10,
+                        "zone": "A",
+                        "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "A",
+                "cat": "ข้าวไข่เจียว อาหารตามสั่ง",
+                "slots": [
+                    "A2"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "A2",
+                        "name": "อมรรัตน์ พันธุ์ยาง",
+                        "row": 6,
+                        "zone": "A",
+                        "category": "ข้าวไข่เจียว อาหารตามสั่ง",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "A",
+                "cat": "ยำ",
+                "slots": [
+                    "A3"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "A3",
+                        "name": "น.ส.เจนจิรา สุทโธ",
+                        "row": 20,
+                        "zone": "A",
+                        "category": "ยำ",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "A",
+                "cat": "ข้าวราดแกง",
+                "slots": [
+                    "A5"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "A5",
+                        "name": "รชานนท์ คงทอง",
+                        "row": 2,
+                        "zone": "A",
+                        "category": "ข้าวราดแกง",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "A",
+                "cat": "ผัดไทย\/หอยทอด",
+                "slots": [
+                    "A6"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "A6",
+                        "name": "ธัญญาณี แสนทวีสุข",
+                        "row": 15,
+                        "zone": "A",
+                        "category": "ผัดไทย\/หอยทอด",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "A",
+                "cat": "ขนมจีนน้ำยา (น้ำยาหลากหลาย)\/หมี่กะทิ",
+                "slots": [
+                    "A7"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "A7",
+                        "name": "ธิติอาภา ขอดคำ",
+                        "row": 38,
+                        "zone": "A",
+                        "category": "ขนมจีนน้ำยา (น้ำยาหลากหลาย)\/หมี่กะทิ",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "A",
+                "cat": "หม่าล่าย่าง (เสียบไม้)",
+                "slots": [
+                    "A9"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "A9",
+                        "name": "ศศิภรณ์ แก้วกงพาน",
+                        "row": 11,
+                        "zone": "A",
+                        "category": "หม่าล่าย่าง (เสียบไม้)",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "A",
+                "cat": "ไส้กรอกอีสาน",
+                "slots": [
+                    "A11"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "A11",
+                        "name": "นางณิชาภา มิตรศรี",
+                        "row": 46,
+                        "zone": "A",
+                        "category": "ไส้กรอกอีสาน",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "A",
+                "cat": "ไก่ย่าง\/ส้มตำ",
+                "slots": [
+                    "A12"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "A12",
+                        "name": "นางวิไลพร มาหลี",
+                        "row": 15,
+                        "zone": "A",
+                        "category": "ไก่ย่าง\/ส้มตำ",
+                        "from_round": 2
+                    }
+                ]
+            },
+            {
+                "zone": "B",
+                "cat": "เครื่องดื่มไม่มีแอลกอฮอล์",
+                "slots": [
+                    "B1"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "B1",
+                        "name": "เดชา คูณแก้ว",
+                        "row": 27,
+                        "zone": "B",
+                        "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "B",
+                "cat": "ลูกชิ้นทอด\/นึ่ง",
+                "slots": [
+                    "B2"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "B2",
+                        "name": "นาง อุปถัมภ์ พรมทา",
+                        "row": 18,
+                        "zone": "B",
+                        "category": "ลูกชิ้นทอด\/นึ่ง",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "B",
+                "cat": "ซูชิ\/อาหารญี่ปุ่น",
+                "slots": [
+                    "B3"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "B3",
+                        "name": "สุธารัตน์ ลุนพิลา",
+                        "row": 7,
+                        "zone": "B",
+                        "category": "ซูชิ\/อาหารญี่ปุ่น",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "B",
+                "cat": "อาหารทอดทานเล่น",
+                "slots": [
+                    "B4"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "B4",
+                        "name": "กรทิพย์ สุขณรงค์",
+                        "row": 30,
+                        "zone": "B",
+                        "category": "อาหารทอดทานเล่น",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "B",
+                "cat": "ผลไม้",
+                "slots": [
+                    "B5"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "B5",
+                        "name": "บัณฑิต แสงแก้ว",
+                        "row": 60,
+                        "zone": "B",
+                        "category": "ผลไม้",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "B",
+                "cat": "มันฝรั่งทอด",
+                "slots": [
+                    "B6"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "B6",
+                        "name": "นายสุพรม แก้วเปี้ย",
+                        "row": 3,
+                        "zone": "B",
+                        "category": "มันฝรั่งทอด",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "C",
+                "cat": "ไอศกรีม",
+                "slots": [
+                    "C1"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "C1",
+                        "name": "ฉัทท์ชยาน์ เบ้าเงิน",
+                        "row": 16,
+                        "zone": "C",
+                        "category": "ไอศกรีม",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "C",
+                "cat": "วาฟเฟิล",
+                "slots": [
+                    "C2"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "C2",
+                        "name": "ภานุพงษ์ พยัคมะเริง",
+                        "row": 89,
+                        "zone": "C",
+                        "category": "ลูกชุบ\/ขนมเบื้อง\/ขนมไทย",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "C",
+                "cat": "พิซซ่า",
+                "slots": [
+                    "C3"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "C3",
+                        "name": "นางสาวกาญจนาภรณ์ อัครปัญญา",
+                        "row": 86,
+                        "zone": "C",
+                        "category": "พิซซ่า",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "C",
+                "cat": "ข้าวเหนียวหมูปิ้ง",
+                "slots": [
+                    "C4"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "C4",
+                        "name": "สรทิตย์เมศ ยะหว่ามื่อ",
+                        "row": 19,
+                        "zone": "C",
+                        "category": "ข้าวเหนียวหมูปิ้ง",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "C",
+                "cat": "ข้าวไข่เจียว อาหารตามสั่ง",
+                "slots": [
+                    "C5"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "C5",
+                        "name": "นภสร วัฒนสุวกุล",
+                        "row": 9,
+                        "zone": "C",
+                        "category": "ข้าวไข่เจียว อาหารตามสั่ง",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "C",
+                "cat": "แจ่วฮ้อน\/ก๋วยจั๊บ",
+                "slots": [
+                    "C6"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "C6",
+                        "name": "จีรัชญ์ณา มณีขัติย์",
+                        "row": 72,
+                        "zone": "C",
+                        "category": "แจ่วฮ้อน\/ก๋วยจั๊บ",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "C",
+                "cat": "สื่อเกมการศึกษา\/บอร์ดเกม",
+                "slots": [
+                    "C7"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "C7",
+                        "name": "นายดนัย มั่นกลิ่น",
+                        "row": 53,
+                        "zone": "C",
+                        "category": "สื่อเกมการศึกษา\/บอร์ดเกม",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "C",
+                "cat": "สุกี้โรล\/เกี๊ยวต้ม\/ชาบู",
+                "slots": [
+                    "C8",
+                    "C12"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "C8",
+                        "name": "สุภาวดี พรมแสน",
+                        "row": 4,
+                        "zone": "C",
+                        "category": "สุกี้โรล\/เกี๊ยวต้ม\/ชาบู",
+                        "from_round": 2
+                    },
+                    {
+                        "slot": "C12",
+                        "name": "นายสุพงค์ พันธ์แก่น",
+                        "row": 13,
+                        "zone": "C",
+                        "category": "สุกี้โรล\/เกี๊ยวต้ม\/ชาบู",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "C",
+                "cat": "เฉาก๊วยนมสดและเครื่องดื่ม",
+                "slots": [
+                    "C9"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "C9",
+                        "name": "นายธนวัฒน์ มั่งมีธนพรชัย",
+                        "row": 3,
+                        "zone": "C",
+                        "category": "เฉาก๊วยนมสดและเครื่องดื่ม",
+                        "from_round": 2
+                    }
+                ]
+            },
+            {
+                "zone": "C",
+                "cat": "ลูกชุบ\/ขนมเบื้อง\/ขนมไทย",
+                "slots": [
+                    "C10"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "C10",
+                        "name": "น.ส.มาลินี ศิริขันธ์",
+                        "row": 81,
+                        "zone": "C",
+                        "category": "วาฟเฟิล",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "C",
+                "cat": "ขนมจีบ\/ซาลาเปา",
+                "slots": [
+                    "C11"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "C11",
+                        "name": "วีระชาติ วงละคร",
+                        "row": 5,
+                        "zone": "C",
+                        "category": "ขนมจีบ\/ซาลาเปา",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "C",
+                "cat": "ยำ",
+                "slots": [
+                    "C13"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "C13",
+                        "name": "ธนกร นิมิตนันท์",
+                        "row": 37,
+                        "zone": "C",
+                        "category": "ยำ",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "C",
+                "cat": "ผลไม้",
+                "slots": [
+                    "C14"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "C14",
+                        "name": "นางรัชนี ชัยจักร",
+                        "row": 40,
+                        "zone": "C",
+                        "category": "ผลไม้",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "D",
+                "cat": "หม่าล่าย่าง (เสียบไม้)",
+                "slots": [
+                    "D1"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "D1",
+                        "name": "สมหมาย คำตา",
+                        "row": 36,
+                        "zone": "D",
+                        "category": "หม่าล่าย่าง (เสียบไม้)",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "D",
+                "cat": "ลูกชิ้นทอด\/นึ่ง",
+                "slots": [
+                    "D2"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "D2",
+                        "name": "นาย กิตติชัย เชื้ิอพรมมา",
+                        "row": 41,
+                        "zone": "D",
+                        "category": "ลูกชิ้นทอด\/นึ่ง",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "D",
+                "cat": "ซูชิ\/อาหารญี่ปุ่น",
+                "slots": [
+                    "D3"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "D3",
+                        "name": "น.ส พีรญา โชคสว่างงาม",
+                        "row": 21,
+                        "zone": "D",
+                        "category": "ซูชิ\/อาหารญี่ปุ่น",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "D",
+                "cat": "สโมกี้ไบท์",
+                "slots": [
+                    "D4"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "D4",
+                        "name": "นางสาวกฤษฎาภรณ์ สรรพวุธ",
+                        "row": 14,
+                        "zone": "D",
+                        "category": "สโมกี้ไบท์",
+                        "from_round": 1
+                    }
+                ]
+            },
+            {
+                "zone": "D",
+                "cat": "เครื่องดื่มไม่มีแอลกอฮอล์",
+                "slots": [
+                    "D5"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "D5",
+                        "name": "นางสาวยุพิน อนุมาตย์",
+                        "row": 2,
+                        "zone": "D",
+                        "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
+                        "from_round": 2
+                    }
+                ]
+            },
+            {
+                "zone": "D",
+                "cat": "เบเกอร์รี่",
+                "slots": [
+                    "D6"
+                ],
+                "taken_by": [
+                    {
+                        "slot": "D6",
+                        "name": "อดิศักดิ์ โฮมไชยา",
+                        "row": 16,
+                        "zone": "D",
+                        "category": "เบเกอร์รี่",
+                        "from_round": 2
+                    }
+                ]
+            }
+        ],
+        "prior_label": "รอบที่ 1–2",
+        "prior_rounds": [
+            1,
+            2
+        ]
+    },
+    "applicants": [
+        {
+            "row": 2,
+            "timestamp": 1786672999,
+            "datetime": "2026-08-14 09:03:19",
+            "datetime_th": "14 ส.ค. 2569 · 09:03:19 น.",
+            "time_label": "14 ส.ค. 2569 · 09:03:19 น.",
+            "timestamp_raw": "14\/8\/2026, 9:03:19",
+            "name": "นางสาวปิยะกุล ไข่มุกข์",
+            "phone": "654294932",
+            "zone": "D",
+            "zone_raw": "โซน D",
+            "category": "ผลไม้\/ขนมหวาน\/ขนมไทย",
+            "category_raw": "ผลไม้\/ขนมหวาน\/ขนมไทย (จำกัด 1 ล็อก)",
+            "detail": "ผลไม้สดแบบปอกเปลือกพร้อมทาน",
+            "qualifications": "เป็นผู้ที่มีอายุตั้งแต่ 18 ปี ขึ้นไป, เป็นผู้จำหน่ายสินค้าด้วยตนเอง, ไม่เป็นบุคคลที่มีข้อพิพาททางคดีกับมหาวิทยาลัยขอนแก่น และหน่วยงานอื่น ๆ, ไม่เคยกระทำผิดกฎหมาย หรือต้องคำพิพากษาถึงที่สุดว่ากระทำผิดกฎหมาย ยกเว้นการกระทำผิดที่กระทำโดยประมาท หรือความผิดลหุโทษ, ไม่เป็นโรคที่สังคมรังเกียจ หรือโรคติดต่อที่เป็นอันตรายร้ายแรงต่อสังคม และไม่เป็นบุคคลวิกลจริตหรือเป็นบุคคลเสมือนไร้ความสามารถ",
+            "id_card": "https:\/\/drive.google.com\/file\/d\/1XRBzKJrXNyw2GSWQ47qfI-eFR5gZHETw\/view",
+            "house_reg": "https:\/\/drive.google.com\/file\/d\/1nKsOIDH8VFntqSgOhFuiMc1OPSzeY7FN\/view",
+            "photo": "https:\/\/drive.google.com\/file\/d\/1BvvKmzDUE8Z1fua8VlT1jcWx1dYAM4_7\/view",
+            "food_photos": [
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1IcEvXxOzOhtVrO5vEdd9CL6uKaUebZLR\/view",
+                    "id": "1IcEvXxOzOhtVrO5vEdd9CL6uKaUebZLR",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1IcEvXxOzOhtVrO5vEdd9CL6uKaUebZLR&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1IcEvXxOzOhtVrO5vEdd9CL6uKaUebZLR&sz=w1600"
+                }
+            ],
+            "docs": {
+                "id_card": true,
+                "house_reg": true,
+                "photo": true,
+                "food": true,
+                "qualify": true
+            },
+            "auto_missing": [],
+            "doc_check": {
+                "system": {
+                    "pass": true,
+                    "label": "ครบถ้วน",
+                    "missing": []
+                },
+                "admin": {
+                    "reviewed": false,
+                    "status": "",
+                    "pass": false,
+                    "fail": false,
+                    "missing_detail": "",
+                    "review_note": "",
+                    "reviewed_at": ""
+                },
+                "effective": {
+                    "source": "system",
+                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "pass": true,
+                    "label": "ครบถ้วน (ระบบ)",
+                    "reason": ""
+                }
+            },
+            "status": "ครบถ้วน (อัตโนมัติ)",
+            "status_raw": "",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "",
+            "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
+            "key": "10bbbc9a9be9b6d32d296531e1042a38",
+            "returning": false,
+            "alumni": null
+        },
+        {
+            "row": 3,
+            "timestamp": 1786673191,
+            "datetime": "2026-08-14 09:06:31",
+            "datetime_th": "14 ส.ค. 2569 · 09:06:31 น.",
+            "time_label": "14 ส.ค. 2569 · 09:06:31 น.",
+            "timestamp_raw": "14\/8\/2026, 9:06:31",
+            "name": "สรณ์สิริ ไข่มุกข์",
+            "phone": "917037635",
+            "zone": "D",
+            "zone_raw": "โซน D",
+            "category": "ข้าวไข่เจียว\/ข้าวราดแกง",
+            "category_raw": "ข้าวไข่เจียว\/ข้าวราดแกง (จำกัด 1 ล็อก)",
+            "detail": "อร่อย ทานง่ายเมนูคนทานประจำ",
+            "qualifications": "เป็นผู้ที่มีอายุตั้งแต่ 18 ปี ขึ้นไป, เป็นผู้จำหน่ายสินค้าด้วยตนเอง, ไม่เป็นบุคคลที่มีข้อพิพาททางคดีกับมหาวิทยาลัยขอนแก่น และหน่วยงานอื่น ๆ, ไม่เคยกระทำผิดกฎหมาย หรือต้องคำพิพากษาถึงที่สุดว่ากระทำผิดกฎหมาย ยกเว้นการกระทำผิดที่กระทำโดยประมาท หรือความผิดลหุโทษ, ไม่เป็นโรคที่สังคมรังเกียจ หรือโรคติดต่อที่เป็นอันตรายร้ายแรงต่อสังคม และไม่เป็นบุคคลวิกลจริตหรือเป็นบุคคลเสมือนไร้ความสามารถ",
+            "id_card": "https:\/\/drive.google.com\/file\/d\/1KIQN_gYyw6gPIaVNCM0cmAzyMOlS2QHq\/view",
+            "house_reg": "https:\/\/drive.google.com\/file\/d\/1HJfycwDdhCKSdY_o35p9weljjAiHKr4h\/view",
+            "photo": "https:\/\/drive.google.com\/file\/d\/1pS1rSH8M8_QnMLzj5VpAyWdS5haJ3p7b\/view",
+            "food_photos": [
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1GGbUNii2p6JTmLt6qBCZB4bD4kf0y-Sj\/view",
+                    "id": "1GGbUNii2p6JTmLt6qBCZB4bD4kf0y-Sj",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1GGbUNii2p6JTmLt6qBCZB4bD4kf0y-Sj&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1GGbUNii2p6JTmLt6qBCZB4bD4kf0y-Sj&sz=w1600"
+                }
+            ],
+            "docs": {
+                "id_card": true,
+                "house_reg": true,
+                "photo": true,
+                "food": true,
+                "qualify": true
+            },
+            "auto_missing": [],
+            "doc_check": {
+                "system": {
+                    "pass": true,
+                    "label": "ครบถ้วน",
+                    "missing": []
+                },
+                "admin": {
+                    "reviewed": false,
+                    "status": "",
+                    "pass": false,
+                    "fail": false,
+                    "missing_detail": "",
+                    "review_note": "",
+                    "reviewed_at": ""
+                },
+                "effective": {
+                    "source": "system",
+                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "pass": true,
+                    "label": "ครบถ้วน (ระบบ)",
+                    "reason": ""
+                }
+            },
+            "status": "ครบถ้วน (อัตโนมัติ)",
+            "status_raw": "",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "",
+            "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
+            "key": "1af5d3428c67c23cfd4016d1505e516c",
+            "returning": false,
+            "alumni": null
+        },
+        {
+            "row": 4,
+            "timestamp": 1786673245,
+            "datetime": "2026-08-14 09:07:25",
+            "datetime_th": "14 ส.ค. 2569 · 09:07:25 น.",
+            "time_label": "14 ส.ค. 2569 · 09:07:25 น.",
+            "timestamp_raw": "14\/8\/2026, 9:07:25",
+            "name": "นางสาวจีรภา เชียงมัง",
+            "phone": "934874232",
+            "zone": "D",
+            "zone_raw": "โซน D",
+            "category": "ข้าวไข่เจียว\/ข้าวราดแกง",
+            "category_raw": "ข้าวไข่เจียว\/ข้าวราดแกง (จำกัด 1 ล็อก)",
+            "detail": "สด สะอาด อร่อย สะดวกในการรับประทาน",
+            "qualifications": "เป็นผู้ที่มีอายุตั้งแต่ 18 ปี ขึ้นไป, เป็นผู้จำหน่ายสินค้าด้วยตนเอง, ไม่เป็นบุคคลที่มีข้อพิพาททางคดีกับมหาวิทยาลัยขอนแก่น และหน่วยงานอื่น ๆ, ไม่เคยกระทำผิดกฎหมาย หรือต้องคำพิพากษาถึงที่สุดว่ากระทำผิดกฎหมาย ยกเว้นการกระทำผิดที่กระทำโดยประมาท หรือความผิดลหุโทษ, ไม่เป็นโรคที่สังคมรังเกียจ หรือโรคติดต่อที่เป็นอันตรายร้ายแรงต่อสังคม และไม่เป็นบุคคลวิกลจริตหรือเป็นบุคคลเสมือนไร้ความสามารถ",
+            "id_card": "https:\/\/drive.google.com\/file\/d\/1y5yPDd2LQLEbDIKXJpvrezWSkESaNmFM\/view",
+            "house_reg": "https:\/\/drive.google.com\/file\/d\/1Lct5g6M3bGNbhrztE8PQlpVL3ZKGaIA2\/view",
+            "photo": "https:\/\/drive.google.com\/file\/d\/1oG1c-qkvrOfeKYx83_3dBb3X6P2Cw8Y3\/view",
+            "food_photos": [
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1kU1Ojo0S7dc2nlR_2QVYsVsVGOd6VEvJ\/view",
+                    "id": "1kU1Ojo0S7dc2nlR_2QVYsVsVGOd6VEvJ",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1kU1Ojo0S7dc2nlR_2QVYsVsVGOd6VEvJ&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1kU1Ojo0S7dc2nlR_2QVYsVsVGOd6VEvJ&sz=w1600"
+                },
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1WNeE3v6hklnOZr-pCZeJixp6k099y96t\/view",
+                    "id": "1WNeE3v6hklnOZr-pCZeJixp6k099y96t",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1WNeE3v6hklnOZr-pCZeJixp6k099y96t&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1WNeE3v6hklnOZr-pCZeJixp6k099y96t&sz=w1600"
+                },
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1lQtm-wLoXsuTe26ZamHQuMSY93llL_0t\/view",
+                    "id": "1lQtm-wLoXsuTe26ZamHQuMSY93llL_0t",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1lQtm-wLoXsuTe26ZamHQuMSY93llL_0t&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1lQtm-wLoXsuTe26ZamHQuMSY93llL_0t&sz=w1600"
+                }
+            ],
+            "docs": {
+                "id_card": true,
+                "house_reg": true,
+                "photo": true,
+                "food": true,
+                "qualify": true
+            },
+            "auto_missing": [],
+            "doc_check": {
+                "system": {
+                    "pass": true,
+                    "label": "ครบถ้วน",
+                    "missing": []
+                },
+                "admin": {
+                    "reviewed": false,
+                    "status": "",
+                    "pass": false,
+                    "fail": false,
+                    "missing_detail": "",
+                    "review_note": "",
+                    "reviewed_at": ""
+                },
+                "effective": {
+                    "source": "system",
+                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "pass": true,
+                    "label": "ครบถ้วน (ระบบ)",
+                    "reason": ""
+                }
+            },
+            "status": "ครบถ้วน (อัตโนมัติ)",
+            "status_raw": "",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "",
+            "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
+            "key": "cee1cf9837205a78f2373382c850a66a",
+            "returning": false,
+            "alumni": null
+        },
+        {
+            "row": 5,
+            "timestamp": 1786679587,
+            "datetime": "2026-08-14 10:53:07",
+            "datetime_th": "14 ส.ค. 2569 · 10:53:07 น.",
+            "time_label": "14 ส.ค. 2569 · 10:53:07 น.",
+            "timestamp_raw": "14\/8\/2026, 10:53:07",
+            "name": "อาจณรงค์ ใจผง",
+            "phone": "986084838",
+            "zone": "D",
+            "zone_raw": "โซน D",
+            "category": "ผลไม้\/ขนมหวาน\/ขนมไทย",
+            "category_raw": "ผลไม้\/ขนมหวาน\/ขนมไทย (จำกัด 1 ล็อก)",
+            "detail": "มีผลไม้หลากหลาย สีสันสดใส",
+            "qualifications": "เป็นผู้ที่มีอายุตั้งแต่ 18 ปี ขึ้นไป, เป็นผู้จำหน่ายสินค้าด้วยตนเอง, ไม่เป็นบุคคลที่มีข้อพิพาททางคดีกับมหาวิทยาลัยขอนแก่น และหน่วยงานอื่น ๆ, ไม่เคยกระทำผิดกฎหมาย หรือต้องคำพิพากษาถึงที่สุดว่ากระทำผิดกฎหมาย ยกเว้นการกระทำผิดที่กระทำโดยประมาท หรือความผิดลหุโทษ, ไม่เป็นโรคที่สังคมรังเกียจ หรือโรคติดต่อที่เป็นอันตรายร้ายแรงต่อสังคม และไม่เป็นบุคคลวิกลจริตหรือเป็นบุคคลเสมือนไร้ความสามารถ",
+            "id_card": "https:\/\/drive.google.com\/file\/d\/1rBUXMrP3GFBIQ9a49Y57sy5--W0wLm7L\/view",
+            "house_reg": "https:\/\/drive.google.com\/file\/d\/1gLkABM8QVNgHnSp6--a9te_FmZVnQ203\/view",
+            "photo": "https:\/\/drive.google.com\/file\/d\/1UMA_sU3sozGR7_J9xwj-qtakNvkFtoGM\/view",
+            "food_photos": [
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1IZ0zG8mcuJLvWitPgIO6n0SCrO2ZtPxX\/view",
+                    "id": "1IZ0zG8mcuJLvWitPgIO6n0SCrO2ZtPxX",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1IZ0zG8mcuJLvWitPgIO6n0SCrO2ZtPxX&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1IZ0zG8mcuJLvWitPgIO6n0SCrO2ZtPxX&sz=w1600"
+                }
+            ],
+            "docs": {
+                "id_card": true,
+                "house_reg": true,
+                "photo": true,
+                "food": true,
+                "qualify": true
+            },
+            "auto_missing": [],
+            "doc_check": {
+                "system": {
+                    "pass": true,
+                    "label": "ครบถ้วน",
+                    "missing": []
+                },
+                "admin": {
+                    "reviewed": false,
+                    "status": "",
+                    "pass": false,
+                    "fail": false,
+                    "missing_detail": "",
+                    "review_note": "",
+                    "reviewed_at": ""
+                },
+                "effective": {
+                    "source": "system",
+                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "pass": true,
+                    "label": "ครบถ้วน (ระบบ)",
+                    "reason": ""
+                }
+            },
+            "status": "ครบถ้วน (อัตโนมัติ)",
+            "status_raw": "",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "",
+            "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
+            "key": "47fd6455360204e980a7060ffa28b886",
+            "returning": false,
+            "alumni": null
+        },
+        {
+            "row": 6,
+            "timestamp": 1786680927,
+            "datetime": "2026-08-14 11:15:27",
+            "datetime_th": "14 ส.ค. 2569 · 11:15:27 น.",
+            "time_label": "14 ส.ค. 2569 · 11:15:27 น.",
+            "timestamp_raw": "14\/8\/2026, 11:15:27",
+            "name": "กุญช์ภัสส์ ทัศคร",
+            "phone": "660151150",
+            "zone": "D",
+            "zone_raw": "โซน D",
+            "category": "ข้าวไข่เจียว\/ข้าวราดแกง",
+            "category_raw": "ข้าวไข่เจียว\/ข้าวราดแกง (จำกัด 1 ล็อก)",
+            "detail": "มาม่าบุฟเฟ่ต์",
+            "qualifications": "เป็นผู้ที่มีอายุตั้งแต่ 18 ปี ขึ้นไป, เป็นผู้จำหน่ายสินค้าด้วยตนเอง, ไม่เป็นบุคคลที่มีข้อพิพาททางคดีกับมหาวิทยาลัยขอนแก่น และหน่วยงานอื่น ๆ, ไม่เคยกระทำผิดกฎหมาย หรือต้องคำพิพากษาถึงที่สุดว่ากระทำผิดกฎหมาย ยกเว้นการกระทำผิดที่กระทำโดยประมาท หรือความผิดลหุโทษ, ไม่เป็นโรคที่สังคมรังเกียจ หรือโรคติดต่อที่เป็นอันตรายร้ายแรงต่อสังคม และไม่เป็นบุคคลวิกลจริตหรือเป็นบุคคลเสมือนไร้ความสามารถ",
+            "id_card": "https:\/\/drive.google.com\/file\/d\/1jUmnj5_F0uMu3drsOy9APqO2_mTqCCJ_\/view",
+            "house_reg": "https:\/\/drive.google.com\/file\/d\/1jx-pzv4Q5dED77V7bzdNruN20OBk1Xrv\/view",
+            "photo": "https:\/\/drive.google.com\/file\/d\/1PYSp9POwLlCS23vAe3_ePe-Rf50GNcYV\/view",
+            "food_photos": [
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1HgELGpDQbEXDrY8pQt8FeqlORUM_qL2K\/view",
+                    "id": "1HgELGpDQbEXDrY8pQt8FeqlORUM_qL2K",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1HgELGpDQbEXDrY8pQt8FeqlORUM_qL2K&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1HgELGpDQbEXDrY8pQt8FeqlORUM_qL2K&sz=w1600"
+                },
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1XUxRP2Qr41yMiob0YHmL6AlJ4IiGfLca\/view",
+                    "id": "1XUxRP2Qr41yMiob0YHmL6AlJ4IiGfLca",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1XUxRP2Qr41yMiob0YHmL6AlJ4IiGfLca&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1XUxRP2Qr41yMiob0YHmL6AlJ4IiGfLca&sz=w1600"
+                },
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1lMnoY6_ZRaNlat4FKnEFhdMIc5ilcW1b\/view",
+                    "id": "1lMnoY6_ZRaNlat4FKnEFhdMIc5ilcW1b",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1lMnoY6_ZRaNlat4FKnEFhdMIc5ilcW1b&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1lMnoY6_ZRaNlat4FKnEFhdMIc5ilcW1b&sz=w1600"
+                },
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1vUbzgJvBy9zB00V0Sj4JRMxzUCW9-Q6e\/view",
+                    "id": "1vUbzgJvBy9zB00V0Sj4JRMxzUCW9-Q6e",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1vUbzgJvBy9zB00V0Sj4JRMxzUCW9-Q6e&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1vUbzgJvBy9zB00V0Sj4JRMxzUCW9-Q6e&sz=w1600"
+                },
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1SQ1A43l5FfkAjCRnk8QI5DCiJLpXC-cL\/view",
+                    "id": "1SQ1A43l5FfkAjCRnk8QI5DCiJLpXC-cL",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1SQ1A43l5FfkAjCRnk8QI5DCiJLpXC-cL&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1SQ1A43l5FfkAjCRnk8QI5DCiJLpXC-cL&sz=w1600"
+                }
+            ],
+            "docs": {
+                "id_card": true,
+                "house_reg": true,
+                "photo": true,
+                "food": true,
+                "qualify": true
+            },
+            "auto_missing": [],
+            "doc_check": {
+                "system": {
+                    "pass": true,
+                    "label": "ครบถ้วน",
+                    "missing": []
+                },
+                "admin": {
+                    "reviewed": false,
+                    "status": "",
+                    "pass": false,
+                    "fail": false,
+                    "missing_detail": "",
+                    "review_note": "",
+                    "reviewed_at": ""
+                },
+                "effective": {
+                    "source": "system",
+                    "source_label": "ยึดตามที่ระบบตรวจ (รอ Admin)",
+                    "pass": true,
+                    "label": "ครบถ้วน (ระบบ)",
+                    "reason": ""
+                }
+            },
+            "status": "ครบถ้วน (อัตโนมัติ)",
+            "status_raw": "",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "",
+            "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
+            "key": "0ab9d356c3f942a94128dfd85bd30019",
+            "returning": false,
+            "alumni": null
+        },
+        {
+            "row": 7,
+            "timestamp": 1786686914,
+            "datetime": "2026-08-14 12:55:14",
+            "datetime_th": "14 ส.ค. 2569 · 12:55:14 น.",
+            "time_label": "14 ส.ค. 2569 · 12:55:14 น.",
+            "timestamp_raw": "14\/8\/2026, 12:55:14",
+            "name": "นายไพทูรย์ บุญสิงห์",
+            "phone": "929177899",
+            "zone": "A",
+            "zone_raw": "โซน A",
+            "category": "ปอเปี๊ยะ\/แหนมคลุก",
+            "category_raw": "ปอเปี๊ยะ\/แหนมคลุก",
+            "detail": "ยำแหนมข้าวทอด",
+            "qualifications": "เป็นผู้ที่มีอายุตั้งแต่ 18 ปี ขึ้นไป, เป็นผู้จำหน่ายสินค้าด้วยตนเอง, ไม่เป็นบุคคลที่มีข้อพิพาททางคดีกับมหาวิทยาลัยขอนแก่น และหน่วยงานอื่น ๆ, ไม่เคยกระทำผิดกฎหมาย หรือต้องคำพิพากษาถึงที่สุดว่ากระทำผิดกฎหมาย ยกเว้นการกระทำผิดที่กระทำโดยประมาท หรือความผิดลหุโทษ, ไม่เป็นโรคที่สังคมรังเกียจ หรือโรคติดต่อที่เป็นอันตรายร้ายแรงต่อสังคม และไม่เป็นบุคคลวิกลจริตหรือเป็นบุคคลเสมือนไร้ความสามารถ",
+            "id_card": "https:\/\/drive.google.com\/file\/d\/1ZcVYjof_eHdqh4AOLv47PA8TFhQSF1Q_\/view",
+            "house_reg": "https:\/\/drive.google.com\/file\/d\/1dl9wwZ9BSh03zkZ2BFJhUh2n6A8bCmWH\/view",
+            "photo": "https:\/\/drive.google.com\/file\/d\/1fbtjoaLPYWtsBTRFPod6q62GGpSdAL8q\/view",
+            "food_photos": [
+                {
+                    "url": "https:\/\/drive.google.com\/file\/d\/1lP-Jp1EPPCUQ2ZFTcCvZDs5d4jTAUkeQ\/view",
+                    "id": "1lP-Jp1EPPCUQ2ZFTcCvZDs5d4jTAUkeQ",
+                    "thumb": "https:\/\/drive.google.com\/thumbnail?id=1lP-Jp1EPPCUQ2ZFTcCvZDs5d4jTAUkeQ&sz=w220",
+                    "full": "https:\/\/drive.google.com\/thumbnail?id=1lP-Jp1EPPCUQ2ZFTcCvZDs5d4jTAUkeQ&sz=w1600"
+                }
+            ],
+            "docs": {
+                "id_card": true,
+                "house_reg": true,
+                "photo": true,
+                "food": true,
+                "qualify": true
+            },
+            "auto_missing": [],
+            "doc_check": {
+                "system": {
+                    "pass": true,
+                    "label": "ครบถ้วน",
+                    "missing": []
+                },
+                "admin": {
+                    "reviewed": true,
+                    "status": "ครบถ้วน",
+                    "pass": true,
+                    "fail": false,
+                    "missing_detail": "",
+                    "review_note": "",
+                    "reviewed_at": ""
+                },
+                "effective": {
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
+                    "pass": true,
+                    "label": "ครบถ้วน",
+                    "reason": ""
+                }
+            },
+            "status": "ครบถ้วน",
+            "status_raw": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "",
+            "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
+            "key": "2cb80149bb7e84ec2d4d57aece9bbf99",
+            "status_from_store": true,
+            "returning": false,
+            "alumni": null
+        }
+    ],
+    "shop_report": [
+        {
+            "slot": "A8",
+            "zone": "A",
+            "category": "ปอเปี๊ยะ\/แหนมคลุก",
+            "filled": false,
+            "cross_assigned": false,
+            "operator": null
+        },
+        {
+            "slot": "D7",
+            "zone": "D",
+            "category": "ข้าวไข่เจียว\/ข้าวราดแกง",
+            "filled": false,
+            "cross_assigned": false,
+            "operator": null
+        },
+        {
+            "slot": "D8",
+            "zone": "D",
+            "category": "ผลไม้\/ขนมหวาน\/ขนมไทย",
+            "filled": false,
+            "cross_assigned": false,
+            "operator": null
+        }
+    ],
+    "doc_summary": {
+        "total": 6,
+        "system_ok": 6,
+        "system_fail": 0,
+        "admin_ok": 1,
+        "admin_fail": 0,
+        "admin_pending": 5,
+        "effective_ok": 6,
+        "effective_fail": 0
+    },
+    "alumni": {
+        "year": 2568,
+        "label": "SCI Week 2568",
+        "source": "Shop-Sci-Week 2025-signed.pdf",
+        "source_ref": "ประกาศคณะวิทยาศาสตร์ ที่ 107\/2568",
+        "total_prev_selected": 18,
+        "returning_count": 0
+    },
+    "storage": {
+        "data_dir": "data",
+        "data_writable": true,
+        "status_store": "status_store_r3.json",
+        "status_store_writable": true,
+        "xlsx": "แบบตอบรับ69_รอบ3.xlsx",
+        "xlsx_writable": true,
+        "can_save_status": true,
+        "round": {
+            "id": 3,
+            "year": 2569,
+            "label": "รอบที่ 3",
+            "short": "รอบ 3",
+            "title": "ร้านค้าประจำปี 2569 รอบที่ 3",
+            "status_store": "status_store_r3.json",
+            "payload": "applicants_r3.json",
+            "xlsx_canonical": "แบบตอบรับ69_รอบ3.xlsx"
+        },
+        "hint": "บันทึกสถานะได้ทั้งไฟล์สถานะและ Excel (ร้านค้าประจำปี 2569 รอบที่ 3)"
+    },
+    "status_store": {
+        "merged": 1,
+        "store_rows": 1,
+        "store_updated_at": "2026-08-14T15:40:00+07:00"
+    },
+    "policy": "บันทึกเฉพาะสถานะตรวจเอกสาร\/คัดเลือก\/ล็อก — ไม่ลบรายการผู้สมัคร · บนเซิร์ฟเวอร์สถานะเก็บที่ data\/status_store_r3.json เป็นหลัก และซิงก์ Excel เมื่อเขียนได้",
+    "notice": "รอบที่ 3 แสดงเฉพาะล็อกที่ยังไม่ถูกคัดเลือกในรอบที่ 1–2 (เหลือ 3 จาก 40 ล็อก) · ข้อมูลผู้สมัครอ่านจาก Excel เสมอ · สถานะ Admin\/คัดเลือกระบบบันทึกที่ data\/status_store_r3.json (แม้ Excel บนเซิร์ฟเวอร์ล็อกสิทธิ์เขียน) · ไม่ลบแถวผู้สมัคร · เวลาที่แสดงเป็นเวลาไทย",
+    "round": {
+        "id": 3,
+        "year": 2569,
+        "label": "รอบที่ 3",
+        "short": "รอบ 3",
+        "title": "ร้านค้าประจำปี 2569 รอบที่ 3",
+        "status_store": "status_store_r3.json",
+        "payload": "applicants_r3.json",
+        "xlsx_canonical": "แบบตอบรับ69_รอบ3.xlsx"
+    },
+    "rounds": [
+        {
+            "id": 1,
+            "year": 2569,
+            "label": "รอบที่ 1",
+            "short": "รอบ 1",
+            "title": "ร้านค้าประจำปี 2569 รอบที่ 1",
+            "status_store": "status_store.json",
+            "payload": "applicants.json",
+            "xlsx_canonical": "แบบตอบรับ.xlsx",
+            "xlsx": "แบบตอบรับ.xlsx",
+            "available": true,
+            "error": null,
+            "active": false
+        },
+        {
+            "id": 2,
+            "year": 2569,
+            "label": "รอบที่ 2",
+            "short": "รอบ 2",
+            "title": "ร้านค้าประจำปี 2569 รอบที่ 2",
+            "status_store": "status_store_r2.json",
+            "payload": "applicants_r2.json",
+            "xlsx_canonical": "แบบตอบรับ69_รอบ2.xlsx",
+            "xlsx": "แบบตอบรับ69_รอบ2.xlsx",
+            "available": true,
+            "error": null,
+            "active": false
+        },
+        {
+            "id": 3,
+            "year": 2569,
+            "label": "รอบที่ 3",
+            "short": "รอบ 3",
+            "title": "ร้านค้าประจำปี 2569 รอบที่ 3",
+            "status_store": "status_store_r3.json",
+            "payload": "applicants_r3.json",
+            "xlsx_canonical": "แบบตอบรับ69_รอบ3.xlsx",
+            "xlsx": "แบบตอบรับ69_รอบ3.xlsx",
+            "available": true,
+            "error": null,
+            "active": true
+        }
+    ]
+}

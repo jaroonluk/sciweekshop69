@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SCI Shop Review · พิจารณาร้านค้า</title>
+  <title>SCI Shop Review · ปี 2569</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -52,6 +52,13 @@
       border-bottom: 1px solid rgba(255,255,255,.45);
       box-shadow: 0 8px 24px rgba(180,110,0,.15);
       z-index: 30;
+      flex-wrap: wrap;
+    }
+    .brand-block {
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+      flex-wrap: wrap;
     }
     .brand {
       font-family: "Chakra Petch", sans-serif;
@@ -60,9 +67,96 @@
       margin: 0;
       white-space: nowrap;
     }
-    .top-meta { flex: 1; min-width: 0; color: #3d3118; font-size: .92rem; }
+    .round-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: .15rem;
+      padding: .16rem;
+      background: rgba(255,255,255,.42);
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: 999px;
+    }
+    .round-year {
+      font-family: "Chakra Petch", sans-serif;
+      font-weight: 700;
+      font-size: .8rem;
+      padding: 0 .4rem 0 .55rem;
+      color: #3d3118;
+      white-space: nowrap;
+    }
+    .round-btn {
+      font: inherit;
+      font-family: "Chakra Petch", sans-serif;
+      font-weight: 700;
+      font-size: .82rem;
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: .32rem .62rem;
+      background: transparent;
+      color: #3d3118;
+    }
+    .round-btn:hover { background: rgba(255,255,255,.7); }
+    .round-btn.active {
+      background: var(--ink);
+      color: var(--sun);
+    }
+    .round-btn.missing { opacity: .55; }
+    .top-meta { flex: 1; min-width: 12rem; color: #3d3118; font-size: .92rem; }
     .top-meta b { font-family: "Chakra Petch", sans-serif; }
-    .top-actions { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .top-actions { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; }
+    .user-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .22rem .35rem .22rem .22rem;
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: 999px;
+      max-width: 220px;
+    }
+    .user-chip img, .user-chip .user-fallback {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex: 0 0 auto;
+      background: var(--ink);
+      color: var(--sun);
+      display: grid;
+      place-items: center;
+      font-family: "Chakra Petch", sans-serif;
+      font-weight: 700;
+      font-size: .75rem;
+    }
+    .user-chip .user-meta {
+      min-width: 0;
+      line-height: 1.15;
+      padding-right: .15rem;
+    }
+    .user-chip .user-name {
+      display: block;
+      font-family: "Chakra Petch", sans-serif;
+      font-weight: 700;
+      font-size: .78rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .user-chip .user-email {
+      display: block;
+      font-size: .68rem;
+      color: #3d3118;
+      opacity: .75;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .btn-logout {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+    }
+    .btn-logout svg { width: 15px; height: 15px; }
 
     .btn {
       font: inherit;
@@ -176,6 +270,21 @@
     .chip.empty { background: #f4f1ea; border-color: #ddd4c4; color: var(--muted); }
     .chip.warn { background: #fff1e6; border-color: #ffd0a8; color: var(--warn); }
     .chip.danger { background: #fdecea; border-color: #f5c2bd; color: var(--danger); }
+    .chip.returning {
+      background: #e8f0ff;
+      border-color: #9db7f0;
+      color: #1e3a8a;
+    }
+    .applicant.returning {
+      box-shadow: inset 3px 0 0 #3b6fd9;
+    }
+    .alumni-note {
+      margin: .35rem 0 0;
+      font-size: .82rem;
+      color: #1e3a8a;
+      font-weight: 600;
+      line-height: 1.35;
+    }
 
     .status-panel {
       display: grid;
@@ -355,6 +464,36 @@
       color: var(--sun);
       border-color: var(--ink);
     }
+    .pay-check {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+      padding: .35rem .55rem;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+    .pay-check input {
+      width: 1.05rem;
+      height: 1.05rem;
+      accent-color: #1a7f4b;
+      cursor: pointer;
+    }
+    .pay-check.is-paid {
+      background: #e8f7ef;
+      border-color: #9fd4b5;
+      color: #146c3e;
+    }
+    .pay-check.is-unpaid {
+      background: #fff8e8;
+      border-color: #f0d48a;
+      color: #8a5a00;
+    }
+    .summary-table tr.row-paid td { background: #f4fbf7; }
+    .summary-table tr.row-unpaid td { background: #fffaf0; }
     .policy-note {
       font-size: .8rem;
       color: var(--muted);
@@ -791,6 +930,18 @@
     .applicant.sel-pending {
       background: linear-gradient(180deg, #fffdf8, #fff);
     }
+    .occ-banner {
+      margin: 0 0 .85rem;
+      padding: .7rem .9rem;
+      border-radius: 14px;
+      background: #eef4ff;
+      border: 1px solid #c5d4f5;
+      color: #1e3a8a;
+      font-size: .92rem;
+    }
+    .group.closed-r1 .group-head {
+      background: linear-gradient(90deg, #f1f5ff, #fff8e8);
+    }
     .app-top {
       display: grid;
       grid-template-columns: auto 1fr auto;
@@ -810,7 +961,57 @@
       background: linear-gradient(135deg, var(--sun), var(--amber));
       color: var(--ink);
     }
-    .app-name { margin: 0; font-family: "Chakra Petch", sans-serif; font-size: 1.05rem; }
+    .app-name {
+      margin: 0;
+      font-family: "Chakra Petch", sans-serif;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      flex-wrap: wrap;
+    }
+    .app-name .nm { min-width: 0; }
+    .face-ava,
+    button.thumb.face-ava {
+      width: 2.15rem;
+      height: 2.15rem;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      padding: 0;
+      border: 2px solid #e4d7c0;
+      background: #f4eee4;
+      display: grid;
+      place-items: center;
+      cursor: default;
+    }
+    button.face-ava {
+      cursor: zoom-in;
+    }
+    .face-ava img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .face-ava.missing {
+      background: #c0392b;
+      border-color: #9b2c23;
+      color: #fff;
+      cursor: default;
+    }
+    .face-ava .face-x {
+      display: none;
+      width: 1.05rem;
+      height: 1.05rem;
+    }
+    .face-ava .face-x svg {
+      width: 100%;
+      height: 100%;
+      stroke: #fff;
+    }
+    .face-ava.missing .face-x { display: block; }
+    .face-ava.missing img { display: none; }
     .app-sub { margin: .15rem 0 0; color: var(--muted); font-size: .9rem; }
     .time {
       font-family: "Chakra Petch", sans-serif;
@@ -1021,14 +1222,39 @@
 <body>
   <div class="app">
     <header class="topbar">
-      <h1 class="brand">SCI Shop Review</h1>
+      <div class="brand-block">
+        <h1 class="brand">SCI Shop Review</h1>
+        <div class="round-switch" id="roundSwitch" role="group" aria-label="เลือกรอบข้อมูลร้านค้าปี 2569">
+          <span class="round-year">ปี 2569</span>
+          <button type="button" class="round-btn active" data-round="1" id="btnRound1">รอบที่ 1</button>
+          <button type="button" class="round-btn" data-round="2" id="btnRound2">รอบที่ 2</button>
+          <button type="button" class="round-btn" data-round="3" id="btnRound3">รอบที่ 3</button>
+        </div>
+      </div>
       <div class="top-meta" id="topMeta">กำลังโหลด...</div>
       <div class="top-actions">
         <button class="btn ghost" type="button" id="btnRebuild">รีเฟรชข้อมูล</button>
+        <button class="btn ok" type="button" id="btnExportSelectedDocx" title="ดาวน์โหลดรายชื่อร้านที่คัดเลือกเป็น Word">ดาวน์โหลด Word ประกาศ</button>
         <label class="btn teal" style="display:inline-flex;align-items:center;gap:.35rem;cursor:pointer">
           นำเข้า Excel
           <input type="file" id="fileUpload" accept=".xlsx" hidden />
         </label>
+        <div class="user-chip" id="userChip" hidden title="">
+          <span class="user-fallback" id="userAvatarFallback" aria-hidden="true">U</span>
+          <img id="userAvatar" alt="" hidden />
+          <span class="user-meta">
+            <span class="user-name" id="userName">—</span>
+            <span class="user-email" id="userEmail">—</span>
+          </span>
+        </div>
+        <a class="btn ghost btn-logout" id="btnLogout" href="logout.php" title="ออกจากระบบ">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <path d="M16 17l5-5-5-5"/>
+            <path d="M21 12H9"/>
+          </svg>
+          ออก
+        </a>
       </div>
     </header>
 
@@ -1040,8 +1266,9 @@
             <button type="button" id="tabReview" class="active">พิจารณา</button>
             <button type="button" id="tabSummary">สรุปผู้สมัคร</button>
             <button type="button" id="tabReport">รายงานร้าน</button>
+            <button type="button" id="tabFinance">การเงิน</button>
           </div>
-          <p class="policy-note" id="policyNote">บันทึกสถานะที่ data/status_store.json · ซิงก์ Excel เมื่อเขียนได้ · ไม่ลบผู้สมัคร</p>
+          <p class="policy-note" id="policyNote">เลือกรอบปี 2569 แล้วทำงานได้ครบทุกเมนู · สถานะแยกไฟล์ต่อรอบ · ไม่ลบผู้สมัคร</p>
         </div>
         <div class="side-block search">
           <h3>ค้นหา</h3>
@@ -1057,6 +1284,11 @@
           <div style="margin-top:.55rem;display:flex;gap:.35rem;flex-wrap:wrap">
             <button class="btn teal" type="button" id="btnStatusSummary" style="padding:.35rem .7rem">สรุปทุกสถานะ</button>
           </div>
+        </div>
+        <div class="side-block" id="financeSideBlock" style="display:none">
+          <h3>สถานะชำระเงิน</h3>
+          <div class="filter-list" id="paymentFilters"></div>
+          <p class="policy-note" style="margin-top:.55rem">ติ๊กสถานะชำระเงินของร้านที่อนุมัติแล้ว เพื่อใช้พิจารณาปีต่อไป</p>
         </div>
         <div class="side-block" id="docSummarySideBlock">
           <h3>ภาพรวมตรวจเอกสาร</h3>
@@ -1174,16 +1406,73 @@
       D: { label: "โซน D", shops: 8 },
     };
 
+    const ROUND_STORAGE_KEY = "sci_shop_round";
+
+    function readStoredRound() {
+      const n = parseInt(localStorage.getItem(ROUND_STORAGE_KEY) || "1", 10);
+      return n === 2 || n === 3 ? n : 1;
+    }
+
     const state = {
       data: null,
+      round: readStoredRound(),
       zone: "A",
       q: "",
       selFilter: "ALL",
       docFilter: "ALL", // ALL | admin_ok | admin_fail | admin_pending | admin_wait
+      returningOnly: false,
       editing: null,
-      view: "review", // review | summary | report
+      view: "review", // review | summary | report | finance
       assignKey: null,
+      payFilter: "ALL", // ALL | paid | unpaid
     };
+
+    function currentRound() {
+      const n = Number(state.round);
+      return n === 2 || n === 3 ? n : 1;
+    }
+
+    function roundMeta() {
+      return state.data?.round || {
+        id: currentRound(),
+        year: 2569,
+        label: "รอบที่ " + currentRound(),
+        title: "ร้านค้าประจำปี 2569 รอบที่ " + currentRound(),
+      };
+    }
+
+    function priorRoundLabel() {
+      const occ = occupancy();
+      if (occ.prior_label) return occ.prior_label;
+      return currentRound() === 3 ? "รอบที่ 1–2" : "รอบที่ 1";
+    }
+
+    function apiUrl(action) {
+      return "api.php?action=" + encodeURIComponent(action) + "&round=" + currentRound() + "&_=" + Date.now();
+    }
+
+    function occupancy() {
+      return state.data?.round1_occupied || {
+        enabled: false, count: 0, total: 0, remaining: 0, slots: [], closed_categories: [],
+      };
+    }
+
+    function zoneSlotCount(z) {
+      return (state.data?.slots || []).filter(s => s.zone === z).length;
+    }
+
+    function hasOpenSlotGroup(a, data) {
+      return (data.groups || []).some(g => g.zone === a.zone && matchCat(a.category, g.cat));
+    }
+
+    function displacedApplicants(zone, data) {
+      const occ = occupancy();
+      if (!occ.enabled) return [];
+      return (data.applicants || []).filter(a => {
+        if (zone !== "ALL" && a.zone !== zone) return false;
+        return !hasOpenSlotGroup(a, data);
+      });
+    }
 
     function esc(s) {
       return String(s ?? "").replace(/[&<>"']/g, c => ({
@@ -1215,8 +1504,24 @@
       return state.selFilter === "ALL" || a.selection === state.selFilter;
     }
 
+    function passReturningFilter(a) {
+      return !state.returningOnly || !!a.returning;
+    }
+
+    function alumniLabel(a) {
+      if (!a?.returning || !a.alumni) return "";
+      const slot = a.alumni.slot ? ` · ล็อก ${a.alumni.slot}` : "";
+      const year = a.alumni.year || 2568;
+      return `เจ้าเดิมปี ${year}${slot}`;
+    }
+
+    function returningChip(a) {
+      if (!a?.returning) return "";
+      return `<span class="chip returning" title="${esc(a.alumni?.name || "")}">${esc(alumniLabel(a))}</span>`;
+    }
+
     function matchCat(a, b) {
-      const clean = x => String(x||"").replace(/\s*\(จำกัด[^)]*\)\s*/g,"").replace(/[\s\/\(\)\-]/g,"").trim();
+      const clean = x => String(x||"").replace(/\s*\(จำกัด[^)]*\)\s*/g,"").replace(/\*+/g,"").replace(/[\s\/\(\)\-]/g,"").trim();
       return clean(a) === clean(b);
     }
 
@@ -1290,7 +1595,8 @@
     }
 
     function crossOptionLabel(a, slotId) {
-      return [`โซน ${a.zone}`, a.category, a.name].join(" · ");
+      const ret = a.returning ? ` · ${alumniLabel(a)}` : "";
+      return [`โซน ${a.zone}`, a.category, a.name].join(" · ") + ret;
     }
 
     function renderCrossOptions(slotId, slotZone, slotCat, selectedRow = null) {
@@ -1328,13 +1634,17 @@
               } else {
                 options = list.map(a => {
                   const takenElsewhere = a.assigned_slot && a.assigned_slot !== sid && a.selection === "ได้รับการคัดเลือก";
-                  const label = `${a.name}${takenElsewhere ? ` (ล็อก ${a.assigned_slot})` : ""}`;
+                  const ret = a.returning ? ` · ${alumniLabel(a)}` : "";
+                  const label = `${a.name}${takenElsewhere ? ` (ล็อก ${a.assigned_slot})` : ""}${ret}`;
                   const selected = selectedRow === a.row ? "selected" : "";
                   return `<option value="${a.row}" ${selected}>${esc(label)}</option>`;
                 }).join("");
               }
               const crossBadge = info?.cross_assigned
                 ? `<span class="chip warn">จากรายการอื่น · สมัคร ${esc(op.applied_category || "")}</span>`
+                : "";
+              const returnBadge = op?.returning
+                ? `<span class="chip returning">${esc(alumniLabel(op) || "เจ้าเดิมปี 2568")}</span>`
                 : "";
               return `
                 <div class="shop-slot ${op ? "filled" : ""} ${isEmptyCat ? "cross-slot" : ""}">
@@ -1343,7 +1653,7 @@
                     ${op
                       ? `<b>${esc(op.name)}</b>
                          <span>โทร ${esc(op.phone || "-")} · แถว ${op.row}</span>
-                         ${crossBadge}`
+                         ${crossBadge}${returnBadge}`
                       : `<b style="color:var(--muted)">${isEmptyCat ? "ยังไม่มีผู้ประกอบการ (ล็อกว่าง)" : "ยังไม่มีผู้ประกอบการ"}</b>
                          <span>${isEmptyCat ? "เลือกจากผู้สมัครรายการอื่น" : "รอการคัดเลือก"}</span>`}
                   </div>
@@ -1357,6 +1667,145 @@
                 </div>`;
             }).join("")}
           </div>
+        </div>`;
+    }
+
+    function paymentStatusOf(a) {
+      return (a?.payment_status === "paid") ? "paid" : "unpaid";
+    }
+
+    function paymentLabel(status) {
+      return status === "paid" ? "ชำระแล้ว" : "ยังไม่ชำระ";
+    }
+
+    function slotSortKey(slot) {
+      const m = String(slot || "").toUpperCase().match(/^([ABCD])(\d{1,2})$/);
+      if (!m) return [9, 999, String(slot || "")];
+      return ["ABCD".indexOf(m[1]), parseInt(m[2], 10), m[0]];
+    }
+
+    function financeZoneOf(a) {
+      const slot = String(a.assigned_slot || "").toUpperCase();
+      if (/^[ABCD]\d{1,2}$/.test(slot)) return slot[0];
+      return a.zone;
+    }
+
+    function approvedFinanceList(zoneScope) {
+      const zones = zoneScope === "ALL" ? ["A","B","C","D"] : [zoneScope];
+      return (state.data?.applicants || [])
+        .filter(a => a.selection === "ได้รับการคัดเลือก" && zones.includes(financeZoneOf(a)))
+        .sort((x, y) => {
+          const sx = slotSortKey(x.assigned_slot);
+          const sy = slotSortKey(y.assigned_slot);
+          for (let i = 0; i < 3; i++) {
+            if (sx[i] !== sy[i]) return sx[i] < sy[i] ? -1 : 1;
+          }
+          return String(x.name || "").localeCompare(String(y.name || ""), "th");
+        });
+    }
+
+    function renderFinanceView() {
+      const data = state.data;
+      const scopeLabel = state.zone === "ALL" ? "ทุกโซน" : zoneMeta[state.zone].label;
+      let list = approvedFinanceList(state.zone);
+      const paidCount = list.filter(a => paymentStatusOf(a) === "paid").length;
+      const unpaidCount = list.length - paidCount;
+      const q = state.q.trim().toLowerCase();
+
+      list = list.filter(a => {
+        if (state.payFilter === "paid" && paymentStatusOf(a) !== "paid") return false;
+        if (state.payFilter === "unpaid" && paymentStatusOf(a) !== "unpaid") return false;
+        if (!q) return true;
+        return [
+          a.name, a.phone, a.zone, a.category, a.assigned_slot,
+          paymentLabel(paymentStatusOf(a)), alumniLabel(a), a.payment_note
+        ].join(" ").toLowerCase().includes(q);
+      });
+
+      const zones = state.zone === "ALL" ? ["A","B","C","D"] : [state.zone];
+
+      return `
+        <div class="report-wrap">
+          <div style="display:flex;flex-wrap:wrap;gap:.75rem;align-items:flex-start;justify-content:space-between">
+            <div>
+              <h2 style="margin:0 0 .35rem;font-family:'Chakra Petch',sans-serif">การเงิน · ร้านที่ได้รับการอนุมัติ</h2>
+              <p style="margin:0;color:var(--muted)">รายการร้านค้าทั้งหมดที่คัดเลือกแล้ว · ติ๊กสถานะชำระเงินเพื่อใช้พิจารณาในปีต่อไป · ${esc(roundMeta().title || "")} · ขอบเขต: <b>${esc(scopeLabel)}</b></p>
+            </div>
+          </div>
+
+          <div class="summary-kpis">
+            <div class="kpi teal">
+              <div class="k-label">อนุมัติทั้งหมด</div>
+              <div class="k-val">${paidCount + unpaidCount}</div>
+            </div>
+            <div class="kpi ok">
+              <div class="k-label">ชำระแล้ว</div>
+              <div class="k-val">${paidCount}</div>
+            </div>
+            <div class="kpi warn">
+              <div class="k-label">ยังไม่ชำระ</div>
+              <div class="k-val">${unpaidCount}</div>
+            </div>
+            <div class="kpi">
+              <div class="k-label">กำลังแสดง</div>
+              <div class="k-val">${list.length}</div>
+            </div>
+          </div>
+
+          <div class="report-stats">
+            <span class="chip ok">ชำระแล้ว ${paidCount}</span>
+            <span class="chip ${unpaidCount ? "warn" : "ok"}">ยังไม่ชำระ ${unpaidCount}</span>
+            <span class="chip">โซนที่ดู: ${esc(scopeLabel)}</span>
+          </div>
+
+          ${zones.map(z => {
+            const rows = list.filter(a => financeZoneOf(a) === z);
+            if (!rows.length) {
+              if (q || state.payFilter !== "ALL" || state.zone === "ALL") return "";
+            }
+            return `
+              <div>
+                <h3 class="report-zone">${zoneMeta[z].label} · อนุมัติ ${rows.length} ร้าน</h3>
+                <div class="summary-table-wrap">
+                  <table class="summary-table">
+                    <thead>
+                      <tr>
+                        <th>ล็อก</th>
+                        <th>ประเภทร้านค้า</th>
+                        <th>ผู้ขาย</th>
+                        <th>เบอร์โทร</th>
+                        <th>สถานะชำระเงิน</th>
+                        <th>บันทึกล่าสุด</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${rows.length ? rows.map(a => {
+                        const paid = paymentStatusOf(a) === "paid";
+                        return `
+                          <tr class="${paid ? "row-paid" : "row-unpaid"}">
+                            <td>${a.assigned_slot ? `<span class="slot-pill">${esc(a.assigned_slot)}</span>` : `<span class="chip warn">ยังไม่ระบุล็อก</span>`}</td>
+                            <td>${esc(a.category || "-")}</td>
+                            <td>
+                              <div class="name">${esc(a.name || "-")}</div>
+                              ${a.returning ? `<div style="margin-top:.25rem">${returningChip(a)}</div>` : ""}
+                              ${a.payment_note ? `<div class="muted" style="margin-top:.2rem">${esc(a.payment_note)}</div>` : ""}
+                            </td>
+                            <td>${esc(formatPhoneDisplay(a.phone))}</td>
+                            <td>
+                              <label class="pay-check ${paid ? "is-paid" : "is-unpaid"}">
+                                <input type="checkbox" data-pay-toggle="${a.row}" ${paid ? "checked" : ""} />
+                                <span>${paid ? "ชำระแล้ว" : "ยังไม่ชำระ"}</span>
+                              </label>
+                            </td>
+                            <td class="muted">${paid && a.payment_at ? esc(a.payment_at) : "—"}</td>
+                          </tr>`;
+                      }).join("") : `<tr><td colspan="6" class="muted">ไม่มีร้านที่ตรงเงื่อนไขในโซนนี้</td></tr>`}
+                    </tbody>
+                  </table>
+                </div>
+              </div>`;
+          }).join("")}
+          ${!list.length ? `<div class="empty-state">ยังไม่มีร้านที่ได้รับการอนุมัติ${q || state.payFilter !== "ALL" ? " ตามเงื่อนไขที่เลือก" : ""}</div>` : ""}
         </div>`;
     }
 
@@ -1384,15 +1833,19 @@
 
       let html = `
         <div class="report-wrap">
-          <div>
-            <h2 style="margin:0 0 .35rem;font-family:'Chakra Petch',sans-serif">รายงานผู้ประกอบการแต่ละร้าน</h2>
-            <p style="margin:0;color:var(--muted)">แสดงว่าแต่ละล็อกร้านมีผู้ประกอบการเป็นใคร (จากสถานะคัดเลือกใน Excel)</p>
+          <div style="display:flex;flex-wrap:wrap;gap:.75rem;align-items:flex-start;justify-content:space-between">
+            <div>
+              <h2 style="margin:0 0 .35rem;font-family:'Chakra Petch',sans-serif">รายงานผู้ประกอบการแต่ละร้าน</h2>
+              <p style="margin:0;color:var(--muted)">แสดงว่าแต่ละล็อกร้านมีผู้ประกอบการเป็นใคร · ${esc(roundMeta().title || "")}${occupancy().enabled ? ` · เฉพาะล็อกที่ยังว่างจาก${priorRoundLabel()} (เหลือ ${occupancy().remaining}/${occupancy().total})` : ""}</p>
+            </div>
+            <button type="button" class="btn ok" data-export-selected-docx style="padding:.4rem .85rem">ดาวน์โหลด Word ประกาศ</button>
           </div>
           <div class="report-stats">
             <span class="chip ok">มีผู้ประกอบการ ${filled}/${report.length} ร้าน</span>
             <span class="chip ${report.length-filled ? "warn" : "ok"}">ยังไม่คัดเลือก ${report.length - filled} ร้าน</span>
             <span class="chip ${noApplicantGroups.length ? "warn" : "ok"}">ยังไม่มีผู้สมัคร ${noApplicantGroups.length} ประเภท (${noApplicantSlots} ล็อก)</span>
             <span class="chip">โซนที่ดู: ${state.zone === "ALL" ? "ทุกโซน" : zoneMeta[state.zone].label}</span>
+            ${occupancy().enabled ? `<span class="chip warn">ไม่รวม ${occupancy().count} ล็อกที่คัดเลือกแล้วใน${priorRoundLabel()}</span>` : ""}
           </div>
 
           <div class="report-empty-box">
@@ -1477,7 +1930,8 @@
                       <td>${op
                         ? `<div class="op-name">${esc(op.name)}</div>
                            <div style="color:var(--muted);font-size:.85rem">โทร ${esc(op.phone || "-")} · แถว Excel ${op.row}</div>
-                           ${r.cross_assigned ? `<div style="margin-top:.25rem"><span class="chip warn">จากรายการอื่น · สมัคร ${esc(op.applied_category || "")}</span></div>` : ""}`
+                           ${r.cross_assigned ? `<div style="margin-top:.25rem"><span class="chip warn">จากรายการอื่น · สมัคร ${esc(op.applied_category || "")}</span></div>` : ""}
+                           ${op.returning ? `<div style="margin-top:.25rem">${returningChip(op)}</div>` : ""}`
                         : `<span class="chip empty">ยังไม่มีผู้ประกอบการ</span>`}</td>
                       <td>${op ? esc(op.status || "-") : "—"}</td>
                       <td>${hasApplicant
@@ -1603,6 +2057,26 @@
         </div>`;
     }
 
+    function driveFileId(url) {
+      const s = String(url || "");
+      return (s.match(/[?&]id=([a-zA-Z0-9_-]+)/) || s.match(/\/d\/([a-zA-Z0-9_-]+)/) || [])[1] || "";
+    }
+
+    function renderApplicantFace(a) {
+      const url = String(a.photo || "").trim();
+      if (!url) {
+        return `<span class="face-ava missing" title="ไม่มีรูปถ่ายผู้สมัคร"><span class="face-x">${ico("x")}</span></span>`;
+      }
+      const id = driveFileId(url);
+      const src = id ? `https://drive.google.com/thumbnail?id=${id}&sz=w220` : url;
+      const full = id ? `https://drive.google.com/thumbnail?id=${id}&sz=w1600` : url;
+      return `<button type="button" class="thumb face-ava" data-full="${esc(full)}" title="รูปถ่ายผู้สมัคร · คลิกดูรูปใหญ่">
+        <img src="${esc(src)}" alt="รูปถ่าย ${esc(a.name)}" referrerpolicy="no-referrer" loading="lazy"
+             onerror="this.parentElement.classList.add('missing'); this.parentElement.removeAttribute('data-full'); this.parentElement.title='ไม่มีรูปถ่ายผู้สมัคร';" />
+        <span class="face-x">${ico("x")}</span>
+      </button>`;
+    }
+
     function thumbButton(photo, i) {
       const src = photo.thumb || "";
       const full = photo.full || photo.url;
@@ -1640,6 +2114,16 @@
         .replace(/[\s\u00A0\u200B]+/g, " ")
         .trim()
         .toLowerCase();
+    }
+
+    function formatPhoneDisplay(phone) {
+      const raw = String(phone || "").trim();
+      if (!raw) return "-";
+      let digits = raw.replace(/\D/g, "");
+      if (!digits) return raw;
+      if (digits.startsWith("66") && digits.length >= 11) digits = digits.slice(-9);
+      if (!digits.startsWith("0")) digits = "0" + digits;
+      return digits;
     }
 
     function normalizePhone(phone) {
@@ -1781,27 +2265,39 @@
       list = list.filter(a => {
         if (state.selFilter !== "ALL" && a.selection !== state.selFilter) return false;
         if (state.docFilter !== "ALL" && adminDocBucket(a) !== state.docFilter) return false;
+        if (!passReturningFilter(a)) return false;
         if (!q) return true;
         const dc = docCheckOf(a);
         return [a.name, a.phone, a.zone, a.category, a.selection, a.assigned_slot, a.status,
+          a.alumni?.name, a.alumni?.slot, alumniLabel(a),
           dc.admin?.status, dc.effective?.label].join(" ").toLowerCase().includes(q);
       });
       list = [...list].sort((x, y) => x.timestamp - y.timestamp);
 
       const scopeLabel = state.zone === "ALL" ? "ทุกโซน" : zoneMeta[state.zone].label;
       const dupReport = findDuplicateApplicants(scopeApps);
+      const returningCount = scopeApps.filter(a => a.returning).length;
+      const alumniMeta = data.alumni || {};
 
       return `
         <div class="report-wrap">
-          <div>
-            <h2 style="margin:0 0 .35rem;font-family:'Chakra Petch',sans-serif">สรุปรายการผู้สมัคร</h2>
-            <p style="margin:0;color:var(--muted)">ภาพรวมการตรวจเอกสารโดย Admin และผลการคัดเลือก · ขอบเขต: <b>${esc(scopeLabel)}</b></p>
+          <div style="display:flex;flex-wrap:wrap;gap:.75rem;align-items:flex-start;justify-content:space-between">
+            <div>
+              <h2 style="margin:0 0 .35rem;font-family:'Chakra Petch',sans-serif">สรุปรายการผู้สมัคร</h2>
+              <p style="margin:0;color:var(--muted)">ภาพรวมการตรวจเอกสารโดย Admin และผลการคัดเลือก · ${esc(roundMeta().title || "")} · ขอบเขต: <b>${esc(scopeLabel)}</b>
+                ${alumniMeta.total_prev_selected ? ` · อ้างอิงเจ้าเดิมจาก ${esc(alumniMeta.source_ref || alumniMeta.label || "ปี 2568")}` : ""}</p>
+            </div>
+            <button type="button" class="btn ok" data-export-selected-docx style="padding:.4rem .85rem">ดาวน์โหลด Word ประกาศ</button>
           </div>
 
           <div class="summary-kpis">
             <div class="kpi teal">
               <div class="k-label">สมัครทั้งหมด</div>
               <div class="k-val">${selCounts.ALL}</div>
+            </div>
+            <div class="kpi ${returningCount ? "warn" : ""}">
+              <div class="k-label">เจ้าเดิมปี ${esc(String(alumniMeta.year || 2568))}</div>
+              <div class="k-val">${returningCount}</div>
             </div>
             <div class="kpi ${dupReport.groupCount ? "danger" : "ok"}">
               <div class="k-label">กลุ่มสมัครซ้ำ</div>
@@ -1857,6 +2353,7 @@
               <button type="button" class="btn ${state.selFilter==="รอพิจารณา"?"active-sel":""}" data-sel-filter="รอพิจารณา">รอพิจารณา (${selCounts["รอพิจารณา"]})</button>
               <button type="button" class="btn ok ${state.selFilter==="ได้รับการคัดเลือก"?"active-sel":""}" data-sel-filter="ได้รับการคัดเลือก">คัดเลือกแล้ว (${selCounts["ได้รับการคัดเลือก"]})</button>
               <button type="button" class="btn danger ${state.selFilter==="ไม่ได้รับการคัดเลือก"?"active-sel":""}" data-sel-filter="ไม่ได้รับการคัดเลือก">ไม่คัดเลือก (${selCounts["ไม่ได้รับการคัดเลือก"]})</button>
+              <button type="button" class="btn ${state.returningOnly?"active-sel":""}" data-returning-filter="1" style="${state.returningOnly?"background:#e8f0ff;border-color:#9db7f0;color:#1e3a8a":""}">เจ้าเดิม (${returningCount})</button>
             </div>
           </div>
 
@@ -1895,6 +2392,7 @@
                       <td>
                         <div class="name">${esc(a.name)}</div>
                         <div class="muted">โทร ${esc(a.phone || "-")} · แถว ${a.row}</div>
+                        ${a.returning ? `<div style="margin-top:.25rem">${returningChip(a)}</div>` : ""}
                       </td>
                       <td>
                         <div><b>โซน ${esc(a.zone)}</b></div>
@@ -1931,17 +2429,19 @@
       ].filter(Boolean);
 
       return `
-        <article class="applicant ${rank===1?"first":""} ${selectionClass(a.selection)}" data-key="${esc(a.key)}">
+        <article class="applicant ${rank===1?"first":""} ${selectionClass(a.selection)} ${a.returning?"returning":""}" data-key="${esc(a.key)}">
           <div class="app-top">
             <div class="rank">#${rank}</div>
             <div>
-              <h4 class="app-name">${esc(a.name)}</h4>
+              <h4 class="app-name"><span class="nm">${esc(a.name)}</span>${renderApplicantFace(a)}</h4>
               <p class="app-sub">โทร ${esc(a.phone||"-")} · แถว Excel ${a.row}</p>
+              ${a.returning ? `<p class="alumni-note">เคยมาขายปี ${esc(String(a.alumni?.year || 2568))} · คัดเลือกเป็นล็อก ${esc(a.alumni?.slot || "-")} (${esc(a.alumni?.category || "-")})</p>` : ""}
             </div>
             <div class="time" title="เวลาสมัคร (Asia/Bangkok)">${esc(fmtTime(a))}</div>
           </div>
           <div class="status-panel">
             <div class="status-row">
+              ${returningChip(a)}
               ${selectionChip(a)}
               ${statusChip(a)}
               <button class="btn btn-check" type="button" data-check="${esc(a.key)}" title="คลิกเพื่อตรวจและบันทึกสถานะเอกสาร">
@@ -1983,14 +2483,26 @@
       });
       const shopFilled = (data.shop_report || []).filter(r => r.filled).length;
       const selCounts = countBySelection(data.applicants, state.zone);
-      const totalCapacity = Object.values(zoneMeta).reduce((n, z) => n + z.shops, 0);
+      const occ = occupancy();
+      const totalCapacity = (data.slots || []).length || Object.values(zoneMeta).reduce((n, z) => n + z.shops, 0);
 
       document.getElementById("tabReview").classList.toggle("active", state.view === "review");
       document.getElementById("tabSummary").classList.toggle("active", state.view === "summary");
       document.getElementById("tabReport").classList.toggle("active", state.view === "report");
+      document.getElementById("tabFinance").classList.toggle("active", state.view === "finance");
       document.getElementById("statusSideBlock").style.display = (state.view === "review" || state.view === "summary") ? "" : "none";
       document.getElementById("docSummarySideBlock").style.display = (state.view === "review" || state.view === "summary") ? "" : "none";
       document.getElementById("emptySideBlock").style.display = state.view === "review" ? "" : "none";
+      document.getElementById("financeSideBlock").style.display = state.view === "finance" ? "" : "none";
+
+      const financeAll = approvedFinanceList(state.zone);
+      const financePaid = financeAll.filter(a => paymentStatusOf(a) === "paid").length;
+      const financeUnpaid = financeAll.length - financePaid;
+      document.getElementById("paymentFilters").innerHTML = `
+        <button type="button" class="f-all ${state.payFilter==="ALL"?"active":""}" data-pay-filter="ALL"><span>ทั้งหมด</span><span>${financeAll.length}</span></button>
+        <button type="button" class="f-ok ${state.payFilter==="paid"?"active":""}" data-pay-filter="paid"><span>ชำระแล้ว</span><span>${financePaid}</span></button>
+        <button type="button" class="f-pending ${state.payFilter==="unpaid"?"active":""}" data-pay-filter="unpaid"><span>ยังไม่ชำระ</span><span>${financeUnpaid}</span></button>
+      `;
 
       const ds = data.doc_summary || {};
       const scopeApps = state.zone === "ALL" ? data.applicants : data.applicants.filter(a => a.zone === state.zone);
@@ -2022,18 +2534,28 @@
       `;
 
       const st = data.storage || {};
+      const rm = roundMeta();
       const saveHint = st.can_save_status
         ? (st.xlsx_writable ? "บันทึกสถานะได้" : "บันทึกสถานะได้ (ไฟล์สถานะ)")
         : "ยังบันทึกสถานะไม่ได้ — ตั้งสิทธิ์โฟลเดอร์ data/";
+      const occHint = occ.enabled
+        ? ` · ล็อกว่างจาก${priorRoundLabel()} <b>${occ.remaining}/${occ.total}</b>`
+        : "";
       document.getElementById("topMeta").innerHTML =
-        `ผู้สมัคร <b>${data.total_applicants}</b> คน · ร้านมีผู้ประกอบการ <b>${shopFilled}/${data.slots.length}</b> · รอ <b>${countBySelection(data.applicants,"ALL")["รอพิจารณา"]}</b> · อนุมัติ <b>${countBySelection(data.applicants,"ALL")["ได้รับการคัดเลือก"]}</b> · <b>${esc(saveHint)}</b>`;
+        `<b>${esc(rm.title || ("ปี 2569 " + (rm.label || "")))}</b> · ผู้สมัคร <b>${data.total_applicants}</b> คน · ร้านมีผู้ประกอบการ <b>${shopFilled}/${data.slots.length}</b>${occHint} · รอ <b>${countBySelection(data.applicants,"ALL")["รอพิจารณา"]}</b> · อนุมัติ <b>${countBySelection(data.applicants,"ALL")["ได้รับการคัดเลือก"]}</b> · <b>${esc(saveHint)}</b>`;
+      document.title = "SCI Shop Review · " + (rm.title || "ปี 2569");
       const pn = document.getElementById("policyNote");
-      if (pn) pn.textContent = st.hint || "บันทึกสถานะที่ data/status_store.json · ไม่ลบผู้สมัคร";
+      if (pn) {
+        pn.textContent = occ.enabled
+          ? (`รอบที่ ${currentRound()} ใช้เฉพาะล็อกที่ยังไม่ถูกคัดเลือกใน${priorRoundLabel()} · เหลือ ${occ.remaining} จาก ${occ.total} ล็อก`)
+          : (st.hint || ("บันทึกสถานะแยกตามรอบที่ " + currentRound() + " · ไม่ลบผู้สมัคร"));
+      }
+      updateRoundSwitch();
 
       document.getElementById("zoneList").innerHTML = ["A","B","C","D"].map(z => `
         <button type="button" data-zone="${z}" class="${state.zone===z?"active":""}">
           <span class="z-title">${zoneMeta[z].label}</span>
-          <span class="z-meta">รับ ${zoneMeta[z].shops} ร้าน · สมัครแล้ว ${byZone[z]} ร้าน</span>
+          <span class="z-meta">รับ ${zoneSlotCount(z)} ร้าน · สมัครแล้ว ${byZone[z]} ร้าน</span>
         </button>`).join("") + `
         <button type="button" data-zone="ALL" class="${state.zone==="ALL"?"active":""}">
           <span class="z-title">ทุกโซน</span>
@@ -2041,10 +2563,11 @@
         </button>`;
 
       document.getElementById("statusFilters").innerHTML = `
-        <button type="button" class="f-all ${state.selFilter==="ALL"?"active":""}" data-sel-filter="ALL"><span>ทั้งหมด</span><span>${selCounts.ALL}</span></button>
+        <button type="button" class="f-all ${state.selFilter==="ALL" && !state.returningOnly?"active":""}" data-sel-filter="ALL"><span>ทั้งหมด</span><span>${selCounts.ALL}</span></button>
         <button type="button" class="f-pending ${state.selFilter==="รอพิจารณา"?"active":""}" data-sel-filter="รอพิจารณา"><span>รอพิจารณา</span><span>${selCounts["รอพิจารณา"]}</span></button>
         <button type="button" class="f-ok ${state.selFilter==="ได้รับการคัดเลือก"?"active":""}" data-sel-filter="ได้รับการคัดเลือก"><span>อนุมัติแล้ว</span><span>${selCounts["ได้รับการคัดเลือก"]}</span></button>
         <button type="button" class="f-no ${state.selFilter==="ไม่ได้รับการคัดเลือก"?"active":""}" data-sel-filter="ไม่ได้รับการคัดเลือก"><span>ไม่อนุมัติ</span><span>${selCounts["ไม่ได้รับการคัดเลือก"]}</span></button>
+        <button type="button" class="${state.returningOnly?"active":""}" data-returning-filter="1" style="${state.returningOnly?"background:#e8f0ff;border-color:#9db7f0;color:#1e3a8a":""}"><span>เจ้าเดิม</span><span>${(state.zone==="ALL"?data.applicants:data.applicants.filter(a=>a.zone===state.zone)).filter(a=>a.returning).length}</span></button>
       `;
 
       const zones = state.zone === "ALL" ? ["A","B","C","D"] : [state.zone];
@@ -2063,6 +2586,12 @@
         return;
       }
 
+      if (state.view === "finance") {
+        document.getElementById("main").innerHTML = renderFinanceView();
+        bindDynamic();
+        return;
+      }
+
       if (state.view === "summary") {
         document.getElementById("main").innerHTML = renderApplicantsSummaryView();
         bindDynamic();
@@ -2071,6 +2600,11 @@
 
       const q = state.q.trim().toLowerCase();
       let html = `<div class="notice">${esc(data.notice || "")} · เวลาที่แสดงเป็น <b>เวลาไทย (Asia/Bangkok)</b></div>`;
+      if (occ.enabled) {
+        const takenSample = (occ.slots || []).slice(0, 12).map(s => s.slot || s).join(", ");
+        const extra = (occ.slots || []).length > 12 ? " …" : "";
+        html += `<div class="occ-banner">รอบที่ ${currentRound()} แสดงเฉพาะล็อกที่ยังไม่ถูกคัดเลือกใน${priorRoundLabel()} · เหลือ <b>${occ.remaining}</b> จาก ${occ.total} ล็อก${takenSample ? ` · ล็อกที่เต็มแล้ว: ${esc(takenSample)}${extra}` : ""}</div>`;
+      }
 
       zones.forEach(z => {
         const groups = data.groups.filter(g => g.zone === z);
@@ -2086,15 +2620,17 @@
           const list = appsForGroup(g, data.applicants);
           const filtered = list.filter(a => {
             if (!passSelFilter(a)) return false;
+            if (!passReturningFilter(a)) return false;
             if (!q) return true;
-            return [a.name,a.phone,a.category,a.detail,g.label,g.cat,a.status,a.selection,a.assigned_slot].join(" ").toLowerCase().includes(q);
+            return [a.name,a.phone,a.category,a.detail,g.label,g.cat,a.status,a.selection,a.assigned_slot,alumniLabel(a),a.alumni?.slot].join(" ").toLowerCase().includes(q);
           });
           if (q && !filtered.length && !(`${g.label} ${g.cat}`.toLowerCase().includes(q))) return;
           const assignedCount = g.slots.filter(sid => operatorOnSlot(sid)?.filled).length;
           // Empty categories always stay visible (cross-fill). Filtered native lists hide as usual.
-          if (state.selFilter !== "ALL" && list.length > 0 && !filtered.length) return;
+          if ((state.selFilter !== "ALL" || state.returningOnly) && list.length > 0 && !filtered.length) return;
 
           const approved = list.filter(a => a.selection === "ได้รับการคัดเลือก").length;
+          const returningInGroup = list.filter(a => a.returning).length;
           html += `
             <section class="group" id="group-${esc(g.primary)}">
               <div class="group-head" style="${assignedCount ? "background:linear-gradient(90deg,#d8f5e4,#fff1b8)" : ""}">
@@ -2107,6 +2643,7 @@
                   ${list.length
                     ? `<span class="chip ${list.length > g.limit ? "warn" : "ok"}">${list.length} ผู้สมัคร</span>`
                     : `<span class="chip empty">ยังว่าง</span>`}
+                  ${returningInGroup ? `<span class="chip returning">เจ้าเดิม ${returningInGroup}</span>` : ""}
                   <span class="chip ${assignedCount ? "ok" : ""}">ล็อกมีผู้ประกอบการ ${assignedCount}/${g.slots.length}</span>
                   ${approved ? `<span class="chip ok">สถานะคัดเลือก ${approved}</span>` : `<span class="chip">รอพิจารณา</span>`}
                 </div>
@@ -2119,6 +2656,35 @@
               </div>
             </section>`;
         });
+
+        const displaced = displacedApplicants(z, data).filter(a => {
+          if (!passSelFilter(a)) return false;
+          if (!passReturningFilter(a)) return false;
+          if (!q) return true;
+          return [a.name, a.phone, a.category, a.detail, a.status, a.selection, alumniLabel(a)].join(" ").toLowerCase().includes(q);
+        });
+        if (occ.enabled && (displaced.length || (!q && (data.round1_occupied?.closed_categories || []).some(c => c.zone === z)))) {
+          const closed = (occ.closed_categories || []).filter(c => c.zone === z);
+          html += `
+            <section class="group closed-r1">
+              <div class="group-head">
+                <div>
+                  <h2>ประเภทที่เต็มแล้วจาก${esc(priorRoundLabel())}</h2>
+                  <p>ล็อกเหล่านี้ถูกคัดเลือกใน${esc(priorRoundLabel())} จึงไม่เปิดในรอบที่ ${currentRound()} — ผู้สมัครยังพิจารณาได้ และนำไปลงล็อกว่างประเภทอื่นได้</p>
+                  ${closed.length ? `<div class="slot-pills">${closed.map(c => `<span class="slot-pill">${esc((c.slots || []).join(", "))} · ${esc(c.cat)}</span>`).join("")}</div>` : ""}
+                </div>
+                <div class="head-badges">
+                  <span class="chip warn">เต็มจาก${esc(priorRoundLabel())}</span>
+                  <span class="chip">${displaced.length} ผู้สมัคร</span>
+                </div>
+              </div>
+              <div class="group-body">
+                ${displaced.length
+                  ? displaced.map((a, i) => renderApplicant(a, i + 1)).join("")
+                  : `<div class="empty-state">ไม่มีผู้สมัครประเภทที่เต็มแล้วในโซนนี้</div>`}
+              </div>
+            </section>`;
+        }
       });
 
       document.getElementById("main").innerHTML = html;
@@ -2131,11 +2697,40 @@
       });
 
       document.querySelectorAll("[data-sel-filter]").forEach(btn => {
-        btn.onclick = () => { state.selFilter = btn.dataset.selFilter; render(); };
+        btn.onclick = () => {
+          state.selFilter = btn.dataset.selFilter;
+          if (btn.dataset.selFilter !== undefined) state.returningOnly = false;
+          render();
+        };
+      });
+
+      document.querySelectorAll("[data-returning-filter]").forEach(btn => {
+        btn.onclick = () => {
+          state.returningOnly = !state.returningOnly;
+          render();
+        };
       });
 
       document.querySelectorAll("[data-doc-filter]").forEach(btn => {
         btn.onclick = () => { state.docFilter = btn.dataset.docFilter; render(); };
+      });
+
+      document.querySelectorAll("[data-pay-filter]").forEach(btn => {
+        btn.onclick = () => { state.payFilter = btn.dataset.payFilter; render(); };
+      });
+
+      document.querySelectorAll("[data-pay-toggle]").forEach(input => {
+        input.onchange = async () => {
+          const row = parseInt(input.dataset.payToggle, 10);
+          const next = input.checked ? "paid" : "unpaid";
+          input.disabled = true;
+          try {
+            await savePayment(row, next);
+          } catch (e) {
+            alert("บันทึกสถานะชำระเงินไม่สำเร็จ: " + e.message);
+            render();
+          }
+        };
       });
 
       document.querySelectorAll("[data-check]").forEach(btn => {
@@ -2144,6 +2739,10 @@
 
       document.querySelectorAll("[data-quick-sel]").forEach(btn => {
         btn.onclick = () => quickSelect(btn.dataset.quickSel, btn.dataset.sel);
+      });
+
+      document.querySelectorAll("[data-export-selected-docx]").forEach(btn => {
+        btn.onclick = () => downloadSelectedDocx(btn);
       });
 
       document.querySelectorAll("[data-shop-assign]").forEach(sel => {
@@ -2174,6 +2773,7 @@
 
       document.querySelectorAll(".thumb").forEach(btn => {
         btn.onclick = () => {
+          if (btn.classList.contains("missing")) return;
           const full = btn.dataset.full;
           if (!full) return;
           if (!/thumbnail\?id=/.test(full)) {
@@ -2283,6 +2883,31 @@
       if (slotWrap) slotWrap.style.opacity = value === "ได้รับการคัดเลือก" ? "1" : ".55";
     }
 
+    async function savePayment(row, paymentStatus, paymentNote = "") {
+      const res = await fetch(apiUrl("save_payment"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          round: currentRound(),
+          row,
+          payment_status: paymentStatus,
+          payment_note: paymentNote,
+        }),
+      });
+      const text = await res.text();
+      let json;
+      try { json = JSON.parse(text); }
+      catch (e) {
+        if (res.status === 401) { location.href = "login.php"; throw new Error("กรุณาเข้าสู่ระบบด้วย Google"); }
+        throw new Error(text.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 240) || "บันทึกไม่สำเร็จ");
+      }
+      if (res.status === 401 || json.login_url) { location.href = json.login_url || "login.php"; throw new Error(json.error || "กรุณาเข้าสู่ระบบ"); }
+      if (!json.ok) throw new Error(json.error || "บันทึกไม่สำเร็จ");
+      state.data = json.data;
+      render();
+      return json;
+    }
+
     async function persistStatus(a, overrides = {}) {
       const selection = overrides.selection ?? (a.selection || "รอพิจารณา");
       let assigned = overrides.assigned_slot;
@@ -2290,6 +2915,7 @@
       if (selection !== "ได้รับการคัดเลือก") assigned = "";
 
       const payload = {
+        round: currentRound(),
         row: a.row,
         status: (overrides.status ?? a.status?.replace(/\s*\(อัตโนมัติ\)\s*/g, "") ?? "รอตรวจสอบ").replace(/\s*\(ระบบ\)\s*/g, "") || "รอตรวจสอบ",
         missing_detail: overrides.missing_detail ?? (a.missing_detail || ""),
@@ -2298,7 +2924,7 @@
         assigned_slot: assigned,
         reviewed_at: new Date().toISOString().slice(0,19).replace("T"," "),
       };
-      const res = await fetch("api.php?action=save_status", {
+      const res = await fetch(apiUrl("save_status"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -2307,9 +2933,11 @@
         const text = await res.text();
         try { return JSON.parse(text); }
         catch (e) {
+          if (res.status === 401) { location.href = "login.php"; throw new Error("กรุณาเข้าสู่ระบบด้วย Google"); }
           throw new Error(text.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 240) || "บันทึกไม่สำเร็จ");
         }
       })();
+      if (res.status === 401 || json.login_url) { location.href = json.login_url || "login.php"; throw new Error(json.error || "กรุณาเข้าสู่ระบบ"); }
       if (!json.ok) throw new Error(json.error || "บันทึกไม่สำเร็จ");
       state.data = json.data;
       render();
@@ -2321,17 +2949,19 @@
     }
 
     async function assignShop(row, slot, allowCross = false) {
-      const res = await fetch("api.php?action=assign_shop", {
+      const res = await fetch(apiUrl("assign_shop"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ row, slot, allow_cross: !!allowCross }),
+        body: JSON.stringify({ round: currentRound(), row, slot, allow_cross: !!allowCross }),
       });
       const text = await res.text();
       let json;
       try { json = JSON.parse(text); }
       catch (e) {
+        if (res.status === 401) { location.href = "login.php"; throw new Error("กรุณาเข้าสู่ระบบด้วย Google"); }
         throw new Error(text.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 240) || "บันทึกไม่สำเร็จ");
       }
+      if (res.status === 401 || json.login_url) { location.href = json.login_url || "login.php"; throw new Error(json.error || "กรุณาเข้าสู่ระบบ"); }
       if (!json.ok) throw new Error(json.error || "บันทึกไม่สำเร็จ");
       state.data = json.data;
       render();
@@ -2339,17 +2969,19 @@
     }
 
     async function unassignShop(row, selection = "รอพิจารณา") {
-      const res = await fetch("api.php?action=unassign_shop", {
+      const res = await fetch(apiUrl("unassign_shop"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ row, selection }),
+        body: JSON.stringify({ round: currentRound(), row, selection }),
       });
       const text = await res.text();
       let json;
       try { json = JSON.parse(text); }
       catch (e) {
+        if (res.status === 401) { location.href = "login.php"; throw new Error("กรุณาเข้าสู่ระบบด้วย Google"); }
         throw new Error(text.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 240) || "บันทึกไม่สำเร็จ");
       }
+      if (res.status === 401 || json.login_url) { location.href = json.login_url || "login.php"; throw new Error(json.error || "กรุณาเข้าสู่ระบบ"); }
       if (!json.ok) throw new Error(json.error || "บันทึกไม่สำเร็จ");
       state.data = json.data;
       render();
@@ -2426,6 +3058,10 @@
       try {
         json = JSON.parse(text);
       } catch (e) {
+        if (res.status === 401) {
+          location.href = "login.php";
+          throw new Error("กรุณาเข้าสู่ระบบด้วย Google");
+        }
         const plain = text
           .replace(/<br\s*\/?>/gi, "\n")
           .replace(/<\/?b>/gi, "")
@@ -2434,22 +3070,133 @@
           .trim();
         throw new Error(plain.slice(0, 240) || "เซิร์ฟเวอร์ตอบกลับไม่ใช่ JSON");
       }
+      if (res.status === 401 || json?.login_url) {
+        location.href = json.login_url || "login.php";
+        throw new Error(json.error || "กรุณาเข้าสู่ระบบด้วย Google");
+      }
       return json;
     }
 
+    function paintAuthUser() {
+      const u = window.__SCI_AUTH_USER__;
+      const chip = document.getElementById("userChip");
+      if (!chip || !u?.email) return;
+      chip.hidden = false;
+      chip.title = u.email;
+      document.getElementById("userName").textContent = u.name || u.email;
+      document.getElementById("userEmail").textContent = u.email;
+      const img = document.getElementById("userAvatar");
+      const fb = document.getElementById("userAvatarFallback");
+      const initial = String(u.name || u.email || "U").trim().charAt(0).toUpperCase();
+      fb.textContent = initial || "U";
+      if (u.picture) {
+        img.hidden = false;
+        fb.style.display = "none";
+        img.src = u.picture;
+        img.alt = u.name || u.email;
+        img.onerror = () => {
+          img.hidden = true;
+          fb.style.display = "";
+        };
+      }
+    }
+
+    async function downloadSelectedDocx(btn) {
+      const el = btn || document.getElementById("btnExportSelectedDocx");
+      const prev = el ? el.textContent : "";
+      if (el) {
+        el.disabled = true;
+        el.textContent = "กำลังอ่านบัตร ปชช. / สร้างไฟล์...";
+      }
+      try {
+        const res = await fetch(apiUrl("export_selected_docx"));
+        const ctype = (res.headers.get("Content-Type") || "").toLowerCase();
+        if (!res.ok || ctype.includes("application/json")) {
+          const text = await res.text();
+          let msg = text;
+          try {
+            const j = JSON.parse(text);
+            msg = j.error || text;
+          } catch (_) {}
+          throw new Error(msg || "ดาวน์โหลดไม่สำเร็จ");
+        }
+        const blob = await res.blob();
+        const cd = res.headers.get("Content-Disposition") || "";
+        let filename = "ประกาศร้านค้าที่ได้รับการคัดเลือก_2569_รอบ" + currentRound() + ".docx";
+        const mStar = cd.match(/filename\*=UTF-8''([^;]+)/i);
+        const mPlain = cd.match(/filename="([^"]+)"/i);
+        if (mStar) filename = decodeURIComponent(mStar[1]);
+        else if (mPlain) filename = mPlain[1];
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      } catch (e) {
+        alert("ดาวน์โหลด Word ไม่สำเร็จ: " + (e.message || e));
+      } finally {
+        if (el) {
+          el.disabled = false;
+          el.textContent = prev || "ดาวน์โหลด Word ประกาศ";
+        }
+      }
+    }
+
+    function updateRoundSwitch() {
+      const rounds = state.data?.rounds || [
+        { id: 1, available: true },
+        { id: 2, available: true },
+        { id: 3, available: true },
+      ];
+      document.querySelectorAll("#roundSwitch [data-round]").forEach(btn => {
+        const id = Number(btn.dataset.round);
+        const info = rounds.find(r => Number(r.id) === id) || { available: true };
+        btn.classList.toggle("active", currentRound() === id);
+        btn.classList.toggle("missing", info.available === false);
+        btn.title = info.available === false
+          ? (info.error || "ยังไม่พบไฟล์ Excel ของรอบนี้")
+          : (info.title || ("ร้านค้าประจำปี 2569 รอบที่ " + id));
+      });
+    }
+
+    async function setRound(round) {
+      const n = Number(round);
+      const next = n === 2 || n === 3 ? n : 1;
+      if (next === currentRound() && state.data) return;
+      state.round = next;
+      localStorage.setItem(ROUND_STORAGE_KEY, String(next));
+      updateRoundSwitch();
+      document.getElementById("topMeta").innerHTML = `กำลังโหลด <b>รอบที่ ${next}</b>...`;
+      document.getElementById("main").innerHTML = `<div class="empty-state">กำลังโหลดข้อมูลร้านค้าปี 2569 รอบที่ ${next}...</div>`;
+      try {
+        await loadData();
+      } catch (err) {
+        document.getElementById("main").innerHTML = `<div class="empty-state">โหลดรอบที่ ${next} ไม่สำเร็จ: ${esc(err.message)}</div>`;
+      }
+    }
+
     async function loadData() {
-      const json = await fetchJson("api.php?action=data&_=" + Date.now());
+      const json = await fetchJson(apiUrl("data"));
       if (json.error) throw new Error(json.error);
+      if (json.round?.id) {
+        const id = Number(json.round.id);
+        state.round = id === 2 || id === 3 ? id : 1;
+      }
       state.data = json;
       render();
     }
 
     document.getElementById("btnRebuild").onclick = async () => {
-      const json = await fetchJson("api.php?action=rebuild&_=" + Date.now());
+      const json = await fetchJson(apiUrl("rebuild"));
       if (!json.ok) return alert(json.error || "รีเฟรชไม่สำเร็จ");
       state.data = json.data;
       render();
     };
+
+    document.getElementById("btnExportSelectedDocx").onclick = () => downloadSelectedDocx(document.getElementById("btnExportSelectedDocx"));
 
     document.getElementById("fileUpload").onchange = async (e) => {
       const file = e.target.files?.[0];
@@ -2462,12 +3209,13 @@
       const fd = new FormData();
       fd.append("file", file);
       fd.append("action", "upload");
+      fd.append("round", String(currentRound()));
       try {
-        const json = await fetchJson("api.php?action=upload", { method: "POST", body: fd });
+        const json = await fetchJson(apiUrl("upload"), { method: "POST", body: fd });
         if (!json.ok) throw new Error(json.error || "อัปโหลดไม่สำเร็จ");
         state.data = json.data;
         render();
-        alert(`นำเข้าสำเร็จ ${json.total} คน จากไฟล์ใหม่`);
+        alert(`นำเข้าสำเร็จ ${json.total} คน เข้า${roundMeta().title || ("รอบที่ " + currentRound())}`);
       } catch (err) {
         alert("นำเข้าไม่สำเร็จ: " + err.message);
       } finally {
@@ -2510,9 +3258,16 @@
       if (e.target.id === "lightbox") document.getElementById("lightbox").classList.remove("show");
     };
 
+    document.getElementById("roundSwitch").onclick = (e) => {
+      const btn = e.target.closest("[data-round]");
+      if (!btn) return;
+      setRound(Number(btn.dataset.round));
+    };
+
     document.getElementById("tabReview").onclick = () => { state.view = "review"; render(); };
     document.getElementById("tabSummary").onclick = () => { state.view = "summary"; render(); };
     document.getElementById("tabReport").onclick = () => { state.view = "report"; render(); };
+    document.getElementById("tabFinance").onclick = () => { state.view = "finance"; render(); };
 
     document.getElementById("btnCancelAssign").onclick = () => {
       state.assignKey = null;
@@ -2537,8 +3292,10 @@
       t = setTimeout(() => { state.q = e.target.value; render(); }, 160);
     };
 
+    updateRoundSwitch();
+    paintAuthUser();
     loadData().catch(err => {
-      document.getElementById("main").innerHTML = `<div class="empty-state">โหลดไม่สำเร็จ: ${esc(err.message)}</div>`;
+      document.getElementById("main").innerHTML = `<div class="empty-state">โหลดรอบที่ ${currentRound()} ไม่สำเร็จ: ${esc(err.message)}</div>`;
     });
   </script>
 </body>

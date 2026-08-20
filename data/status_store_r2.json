@@ -1,0 +1,172 @@
+{
+    "version": 1,
+    "updated_at": "2026-08-14T20:22:49+07:00",
+    "by_row": {
+        "5": {
+            "row": 5,
+            "status": "ขาดคุณสมบัติ",
+            "missing_detail": "",
+            "review_note": "รายการอาหารไม่ตรงประเภท",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-13 13:30:38",
+            "assigned_slot": "",
+            "saved_at": "2026-08-13T13:30:38+07:00"
+        },
+        "14": {
+            "row": 14,
+            "status": "ขาดคุณสมบัติ",
+            "missing_detail": "",
+            "review_note": "รายการอาหารไม่ตรงประเภท",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-13 13:30:34",
+            "assigned_slot": "",
+            "saved_at": "2026-08-13T13:30:34+07:00"
+        },
+        "11": {
+            "row": 11,
+            "status": "ขาดคุณสมบัติ",
+            "missing_detail": "รายการอาหารไม่ตรงประเภท",
+            "review_note": "",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-13 13:30:36",
+            "assigned_slot": "",
+            "saved_at": "2026-08-13T13:30:36+07:00"
+        },
+        "15": {
+            "row": 15,
+            "status": "ครบถ้วน",
+            "missing_detail": "นอกจากไก่ย่างส้มตำแล้วขายเครื่องเคียงส้มตำขายได้มั้ยคะ ปลาเผา ผัดหมี่",
+            "review_note": "นอกจากไก่ย่างส้มตำแล้วขายเครื่องเคียงส้มตำขายได้มั้ยคะ ปลาเผา ผัดหมี่",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-13 07:12:35",
+            "assigned_slot": "A12",
+            "saved_at": "2026-08-14T20:22:49+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:22:49",
+            "payment_note": ""
+        },
+        "4": {
+            "row": 4,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-13 13:31:06",
+            "assigned_slot": "C8",
+            "saved_at": "2026-08-14T20:18:15+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:18:15",
+            "payment_note": ""
+        },
+        "6": {
+            "row": 6,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-13 14:10:04",
+            "assigned_slot": "",
+            "saved_at": "2026-08-13T14:10:04+07:00"
+        },
+        "7": {
+            "row": 7,
+            "status": "ขาดคุณสมบัติ",
+            "missing_detail": "อาหารไม่ตรงประเภท",
+            "review_note": "",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-13 13:31:14",
+            "assigned_slot": "",
+            "saved_at": "2026-08-13T13:31:14+07:00"
+        },
+        "13": {
+            "row": 13,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-13 13:31:30",
+            "assigned_slot": "",
+            "saved_at": "2026-08-13T13:31:30+07:00"
+        },
+        "3": {
+            "row": 3,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-13 13:31:56",
+            "assigned_slot": "C9",
+            "saved_at": "2026-08-14T20:17:17+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:17:17",
+            "payment_note": ""
+        },
+        "2": {
+            "row": 2,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-13 13:32:12",
+            "assigned_slot": "D5",
+            "saved_at": "2026-08-14T20:16:19+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:16:19",
+            "payment_note": ""
+        },
+        "8": {
+            "row": 8,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-13 13:32:15",
+            "assigned_slot": "",
+            "saved_at": "2026-08-13T13:32:15+07:00"
+        },
+        "9": {
+            "row": 9,
+            "status": "ไม่ครบถ้วน",
+            "missing_detail": "บัตรประชาชนหมดอายุ",
+            "review_note": "",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-13 13:32:18",
+            "assigned_slot": "",
+            "saved_at": "2026-08-13T13:32:18+07:00"
+        },
+        "10": {
+            "row": 10,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-13 13:32:27",
+            "assigned_slot": "",
+            "saved_at": "2026-08-13T13:32:27+07:00"
+        },
+        "16": {
+            "row": 16,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-13 13:32:56",
+            "assigned_slot": "D6",
+            "saved_at": "2026-08-14T20:21:46+07:00",
+            "payment_status": "paid",
+            "payment_at": "2026-08-14 20:21:46",
+            "payment_note": ""
+        },
+        "12": {
+            "row": 12,
+            "status": "ขาดคุณสมบัติ",
+            "missing_detail": "อาหารไม่ตรงประเภท",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "2026-08-12 09:54:40",
+            "assigned_slot": "",
+            "saved_at": "2026-08-12T16:54:40+07:00"
+        }
+    },
+    "round": 2
+}

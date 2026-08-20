@@ -1,0 +1,70 @@
+{
+    "version": 1,
+    "updated_at": "2026-08-16T15:22:54+07:00",
+    "by_row": {
+        "7": {
+            "row": 7,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "จัดลงล็อกว่าง A8 \/ ปอเปี๊ยะ\/แหนมคลุก (สมัครเดิม: โซน D · ปอเปี๊ยะ\/แหนมคลุก***)",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-14 15:43:48",
+            "assigned_slot": "A8",
+            "saved_at": "2026-08-14T16:07:22+07:00",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": ""
+        },
+        "4": {
+            "row": 4,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-14 15:35:14",
+            "assigned_slot": "",
+            "saved_at": "2026-08-14T15:35:14+07:00"
+        },
+        "6": {
+            "row": 6,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-14 15:35:17",
+            "assigned_slot": "",
+            "saved_at": "2026-08-14T15:35:17+07:00"
+        },
+        "2": {
+            "row": 2,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-14 15:35:25",
+            "assigned_slot": "D8",
+            "saved_at": "2026-08-14T15:35:25+07:00"
+        },
+        "5": {
+            "row": 5,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ไม่ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-16 15:22:54",
+            "assigned_slot": "",
+            "saved_at": "2026-08-16T15:22:54+07:00"
+        },
+        "3": {
+            "row": 3,
+            "status": "ครบถ้วน",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "ได้รับการคัดเลือก",
+            "reviewed_at": "2026-08-15 03:25:17",
+            "assigned_slot": "D7",
+            "saved_at": "2026-08-15T10:25:19+07:00"
+        }
+    },
+    "round": 3
+}
