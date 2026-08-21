@@ -157,12 +157,15 @@ function sci_docx_resolve_display_name(array $applicant, array &$titleCache, arr
   }
 
   $fileId = sci_drive_id((string)($applicant['id_card'] ?? '')) ?: '';
-  $cacheKey = $fileId !== '' ? ('id:' . $fileId) : ('row:' . (string)($applicant['row'] ?? ''));
+  $cacheKey = $fileId !== ''
+    ? ('id:' . $fileId)
+    : ('row:' . (string)($applicant['row'] ?? ($applicant['id'] ?? '')));
 
   if ($cacheKey !== '' && !empty($titleCache[$cacheKey]['title'])) {
     return sci_docx_apply_title($cleaned, (string)$titleCache[$cacheKey]['title']);
   }
 
+  // OCR helper historically used Drive file ids; skip when using MinIO/file_serve URLs
   if ($fileId !== '') {
     $pendingOcr[$cacheKey] = [
       'key' => $cacheKey,
@@ -208,7 +211,9 @@ function sci_selected_vendors_for_announcement(?array $data = null): array {
     if ($slot === '') continue;
 
     $fileId = sci_drive_id((string)($a['id_card'] ?? '')) ?: '';
-    $cacheKey = $fileId !== '' ? ('id:' . $fileId) : ('row:' . (string)($a['row'] ?? ''));
+    $cacheKey = $fileId !== ''
+      ? ('id:' . $fileId)
+      : ('row:' . (string)($a['row'] ?? ($a['id'] ?? '')));
 
     $draft[] = [
       'applicant' => $a,

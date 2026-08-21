@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/xlsx_lib.php';
+require_once __DIR__ . '/db_data_lib.php';
 require_once __DIR__ . '/auth_lib.php';
 
 $roundArg = $_GET['round'] ?? null;

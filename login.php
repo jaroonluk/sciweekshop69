@@ -17,10 +17,10 @@ if (isset($_GET['go']) && $_GET['go'] === 'google') {
     header('Location: ' . sci_auth_url('login.php') . '?error=' . rawurlencode('ยังไม่ได้ตั้งค่า Google Client ID/Secret'));
     exit;
   }
-  $state = bin2hex(random_bytes(16));
-  $_SESSION['oauth_state'] = $state;
-  $_SESSION['oauth_next'] = $next;
-  header('Location: ' . sci_auth_google_authorize_url($state));
+  $state = sci_auth_oauth_begin('login', ['oauth_next' => $next]);
+  $url = sci_auth_google_authorize_url($state);
+  session_write_close();
+  header('Location: ' . $url);
   exit;
 }
 
@@ -30,6 +30,8 @@ $errorText = [
   'access_denied' => 'คุณยกเลิกการเข้าสู่ระบบด้วย Google',
   'state' => 'เซสชันไม่ถูกต้อง กรุณาลองใหม่',
   'not_allowed' => 'บัญชีนี้ไม่มีสิทธิ์เข้าใช้งานระบบ',
+  'no_role' => 'ระบบนี้ใช้สำหรับกรรมการฝ่ายจัดหารายได้เท่านั้น หากท่านต้องการใช้งาน กรุณาติดต่อผู้ดูแลระบบ',
+  'not_staff' => 'ระบบนี้ใช้สำหรับกรรมการฝ่ายจัดหารายได้เท่านั้น หากท่านต้องการใช้งาน กรุณาติดต่อผู้ดูแลระบบ',
   'config' => 'ยังไม่ได้ตั้งค่า Google OAuth',
 ][$error] ?? ($error !== '' ? $error : '');
 ?>
@@ -302,6 +304,34 @@ $errorText = [
       .shell { grid-template-columns: 1fr; }
       .hero { min-height: auto; }
     }
+    .oauth-hint {
+      margin: 0;
+      padding: 0.85rem 1rem;
+      border-radius: 12px;
+      background: #fff8e8;
+      border: 1px solid #f0d9a0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+    .oauth-hint summary {
+      cursor: pointer;
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .oauth-hint p { margin: 0.65rem 0 0; }
+    .oauth-uri {
+      display: block;
+      margin-top: 0.55rem;
+      padding: 0.65rem 0.75rem;
+      border-radius: 8px;
+      background: #1c160e;
+      color: #ffe27a;
+      font-size: 0.82rem;
+      word-break: break-all;
+      user-select: all;
+    }
+    .oauth-note { font-size: 0.86rem; opacity: 0.9; }
   </style>
 </head>
 <body>
@@ -400,8 +430,19 @@ $errorText = [
         </svg>
         เข้าสู่ระบบด้วย Google
       </a>
+      <p style="margin:1rem 0 0;text-align:center">
+        <a href="apply.php" style="color:#0d8a7f;font-weight:700;text-decoration:none">พ่อค้าแม่ค้าสมัครร้านค้าที่นี่ →</a>
+      </p>
 
-     
+      <?php if ($configured): ?>
+        <details class="oauth-hint">
+          <summary>แก้ error <code>redirect_uri_mismatch</code></summary>
+          <p>คัดลอก URI ด้านล่างไปใส่ใน Google Cloud Console → <b>Credentials</b> → OAuth 2.0 Client → <b>Authorized redirect URIs</b> ให้ตรงทุกตัวอักษร</p>
+          <code class="oauth-uri"><?= htmlspecialchars($redirectUri, ENT_QUOTES, 'UTF-8') ?></code>
+          <p class="oauth-note">ถ้าเปิดทั้ง <code>127.0.0.1</code> และ <code>localhost</code> ให้เพิ่มทั้งสอง URI (ถือเป็นคนละตัว)</p>
+        </details>
+      <?php endif; ?>
+
       <p class="foot">คณะวิทยาศาสตร์ · มหาวิทยาลัยขอนแก่น</p>
     </section>
   </div>

@@ -1,13 +1,19 @@
 <?php
 require_once __DIR__ . '/auth_lib.php';
+require_once __DIR__ . '/rbac_lib.php';
 sci_auth_require_login(false);
 
-$user = sci_auth_user();
-$userJson = json_encode([
-  'email' => $user['email'] ?? '',
-  'name' => $user['name'] ?? '',
-  'picture' => $user['picture'] ?? '',
-], JSON_UNESCAPED_UNICODE);
+if (!sci_rbac_is_staff()) {
+  http_response_code(403);
+  header('Content-Type: text/html; charset=utf-8');
+  echo '<!DOCTYPE html><html lang="th"><head><meta charset="UTF-8"><title>ไม่มีสิทธิ์</title></head><body style="font-family:sans-serif;padding:2rem;max-width:36rem;line-height:1.6">';
+  echo '<h1>ไม่มีสิทธิ์เข้าใช้งาน</h1>';
+  echo '<p>ระบบนี้ใช้สำหรับกรรมการฝ่ายจัดหารายได้เท่านั้น หากท่านต้องการใช้งาน กรุณาติดต่อผู้ดูแลระบบ</p>';
+  echo '<p><a href="logout.php">ออกจากระบบ</a></p></body></html>';
+  exit;
+}
+
+$userJson = json_encode(sci_rbac_public_user(), JSON_UNESCAPED_UNICODE);
 
 $html = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'index.html');
 if ($html === false) {

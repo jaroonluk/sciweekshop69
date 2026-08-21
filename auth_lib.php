@@ -231,6 +231,109 @@ function sci_auth_start_session(): void {
   session_start();
 }
 
+/** @return string absolute dir for short-lived OAuth pending state files */
+function sci_auth_oauth_pending_dir(): string {
+  $dir = __DIR__ . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'oauth_pending';
+  if (!is_dir($dir)) {
+    @mkdir($dir, 0750, true);
+  }
+  return $dir;
+}
+
+/**
+ * Create CSRF state; stores nonce in session + durable pending file (survives session hiccups).
+ * @return string state value to send to Google
+ */
+function sci_auth_oauth_begin(string $purpose = 'login', array $extra = []): string {
+  sci_auth_start_session();
+  $nonce = bin2hex(random_bytes(16));
+  $purpose = preg_replace('/[^a-z0-9_]/', '', strtolower($purpose)) ?: 'login';
+  $payload = [
+    'nonce' => $nonce,
+    'purpose' => $purpose,
+    'extra' => $extra,
+    'created_at' => time(),
+    'redirect_uri' => sci_auth_redirect_uri(),
+  ];
+  $_SESSION['oauth_state'] = $nonce;
+  $_SESSION['oauth_purpose'] = $purpose;
+  $_SESSION['oauth_redirect_uri'] = $payload['redirect_uri'];
+  foreach ($extra as $k => $v) {
+    $_SESSION[$k] = $v;
+  }
+  $path = sci_auth_oauth_pending_dir() . DIRECTORY_SEPARATOR . $nonce . '.json';
+  @file_put_contents($path, json_encode($payload, JSON_UNESCAPED_UNICODE), LOCK_EX);
+  // state = nonce.purpose.hmac so callback can recover purpose if session is empty
+  $sig = hash_hmac('sha256', $nonce . '.' . $purpose, (string)sci_auth_config()['client_secret']);
+  return $nonce . '.' . $purpose . '.' . substr($sig, 0, 32);
+}
+
+/**
+ * Validate Google `state` against session and/or pending file.
+ * @return array{nonce:string,purpose:string,extra:array,redirect_uri:string}
+ */
+function sci_auth_oauth_consume(string $state): array {
+  sci_auth_start_session();
+  $state = trim($state);
+  if ($state === '') {
+    throw new RuntimeException('state');
+  }
+
+  $nonce = '';
+  $purpose = '';
+  if (preg_match('/^([a-f0-9]{32})\.([a-z0-9_]+)\.([a-f0-9]{32})$/', $state, $m)) {
+    $nonce = $m[1];
+    $purpose = $m[2];
+    $sig = $m[3];
+    $expect = substr(hash_hmac('sha256', $nonce . '.' . $purpose, (string)sci_auth_config()['client_secret']), 0, 32);
+    if (!hash_equals($expect, $sig)) {
+      throw new RuntimeException('state');
+    }
+  } else {
+    // Legacy plain hex state (login.php old flow)
+    $nonce = $state;
+    $purpose = (string)($_SESSION['oauth_purpose'] ?? 'login');
+  }
+
+  $sessionNonce = (string)($_SESSION['oauth_state'] ?? '');
+  $pendingPath = sci_auth_oauth_pending_dir() . DIRECTORY_SEPARATOR . $nonce . '.json';
+  $pending = null;
+  if (is_file($pendingPath)) {
+    $raw = json_decode((string)file_get_contents($pendingPath), true);
+    if (is_array($raw)) $pending = $raw;
+    @unlink($pendingPath);
+  }
+
+  $ok = false;
+  if ($sessionNonce !== '' && hash_equals($sessionNonce, $nonce)) {
+    $ok = true;
+  } elseif ($pending && hash_equals((string)($pending['nonce'] ?? ''), $nonce)) {
+    // Session cookie missing/lost but pending file proves we started this flow recently
+    $created = (int)($pending['created_at'] ?? 0);
+    if ($created > 0 && (time() - $created) <= 900) {
+      $ok = true;
+      $purpose = (string)($pending['purpose'] ?? $purpose);
+    }
+  }
+  if (!$ok) {
+    throw new RuntimeException('state');
+  }
+
+  // Restore extras (e.g. oauth_next) if session was empty but pending file survived
+  $extra = is_array($pending['extra'] ?? null) ? $pending['extra'] : [];
+  foreach ($extra as $k => $v) {
+    if (!isset($_SESSION[$k])) $_SESSION[$k] = $v;
+  }
+
+  unset($_SESSION['oauth_state'], $_SESSION['oauth_purpose']);
+  return [
+    'nonce' => $nonce,
+    'purpose' => $purpose !== '' ? $purpose : (string)($pending['purpose'] ?? 'login'),
+    'extra' => $extra,
+    'redirect_uri' => (string)(($pending['redirect_uri'] ?? '') ?: ($_SESSION['oauth_redirect_uri'] ?? sci_auth_redirect_uri())),
+  ];
+}
+
 function sci_auth_user(): ?array {
   sci_auth_start_session();
   $u = $_SESSION['sci_auth_user'] ?? null;
@@ -249,7 +352,11 @@ function sci_auth_set_user(array $user): void {
     'name' => (string)($user['name'] ?? ''),
     'picture' => (string)($user['picture'] ?? ''),
     'sub' => (string)($user['sub'] ?? ''),
-    'login_at' => date('c'),
+    'user_id' => (int)($user['user_id'] ?? 0),
+    'role' => (string)($user['role'] ?? ''),
+    'role_name' => (string)($user['role_name'] ?? ''),
+    'eoffice_username' => $user['eoffice_username'] ?? null,
+    'login_at' => (string)($user['login_at'] ?? date('c')),
   ];
 }
 
@@ -298,19 +405,22 @@ function sci_auth_require_login(bool $json = false): void {
   exit;
 }
 
-function sci_auth_google_authorize_url(string $state): string {
+function sci_auth_google_authorize_url(string $state, array $opts = []): string {
   $cfg = sci_auth_config();
   $redirect = sci_auth_redirect_uri();
   // Keep the exact redirect_uri for the token exchange step
   $_SESSION['oauth_redirect_uri'] = $redirect;
+  $scope = (string)($opts['scope'] ?? 'openid email profile');
+  $accessType = (string)($opts['access_type'] ?? 'online');
+  $prompt = (string)($opts['prompt'] ?? 'select_account');
   $params = [
     'client_id' => $cfg['client_id'],
     'redirect_uri' => $redirect,
     'response_type' => 'code',
-    'scope' => 'openid email profile',
-    'access_type' => 'online',
+    'scope' => $scope,
+    'access_type' => $accessType,
     'include_granted_scopes' => 'true',
-    'prompt' => 'select_account',
+    'prompt' => $prompt,
     'state' => $state,
   ];
   return 'https://accounts.google.com/o/oauth2/v2/auth?' . http_build_query($params);

@@ -1,8 +1,8 @@
 {
-    "generated_at": "2026-08-21T11:24:19+02:00",
+    "generated_at": "2026-08-21T12:39:39+02:00",
     "source": "mysql:sciweek-2569:r1",
-    "source_mtime": "2026-08-21T11:24:19+02:00",
-    "total_applicants": 87,
+    "source_mtime": "2026-08-21T12:39:39+02:00",
+    "total_applicants": 88,
     "slots": [
         {
             "id": "A1",
@@ -801,7 +801,7 @@
                 "category": "ข้าวราดแกง",
                 "score": 1,
                 "match": "exact",
-                "payment_status": "unknown",
+                "payment_status": "paid",
                 "payment_warning": false
             },
             "key": "a52f1661f11d83dad73f0a525624f735",
@@ -890,7 +890,7 @@
                 "category": "มันฝรั่งทอด",
                 "score": 1,
                 "match": "exact",
-                "payment_status": "unknown",
+                "payment_status": "paid",
                 "payment_warning": false
             },
             "key": "4c1fcf554fabd4f66229237c88d05da4",
@@ -1282,7 +1282,7 @@
                 "category": "ซูชิ\/อาหารญี่ปุ่น",
                 "score": 1,
                 "match": "exact",
-                "payment_status": "unknown",
+                "payment_status": "paid",
                 "payment_warning": false
             },
             "key": "b35c6bde8f99385a8af33c73bbcea287",
@@ -1383,7 +1383,7 @@
                 "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
                 "score": 1,
                 "match": "exact",
-                "payment_status": "unknown",
+                "payment_status": "paid",
                 "payment_warning": false
             },
             "key": "2d4aee88716a6cb41efb907ce95cb24e",
@@ -1733,7 +1733,7 @@
                 "category": "ข้าวไข่เจียว อาหารตามสั่ง",
                 "score": 1,
                 "match": "exact",
-                "payment_status": "unknown",
+                "payment_status": "paid",
                 "payment_warning": false
             },
             "key": "be1e871c34ba82515e445f87e589f9d7",
@@ -2405,7 +2405,7 @@
                 "category": "ยำ",
                 "score": 1,
                 "match": "exact",
-                "payment_status": "unknown",
+                "payment_status": "paid",
                 "payment_warning": false
             },
             "key": "3f42bccd28a20e3139e488fc15c0b485",
@@ -2573,7 +2573,7 @@
                 "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
                 "score": 1,
                 "match": "exact",
-                "payment_status": "unknown",
+                "payment_status": "paid",
                 "payment_warning": false
             },
             "key": "7d52c703f097473ec4756c08a32044be",
@@ -2905,7 +2905,7 @@
                 "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
                 "score": 1,
                 "match": "exact",
-                "payment_status": "unknown",
+                "payment_status": "paid",
                 "payment_warning": false
             },
             "key": "1f1bc6ea9cdd9ee19a4bb7cc2bb67b1e",
@@ -3109,7 +3109,7 @@
                 "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
                 "score": 1,
                 "match": "exact",
-                "payment_status": "unknown",
+                "payment_status": "paid",
                 "payment_warning": false
             },
             "key": "3c450ae70e82156faee1e3804271ccfe",
@@ -3204,7 +3204,7 @@
                 "category": "อาหารทอดทานเล่น",
                 "score": 1,
                 "match": "exact",
-                "payment_status": "unknown",
+                "payment_status": "paid",
                 "payment_warning": false
             },
             "key": "f46d6de5d12491a97645b22ed9a2031a",
@@ -3287,7 +3287,7 @@
                 "category": "ลูกชิ้นทอด\/นึ่ง",
                 "score": 1,
                 "match": "exact",
-                "payment_status": "unknown",
+                "payment_status": "paid",
                 "payment_warning": false
             },
             "key": "5d72c078b061cef754965352c8952f02",
@@ -3880,7 +3880,7 @@
                 "category": "ขนมจีนน้ำยา (น้ำยาหลากหลาย)\/หมี่กะทิ",
                 "score": 1,
                 "match": "exact",
-                "payment_status": "unknown",
+                "payment_status": "paid",
                 "payment_warning": false
             },
             "key": "1d0dbf99cc2d09d3d192cd0661481a34",
@@ -3963,7 +3963,7 @@
                 "category": "หม่าล่าย่าง (เสียบไม้)",
                 "score": 1,
                 "match": "exact",
-                "payment_status": "unknown",
+                "payment_status": "paid",
                 "payment_warning": false
             },
             "key": "cfdf03b71dc44ada361fbe2ba5151aa2",
@@ -4526,7 +4526,7 @@
                 "category": "ไส้กรอกอีสาน",
                 "score": 1,
                 "match": "exact",
-                "payment_status": "unknown",
+                "payment_status": "paid",
                 "payment_warning": false
             },
             "key": "ead61b6d41517bca6f7bf6d3b7baea8b",
@@ -4791,7 +4791,7 @@
                 "category": "ผลไม้",
                 "score": 1,
                 "match": "exact",
-                "payment_status": "unknown",
+                "payment_status": "paid",
                 "payment_warning": false
             },
             "key": "cab4f5efc9f318fc3a5507e2ec194d31",
@@ -8225,6 +8225,79 @@
                 }
             },
             "payment_warning": false
+        },
+        {
+            "id": 127,
+            "row": 91,
+            "timestamp": 1787308591,
+            "datetime": "2026-08-21 17:36:31",
+            "datetime_th": "21 ส.ค. 2569 · 17:36:31 น.",
+            "time_label": "21 ส.ค. 2569 · 17:36:31 น.",
+            "timestamp_raw": "2026-08-21 17:36:31",
+            "name": "นาง จรูญลักษณ์ สุพร",
+            "phone": "0862373899",
+            "zone": "A",
+            "zone_raw": "โซน A",
+            "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
+            "category_raw": "เครื่องดื่มไม่มีแอลกอฮอล์",
+            "detail": "อร่อยเวอร์",
+            "qualifications": "บุคคลธรรมดา \/ ผู้ประกอบการทั่วไป",
+            "id_card": "file_serve.php?id=619",
+            "house_reg": "file_serve.php?id=620",
+            "photo": "file_serve.php?id=621",
+            "food_photos": [
+                {
+                    "url": "file_serve.php?id=622",
+                    "id": null,
+                    "thumb": "file_serve.php?id=622",
+                    "full": "file_serve.php?id=622"
+                }
+            ],
+            "docs": {
+                "id_card": true,
+                "house_reg": true,
+                "photo": true,
+                "food": true,
+                "qualify": true
+            },
+            "auto_missing": [],
+            "status": "รอตรวจสอบ",
+            "status_raw": "รอตรวจสอบ",
+            "missing_detail": "",
+            "review_note": "",
+            "selection": "รอพิจารณา",
+            "reviewed_at": "",
+            "assigned_slot": "",
+            "payment_status": "unpaid",
+            "payment_at": "",
+            "payment_note": "",
+            "returning": false,
+            "alumni": null,
+            "key": "53313f049311d3c1f5e1979474391a62",
+            "doc_check": {
+                "system": {
+                    "pass": true,
+                    "label": "ครบถ้วน",
+                    "missing": []
+                },
+                "admin": {
+                    "reviewed": true,
+                    "status": "รอตรวจสอบ",
+                    "pass": false,
+                    "fail": false,
+                    "missing_detail": "",
+                    "review_note": "",
+                    "reviewed_at": ""
+                },
+                "effective": {
+                    "source": "admin",
+                    "source_label": "ยึดตามที่ Admin ตรวจ",
+                    "pass": false,
+                    "label": "รอตรวจสอบ",
+                    "reason": ""
+                }
+            },
+            "payment_warning": false
         }
     ],
     "shop_report": [
@@ -8305,7 +8378,7 @@
                     "category": "ยำ",
                     "score": 1,
                     "match": "exact",
-                    "payment_status": "unknown",
+                    "payment_status": "paid",
                     "payment_warning": false
                 },
                 "payment_status": "paid",
@@ -8340,7 +8413,7 @@
                     "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
                     "score": 1,
                     "match": "exact",
-                    "payment_status": "unknown",
+                    "payment_status": "paid",
                     "payment_warning": false
                 },
                 "payment_status": "paid",
@@ -8375,7 +8448,7 @@
                     "category": "ข้าวราดแกง",
                     "score": 1,
                     "match": "exact",
-                    "payment_status": "unknown",
+                    "payment_status": "paid",
                     "payment_warning": false
                 },
                 "payment_status": "paid",
@@ -8435,7 +8508,7 @@
                     "category": "ขนมจีนน้ำยา (น้ำยาหลากหลาย)\/หมี่กะทิ",
                     "score": 1,
                     "match": "exact",
-                    "payment_status": "unknown",
+                    "payment_status": "paid",
                     "payment_warning": false
                 },
                 "payment_status": "unpaid",
@@ -8528,7 +8601,7 @@
                     "category": "ไส้กรอกอีสาน",
                     "score": 1,
                     "match": "exact",
-                    "payment_status": "unknown",
+                    "payment_status": "paid",
                     "payment_warning": false
                 },
                 "payment_status": "paid",
@@ -8571,7 +8644,7 @@
                     "category": "เครื่องดื่มไม่มีแอลกอฮอล์",
                     "score": 1,
                     "match": "exact",
-                    "payment_status": "unknown",
+                    "payment_status": "paid",
                     "payment_warning": false
                 },
                 "payment_status": "paid",
@@ -8631,7 +8704,7 @@
                     "category": "ซูชิ\/อาหารญี่ปุ่น",
                     "score": 1,
                     "match": "exact",
-                    "payment_status": "unknown",
+                    "payment_status": "paid",
                     "payment_warning": false
                 },
                 "payment_status": "paid",
@@ -8666,7 +8739,7 @@
                     "category": "อาหารทอดทานเล่น",
                     "score": 1,
                     "match": "exact",
-                    "payment_status": "unknown",
+                    "payment_status": "paid",
                     "payment_warning": false
                 },
                 "payment_status": "paid",
@@ -8726,7 +8799,7 @@
                     "category": "มันฝรั่งทอด",
                     "score": 1,
                     "match": "exact",
-                    "payment_status": "unknown",
+                    "payment_status": "paid",
                     "payment_warning": false
                 },
                 "payment_status": "paid",
@@ -9184,14 +9257,14 @@
         }
     ],
     "doc_summary": {
-        "total": 87,
-        "system_ok": 87,
+        "total": 88,
+        "system_ok": 88,
         "system_fail": 0,
         "admin_ok": 72,
         "admin_fail": 14,
-        "admin_pending": 1,
+        "admin_pending": 2,
         "effective_ok": 72,
-        "effective_fail": 15
+        "effective_fail": 16
     },
     "alumni": {
         "year": 2568,
@@ -9219,7 +9292,7 @@
         "event": {
             "id": 1,
             "code": "sciweek-2569",
-            "title": "ร้านค้าสัปดาห์วิทยาศาสตร์แห่งชาติ ส่วนภูมิภาค ณ คณะวิทยาศาสตร์ มข. ประจำปี 2569",
+            "title": "ร้านค้าสัปดาห์วิทยาศาสตร์แห่งชาติ ส่วนภูมิภาค ณ คณะวิทยาศาสตร์ มข. ประจำปี 2569x",
             "year_be": 2569
         },
         "data_dir": "mysql",
@@ -9232,75 +9305,138 @@
         "round": {
             "id": 1,
             "year": 2569,
-            "label": "รอบที่ 1",
+            "label": "ร้านค้าประจำปี 2569 รอบที่ 1",
             "short": "รอบ 1",
-            "title": "ร้านค้าประจำปี 2569 รอบที่ 1",
-            "status_store": "status_store.json",
-            "payload": "applicants.json",
-            "xlsx_canonical": "แบบตอบรับ.xlsx"
+            "title": "ร้านค้าสัปดาห์วิทยาศาสตร์แห่งชาติ ส่วนภูมิภาค ณ คณะวิทยาศาสตร์ มข. ประจำปี 2569x · ร้านค้าประจำปี 2569 รอบที่ 1",
+            "event_id": 1,
+            "event_code": "sciweek-2569",
+            "event_title": "ร้านค้าสัปดาห์วิทยาศาสตร์แห่งชาติ ส่วนภูมิภาค ณ คณะวิทยาศาสตร์ มข. ประจำปี 2569x",
+            "is_open": true,
+            "status_store": "mysql",
+            "payload": "mysql",
+            "xlsx_canonical": ""
         },
-        "hint": "บันทึกสถานะลง MySQL ฐานข้อมูล sciweekshop · ร้านค้าประจำปี 2569 รอบที่ 1"
+        "hint": "บันทึกสถานะลง MySQL ฐานข้อมูล sciweekshop · ร้านค้าสัปดาห์วิทยาศาสตร์แห่งชาติ ส่วนภูมิภาค ณ คณะวิทยาศาสตร์ มข. ประจำปี 2569x · ร้านค้าประจำปี 2569 รอบที่ 1"
     },
     "status_store": {
         "backend": "mysql",
         "event_id": 1,
         "round_id": 1,
-        "count": 87
+        "count": 88
     },
     "policy": "บันทึกสถานะตรวจเอกสาร\/คัดเลือก\/ล็อก\/ชำระเงินลง MySQL — ไม่ลบรายการผู้สมัคร",
     "notice": "ข้อมูลอ่าน\/เขียนจาก MySQL (`sciweekshop`) · กิจกรรม sciweek-2569 · ไม่ลบแถวผู้สมัคร",
     "round": {
         "id": 1,
         "year": 2569,
-        "label": "รอบที่ 1",
+        "label": "ร้านค้าประจำปี 2569 รอบที่ 1",
         "short": "รอบ 1",
-        "title": "ร้านค้าประจำปี 2569 รอบที่ 1",
-        "status_store": "status_store.json",
-        "payload": "applicants.json",
-        "xlsx_canonical": "แบบตอบรับ.xlsx"
+        "title": "ร้านค้าสัปดาห์วิทยาศาสตร์แห่งชาติ ส่วนภูมิภาค ณ คณะวิทยาศาสตร์ มข. ประจำปี 2569x · ร้านค้าประจำปี 2569 รอบที่ 1",
+        "event_id": 1,
+        "event_code": "sciweek-2569",
+        "event_title": "ร้านค้าสัปดาห์วิทยาศาสตร์แห่งชาติ ส่วนภูมิภาค ณ คณะวิทยาศาสตร์ มข. ประจำปี 2569x",
+        "is_open": true,
+        "status_store": "mysql",
+        "payload": "mysql",
+        "xlsx_canonical": ""
     },
     "rounds": [
         {
             "id": 1,
             "year": 2569,
-            "label": "รอบที่ 1",
+            "label": "ร้านค้าประจำปี 2569 รอบที่ 1",
             "short": "รอบ 1",
-            "title": "ร้านค้าประจำปี 2569 รอบที่ 1",
-            "status_store": "status_store.json",
-            "payload": "applicants.json",
-            "xlsx_canonical": "แบบตอบรับ.xlsx",
-            "xlsx": "แบบตอบรับ.xlsx",
+            "title": "ร้านค้าสัปดาห์วิทยาศาสตร์แห่งชาติ ส่วนภูมิภาค ณ คณะวิทยาศาสตร์ มข. ประจำปี 2569x · ร้านค้าประจำปี 2569 รอบที่ 1",
+            "event_id": 1,
+            "event_code": "sciweek-2569",
+            "event_title": "ร้านค้าสัปดาห์วิทยาศาสตร์แห่งชาติ ส่วนภูมิภาค ณ คณะวิทยาศาสตร์ มข. ประจำปี 2569x",
+            "is_open": true,
+            "status_store": "mysql",
+            "payload": "mysql",
+            "xlsx_canonical": "",
+            "db_id": 1,
+            "round_no": 1,
+            "apply_open_at": "2026-01-01 08:00:00",
+            "apply_close_at": "2026-12-31 16:30:00",
+            "xlsx": null,
             "available": true,
             "error": null,
-            "active": true
+            "active": true,
+            "event_year": 2569
         },
         {
             "id": 2,
             "year": 2569,
-            "label": "รอบที่ 2",
+            "label": "ร้านค้าประจำปี 2569 รอบที่ 2",
             "short": "รอบ 2",
-            "title": "ร้านค้าประจำปี 2569 รอบที่ 2",
-            "status_store": "status_store_r2.json",
-            "payload": "applicants_r2.json",
-            "xlsx_canonical": "แบบตอบรับ69_รอบ2.xlsx",
-            "xlsx": "แบบตอบรับ69_รอบ2.xlsx",
+            "title": "ร้านค้าสัปดาห์วิทยาศาสตร์แห่งชาติ ส่วนภูมิภาค ณ คณะวิทยาศาสตร์ มข. ประจำปี 2569x · ร้านค้าประจำปี 2569 รอบที่ 2",
+            "event_id": 1,
+            "event_code": "sciweek-2569",
+            "event_title": "ร้านค้าสัปดาห์วิทยาศาสตร์แห่งชาติ ส่วนภูมิภาค ณ คณะวิทยาศาสตร์ มข. ประจำปี 2569x",
+            "is_open": false,
+            "status_store": "mysql",
+            "payload": "mysql",
+            "xlsx_canonical": "",
+            "db_id": 2,
+            "round_no": 2,
+            "apply_open_at": null,
+            "apply_close_at": null,
+            "xlsx": null,
             "available": true,
             "error": null,
-            "active": false
+            "active": false,
+            "event_year": 2569
         },
         {
             "id": 3,
             "year": 2569,
-            "label": "รอบที่ 3",
+            "label": "ร้านค้าประจำปี 2569 รอบที่ 3",
             "short": "รอบ 3",
-            "title": "ร้านค้าประจำปี 2569 รอบที่ 3",
-            "status_store": "status_store_r3.json",
-            "payload": "applicants_r3.json",
-            "xlsx_canonical": "แบบตอบรับ69_รอบ3.xlsx",
-            "xlsx": "แบบตอบรับ69_รอบ3.xlsx",
+            "title": "ร้านค้าสัปดาห์วิทยาศาสตร์แห่งชาติ ส่วนภูมิภาค ณ คณะวิทยาศาสตร์ มข. ประจำปี 2569x · ร้านค้าประจำปี 2569 รอบที่ 3",
+            "event_id": 1,
+            "event_code": "sciweek-2569",
+            "event_title": "ร้านค้าสัปดาห์วิทยาศาสตร์แห่งชาติ ส่วนภูมิภาค ณ คณะวิทยาศาสตร์ มข. ประจำปี 2569x",
+            "is_open": false,
+            "status_store": "mysql",
+            "payload": "mysql",
+            "xlsx_canonical": "",
+            "db_id": 3,
+            "round_no": 3,
+            "apply_open_at": null,
+            "apply_close_at": null,
+            "xlsx": null,
             "available": true,
             "error": null,
-            "active": false
+            "active": false,
+            "event_year": 2569
+        }
+    ],
+    "event": {
+        "id": 1,
+        "code": "sciweek-2569",
+        "title": "ร้านค้าสัปดาห์วิทยาศาสตร์แห่งชาติ ส่วนภูมิภาค ณ คณะวิทยาศาสตร์ มข. ประจำปี 2569x",
+        "year_be": 2569
+    },
+    "events": [
+        {
+            "id": 1,
+            "code": "sciweek-2569",
+            "title": "ร้านค้าสัปดาห์วิทยาศาสตร์แห่งชาติ ส่วนภูมิภาค ณ คณะวิทยาศาสตร์ มข. ประจำปี 2569x",
+            "year_be": 2569,
+            "is_active": true,
+            "round_count": 3,
+            "slot_count": 40,
+            "applicant_count": 109
+        },
+        {
+            "id": 4,
+            "code": "sciweek-2568",
+            "title": "ร้านค้าสัปดาห์วิทยาศาสตร์แห่งชาติ ส่วนภูมิภาค ณ คณะวิทยาศาสตร์ มข. ประจำปี 2568",
+            "year_be": 2568,
+            "is_active": false,
+            "round_count": 1,
+            "slot_count": 40,
+            "applicant_count": 18
         }
     ]
 }

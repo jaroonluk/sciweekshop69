@@ -1,17 +1,56 @@
+# IDE / OS
 .idea/
-*.bak
-*.tmp.zip
-*.tmp
-rebuild_out.json
+.vscode/
 .DS_Store
 Thumbs.db
+
+# Temp / local junk
+*.bak
+*.tmp
+*.tmp.zip
 ~$*
 ~$*.xlsx
-แบบตอบรับ.xlsx
-*.xlsx
 _test_*.php
-data/idcard_title_cache.json
-data/auth_secrets.php
 _export_*.py
 _fid.txt
 _idbin.bin
+rebuild_out.json
+
+# Spreadsheet sources (local)
+*.xlsx
+แบบตอบรับ.xlsx
+
+# --- Secrets / credentials / encryption ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*credentials*.json
+*service-account*.json
+secrets.php
+**/secrets.local.php
+
+# --- Database & integration configs (keep *.example.php) ---
+data/db_config.php
+data/auth_secrets.php
+data/minio_config.php
+data/drive_migrate_config.php
+data/*_config.php
+!data/*_config.example.php
+!data/*.example.php
+
+# OAuth / token / cache that may hold secrets
+data/oauth_pending/
+data/oauth_tokens/
+data/*token*.json
+data/*_token.php
+data/idcard_title_cache.json
+
+# Runtime uploads & rate-limit counters
+data/uploads/
+
+# Local status stores (if generated outside DB)
+data/status_store*.json

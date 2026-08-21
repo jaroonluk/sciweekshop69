@@ -20,6 +20,13 @@ function sci_dir(): string {
 }
 
 function sci_max_round(): int {
+  if (function_exists('sci_use_mysql') && sci_use_mysql() && function_exists('sci_db_max_round')) {
+    try {
+      return max(1, sci_db_max_round());
+    } catch (Throwable $e) {
+      // fall through
+    }
+  }
   return 3;
 }
 
@@ -49,6 +56,38 @@ function sci_apply_round_from_request(?array $jsonBody = null): int {
 
 function sci_round_meta(?int $round = null): array {
   $round = sci_normalize_round($round ?? sci_current_round());
+  if (function_exists('sci_use_mysql') && sci_use_mysql() && function_exists('sci_db_active_event')) {
+    try {
+      $event = sci_db_active_event();
+      $year = (int)$event['year_be'];
+      $title = (string)$event['title'];
+      $label = 'รอบที่ ' . $round;
+      $isOpen = null;
+      foreach (sci_db_event_rounds() as $r) {
+        if ((int)$r['round_no'] === $round) {
+          if (!empty($r['title'])) $label = (string)$r['title'];
+          $isOpen = (int)($r['is_open'] ?? 0) === 1;
+          break;
+        }
+      }
+      return [
+        'id' => $round,
+        'year' => $year,
+        'label' => $label,
+        'short' => 'รอบ ' . $round,
+        'title' => $title . ' · ' . $label,
+        'event_id' => (int)$event['id'],
+        'event_code' => (string)$event['code'],
+        'event_title' => $title,
+        'is_open' => $isOpen,
+        'status_store' => 'mysql',
+        'payload' => 'mysql',
+        'xlsx_canonical' => '',
+      ];
+    } catch (Throwable $e) {
+      // fall through to legacy Excel meta
+    }
+  }
   if ($round === 3) {
     return [
       'id' => 3,
@@ -146,6 +185,9 @@ function sci_is_writable_path(string $path): bool {
 }
 
 function sci_storage_health(): array {
+  if (function_exists('sci_use_mysql') && sci_use_mysql() && function_exists('sci_db_storage_health')) {
+    return sci_db_storage_health();
+  }
   $meta = sci_round_meta();
   $storeRel = 'data/' . $meta['status_store'];
   $xlsx = null;
@@ -403,6 +445,42 @@ function sci_xlsx_write_path(?int $round = null): string {
 }
 
 function sci_available_rounds(): array {
+  if (function_exists('sci_use_mysql') && sci_use_mysql() && function_exists('sci_db_event_rounds')) {
+    try {
+      $out = [];
+      $cur = sci_current_round();
+      $event = sci_db_active_event();
+      $dbRounds = sci_db_event_rounds();
+      if (!$dbRounds) {
+        $meta = sci_round_meta(1);
+        return [array_merge($meta, [
+          'available' => true,
+          'error' => null,
+          'active' => true,
+          'xlsx' => null,
+        ])];
+      }
+      foreach ($dbRounds as $r) {
+        $no = (int)$r['round_no'];
+        $meta = sci_round_meta($no);
+        $out[] = array_merge($meta, [
+          'db_id' => (int)$r['id'],
+          'round_no' => $no,
+          'apply_open_at' => $r['apply_open_at'] ?? null,
+          'apply_close_at' => $r['apply_close_at'] ?? null,
+          'is_open' => (int)($r['is_open'] ?? 0) === 1,
+          'xlsx' => null,
+          'available' => true,
+          'error' => null,
+          'active' => $cur === $no,
+          'event_year' => (int)$event['year_be'],
+        ]);
+      }
+      return $out;
+    } catch (Throwable $e) {
+      // fall through
+    }
+  }
   $out = [];
   foreach (range(1, sci_max_round()) as $r) {
     $meta = sci_round_meta($r);
@@ -424,6 +502,14 @@ function sci_available_rounds(): array {
 }
 
 function sci_slots(): array {
+  if (function_exists('sci_use_mysql') && sci_use_mysql() && function_exists('sci_db_slots')) {
+    try {
+      $dbSlots = sci_db_slots();
+      if ($dbSlots) return $dbSlots;
+    } catch (Throwable $e) {
+      // fall through to hardcoded layout
+    }
+  }
   return [
     ['id'=>'A1','zone'=>'A','cat'=>'เครื่องดื่มไม่มีแอลกอฮอล์','limit'=>3],
     ['id'=>'A2','zone'=>'A','cat'=>'ข้าวไข่เจียว อาหารตามสั่ง','limit'=>1],
@@ -475,6 +561,9 @@ function sci_slots(): array {
 function sci_round_occupied_slots(int $round): array {
   static $cache = [];
   $round = sci_normalize_round($round);
+  if (function_exists('sci_use_mysql') && sci_use_mysql() && function_exists('sci_db_round_occupied_slots')) {
+    return sci_db_round_occupied_slots($round);
+  }
   if (isset($cache[$round])) {
     return $cache[$round];
   }
@@ -799,19 +888,41 @@ function sci_format_thai_time(DateTimeImmutable $dt, float $sortKey): array {
   ];
 }
 
+function sci_is_app_file_url(string $url): bool {
+  $url = trim($url);
+  if ($url === '') return false;
+  if (str_starts_with($url, 'file_serve.php')) return true;
+  if (str_starts_with($url, 's3://')) return true;
+  if (str_starts_with($url, 'uploads/')) return true;
+  if (preg_match('#(^|/)file_serve\.php(\?|$)#i', $url)) return true;
+  return false;
+}
+
 function sci_drive_view(string $url): string {
-  if (preg_match('/id=([a-zA-Z0-9_-]+)/', $url, $m)) {
-    return 'https://drive.google.com/file/d/' . $m[1] . '/view';
+  $url = trim($url);
+  if ($url === '' || sci_is_app_file_url($url)) {
+    return $url;
+  }
+  // Prefer never rewriting non-Drive URLs
+  if (!preg_match('#drive\.google\.com#i', $url)) {
+    return $url;
   }
   if (preg_match('#/d/([a-zA-Z0-9_-]+)#', $url, $m)) {
+    return 'https://drive.google.com/file/d/' . $m[1] . '/view';
+  }
+  if (preg_match('/[?&]id=([a-zA-Z0-9_-]+)/', $url, $m)) {
     return 'https://drive.google.com/file/d/' . $m[1] . '/view';
   }
   return $url;
 }
 
 function sci_drive_id(string $url): ?string {
-  if (preg_match('/id=([a-zA-Z0-9_-]+)/', $url, $m)) return $m[1];
+  $url = trim($url);
+  if ($url === '' || sci_is_app_file_url($url)) return null;
+  // Only extract IDs from real Google Drive URLs (never from file_serve.php?id=…)
+  if (!preg_match('#drive\.google\.com#i', $url)) return null;
   if (preg_match('#/d/([a-zA-Z0-9_-]+)#', $url, $m)) return $m[1];
+  if (preg_match('/[?&]id=([a-zA-Z0-9_-]+)/', $url, $m)) return $m[1];
   return null;
 }
 
@@ -1001,20 +1112,40 @@ function sci_alumni_path(): string {
  * Load previous-year selected vendors (SCI Week 2568).
  */
 function sci_load_alumni(): array {
-  static $cache = null;
-  if ($cache !== null) return $cache;
+  if (isset($GLOBALS['SCI_ALUMNI_CACHE']) && is_array($GLOBALS['SCI_ALUMNI_CACHE'])) {
+    return $GLOBALS['SCI_ALUMNI_CACHE'];
+  }
+  if (function_exists('sci_use_mysql') && sci_use_mysql() && function_exists('sci_db_load_alumni')) {
+    $cache = sci_db_load_alumni();
+    $GLOBALS['SCI_ALUMNI_CACHE'] = $cache;
+    return $cache;
+  }
   $path = sci_alumni_path();
   if (!is_file($path)) {
-    $cache = ['year' => 2568, 'vendors' => [], 'label' => 'SCI Week 2568'];
+    $cache = ['year' => 2568, 'vendors' => [], 'label' => 'SCI Week 2568', 'unpaid_count' => 0];
+    $GLOBALS['SCI_ALUMNI_CACHE'] = $cache;
     return $cache;
   }
   $raw = json_decode((string)file_get_contents($path), true);
   if (!is_array($raw) || !isset($raw['vendors']) || !is_array($raw['vendors'])) {
-    $cache = ['year' => 2568, 'vendors' => [], 'label' => 'SCI Week 2568'];
+    $cache = ['year' => 2568, 'vendors' => [], 'label' => 'SCI Week 2568', 'unpaid_count' => 0];
+    $GLOBALS['SCI_ALUMNI_CACHE'] = $cache;
     return $cache;
   }
-  $cache = $raw;
-  return $cache;
+  $unpaid = 0;
+  foreach ($raw['vendors'] as &$v) {
+    if (!is_array($v)) continue;
+    $pay = (string)($v['payment_status'] ?? '');
+    if ($pay === 'unpaid' || !empty($v['payment_warning'])) {
+      $v['payment_warning'] = true;
+      $v['payment_status'] = 'unpaid';
+      $unpaid++;
+    }
+  }
+  unset($v);
+  $raw['unpaid_count'] = $unpaid;
+  $GLOBALS['SCI_ALUMNI_CACHE'] = $raw;
+  return $raw;
 }
 
 /**
@@ -1093,13 +1224,15 @@ function sci_match_alumni(string $applicantName, array $alumni): ?array {
       if ($score > $bestScore) {
         $bestScore = $score;
         $best = [
-          'year' => (int)($alumni['year'] ?? 2568),
+          'year' => (int)($v['year'] ?? $alumni['year'] ?? 2568),
           'label' => (string)($alumni['label'] ?? 'SCI Week 2568'),
           'name' => (string)($v['name'] ?? $cand),
           'slot' => (string)($v['slot'] ?? ''),
           'category' => (string)($v['category'] ?? ''),
           'score' => round($score, 3),
           'match' => $score >= 0.995 ? 'exact' : 'fuzzy',
+          'payment_status' => (string)($v['payment_status'] ?? 'unknown'),
+          'payment_warning' => !empty($v['payment_warning']) || (($v['payment_status'] ?? '') === 'unpaid'),
         ];
       }
     }
@@ -1110,20 +1243,64 @@ function sci_match_alumni(string $applicantName, array $alumni): ?array {
 }
 
 /**
+ * Alumni rows from years before the active event (for “returning / unpaid prior year” matching).
+ * Syncing the current event into alumni_vendors must not mark this year’s applicants as returning.
+ */
+function sci_prior_alumni(?int $beforeYearBe = null): array {
+  $alumni = sci_load_alumni();
+  if ($beforeYearBe === null && function_exists('sci_use_mysql') && sci_use_mysql() && function_exists('sci_db_active_event')) {
+    try {
+      $beforeYearBe = (int)(sci_db_active_event()['year_be'] ?? 0);
+    } catch (Throwable $e) {
+      $beforeYearBe = 0;
+    }
+  }
+  if ($beforeYearBe === null || $beforeYearBe <= 0) {
+    return $alumni;
+  }
+
+  $vendors = [];
+  $unpaid = 0;
+  $metaYear = 0;
+  $metaLabel = (string)($alumni['label'] ?? '');
+  foreach ($alumni['vendors'] ?? [] as $v) {
+    if (!is_array($v)) continue;
+    $y = (int)($v['year'] ?? 0);
+    if ($y <= 0 || $y >= $beforeYearBe) continue;
+    $vendors[] = $v;
+    if (!empty($v['payment_warning']) || (($v['payment_status'] ?? '') === 'unpaid')) $unpaid++;
+    if ($y > $metaYear) {
+      $metaYear = $y;
+      if (!empty($v['event_label'])) $metaLabel = (string)$v['event_label'];
+    }
+  }
+  $alumni['vendors'] = $vendors;
+  $alumni['unpaid_count'] = $unpaid;
+  if ($metaYear > 0) $alumni['year'] = $metaYear;
+  if ($metaLabel !== '') $alumni['label'] = $metaLabel;
+  $alumni['before_year_be'] = $beforeYearBe;
+  return $alumni;
+}
+
+/**
  * Attach returning-vendor flags and summary counts.
  */
 function sci_attach_alumni(array &$apps): array {
-  $alumni = sci_load_alumni();
+  $alumni = sci_prior_alumni();
   $returning = 0;
+  $returningUnpaid = 0;
   foreach ($apps as &$a) {
     $hit = sci_match_alumni((string)($a['name'] ?? ''), $alumni);
     if ($hit) {
       $a['returning'] = true;
       $a['alumni'] = $hit;
+      $a['payment_warning'] = !empty($hit['payment_warning']);
       $returning++;
+      if (!empty($hit['payment_warning'])) $returningUnpaid++;
     } else {
-      $a['returning'] = false;
-      $a['alumni'] = null;
+      $a['returning'] = !empty($a['returning']);
+      if (empty($a['alumni'])) $a['alumni'] = null;
+      $a['payment_warning'] = !empty($a['payment_warning']);
     }
   }
   unset($a);
@@ -1134,10 +1311,15 @@ function sci_attach_alumni(array &$apps): array {
     'source_ref' => (string)($alumni['source_ref'] ?? ''),
     'total_prev_selected' => count($alumni['vendors'] ?? []),
     'returning_count' => $returning,
+    'returning_unpaid_count' => $returningUnpaid,
+    'alumni_unpaid_count' => (int)($alumni['unpaid_count'] ?? 0),
   ];
 }
 
 function sci_parse_applicants(?string $path = null): array {
+  if ($path === null && function_exists('sci_use_mysql') && sci_use_mysql() && function_exists('sci_db_parse_applicants')) {
+    return sci_db_parse_applicants();
+  }
   $path = $path ?? sci_xlsx_path();
   $rows = sci_read_sheet_rows($path);
   if (!$rows) {
@@ -1326,6 +1508,9 @@ function sci_parse_applicants(?string $path = null): array {
   $storeMeta = sci_merge_status_store($apps);
   $health = sci_storage_health();
   $alumniMeta = sci_attach_alumni($apps);
+  $paymentAlerts = function_exists('sci_build_payment_alerts')
+    ? sci_build_payment_alerts($apps, $alumniMeta)
+    : ['banner' => '', 'unpaid_alumni' => [], 'returning_unpaid' => []];
 
   $layout = sci_slot_layout();
   $slots = $layout['slots'];
@@ -1358,6 +1543,7 @@ function sci_parse_applicants(?string $path = null): array {
     'shop_report' => $shopReport,
     'doc_summary' => $docSummary,
     'alumni' => $alumniMeta,
+    'payment_alerts' => $paymentAlerts,
     'storage' => $health,
     'status_store' => $storeMeta,
     'policy' => 'บันทึกเฉพาะสถานะตรวจเอกสาร/คัดเลือก/ล็อก — ไม่ลบรายการผู้สมัคร · บนเซิร์ฟเวอร์สถานะเก็บที่ ' . $storeRel . ' เป็นหลัก และซิงก์ Excel เมื่อเขียนได้',
@@ -1370,6 +1556,50 @@ function sci_with_round_context(array $data): array {
   $data['rounds'] = sci_available_rounds();
   if (!isset($data['storage'])) {
     $data['storage'] = sci_storage_health();
+  }
+  if (function_exists('sci_use_mysql') && sci_use_mysql() && function_exists('sci_db_active_event')) {
+    try {
+      $ev = sci_db_active_event();
+      $data['event'] = $ev;
+      if (function_exists('sci_admin_list_events')) {
+        $data['events'] = array_map(static function ($e) {
+          return [
+            'id' => (int)$e['id'],
+            'code' => (string)$e['code'],
+            'title' => (string)$e['title'],
+            'year_be' => (int)$e['year_be'],
+            'is_active' => (int)$e['is_active'] === 1,
+            'round_count' => (int)($e['round_count'] ?? 0),
+            'slot_count' => (int)($e['slot_count'] ?? 0),
+            'applicant_count' => (int)($e['applicant_count'] ?? 0),
+          ];
+        }, sci_admin_list_events());
+      } else {
+        // Lightweight list without event_admin_lib
+        $st = sci_db()->query(
+          'SELECT id, code, title, year_be, is_active,
+                  (SELECT COUNT(*) FROM event_rounds r WHERE r.event_id = e.id) AS round_count,
+                  (SELECT COUNT(*) FROM slots s WHERE s.event_id = e.id) AS slot_count,
+                  (SELECT COUNT(*) FROM applicants a WHERE a.event_id = e.id) AS applicant_count
+           FROM events e ORDER BY year_be DESC, id DESC'
+        );
+        $data['events'] = array_map(static function ($e) {
+          return [
+            'id' => (int)$e['id'],
+            'code' => (string)$e['code'],
+            'title' => (string)$e['title'],
+            'year_be' => (int)$e['year_be'],
+            'is_active' => (int)$e['is_active'] === 1,
+            'round_count' => (int)($e['round_count'] ?? 0),
+            'slot_count' => (int)($e['slot_count'] ?? 0),
+            'applicant_count' => (int)($e['applicant_count'] ?? 0),
+          ];
+        }, $st->fetchAll());
+      }
+    } catch (Throwable $e) {
+      $data['event'] = null;
+      $data['events'] = [];
+    }
   }
   return $data;
 }
@@ -1475,6 +1705,9 @@ function sci_normalize_payment_status(string $status): string {
  * Save payment status for an approved shop (status_store only — no Excel sync).
  */
 function sci_save_payment_status(int $row, string $paymentStatus, string $paymentNote = ''): array {
+  if (function_exists('sci_use_mysql') && sci_use_mysql() && function_exists('sci_db_save_payment_status')) {
+    return sci_db_save_payment_status($row, $paymentStatus, $paymentNote);
+  }
   if ($row < 2) {
     throw new InvalidArgumentException('row ไม่ถูกต้อง');
   }
@@ -1587,6 +1820,9 @@ function sci_count_sheet_rows(string $sheetXml): int {
  * 2) Best-effort sync into Excel P–U (never deletes applicant rows A–O)
  */
 function sci_ensure_status_and_write(array $updates): array {
+  if (function_exists('sci_use_mysql') && sci_use_mysql() && function_exists('sci_db_ensure_status_and_write')) {
+    return sci_db_ensure_status_and_write($updates);
+  }
   if (!$updates) {
     throw new InvalidArgumentException('ไม่มีรายการอัปเดต');
   }
