@@ -1,7 +1,7 @@
 {
-    "generated_at": "2026-08-24T11:47:58+07:00",
+    "generated_at": "2026-08-24T11:51:48+07:00",
     "source": "mysql:event-2569-30a559:r1",
-    "source_mtime": "2026-08-24T11:47:58+07:00",
+    "source_mtime": "2026-08-24T11:51:48+07:00",
     "total_applicants": 2,
     "slots": [
         {

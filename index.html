@@ -2673,8 +2673,43 @@
       return "รอบที่ 1–" + (n - 1);
     }
 
+    /** Directory path of this app (e.g. /sci_shop or /app/sciweekshop69), no trailing slash. */
+    function appBasePath() {
+      // 1) Prefer the folder of the page currently open (most reliable).
+      let path = String(window.location.pathname || "/");
+      if (/\.(php|html?)$/i.test(path)) {
+        path = path.replace(/\/[^/]*$/, "");
+      } else {
+        path = path.replace(/\/$/, "");
+      }
+      if (path && path !== "/") return path;
+
+      // 2) Fallback: path injected by index.php from SCRIPT_NAME
+      const injected = String(window.__SCI_APP_DIR__ || "").trim().replace(/\/$/, "");
+      if (injected && injected !== "/") return injected;
+
+      return "";
+    }
+
     function apiUrl(action) {
-      return "api.php?action=" + encodeURIComponent(action) + "&round=" + currentRound() + "&_=" + Date.now();
+      const base = appBasePath();
+      const file = (base ? base + "/" : "/") + "api.php";
+      const u = new URL(file, window.location.origin);
+      u.searchParams.set("action", String(action));
+      u.searchParams.set("round", String(currentRound()));
+      u.searchParams.set("_", String(Date.now()));
+      // Same-origin path+query (avoid leaking absolute host mismatches)
+      return u.pathname + u.search;
+    }
+
+    /** POST endpoint: keep action in JSON body (nginx/WAF sometimes mishandle long/odd query strings). */
+    function apiPostUrl() {
+      const base = appBasePath();
+      const file = (base ? base + "/" : "/") + "api.php";
+      const u = new URL(file, window.location.origin);
+      u.searchParams.set("round", String(currentRound()));
+      u.searchParams.set("_", String(Date.now()));
+      return u.pathname + u.search;
     }
 
     function occupancy() {
@@ -3840,10 +3875,10 @@
       });
 
       const post = async (action, body) => {
-        const json = await fetchJson(apiUrl(action), {
+        const json = await fetchJson(apiPostUrl(), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
+          body: JSON.stringify({ ...(body || {}), action }),
         });
         if (!json.ok) throw new Error(json.error || "ไม่สำเร็จ");
         return json;
@@ -3867,8 +3902,14 @@
         }
         const activeId = Number(activeEvent()?.id || 0);
         if (activeId && Number(state.eventSelectedId) === activeId) {
-          // Sync top year/round pickers; loadData keeps current view
-          await loadData();
+          // Keep events UI even if background reload fails
+          try {
+            await loadData();
+          } catch (err) {
+            paintWorkMain("events", renderEventsView());
+            bindEventsPanel();
+            console.warn("reload after save failed:", err);
+          }
           return;
         }
         paintWorkMain("events", renderEventsView());
@@ -4051,11 +4092,18 @@
       const btnAddSlot = document.getElementById("btnAddSlot");
       if (btnAddSlot) btnAddSlot.onclick = async () => {
         try {
+          const zoneId = Number(document.getElementById("newSlotZone")?.value || 0);
+          const code = String(document.getElementById("newSlotCode")?.value || "").trim();
+          const category = String(document.getElementById("newSlotCat")?.value || "").trim();
+          if (!state.eventSelectedId) return alert("กรุณาเลือกกิจกรรมก่อน");
+          if (!zoneId) return alert("กรุณาเลือกโซน (ถ้ายังไม่มีโซน ให้ไปแท็บโซนเพิ่มก่อน)");
+          if (!code) return alert("กรุณาระบุรหัสล็อก เช่น A8 หรือ E1");
+          if (!category) return alert("กรุณาระบุประเภท / รายละเอียด เช่น อาหารตามสั่ง");
           await refreshDetail(await post("slots_save", {
             event_id: state.eventSelectedId,
-            zone_id: Number(document.getElementById("newSlotZone").value),
-            code: document.getElementById("newSlotCode").value,
-            category: document.getElementById("newSlotCat").value,
+            zone_id: zoneId,
+            code,
+            category,
             slot_limit: 1,
             is_active: 1,
           }));
@@ -6168,7 +6216,10 @@
     }
 
     async function fetchJson(url, options) {
-      const res = await fetch(url, options);
+      const opts = { ...(options || {}) };
+      const retriedRelative = !!opts.__retriedRelative;
+      delete opts.__retriedRelative;
+      const res = await fetch(url, opts);
       const text = await res.text();
       let json;
       try {
@@ -6177,6 +6228,14 @@
         if (res.status === 401) {
           location.href = "login.php";
           throw new Error("กรุณาเข้าสู่ระบบด้วย Google");
+        }
+        // Absolute path 404 → retry once with same-directory relative api.php
+        if (res.status === 404 && typeof url === "string" && url.startsWith("/") && !retriedRelative) {
+          const q = url.includes("?") ? url.slice(url.indexOf("?")) : "";
+          return fetchJson("api.php" + q, { ...opts, __retriedRelative: true });
+        }
+        if (res.status === 404) {
+          throw new Error("ไม่พบ API (404): " + url);
         }
         const plain = text
           .replace(/<br\s*\/?>/gi, "\n")
@@ -6407,7 +6466,7 @@
       if (!id) return;
       const cur = activeEvent();
       if (cur && Number(cur.id) === id) return;
-      const json = await postJson(apiUrl("events_set_active"), { id });
+      const json = await postAction("events_set_active", { id });
       if (!json.ok) throw new Error(json.error || "สลับปีไม่สำเร็จ");
       state.round = 1;
       localStorage.setItem(ROUND_STORAGE_KEY, "1");
@@ -6415,10 +6474,20 @@
     }
 
     async function postJson(url, body) {
+      const payload = body && typeof body === "object" ? { ...body } : {};
+      // If caller passed apiUrl("xyz"), also accept plain body via apiPostUrl
       return fetchJson(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body || {}),
+        body: JSON.stringify(payload),
+      });
+    }
+
+    async function postAction(action, body) {
+      return fetchJson(apiPostUrl(), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...(body || {}), action }),
       });
     }
 

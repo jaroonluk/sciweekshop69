@@ -374,14 +374,11 @@ function sci_xlsx_col_letter(int $index1Based): string {
 
 /**
  * Build real Office Open XML .xlsx for selected vendors.
+ * Uses SciZipArchive when native ZipArchive (ext-zip) is unavailable.
  *
  * @param list<array<string,mixed>>|null $rows
  */
 function sci_build_selected_announcement_excel(?array $rows = null): string {
-  if (!class_exists('ZipArchive')) {
-    throw new RuntimeException('เซิร์ฟเวอร์ไม่มี ZipArchive สำหรับสร้างไฟล์ Excel');
-  }
-
   $rows = $rows ?? sci_selected_vendors_for_announcement();
   $flags = sci_round_ask_flags();
   $askPower = !empty($flags['ask_high_power']);
@@ -566,9 +563,13 @@ function sci_build_selected_announcement_excel(?array $rows = null): string {
   }
   $path = $tmp . '.xlsx';
   @unlink($tmp);
+  @unlink($path);
 
-  $zip = new ZipArchive();
-  if ($zip->open($path, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== true) {
+  $zip = sci_new_zip();
+  $flags = class_exists('ZipArchive', false)
+    ? (ZipArchive::CREATE | ZipArchive::OVERWRITE)
+    : SciZipArchive::CREATE;
+  if ($zip->open($path, $flags) !== true) {
     throw new RuntimeException('เปิดไฟล์ ZIP สำหรับ .xlsx ไม่สำเร็จ');
   }
   $zip->addFromString('[Content_Types].xml', $contentTypes);

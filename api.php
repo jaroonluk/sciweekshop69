@@ -26,9 +26,12 @@ function sci_json_out($data, int $code = 200): void {
 }
 
 function sci_read_json_body(): array {
+  static $cached = null;
+  if ($cached !== null) return $cached;
   $raw = file_get_contents('php://input');
   $data = json_decode($raw ?: '{}', true);
-  return is_array($data) ? $data : [];
+  $cached = is_array($data) ? $data : [];
+  return $cached;
 }
 
 function sci_api_actor_id(): ?int {
@@ -37,8 +40,13 @@ function sci_api_actor_id(): ?int {
 }
 
 try {
-  $action = $_GET['action'] ?? $_POST['action'] ?? 'data';
-  sci_apply_round_from_request();
+  $action = $_GET['action'] ?? $_POST['action'] ?? '';
+  if ($action === '') {
+    $bodyAction = sci_read_json_body()['action'] ?? '';
+    $action = is_string($bodyAction) ? $bodyAction : '';
+  }
+  if ($action === '') $action = 'data';
+  sci_apply_round_from_request(sci_read_json_body());
 
   // Binary download — must run before JSON Content-Type headers
   if ($action === 'export_selected_docx') {

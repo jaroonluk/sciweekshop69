@@ -14,6 +14,9 @@ if (!sci_rbac_is_staff()) {
 }
 
 $userJson = json_encode(sci_rbac_public_user(), JSON_UNESCAPED_UNICODE);
+// Path of this install from the live request (not public_base_url — that can differ and break API calls).
+$appDir = sci_auth_detect_app_dir();
+$appDirJson = json_encode($appDir, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
 $html = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'index.html');
 if ($html === false) {
@@ -23,7 +26,9 @@ if ($html === false) {
   exit;
 }
 
-$inject = '<script>window.__SCI_AUTH_USER__=' . $userJson . ';</script>';
+$inject = '<script>window.__SCI_AUTH_USER__=' . $userJson
+  . ';window.__SCI_APP_DIR__=' . $appDirJson
+  . ';</script>';
 if (stripos($html, '</head>') !== false) {
   $html = preg_replace('/<\/head>/i', $inject . '</head>', $html, 1);
 } else {
