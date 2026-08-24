@@ -1465,7 +1465,13 @@
       font-size: clamp(1.45rem, 2.6vw, 2rem);
       letter-spacing: -.01em;
     }
-    .hub-hero p { margin: 0; color: var(--muted); max-width: 42rem; line-height: 1.5; font-size: .98rem; }
+    .hub-hero p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 42rem;
+      line-height: 1.5;
+      font-size: .98rem;
+    }
     .hub-stats {
       display: flex;
       flex-wrap: wrap;
@@ -1487,29 +1493,81 @@
     }
     .hub-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: .85rem;
       flex: 1;
       align-content: start;
+    }
+    .hub-after-announce {
+      display: flex;
+      flex-direction: column;
+      gap: .85rem;
+      width: 100%;
+    }
+    .hub-admin-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(220px, 1fr));
+      gap: .85rem;
+      width: 100%;
+      max-width: 560px;
+    }
+    @media (max-width: 560px) {
+      .hub-admin-row { grid-template-columns: 1fr; max-width: none; }
+    }
+    .hub-flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .35rem .15rem;
+      margin-top: .7rem;
+    }
+    .hub-flow-item {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      font-size: .76rem;
+      font-weight: 700;
+      color: var(--muted);
+      padding: .2rem .5rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,.8);
+      border: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    .hub-flow-item .n {
+      width: 1.1rem;
+      height: 1.1rem;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-size: .66rem;
+      background: #e7f7f4;
+      color: #0d8a7f;
+    }
+    .hub-flow-arrow {
+      color: #c4b89a;
+      font-size: .85rem;
+      padding: 0 .1rem;
+      user-select: none;
     }
     .hub-card {
       --accent: #0d8a7f;
       --accent-soft: #e7f7f4;
       display: flex;
       flex-direction: column;
-      gap: .55rem;
+      gap: .45rem;
       text-align: left;
-      padding: 1.15rem 1.15rem 1.05rem;
-      border-radius: 18px;
+      padding: 1rem 1rem .9rem;
+      border-radius: 16px;
       border: 1px solid color-mix(in srgb, var(--accent) 22%, #f0e4c8);
       background:
         linear-gradient(160deg, #fffefb 0%, color-mix(in srgb, var(--accent-soft) 55%, #fff) 100%);
       cursor: pointer;
       font: inherit;
       color: inherit;
-      box-shadow: 0 10px 26px rgba(80,50,0,.07);
+      box-shadow: 0 8px 20px rgba(80,50,0,.06);
       transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-      min-height: 10.2rem;
+      min-height: 8.8rem;
       position: relative;
       overflow: hidden;
     }
@@ -1522,13 +1580,29 @@
       opacity: .9;
     }
     .hub-card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-2px);
       border-color: color-mix(in srgb, var(--accent) 55%, #fff);
-      box-shadow: 0 16px 32px color-mix(in srgb, var(--accent) 18%, transparent);
+      box-shadow: 0 14px 28px color-mix(in srgb, var(--accent) 16%, transparent);
     }
     .hub-card:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 2px;
+    }
+    .hub-card .hub-step-badge {
+      position: absolute;
+      top: .65rem;
+      right: .65rem;
+      width: 1.55rem;
+      height: 1.55rem;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-family: "Chakra Petch", sans-serif;
+      font-weight: 800;
+      font-size: .8rem;
+      color: #fff;
+      background: var(--accent);
+      box-shadow: 0 4px 10px color-mix(in srgb, var(--accent) 35%, transparent);
     }
     .hub-card.tone-review { --accent: #c45c12; --accent-soft: #fff1e4; }
     .hub-card.tone-summary { --accent: #1f6fbf; --accent-soft: #e8f2fc; }
@@ -1537,11 +1611,142 @@
     .hub-card.tone-events { --accent: #0d8a7f; --accent-soft: #e6f7f4; }
     .hub-card.tone-users { --accent: #9a3412; --accent-soft: #ffeee6; }
     .hub-card.tone-audit { --accent: #475569; --accent-soft: #eef2f6; }
-    .hub-card.tone-docx { --accent: #b45309; --accent-soft: #fff6e8; min-height: auto; grid-column: 1 / -1; }
+    .hub-card.tone-usage { --accent: #0f766e; --accent-soft: #e6f7f4; }
+    .hub-card.tone-docx {
+      --accent: #b45309;
+      --accent-soft: #fff6e8;
+      min-height: auto;
+      grid-column: 1 / -1;
+      cursor: default;
+    }
+    .hub-usage-row {
+      display: grid;
+      grid-template-columns: minmax(220px, 320px);
+      gap: .85rem;
+      width: 100%;
+    }
+    .usage-wrap { display: grid; gap: 1rem; }
+    .usage-window {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem 1.25rem;
+      padding: .9rem 1.05rem;
+      border-radius: 14px;
+      background: linear-gradient(120deg, #fff8e8, #eef8f6);
+      border: 1px solid rgba(240,180,0,.28);
+    }
+    .usage-window .uw-item { min-width: 10rem; }
+    .usage-window .uw-k {
+      display: block;
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--muted);
+      font-family: "Chakra Petch", sans-serif;
+      margin-bottom: .15rem;
+    }
+    .usage-window .uw-v {
+      font-family: "Chakra Petch", sans-serif;
+      font-weight: 700;
+      font-size: 1.02rem;
+    }
+    .usage-panel {
+      background: var(--card);
+      border: 1px solid rgba(240,180,0,.22);
+      border-radius: 16px;
+      padding: 1rem 1.1rem 1.15rem;
+      box-shadow: 0 8px 22px rgba(120,80,0,.05);
+    }
+    .usage-panel h3 {
+      margin: 0 0 .25rem;
+      font-family: "Chakra Petch", sans-serif;
+      font-size: 1.08rem;
+    }
+    .usage-panel .sub {
+      margin: 0 0 .85rem;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+    .usage-bars { display: grid; gap: .45rem; }
+    .usage-bar-row {
+      display: grid;
+      grid-template-columns: minmax(7rem, 12rem) 1fr auto;
+      gap: .55rem;
+      align-items: center;
+    }
+    .usage-bar-label {
+      font-size: .86rem;
+      font-weight: 600;
+      line-height: 1.25;
+      word-break: break-word;
+    }
+    .usage-bar-track {
+      height: .72rem;
+      border-radius: 999px;
+      background: #f0ebe0;
+      overflow: hidden;
+    }
+    .usage-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #14a896, #0d8a7f);
+      min-width: 0;
+    }
+    .usage-bar-fill.zero { background: #d4cdc0; }
+    .usage-bar-fill.hot { background: linear-gradient(90deg, #e07a2f, #c45c12); }
+    .usage-bar-fill.hour { background: linear-gradient(90deg, #3b82f6, #1d4ed8); }
+    .usage-bar-count {
+      font-family: "Chakra Petch", sans-serif;
+      font-weight: 700;
+      font-size: .9rem;
+      min-width: 2.4rem;
+      text-align: right;
+    }
+    .usage-bar-count.muted { color: var(--muted); font-weight: 600; }
+    .usage-hour-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: .35rem;
+      align-items: end;
+      min-height: 9rem;
+    }
+    .usage-hour-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .25rem;
+      height: 100%;
+      justify-content: flex-end;
+    }
+    .usage-hour-stem {
+      width: 100%;
+      max-width: 1.6rem;
+      border-radius: 6px 6px 2px 2px;
+      background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+      min-height: 2px;
+    }
+    .usage-hour-stem.peak { background: linear-gradient(180deg, #f59e0b, #c45c12); }
+    .usage-hour-stem.empty { background: #e5dfd2; min-height: 3px; opacity: .7; }
+    .usage-hour-n {
+      font-size: .68rem;
+      font-weight: 700;
+      font-family: "Chakra Petch", sans-serif;
+      color: var(--ink);
+    }
+    .usage-hour-h {
+      font-size: .68rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    @media (max-width: 900px) {
+      .usage-hour-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); min-height: auto; }
+      .usage-bar-row { grid-template-columns: minmax(5.5rem, 8rem) 1fr auto; }
+    }
+    .hub-card.tone-docx .hub-step-badge { top: .85rem; right: .85rem; }
     .hub-card-top {
       display: flex;
       align-items: flex-start;
-      gap: .75rem;
+      gap: .7rem;
+      padding-right: 1.6rem;
     }
     .hub-ico {
       width: 2.7rem;
@@ -1623,7 +1828,12 @@
       min-width: 11rem;
       color: var(--ink);
     }
-    .hub-announce-actions { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+    .hub-announce-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      align-items: center;
+    }
     .hub-announce-actions .btn {
       padding: .6rem 1rem;
       font-family: "Chakra Petch", sans-serif;
@@ -2280,6 +2490,51 @@
       D: { label: "โซน D", shops: 8 },
     };
 
+    function zoneLabel(z) {
+      const code = String(z || "").toUpperCase();
+      return zoneMeta[code]?.label || ("โซน " + code);
+    }
+
+    /** Zones open for the current event (from active slots). */
+    function availableZones() {
+      const set = new Set();
+      (state.data?.slots || []).forEach(s => {
+        const z = String(s.zone || "").toUpperCase();
+        if (z) set.add(z);
+      });
+      // Fallback: zones that already have applicants this round
+      if (!set.size) {
+        (state.data?.applicants || []).forEach(a => {
+          const z = String(a.zone || "").toUpperCase();
+          if (z) set.add(z);
+        });
+      }
+      if (!set.size) return ["A", "B", "C", "D"];
+      return [...set].sort((a, b) => a.localeCompare(b, "en"));
+    }
+
+    function zonesForScope(scope = state.zone) {
+      if (scope === "ALL") return availableZones();
+      return [String(scope || "").toUpperCase()].filter(Boolean);
+    }
+
+    /** Keep selected zone valid when event/round layout changes. */
+    function ensureValidZone() {
+      const zones = availableZones();
+      if (!zones.length) {
+        state.zone = "ALL";
+        return;
+      }
+      if (zones.length === 1) {
+        state.zone = zones[0];
+        return;
+      }
+      if (state.zone === "ALL") return;
+      if (!zones.includes(String(state.zone || "").toUpperCase())) {
+        state.zone = zones[0];
+      }
+    }
+
     const ROUND_STORAGE_KEY = "sci_shop_round";
     const VIEW_STORAGE_KEY = "sci_shop_view";
 
@@ -2290,7 +2545,7 @@
 
     function readStoredView() {
       const v = localStorage.getItem(VIEW_STORAGE_KEY) || "home";
-      const allowed = ["home","review","summary","report","finance","users","audit","events"];
+      const allowed = ["home","review","summary","report","finance","users","audit","events","usage"];
       return allowed.includes(v) ? v : "home";
     }
 
@@ -2304,7 +2559,7 @@
       returningOnly: false,
       unpaidAlumniOnly: false,
       editing: null,
-      view: readStoredView(), // home | review | summary | report | finance | users | audit | events
+      view: readStoredView(), // home | review | summary | report | finance | users | audit | events | usage
       assignKey: null,
       payFilter: "ALL", // ALL | paid | unpaid
       usersCache: null,
@@ -2367,6 +2622,9 @@
         state.view = financeOnly ? "finance" : "home";
       }
       if (!operator && state.view === "events") {
+        state.view = financeOnly ? "finance" : "home";
+      }
+      if (!operator && state.view === "usage") {
         state.view = financeOnly ? "finance" : "home";
       }
       if (!operator && !financeOnly && !["home", "finance"].includes(state.view)) {
@@ -2814,7 +3072,7 @@
     }
 
     function approvedFinanceList(zoneScope) {
-      const zones = zoneScope === "ALL" ? ["A","B","C","D"] : [zoneScope];
+      const zones = zonesForScope(zoneScope);
       return (state.data?.applicants || [])
         .filter(a => a.selection === "ได้รับการคัดเลือก" && zones.includes(financeZoneOf(a)))
         .sort((x, y) => {
@@ -2830,6 +3088,173 @@
     function fmtLoginAt(v) {
       if (!v) return "—";
       return String(v).replace("T", " ").slice(0, 19);
+    }
+
+    function parseAppDate(v) {
+      if (!v) return null;
+      if (typeof v === "number" && Number.isFinite(v)) {
+        const ms = v > 1e12 ? v : v * 1000;
+        const d = new Date(ms);
+        return Number.isNaN(d.getTime()) ? null : d;
+      }
+      const s = String(v).trim();
+      if (!s) return null;
+      const d = new Date(s.includes("T") ? s : s.replace(" ", "T"));
+      return Number.isNaN(d.getTime()) ? null : d;
+    }
+
+    function fmtThaiDateTime(v) {
+      const d = parseAppDate(v);
+      if (!d) return v ? fmtLoginAt(v) : "— ไม่ได้ตั้งค่า —";
+      const months = ["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."];
+      const hh = String(d.getHours()).padStart(2, "0");
+      const mm = String(d.getMinutes()).padStart(2, "0");
+      return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear() + 543} · ${hh}:${mm} น.`;
+    }
+
+    function currentRoundRow() {
+      const id = currentRound();
+      const rounds = roundsList();
+      return rounds.find(r => Number(r.id || r.round_no) === id) || null;
+    }
+
+    function renderUsageView() {
+      const data = state.data;
+      const apps = data.applicants || [];
+      const groups = data.groups || [];
+      const rm = roundMeta();
+      const roundRow = currentRoundRow();
+      const openAt = roundRow?.apply_open_at || "";
+      const closeAt = roundRow?.apply_close_at || "";
+      const isOpen = Number(roundRow?.is_open) === 1 || !!roundRow?.is_open;
+
+      const ranked = groups.map(g => {
+        const count = appsForGroup(g, apps).length;
+        const slots = Array.isArray(g.slots) ? g.slots.length : 0;
+        return {
+          zone: g.zone,
+          cat: g.cat,
+          label: `โซน ${g.zone} · ${g.cat}`,
+          count,
+          slots,
+        };
+      }).sort((a, b) => b.count - a.count || String(a.label).localeCompare(String(b.label), "th"));
+
+      const maxCount = ranked.reduce((m, r) => Math.max(m, r.count), 0) || 1;
+      const withApps = ranked.filter(r => r.count > 0).length;
+      const zeroApps = ranked.length - withApps;
+
+      const hourCounts = Array.from({ length: 24 }, () => 0);
+      const dayMap = new Map();
+      apps.forEach(a => {
+        const d = parseAppDate(a.timestamp_raw) || parseAppDate(a.timestamp);
+        if (!d) return;
+        hourCounts[d.getHours()] += 1;
+        const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+        dayMap.set(key, (dayMap.get(key) || 0) + 1);
+      });
+      const hourMax = Math.max(1, ...hourCounts);
+      const peakHour = hourCounts.reduce((best, n, h) => (n > hourCounts[best] ? h : best), 0);
+      const quietHour = (() => {
+        let best = 0;
+        let bestN = Infinity;
+        hourCounts.forEach((n, h) => {
+          if (n < bestN) { bestN = n; best = h; }
+        });
+        return best;
+      })();
+
+      const dayRows = [...dayMap.entries()]
+        .map(([day, count]) => ({ day, count }))
+        .sort((a, b) => a.day.localeCompare(b.day));
+      const dayMax = dayRows.reduce((m, r) => Math.max(m, r.count), 0) || 1;
+
+      const barRows = ranked.map(r => {
+        const pct = Math.round((r.count / maxCount) * 100);
+        const fillCls = r.count === 0 ? "zero" : (r.count === maxCount && maxCount > 0 ? "hot" : "");
+        const countCls = r.count === 0 ? "muted" : "";
+        return `
+          <div class="usage-bar-row" title="${esc(r.label)} · ${r.count} ราย · ล็อก ${r.slots}">
+            <div class="usage-bar-label">${esc(r.label)}</div>
+            <div class="usage-bar-track"><div class="usage-bar-fill ${fillCls}" style="width:${pct}%"></div></div>
+            <div class="usage-bar-count ${countCls}">${r.count}</div>
+          </div>`;
+      }).join("");
+
+      const hourCols = hourCounts.map((n, h) => {
+        const px = Math.max(n ? 6 : 3, Math.round((n / hourMax) * 120));
+        const cls = n === 0 ? "empty" : (n === hourMax && hourMax > 0 ? "peak" : "");
+        return `
+          <div class="usage-hour-col" title="${String(h).padStart(2, "0")}:00 · ${n} ราย">
+            <span class="usage-hour-n">${n || ""}</span>
+            <div class="usage-hour-stem ${cls}" style="height:${px}px"></div>
+            <span class="usage-hour-h">${String(h).padStart(2, "0")}</span>
+          </div>`;
+      }).join("");
+
+      const dayBars = dayRows.length
+        ? dayRows.map(r => {
+            const pct = Math.round((r.count / dayMax) * 100);
+            const d = parseAppDate(r.day + "T12:00:00");
+            const label = d ? fmtThaiDateTime(d).replace(/\s*·\s*\d{2}:\d{2} น\./, "") : r.day;
+            return `
+              <div class="usage-bar-row">
+                <div class="usage-bar-label">${esc(label)}</div>
+                <div class="usage-bar-track"><div class="usage-bar-fill hour" style="width:${pct}%"></div></div>
+                <div class="usage-bar-count">${r.count}</div>
+              </div>`;
+          }).join("")
+        : `<p class="muted" style="margin:0">ยังไม่มีข้อมูลเวลาสมัคร</p>`;
+
+      const peakHint = apps.length
+        ? `ช่วงที่สมัครมากสุดประมาณ <b>${String(peakHour).padStart(2, "0")}:00–${String(peakHour).padStart(2, "0")}:59 น.</b> (${hourCounts[peakHour]} ราย) · น้อยสุดประมาณ <b>${String(quietHour).padStart(2, "0")}:00 น.</b> (${hourCounts[quietHour]} ราย)`
+        : "ยังไม่มีผู้สมัครในรอบนี้";
+
+      return `
+        <div class="usage-wrap">
+          <div class="usage-window">
+            <div class="uw-item">
+              <span class="uw-k">รอบที่แสดง</span>
+              <span class="uw-v">${esc(rm.label || ("รอบที่ " + currentRound()))}</span>
+            </div>
+            <div class="uw-item">
+              <span class="uw-k">เปิดรับสมัคร</span>
+              <span class="uw-v">${esc(fmtThaiDateTime(openAt))}</span>
+            </div>
+            <div class="uw-item">
+              <span class="uw-k">ปิดรับสมัคร</span>
+              <span class="uw-v">${esc(fmtThaiDateTime(closeAt))}</span>
+            </div>
+            <div class="uw-item">
+              <span class="uw-k">สถานะหน้าต่างรับสมัคร</span>
+              <span class="uw-v">${isOpen ? "เปิดรับอยู่" : "ปิดรับแล้ว / ยังไม่ถึงเวลา"}</span>
+            </div>
+            <div class="uw-item">
+              <span class="uw-k">ผู้สมัครทั้งหมด</span>
+              <span class="uw-v">${apps.length} ราย</span>
+            </div>
+          </div>
+
+          <div class="usage-panel">
+            <h3>อันดับประเภทที่ผู้สมัครมาก → น้อย</h3>
+            <p class="sub">นับตามประเภทสินค้า/ล็อกของรอบนี้ · รวมรายการที่ยังไม่มีผู้สมัคร (${zeroApps} จาก ${ranked.length} ประเภทมีผู้สมัคร ${withApps} ประเภท)</p>
+            <div class="usage-bars">
+              ${ranked.length ? barRows : `<p class="muted" style="margin:0">ยังไม่มีประเภทล็อกในรอบนี้</p>`}
+            </div>
+          </div>
+
+          <div class="usage-panel">
+            <h3>ช่วงเวลาที่สมัคร (รายชั่วโมง)</h3>
+            <p class="sub">${peakHint}</p>
+            <div class="usage-hour-grid">${hourCols}</div>
+          </div>
+
+          <div class="usage-panel">
+            <h3>จำนวนผู้สมัครรายวัน</h3>
+            <p class="sub">วันที่มีการกดสมัครในช่วงรับสมัครของรอบนี้</p>
+            <div class="usage-bars">${dayBars}</div>
+          </div>
+        </div>`;
     }
 
     function eofficeFullName(p) {
@@ -3863,7 +4288,7 @@
 
     function renderFinanceView() {
       const data = state.data;
-      const scopeLabel = state.zone === "ALL" ? "ทุกโซน" : zoneMeta[state.zone].label;
+      const scopeLabel = state.zone === "ALL" ? "ทุกโซน" : zoneLabel(state.zone);
       let list = approvedFinanceList(state.zone);
       const paidCount = list.filter(a => paymentStatusOf(a) === "paid").length;
       const unpaidCount = list.length - paidCount;
@@ -3879,7 +4304,7 @@
         ].join(" ").toLowerCase().includes(q);
       });
 
-      const zones = state.zone === "ALL" ? ["A","B","C","D"] : [state.zone];
+      const zones = zonesForScope();
 
       return `
         <div class="report-wrap">
@@ -3924,7 +4349,7 @@
             }
             return `
               <div>
-                <h3 class="report-zone">${zoneMeta[z].label} · อนุมัติ ${rows.length} ร้าน</h3>
+                <h3 class="report-zone">${zoneLabel(z)} · อนุมัติ ${rows.length} ร้าน</h3>
                 <div class="summary-table-wrap">
                   <table class="summary-table">
                     <thead>
@@ -3970,7 +4395,7 @@
 
     function renderReportView() {
       const data = state.data;
-      const zones = state.zone === "ALL" ? ["A","B","C","D"] : [state.zone];
+      const zones = zonesForScope();
       const report = (data.shop_report || []).filter(r => zones.includes(r.zone));
       const filled = report.filter(r => r.filled).length;
       const q = state.q.trim().toLowerCase();
@@ -3997,13 +4422,16 @@
               <h2 style="margin:0 0 .35rem;font-family:'Chakra Petch',sans-serif">รายงานผู้ประกอบการแต่ละร้าน</h2>
               <p style="margin:0;color:var(--muted)">แสดงว่าแต่ละล็อกร้านมีผู้ประกอบการเป็นใคร · ${esc(roundMeta().title || "")}${occupancy().enabled ? ` · เฉพาะล็อกที่ยังว่างจาก${priorRoundLabel()} (เหลือ ${occupancy().remaining}/${occupancy().total})` : ""}</p>
             </div>
-            <button type="button" class="btn ok" data-export-selected-docx style="padding:.4rem .85rem">ดาวน์โหลด Word ประกาศ</button>
+            <div style="display:flex;flex-wrap:wrap;gap:.45rem;align-items:center">
+              <button type="button" class="btn ok" data-export-selected-docx style="padding:.4rem .85rem">ดาวน์โหลด Word ประกาศ</button>
+              <button type="button" class="btn teal" data-export-selected-excel style="padding:.4rem .85rem">ดาวน์โหลด Excel ประกาศ</button>
+            </div>
           </div>
           <div class="report-stats">
             <span class="chip ok">มีผู้ประกอบการ ${filled}/${report.length} ร้าน</span>
             <span class="chip ${report.length-filled ? "warn" : "ok"}">ยังไม่คัดเลือก ${report.length - filled} ร้าน</span>
             <span class="chip ${noApplicantGroups.length ? "warn" : "ok"}">ยังไม่มีผู้สมัคร ${noApplicantGroups.length} ประเภท (${noApplicantSlots} ล็อก)</span>
-            <span class="chip">โซนที่ดู: ${state.zone === "ALL" ? "ทุกโซน" : zoneMeta[state.zone].label}</span>
+            <span class="chip">โซนที่ดู: ${state.zone === "ALL" ? "ทุกโซน" : zoneLabel(state.zone)}</span>
             ${occupancy().enabled ? `<span class="chip warn">ไม่รวม ${occupancy().count} ล็อกที่คัดเลือกแล้วใน${priorRoundLabel()}</span>` : ""}
           </div>
 
@@ -4015,7 +4443,7 @@
                 const items = noApplicantGroups.filter(g => g.zone === z);
                 if (!items.length) return "";
                 return `
-                  <div class="report-empty-zone">${zoneMeta[z].label} · ว่าง ${items.length} ประเภท</div>
+                  <div class="report-empty-zone">${zoneLabel(z)} · ว่าง ${items.length} ประเภท</div>
                   <div class="report-empty-list">
                     ${items.map(g => {
                       const reportMap = Object.fromEntries((data.shop_report || []).map(r => [r.slot, r]));
@@ -4067,7 +4495,7 @@
         const zNoApp = noApplicantGroups.filter(g => g.zone === z).length;
         html += `
           <div>
-            <h3 class="report-zone">${zoneMeta[z].label} · มีผู้ประกอบการ ${zFilled}/${zRows.length} · ไม่มีผู้สมัคร ${zNoApp} ประเภท</h3>
+            <h3 class="report-zone">${zoneLabel(z)} · มีผู้ประกอบการ ${zFilled}/${zRows.length} · ไม่มีผู้สมัคร ${zNoApp} ประเภท</h3>
             <table class="report-table">
               <thead>
                 <tr>
@@ -4424,7 +4852,7 @@
 
     function renderApplicantsSummaryView() {
       const data = state.data;
-      const zones = state.zone === "ALL" ? ["A","B","C","D"] : [state.zone];
+      const zones = zonesForScope();
       const scopeApps = data.applicants.filter(a => zones.includes(a.zone));
       let list = scopeApps;
       const selCounts = {
@@ -4457,7 +4885,7 @@
       });
       list = [...list].sort((x, y) => x.timestamp - y.timestamp);
 
-      const scopeLabel = state.zone === "ALL" ? "ทุกโซน" : zoneMeta[state.zone].label;
+      const scopeLabel = state.zone === "ALL" ? "ทุกโซน" : zoneLabel(state.zone);
       const dupReport = findDuplicateApplicants(scopeApps);
       const returningCount = scopeApps.filter(a => a.returning).length;
       const unpaidReturningCount = scopeApps.filter(a => a.payment_warning || a.alumni?.payment_warning).length;
@@ -4472,7 +4900,10 @@
               <p style="margin:0;color:var(--muted)">ภาพรวมการตรวจเอกสารโดย Admin และผลการคัดเลือก · ${esc(roundMeta().title || "")} · ขอบเขต: <b>${esc(scopeLabel)}</b>
                 ${alumniMeta.total_prev_selected ? ` · อ้างอิงเจ้าเดิมจาก ${esc(alumniMeta.source_ref || alumniMeta.label || "ปี 2568")}` : ""}</p>
             </div>
-            <button type="button" class="btn ok" data-export-selected-docx style="padding:.4rem .85rem">ดาวน์โหลด Word ประกาศ</button>
+            <div style="display:flex;flex-wrap:wrap;gap:.45rem;align-items:center">
+              <button type="button" class="btn ok" data-export-selected-docx style="padding:.4rem .85rem">ดาวน์โหลด Word ประกาศ</button>
+              <button type="button" class="btn teal" data-export-selected-excel style="padding:.4rem .85rem">ดาวน์โหลด Excel ประกาศ</button>
+            </div>
           </div>
 
           <div class="summary-kpis">
@@ -4620,6 +5051,7 @@
         events: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>`,
         users: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
         audit: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></svg>`,
+        usage: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14v4M12 9v9M17 5v13"/></svg>`,
         docx: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg>`,
       };
       return icons[name] || icons.review;
@@ -4635,6 +5067,7 @@
         events: "ตั้งค่าปี · รอบ · โซน · ล็อก",
         users: "ผู้ใช้งาน",
         audit: "บันทึกการใช้งาน",
+        usage: "สรุปการใช้งาน",
       })[view] || "งาน";
     }
 
@@ -4644,6 +5077,126 @@
         <div class="work-bar">
           <button type="button" class="btn ghost" id="btnBackHome" style="padding:.4rem .75rem">← หน้าหลัก</button>
           <h2>${esc(workTitle(view))}</h2>
+        </div>`;
+    }
+
+    function renderHubCard(c) {
+      const step = c.step ? `<span class="hub-step-badge" aria-hidden="true">${esc(String(c.step))}</span>` : "";
+      return `
+        <button type="button" class="hub-card tone-${esc(c.tone)}" data-goto-view="${esc(c.view)}">
+          ${step}
+          <div class="hub-card-top">
+            <span class="hub-ico" aria-hidden="true">${hubIcon(c.icon)}</span>
+            <div>
+              <span class="tag">${esc(c.tag)}</span>
+              <h3 style="margin-top:.3rem">${esc(c.title)}</h3>
+            </div>
+          </div>
+          <p>${esc(c.desc)}</p>
+          <span class="go">เข้าใช้งาน →</span>
+        </button>`;
+    }
+
+    /** Flat ordered menu cards for the home hub. */
+    function buildHubCards() {
+      const financeAll = approvedFinanceList("ALL");
+      const unpaid = financeAll.filter(a => paymentStatusOf(a) === "unpaid").length;
+      const operator = isOperator();
+      const financeOnly = isFinanceOnly();
+      const cards = [];
+      let step = 0;
+      const next = (card) => {
+        step += 1;
+        cards.push({ ...card, step });
+      };
+
+      if (operator) {
+        next({
+          view: "events", tone: "events", icon: "events", tag: "ตั้งค่า",
+          title: "ปี · รอบ · โซน · ล็อก",
+          flow: "ตั้งค่า",
+          desc: "สร้างปีกิจกรรม เปิดรอบรับสมัคร กำหนดโซน ล็อก และประเภทสินค้า",
+        });
+        next({
+          view: "review", tone: "review", icon: "review", tag: "งานหลัก",
+          title: "พิจารณาผู้สมัคร",
+          flow: "พิจารณา",
+          desc: "ตรวจเอกสาร คัดเลือกเข้าล็อก และดูรายชื่อผู้สมัครในรอบที่เลือก",
+        });
+        next({
+          view: "summary", tone: "summary", icon: "summary", tag: "ภาพรวม",
+          title: "สรุปผู้สมัคร",
+          flow: "สรุป",
+          desc: "ตารางสรุปสถานะเอกสารและผลการคัดเลือก กรองเจ้าเดิม / ค้างชำระปีก่อน",
+        });
+        next({
+          view: "report", tone: "report", icon: "report", tag: "ล็อก",
+          title: "รายงานร้าน / ล็อก",
+          flow: "จัดล็อก",
+          desc: "ดูล็อกทั้งหมด ว่ามีผู้ประกอบการหรือยัง และจัดสรรเข้าล็อก",
+        });
+      }
+
+      next({
+        view: "finance", tone: "finance", icon: "finance", tag: "การเงิน",
+        title: "สถานะชำระเงิน",
+        flow: financeOnly ? "การเงิน" : "ชำระเงิน",
+        desc: "ติ๊กชำระเงินของร้านที่อนุมัติแล้ว · ใช้เตือนปีถัดไป"
+          + (unpaid ? ` · ค้างชำระรอบนี้ ${unpaid} ราย` : ""),
+      });
+
+      // 6 = ประกาศ (ใต้เมนูหลัก 1–5)
+      if (operator) {
+        next({
+          view: "announce", tone: "docx", icon: "docx", tag: "ประกาศ",
+          title: "พิมพ์ Word ประกาศ",
+          flow: "ประกาศ",
+          desc: "ดาวน์โหลดรายชื่อร้านที่ได้รับการคัดเลือก",
+          isAnnounce: true,
+        });
+      }
+
+      // 7–8 = ผู้ดูแล วางใต้ลำดับที่ 6
+      if (isAdmin()) {
+        next({
+          view: "users", tone: "users", icon: "users", tag: "สิทธิ์",
+          title: "ผู้ใช้งาน",
+          flow: "สิทธิ์",
+          desc: "กำหนดสิทธิ์ admin / กรรมการ / การเงิน จาก eoffice",
+          isAdminMenu: true,
+        });
+        next({
+          view: "audit", tone: "audit", icon: "audit", tag: "ตรวจสอบ",
+          title: "บันทึกการใช้งาน",
+          flow: "บันทึก",
+          desc: "ดูประวัติการเข้าใช้งานและบันทึกสำคัญ",
+          isAdminMenu: true,
+        });
+      }
+
+      // 9 = สรุปการใช้งาน (กราฟ) — วางท้ายเมนู
+      if (operator) {
+        next({
+          view: "usage", tone: "usage", icon: "usage", tag: "วิเคราะห์",
+          title: "สรุปการใช้งาน",
+          flow: "สรุปใช้งาน",
+          desc: "อันดับประเภทที่สมัครมาก–น้อย ช่วงเวลาสมัคร และวันเปิด–ปิดรับสมัคร",
+          isUsageMenu: true,
+        });
+      }
+
+      return cards;
+    }
+
+    function renderHubFlowStrip(cards) {
+      const flowCards = cards.filter(c => c.flow && !c.isAdminMenu);
+      if (flowCards.length <= 1) return "";
+      return `
+        <div class="hub-flow" aria-label="ลำดับการใช้งาน">
+          ${flowCards.map((c, i) =>
+            `${i ? `<span class="hub-flow-arrow" aria-hidden="true">→</span>` : ""}`
+            + `<span class="hub-flow-item"><span class="n">${esc(String(c.step))}</span>${esc(c.flow || c.title)}</span>`
+          ).join("")}
         </div>`;
     }
 
@@ -4657,41 +5210,10 @@
       const sel = countBySelection(data.applicants, "ALL");
       const slots = (data.slots || []).length;
       const filled = (data.shop_report || []).filter(r => r.filled).length;
-      const financeAll = approvedFinanceList("ALL");
-      const unpaid = financeAll.filter(a => paymentStatusOf(a) === "unpaid").length;
       const operator = isOperator();
       const financeOnly = isFinanceOnly();
       const approved = sel["ได้รับการคัดเลือก"] || 0;
-
-      const cards = [];
-      if (operator) {
-        cards.push({
-          view: "review", tone: "review", icon: "review", tag: "งานหลัก", title: "พิจารณาผู้สมัคร",
-          desc: "ตรวจเอกสาร คัดเลือกเข้าล็อก และดูรายชื่อผู้สมัครในรอบที่เลือก",
-        });
-        cards.push({
-          view: "summary", tone: "summary", icon: "summary", tag: "ภาพรวม", title: "สรุปผู้สมัคร",
-          desc: "ตารางสรุปสถานะเอกสารและผลการคัดเลือก กรองเจ้าเดิม / ค้างชำระปีก่อน",
-        });
-        cards.push({
-          view: "report", tone: "report", icon: "report", tag: "ล็อก", title: "รายงานร้าน / ล็อก",
-          desc: "ดูล็อกทั้งหมด ว่ามีผู้ประกอบการหรือยัง และจัดสรรเข้าล็อก",
-        });
-      }
-      cards.push({
-        view: "finance", tone: "finance", icon: "finance", tag: "การเงิน", title: "สถานะชำระเงิน",
-        desc: "ติ๊กชำระเงินของร้านที่อนุมัติแล้ว · ใช้เตือนปีถัดไป" + (unpaid ? ` · ค้างชำระรอบนี้ ${unpaid} ราย` : ""),
-      });
-      if (operator) {
-        cards.push({
-          view: "events", tone: "events", icon: "events", tag: "ตั้งค่า", title: "ปี · รอบ · โซน · ล็อก",
-          desc: "สร้าง/แก้ไขปีกิจกรรม เปิดรับหลายรอบ กำหนดโซน ล็อก และประเภทสินค้าแต่ละล็อก",
-        });
-      }
-      if (isAdmin()) {
-        cards.push({ view: "users", tone: "users", icon: "users", tag: "สิทธิ์", title: "ผู้ใช้งาน", desc: "กำหนดสิทธิ์ admin / กรรมการ / การเงิน จาก eoffice" });
-        cards.push({ view: "audit", tone: "audit", icon: "audit", tag: "ตรวจสอบ", title: "บันทึกการใช้งาน", desc: "ดูประวัติการเข้าใช้งานและบันทึกสำคัญ" });
-      }
+      const hubCards = buildHubCards();
 
       const yearOpts = (() => {
         const events = eventsList();
@@ -4719,13 +5241,15 @@
           }).join("")
         : `<option value="1">รอบที่ 1</option>`;
 
+      const announceBadgeStep = hubCards.find(c => c.isAnnounce)?.step || "";
       const announceCard = operator ? `
         <div class="hub-card tone-docx" style="cursor:default">
+          ${announceBadgeStep ? `<span class="hub-step-badge" aria-hidden="true">${esc(String(announceBadgeStep))}</span>` : ""}
           <div class="hub-card-top">
             <span class="hub-ico" aria-hidden="true">${hubIcon("docx")}</span>
             <div>
-              <span class="tag">เอกสารประกาศ</span>
-              <h3 style="margin-top:.35rem">พิมพ์ Word ประกาศร้านค้า</h3>
+              <span class="tag">ประกาศ</span>
+              <h3 style="margin-top:.3rem">พิมพ์ Word ประกาศร้านค้า</h3>
             </div>
           </div>
           <p>เลือกรอบปีและรอบเปิดรับร้านค้า แล้วดาวน์โหลดรายชื่อร้านที่ได้รับการคัดเลือกเป็นไฟล์ Word</p>
@@ -4741,19 +5265,35 @@
               </label>
               <div class="hub-announce-actions">
                 <button type="button" class="btn ok" id="btnAnnounceDocx">ดาวน์โหลด Word ประกาศ</button>
+                <button type="button" class="btn teal" id="btnAnnounceExcel">ดาวน์โหลด Excel ประกาศ</button>
               </div>
             </div>
             <p class="hub-announce-hint">ปัจจุบัน: ปี ${esc(String(year))} · ${esc(rm.label || ("รอบที่ " + currentRound()))} · อนุมัติแล้ว ${approved} ร้าน</p>
           </div>
         </div>` : "";
 
+      const mainCards = hubCards
+        .filter(c => !c.isAnnounce && !c.isAdminMenu && !c.isUsageMenu)
+        .map(renderHubCard)
+        .join("");
+      const adminCards = hubCards.filter(c => c.isAdminMenu).map(renderHubCard).join("");
+      const usageCards = hubCards.filter(c => c.isUsageMenu).map(renderHubCard).join("");
+      const afterAnnounce = (announceCard || adminCards || usageCards)
+        ? `<div class="hub-after-announce">
+            ${announceCard || ""}
+            ${adminCards ? `<div class="hub-admin-row">${adminCards}</div>` : ""}
+            ${usageCards ? `<div class="hub-usage-row">${usageCards}</div>` : ""}
+          </div>`
+        : "";
+
       return `
         <div class="hub-wrap">
           <div class="hub-hero">
             <div>
               <h2>หน้าหลักระบบร้านค้า SCI Week</h2>
-              <p>กำลังทำงานที่ <b>ปี ${esc(String(year))}</b> · <b>${esc(rm.label || ("รอบที่ " + currentRound()))}</b>
+              <p>ทำงานตามลำดับหมายเลขบนปุ่ม · <b>ปี ${esc(String(year))}</b> · <b>${esc(rm.label || ("รอบที่ " + currentRound()))}</b>
                 ${ev?.title ? ` · ${esc(ev.title)}` : ""}${financeOnly ? " · โหมดการเงิน" : ""}</p>
+              ${renderHubFlowStrip(hubCards)}
             </div>
             <div class="hub-stats">
               <div class="hub-stat"><span class="k">ผู้สมัครรอบนี้</span><span class="v">${total}</span></div>
@@ -4763,20 +5303,9 @@
             </div>
           </div>
           <div class="hub-grid">
-            ${cards.map(c => `
-              <button type="button" class="hub-card tone-${esc(c.tone)}" data-goto-view="${esc(c.view)}">
-                <div class="hub-card-top">
-                  <span class="hub-ico" aria-hidden="true">${hubIcon(c.icon)}</span>
-                  <div>
-                    <span class="tag">${esc(c.tag)}</span>
-                    <h3 style="margin-top:.35rem">${esc(c.title)}</h3>
-                  </div>
-                </div>
-                <p>${esc(c.desc)}</p>
-                <span class="go">เข้าใช้งาน →</span>
-              </button>`).join("")}
-            ${announceCard}
+            ${mainCards}
           </div>
+          ${afterAnnounce}
         </div>`;
     }
 
@@ -4889,17 +5418,26 @@
       const data = state.data;
       if (!data) return;
 
-      const byZone = {A:0,B:0,C:0,D:0};
-      data.applicants.forEach(a => { if (byZone[a.zone]!=null) byZone[a.zone]++; });
-      const filledByZone = {A:0,B:0,C:0,D:0};
+      ensureValidZone();
+      const openZones = availableZones();
+      const byZone = {};
+      openZones.forEach(z => { byZone[z] = 0; });
+      data.applicants.forEach(a => {
+        const z = String(a.zone || "").toUpperCase();
+        if (byZone[z] == null) byZone[z] = 0;
+        byZone[z]++;
+      });
+      const filledByZone = {};
+      openZones.forEach(z => { filledByZone[z] = 0; });
       data.slots.forEach(s => {
+        const z = String(s.zone || "").toUpperCase();
         const has = data.applicants.some(a => a.zone === s.zone && matchCat(a.category, s.cat));
-        if (has) filledByZone[s.zone]++;
+        if (has) filledByZone[z] = (filledByZone[z] || 0) + 1;
       });
       const shopFilled = (data.shop_report || []).filter(r => r.filled).length;
       const selCounts = countBySelection(data.applicants, state.zone);
       const occ = occupancy();
-      const totalCapacity = (data.slots || []).length || Object.values(zoneMeta).reduce((n, z) => n + z.shops, 0);
+      const totalCapacity = (data.slots || []).length || openZones.reduce((n, z) => n + (zoneMeta[z]?.shops || 0), 0);
 
       document.getElementById("tabHome")?.classList.toggle("active", state.view === "home");
       document.getElementById("tabReview").classList.toggle("active", state.view === "review");
@@ -4916,7 +5454,7 @@
       document.getElementById("docSummarySideBlock").style.display = (state.view === "review" || state.view === "summary") ? "" : "none";
       document.getElementById("emptySideBlock").style.display = state.view === "review" ? "" : "none";
       document.getElementById("financeSideBlock").style.display = state.view === "finance" ? "" : "none";
-      const hideWorkFilters = ["home", "users", "audit", "events"].includes(state.view);
+      const hideWorkFilters = ["home", "users", "audit", "events", "usage"].includes(state.view);
       document.querySelectorAll(".work-filters").forEach(el => {
         if (el.id === "financeSideBlock") return;
         if (el.id === "statusSideBlock" || el.id === "docSummarySideBlock" || el.id === "emptySideBlock") return;
@@ -4959,7 +5497,7 @@
       })();
 
       document.getElementById("docSummaryPanel").innerHTML = `
-        <div class="row"><span>ขอบเขต</span><b>${state.zone === "ALL" ? "ทุกโซน" : zoneMeta[state.zone].label}</b></div>
+        <div class="row"><span>ขอบเขต</span><b>${state.zone === "ALL" ? "ทุกโซน" : zoneLabel(state.zone)}</b></div>
         <div class="row"><span>ผลที่ใช้ตัดสิน</span><span class="chip ${scopeSummary.effective_fail ? "warn" : "ok"}">ผ่าน ${scopeSummary.effective_ok||0} · ไม่ผ่าน ${scopeSummary.effective_fail||0}</span></div>
         <div class="row"><span>ระบบตรวจครบ</span><span class="chip ok">${scopeSummary.system_ok||0}</span></div>
         <div class="row"><span>ระบบพบไม่ครบ</span><span class="chip ${scopeSummary.system_fail ? "warn" : "ok"}">${scopeSummary.system_fail||0}</span></div>
@@ -4985,15 +5523,18 @@
             : "บันทึกสถานะแยกตามรอบ · ไม่ลบผู้สมัคร");
       }
 
-      document.getElementById("zoneList").innerHTML = ["A","B","C","D"].map(z => `
-        <button type="button" data-zone="${z}" class="${state.zone===z?"active":""}">
-          <span class="z-title">${zoneMeta[z].label}</span>
-          <span class="z-meta">รับ ${zoneSlotCount(z)} ร้าน · สมัครแล้ว ${byZone[z]} ร้าน</span>
-        </button>`).join("") + `
-        <button type="button" data-zone="ALL" class="${state.zone==="ALL"?"active":""}">
-          <span class="z-title">ทุกโซน</span>
-          <span class="z-meta">รับ ${totalCapacity} ร้าน · สมัครแล้ว ${data.total_applicants} ร้าน</span>
-        </button>`;
+      const zoneButtons = openZones.map(z => `
+        <button type="button" data-zone="${esc(z)}" class="${state.zone===z?"active":""}">
+          <span class="z-title">${esc(zoneLabel(z))}</span>
+          <span class="z-meta">รับ ${zoneSlotCount(z)} ร้าน · สมัครแล้ว ${byZone[z] || 0} ร้าน</span>
+        </button>`).join("");
+      const allZonesBtn = openZones.length > 1
+        ? `<button type="button" data-zone="ALL" class="${state.zone==="ALL"?"active":""}">
+            <span class="z-title">ทุกโซน</span>
+            <span class="z-meta">รับ ${totalCapacity} ร้าน · สมัครแล้ว ${data.total_applicants} ร้าน</span>
+          </button>`
+        : "";
+      document.getElementById("zoneList").innerHTML = zoneButtons + allZonesBtn;
 
       document.getElementById("statusFilters").innerHTML = `
         <button type="button" class="f-all ${state.selFilter==="ALL" && !state.returningOnly && !state.unpaidAlumniOnly?"active":""}" data-sel-filter="ALL"><span>ทั้งหมด</span><span>${selCounts.ALL}</span></button>
@@ -5004,7 +5545,7 @@
         <button type="button" class="${state.unpaidAlumniOnly?"active":""}" data-filter-unpaid-alumni style="${state.unpaidAlumniOnly?"background:#fff1f0;border-color:#f0b4b4;color:#9b1c1c":""}"><span>ค้างชำระปีก่อน</span><span>${(state.zone==="ALL"?data.applicants:data.applicants.filter(a=>a.zone===state.zone)).filter(a=>a.payment_warning||a.alumni?.payment_warning).length}</span></button>
       `;
 
-      const zones = state.zone === "ALL" ? ["A","B","C","D"] : [state.zone];
+      const zones = zonesForScope();
       const emptyNow = state.zone === "ALL"
         ? data.groups.filter(g => appsForGroup(g, data.applicants).length === 0)
         : emptyGroups(state.zone, data);
@@ -5045,6 +5586,8 @@
         };
         const btnDocx = document.getElementById("btnAnnounceDocx");
         if (btnDocx) btnDocx.onclick = () => downloadAnnounceDocx(btnDocx);
+        const btnExcel = document.getElementById("btnAnnounceExcel");
+        if (btnExcel) btnExcel.onclick = () => downloadAnnounceExcel(btnExcel);
         return;
       }
 
@@ -5078,6 +5621,11 @@
         return;
       }
 
+      if (state.view === "usage") {
+        paintWorkMain("usage", renderUsageView());
+        return;
+      }
+
       if (state.view === "summary") {
         paintWorkMain("summary", renderApplicantsSummaryView());
         bindDynamic();
@@ -5099,7 +5647,7 @@
         const zShop = (data.shop_report || []).filter(r => r.zone === z);
         const zFilledShop = zShop.filter(r => r.filled).length;
         html += `<div style="margin: .2rem 0 .8rem; display:flex; justify-content:space-between; align-items:end; gap:1rem; flex-wrap:wrap">
-          <h2 style="margin:0;font-family:'Chakra Petch',sans-serif">${zoneMeta[z].label}</h2>
+          <h2 style="margin:0;font-family:'Chakra Petch',sans-serif">${zoneLabel(z)}</h2>
           <span style="color:var(--muted)">ร้านมีผู้ประกอบการ ${zFilledShop}/${zShop.length} · สมัคร ${byZone[z]} · รอ ${zCounts["รอพิจารณา"]} · อนุมัติ ${zCounts["ได้รับการคัดเลือก"]}</span>
         </div>`;
 
@@ -5282,6 +5830,9 @@
       document.querySelectorAll("[data-export-selected-docx]").forEach(btn => {
         btn.onclick = () => downloadSelectedDocx(btn);
       });
+      document.querySelectorAll("[data-export-selected-excel]").forEach(btn => {
+        btn.onclick = () => downloadSelectedExcel(btn);
+      });
 
       document.querySelectorAll("[data-shop-assign]").forEach(sel => {
         sel.onchange = async () => {
@@ -5347,7 +5898,7 @@
         "ไม่ได้รับการคัดเลือก": list.filter(a => a.selection === "ไม่ได้รับการคัดเลือก"),
       };
       document.getElementById("statusSummarySub").textContent =
-        (scope === "ALL" ? "ทุกโซน" : zoneMeta[scope].label) + ` · รวม ${list.length} คน`;
+        (scope === "ALL" ? "ทุกโซน" : zoneLabel(scope)) + ` · รวม ${list.length} คน`;
 
       const block = (title, arr, tone) => `
         <div style="margin-bottom:1rem">
@@ -5726,6 +6277,51 @@
       }
     }
 
+    async function downloadSelectedExcel(btn) {
+      const el = btn || null;
+      const prev = el ? el.textContent : "";
+      if (el) {
+        el.disabled = true;
+        el.textContent = "กำลังสร้าง Excel...";
+      }
+      try {
+        const res = await fetch(apiUrl("export_selected_excel"));
+        const ctype = (res.headers.get("Content-Type") || "").toLowerCase();
+        if (!res.ok || ctype.includes("application/json")) {
+          const text = await res.text();
+          let msg = text;
+          try {
+            const j = JSON.parse(text);
+            msg = j.error || text;
+          } catch (_) {}
+          throw new Error(msg || "ดาวน์โหลดไม่สำเร็จ");
+        }
+        const blob = await res.blob();
+        const cd = res.headers.get("Content-Disposition") || "";
+        const year = activeEvent()?.year_be || roundMeta().year || "";
+        let filename = "ประกาศร้านค้าที่ได้รับการคัดเลือก_" + year + "_รอบ" + currentRound() + ".xlsx";
+        const mStar = cd.match(/filename\*=UTF-8''([^;]+)/i);
+        const mPlain = cd.match(/filename="([^"]+)"/i);
+        if (mStar) filename = decodeURIComponent(mStar[1]);
+        else if (mPlain) filename = mPlain[1];
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      } catch (e) {
+        alert("ดาวน์โหลด Excel ไม่สำเร็จ: " + (e.message || e));
+      } finally {
+        if (el) {
+          el.disabled = false;
+          el.textContent = prev || "ดาวน์โหลด Excel ประกาศ";
+        }
+      }
+    }
+
     async function downloadAnnounceDocx(btn) {
       const yearSel = document.getElementById("announceYear");
       const roundSel = document.getElementById("announceRound");
@@ -5744,6 +6340,27 @@
         render();
       } catch (e) {
         alert("พิมพ์ประกาศไม่สำเร็จ: " + (e.message || e));
+      }
+    }
+
+    async function downloadAnnounceExcel(btn) {
+      const yearSel = document.getElementById("announceYear");
+      const roundSel = document.getElementById("announceRound");
+      const eventId = Number(yearSel?.value || 0);
+      const roundNo = Number(roundSel?.value || currentRound());
+      state.view = "home";
+      localStorage.setItem(VIEW_STORAGE_KEY, "home");
+      try {
+        if (eventId && Number(activeEvent()?.id || 0) !== eventId) {
+          await setActiveEventById(eventId);
+        }
+        if (roundNo && roundNo !== currentRound()) {
+          await setRound(roundNo);
+        }
+        await downloadSelectedExcel(btn);
+        render();
+      } catch (e) {
+        alert("ดาวน์โหลด Excel ไม่สำเร็จ: " + (e.message || e));
       }
     }
 
@@ -5835,7 +6452,7 @@
         ? data.groups.filter(g => appsForGroup(g, data.applicants).length === 0)
         : emptyGroups(state.zone, data);
       document.getElementById("emptyModalTitle").textContent =
-        state.zone === "ALL" ? "สรุปล็อกว่างทุกโซน" : `สรุปล็อกว่าง ${zoneMeta[state.zone].label}`;
+        state.zone === "ALL" ? "สรุปล็อกว่างทุกโซน" : `สรุปล็อกว่าง ${zoneLabel(state.zone)}`;
       document.getElementById("emptyModalBody").innerHTML = list.length
         ? `<div class="tags">${list.map(g =>
             `<span class="chip empty" style="margin:.2rem">${esc(g.label)} — ${esc(g.cat)}</span>`).join("")}</div>`

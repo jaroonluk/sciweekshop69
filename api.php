@@ -45,6 +45,10 @@ try {
     sci_rbac_require_roles(['admin', 'committee'], true);
     sci_stream_selected_announcement_docx();
   }
+  if ($action === 'export_selected_excel') {
+    sci_rbac_require_roles(['admin', 'committee'], true);
+    sci_stream_selected_announcement_excel();
+  }
 
   header('Content-Type: application/json; charset=utf-8');
   header('Cache-Control: no-store');

@@ -295,10 +295,18 @@ function sci_selected_vendors_for_announcement(?array $data = null): array {
 
   $rows = [];
   foreach ($draft as $row) {
+    $a = $row['applicant'];
+    $phone = preg_replace('/[\s\-]+/', '', (string)($a['phone'] ?? '')) ?? '';
+    $power = $a['need_high_power'] ?? null;
+    $ice = $a['ice_bucket_count'] ?? null;
     $rows[] = [
       'name' => $row['name'],
       'category' => $row['category'],
       'slot' => $row['slot'],
+      'phone' => $phone,
+      'need_high_power' => ($power === null || $power === '') ? null : (int)$power,
+      'ice_bucket_count' => ($ice === null || $ice === '') ? null : (int)$ice,
+      'zone' => (string)($a['zone'] ?? ''),
     ];
   }
 
@@ -307,6 +315,312 @@ function sci_selected_vendors_for_announcement(?array $data = null): array {
   });
 
   return $rows;
+}
+
+/**
+ * Ask-flags for the current (or given) round — controls optional export columns.
+ * @return array{ask_high_power:bool,ask_ice_bucket:bool,round_no:int,title:string}
+ */
+function sci_round_ask_flags(?int $roundNo = null): array {
+  $roundNo = function_exists('sci_normalize_round')
+    ? sci_normalize_round($roundNo ?? (function_exists('sci_current_round') ? sci_current_round() : 1))
+    : (int)($roundNo ?? 1);
+  if (function_exists('sci_use_mysql') && sci_use_mysql() && function_exists('sci_db_event_rounds')) {
+    foreach (sci_db_event_rounds() as $r) {
+      if ((int)$r['round_no'] === $roundNo) {
+        return [
+          'ask_high_power' => (int)($r['ask_high_power'] ?? 0) === 1,
+          'ask_ice_bucket' => (int)($r['ask_ice_bucket'] ?? 0) === 1,
+          'round_no' => $roundNo,
+          'title' => (string)($r['title'] ?? ('รอบที่ ' . $roundNo)),
+        ];
+      }
+    }
+  }
+  return [
+    'ask_high_power' => false,
+    'ask_ice_bucket' => false,
+    'round_no' => $roundNo,
+    'title' => 'รอบที่ ' . $roundNo,
+  ];
+}
+
+function sci_announce_power_label($value): string {
+  if ($value === null || $value === '') return '—';
+  return ((int)$value === 1) ? 'ต้องการใช้' : 'ไม่ใช้';
+}
+
+function sci_announce_ice_label($value): string {
+  if ($value === null || $value === '') return '—';
+  $n = (int)$value;
+  if ($n <= 0) return 'ไม่ใช้';
+  return 'ใช้ ' . $n . ' ถัง';
+}
+
+function sci_excel_xml_escape(string $text): string {
+  return htmlspecialchars($text, ENT_QUOTES | ENT_XML1, 'UTF-8');
+}
+
+function sci_xlsx_col_letter(int $index1Based): string {
+  $n = max(1, $index1Based);
+  $s = '';
+  while ($n > 0) {
+    $n--;
+    $s = chr(65 + ($n % 26)) . $s;
+    $n = intdiv($n, 26);
+  }
+  return $s;
+}
+
+/**
+ * Build real Office Open XML .xlsx for selected vendors.
+ *
+ * @param list<array<string,mixed>>|null $rows
+ */
+function sci_build_selected_announcement_excel(?array $rows = null): string {
+  if (!class_exists('ZipArchive')) {
+    throw new RuntimeException('เซิร์ฟเวอร์ไม่มี ZipArchive สำหรับสร้างไฟล์ Excel');
+  }
+
+  $rows = $rows ?? sci_selected_vendors_for_announcement();
+  $flags = sci_round_ask_flags();
+  $askPower = !empty($flags['ask_high_power']);
+  $askIce = !empty($flags['ask_ice_bucket']);
+
+  $headers = ['ลำดับ', 'ชื่อ - สกุล', 'เบอร์โทรศัพท์', 'ประเภทร้านค้า', 'ล็อกจำหน่าย'];
+  if ($askPower) $headers[] = 'ไฟฟ้ากำลังสูง';
+  if ($askIce) $headers[] = 'ถังน้ำแข็ง';
+
+  $roundMeta = sci_round_meta();
+  $year = (int)($roundMeta['year'] ?? 2569);
+  $title = 'รายชื่อผู้ประกอบการที่ได้รับการคัดเลือก';
+  $sub = 'สัปดาห์วิทยาศาสตร์แห่งชาติ ส่วนภูมิภาค ณ คณะวิทยาศาสตร์ มหาวิทยาลัยขอนแก่น ประจำปี '
+    . $year
+    . (!empty($roundMeta['label']) ? (' ' . $roundMeta['label']) : '');
+
+  $shared = [];
+  $sharedIndex = static function (string $text) use (&$shared): int {
+    if (!array_key_exists($text, $shared)) {
+      $shared[$text] = count($shared);
+    }
+    return $shared[$text];
+  };
+
+  $colCount = count($headers);
+  $lastCol = sci_xlsx_col_letter($colCount);
+  $sheetRows = '';
+
+  // Row 1: title
+  $ti = $sharedIndex($title);
+  $sheetRows .= '<row r="1" ht="24" customHeight="1">'
+    . '<c r="A1" t="s" s="1"><v>' . $ti . '</v></c>'
+    . '</row>';
+  // Row 2: subtitle
+  $si = $sharedIndex($sub);
+  $sheetRows .= '<row r="2" ht="20" customHeight="1">'
+    . '<c r="A2" t="s" s="2"><v>' . $si . '</v></c>'
+    . '</row>';
+  // Row 3 blank
+  $sheetRows .= '<row r="3"/>';
+
+  // Row 4: headers
+  $sheetRows .= '<row r="4" ht="22" customHeight="1">';
+  foreach ($headers as $i => $h) {
+    $ref = sci_xlsx_col_letter($i + 1) . '4';
+    $sheetRows .= '<c r="' . $ref . '" t="s" s="3"><v>' . $sharedIndex($h) . '</v></c>';
+  }
+  $sheetRows .= '</row>';
+
+  $rNum = 5;
+  foreach ($rows as $idx => $row) {
+    $vals = [
+      ['n' => true, 'v' => (string)($idx + 1), 's' => '4'],
+      ['n' => false, 'v' => (string)($row['name'] ?? ''), 's' => '5'],
+      ['n' => false, 'v' => (string)($row['phone'] ?? ''), 's' => '4'],
+      ['n' => false, 'v' => (string)($row['category'] ?? ''), 's' => '5'],
+      ['n' => false, 'v' => (string)($row['slot'] ?? ''), 's' => '4'],
+    ];
+    if ($askPower) {
+      $vals[] = ['n' => false, 'v' => sci_announce_power_label($row['need_high_power'] ?? null), 's' => '4'];
+    }
+    if ($askIce) {
+      $vals[] = ['n' => false, 'v' => sci_announce_ice_label($row['ice_bucket_count'] ?? null), 's' => '4'];
+    }
+
+    $sheetRows .= '<row r="' . $rNum . '" ht="20" customHeight="1">';
+    foreach ($vals as $i => $cell) {
+      $ref = sci_xlsx_col_letter($i + 1) . $rNum;
+      if (!empty($cell['n'])) {
+        $sheetRows .= '<c r="' . $ref . '" s="' . $cell['s'] . '"><v>' . sci_excel_xml_escape($cell['v']) . '</v></c>';
+      } else {
+        $sheetRows .= '<c r="' . $ref . '" t="s" s="' . $cell['s'] . '"><v>' . $sharedIndex($cell['v']) . '</v></c>';
+      }
+    }
+    $sheetRows .= '</row>';
+    $rNum++;
+  }
+
+  $ssXml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+    . '<sst xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" count="'
+    . count($shared) . '" uniqueCount="' . count($shared) . '">';
+  // preserve insertion order of values by index
+  $ordered = array_fill(0, count($shared), '');
+  foreach ($shared as $text => $idx) {
+    $ordered[$idx] = $text;
+  }
+  foreach ($ordered as $text) {
+    $ssXml .= '<si><t xml:space="preserve">' . sci_excel_xml_escape((string)$text) . '</t></si>';
+  }
+  $ssXml .= '</sst>';
+
+  $colsXml = '';
+  $widths = [8, 28, 16, 24, 12];
+  if ($askPower) $widths[] = 16;
+  if ($askIce) $widths[] = 14;
+  foreach ($widths as $i => $w) {
+    $c = $i + 1;
+    $colsXml .= '<col min="' . $c . '" max="' . $c . '" width="' . $w . '" customWidth="1"/>';
+  }
+
+  $mergeEnd = $rNum - 1;
+  $sheetXml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+    . '<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"'
+    . ' xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">'
+    . '<dimension ref="A1:' . $lastCol . max(4, $mergeEnd) . '"/>'
+    . '<sheetViews><sheetView workbookViewId="0"/></sheetViews>'
+    . '<sheetFormatPr defaultRowHeight="18"/>'
+    . '<cols>' . $colsXml . '</cols>'
+    . '<sheetData>' . $sheetRows . '</sheetData>'
+    . '<mergeCells count="2">'
+    . '<mergeCell ref="A1:' . $lastCol . '1"/>'
+    . '<mergeCell ref="A2:' . $lastCol . '2"/>'
+    . '</mergeCells>'
+    . '</worksheet>';
+
+  $stylesXml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+    . '<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">'
+    . '<fonts count="4">'
+    . '<font><sz val="14"/><name val="TH Sarabun New"/></font>'
+    . '<font><b/><sz val="18"/><name val="TH Sarabun New"/></font>'
+    . '<font><b/><sz val="14"/><name val="TH Sarabun New"/></font>'
+    . '<font><b/><sz val="14"/><name val="TH Sarabun New"/></font>'
+    . '</fonts>'
+    . '<fills count="3">'
+    . '<fill><patternFill patternType="none"/></fill>'
+    . '<fill><patternFill patternType="gray125"/></fill>'
+    . '<fill><patternFill patternType="solid"><fgColor rgb="FFFFF2CC"/></patternFill></fill>'
+    . '</fills>'
+    . '<borders count="2">'
+    . '<border><left/><right/><top/><bottom/><diagonal/></border>'
+    . '<border>'
+    . '<left style="thin"/><right style="thin"/><top style="thin"/><bottom style="thin"/><diagonal/>'
+    . '</border>'
+    . '</borders>'
+    . '<cellStyleXfs count="1"><xf/></cellStyleXfs>'
+    . '<cellXfs count="6">'
+    . '<xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/>' // 0 default
+    . '<xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1" applyAlignment="1">'
+    . '<alignment horizontal="center" vertical="center" wrapText="1"/></xf>' // 1 title
+    . '<xf numFmtId="0" fontId="2" fillId="0" borderId="0" xfId="0" applyFont="1" applyAlignment="1">'
+    . '<alignment horizontal="center" vertical="center" wrapText="1"/></xf>' // 2 sub
+    . '<xf numFmtId="0" fontId="3" fillId="2" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">'
+    . '<alignment horizontal="center" vertical="center" wrapText="1"/></xf>' // 3 header
+    . '<xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyBorder="1" applyAlignment="1">'
+    . '<alignment horizontal="center" vertical="center" wrapText="1"/></xf>' // 4 center
+    . '<xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyBorder="1" applyAlignment="1">'
+    . '<alignment horizontal="left" vertical="center" wrapText="1"/></xf>' // 5 left
+    . '</cellXfs>'
+    . '</styleSheet>';
+
+  $contentTypes = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+    . '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'
+    . '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'
+    . '<Default Extension="xml" ContentType="application/xml"/>'
+    . '<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>'
+    . '<Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>'
+    . '<Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>'
+    . '<Override PartName="/xl/sharedStrings.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sharedStrings+xml"/>'
+    . '</Types>';
+
+  $rels = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+    . '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+    . '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/>'
+    . '</Relationships>';
+
+  $wb = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+    . '<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"'
+    . ' xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">'
+    . '<sheets><sheet name="ประกาศร้านค้า" sheetId="1" r:id="rId1"/></sheets>'
+    . '</workbook>';
+
+  $wbRels = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+    . '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+    . '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/>'
+    . '<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>'
+    . '<Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/sharedStrings" Target="sharedStrings.xml"/>'
+    . '</Relationships>';
+
+  $tmp = tempnam(sys_get_temp_dir(), 'sci_xlsx_');
+  if ($tmp === false) {
+    throw new RuntimeException('สร้างไฟล์ชั่วคราวไม่สำเร็จ');
+  }
+  $path = $tmp . '.xlsx';
+  @unlink($tmp);
+
+  $zip = new ZipArchive();
+  if ($zip->open($path, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== true) {
+    throw new RuntimeException('เปิดไฟล์ ZIP สำหรับ .xlsx ไม่สำเร็จ');
+  }
+  $zip->addFromString('[Content_Types].xml', $contentTypes);
+  $zip->addFromString('_rels/.rels', $rels);
+  $zip->addFromString('xl/workbook.xml', $wb);
+  $zip->addFromString('xl/_rels/workbook.xml.rels', $wbRels);
+  $zip->addFromString('xl/worksheets/sheet1.xml', $sheetXml);
+  $zip->addFromString('xl/styles.xml', $stylesXml);
+  $zip->addFromString('xl/sharedStrings.xml', $ssXml);
+  $zip->close();
+
+  $bin = file_get_contents($path);
+  @unlink($path);
+  if ($bin === false || $bin === '') {
+    throw new RuntimeException('อ่านไฟล์ .xlsx ไม่สำเร็จ');
+  }
+  return $bin;
+}
+
+/**
+ * Stream announcement Excel (.xlsx) download and exit.
+ */
+function sci_stream_selected_announcement_excel(): void {
+  while (ob_get_level() > 0) {
+    ob_end_clean();
+  }
+
+  $data = sci_parse_applicants();
+  $rows = sci_selected_vendors_for_announcement($data);
+  if (!$rows) {
+    http_response_code(404);
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode(['ok' => false, 'error' => 'ยังไม่มีร้านที่ได้รับการคัดเลือกและมีล็อกจำหน่าย'], JSON_UNESCAPED_UNICODE);
+    exit;
+  }
+
+  $bin = sci_build_selected_announcement_excel($rows);
+  $roundMeta = sci_round_meta();
+  $year = (int)($roundMeta['year'] ?? 2569);
+  $roundTag = '_รอบ' . (int)$roundMeta['id'];
+  $asciiTag = '_r' . (int)$roundMeta['id'];
+  $filename = 'ประกาศร้านค้าที่ได้รับการคัดเลือก_' . $year . $roundTag . '.xlsx';
+  $asciiName = 'selected_vendors_announcement_' . $year . $asciiTag . '.xlsx';
+
+  header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+  header('Content-Length: ' . strlen($bin));
+  header('Cache-Control: no-store');
+  header(
+    'Content-Disposition: attachment; filename="' . $asciiName . '"; filename*=UTF-8\'\'' . rawurlencode($filename)
+  );
+  echo $bin;
+  exit;
 }
 
 function sci_docx_paragraph(string $text, array $opts = []): string {

@@ -94,7 +94,7 @@ function sci_db_event_rounds(): array {
   }
   $event = sci_db_active_event();
   $st = sci_db()->prepare(
-    'SELECT id, round_no, title, apply_open_at, apply_close_at, is_open
+    'SELECT id, round_no, title, apply_open_at, apply_close_at, is_open, ask_high_power, ask_ice_bucket
      FROM event_rounds WHERE event_id = ? ORDER BY round_no'
   );
   $st->execute([(int)$event['id']]);

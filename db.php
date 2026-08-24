@@ -4,6 +4,12 @@
  * Optional read-only helpers for eoffice.tbluser on the same MySQL server.
  */
 
+// Application times (apply windows, display) are Asia/Bangkok.
+// Without this, PHP strtotime() uses php.ini TZ and mis-judges open/close.
+if (function_exists('date_default_timezone_set')) {
+  date_default_timezone_set('Asia/Bangkok');
+}
+
 function sci_db_config(): array {
   static $cfg = null;
   if ($cfg !== null) return $cfg;
