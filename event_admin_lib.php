@@ -85,7 +85,8 @@ function sci_admin_get_event(int $eventId): array {
   if (!$event) throw new RuntimeException('ไม่พบกิจกรรม');
 
   $rounds = sci_db()->prepare(
-    'SELECT id, event_id, round_no, title, apply_open_at, apply_close_at, is_open, notes
+    'SELECT id, event_id, round_no, title, apply_open_at, apply_close_at, is_open,
+            ask_high_power, ask_ice_bucket, apply_flow, notes
      FROM event_rounds WHERE event_id = ? ORDER BY round_no'
   );
   $rounds->execute([$eventId]);
@@ -318,14 +319,17 @@ function sci_admin_copy_event_structure(array $body, ?int $actorId = null): arra
       $rcnt->execute([$targetId]);
       if ((int)$rcnt->fetchColumn() === 0) {
         $rin = $pdo->prepare(
-          'INSERT INTO event_rounds (event_id, round_no, title, apply_open_at, apply_close_at, is_open, notes)
-           VALUES (?, ?, ?, NULL, NULL, 0, ?)'
+          'INSERT INTO event_rounds (event_id, round_no, title, apply_open_at, apply_close_at, is_open, ask_high_power, ask_ice_bucket, apply_flow, notes)
+           VALUES (?, ?, ?, NULL, NULL, 0, ?, ?, ?, ?)'
         );
         foreach ($src['rounds'] as $r) {
           $rin->execute([
             $targetId,
             (int)$r['round_no'],
             $r['title'],
+            !empty($r['ask_high_power']) ? 1 : 0,
+            !empty($r['ask_ice_bucket']) ? 1 : 0,
+            sci_normalize_apply_flow($r['apply_flow'] ?? ''),
             $r['notes'] ?? null,
           ]);
         }
@@ -365,6 +369,9 @@ function sci_admin_save_round(array $body, ?int $actorId = null): array {
   $openAt = sci_admin_normalize_datetime($body['apply_open_at'] ?? null);
   $closeAt = sci_admin_normalize_datetime($body['apply_close_at'] ?? null);
   $isOpen = !empty($body['is_open']) ? 1 : 0;
+  $askHighPower = !empty($body['ask_high_power']) ? 1 : 0;
+  $askIceBucket = !empty($body['ask_ice_bucket']) ? 1 : 0;
+  $applyFlow = sci_normalize_apply_flow($body['apply_flow'] ?? '');
   $notes = trim((string)($body['notes'] ?? ''));
 
   if ($eventId <= 0) throw new InvalidArgumentException('ต้องระบุกิจกรรม');
@@ -377,11 +384,12 @@ function sci_admin_save_round(array $body, ?int $actorId = null): array {
   $pdo = sci_db();
   if ($id > 0) {
     $upd = $pdo->prepare(
-      'UPDATE event_rounds SET round_no = ?, title = ?, apply_open_at = ?, apply_close_at = ?, is_open = ?, notes = ?, updated_at = NOW()
+      'UPDATE event_rounds SET round_no = ?, title = ?, apply_open_at = ?, apply_close_at = ?, is_open = ?,
+              ask_high_power = ?, ask_ice_bucket = ?, apply_flow = ?, notes = ?, updated_at = NOW()
        WHERE id = ? AND event_id = ?'
     );
     try {
-      $upd->execute([$roundNo, $title, $openAt, $closeAt, $isOpen, $notes !== '' ? $notes : null, $id, $eventId]);
+      $upd->execute([$roundNo, $title, $openAt, $closeAt, $isOpen, $askHighPower, $askIceBucket, $applyFlow, $notes !== '' ? $notes : null, $id, $eventId]);
     } catch (PDOException $e) {
       if (str_contains($e->getMessage(), 'Duplicate')) {
         throw new RuntimeException('หมายเลขรอบซ้ำในกิจกรรมนี้');
@@ -393,11 +401,11 @@ function sci_admin_save_round(array $body, ?int $actorId = null): array {
     }
   } else {
     $ins = $pdo->prepare(
-      'INSERT INTO event_rounds (event_id, round_no, title, apply_open_at, apply_close_at, is_open, notes)
-       VALUES (?, ?, ?, ?, ?, ?, ?)'
+      'INSERT INTO event_rounds (event_id, round_no, title, apply_open_at, apply_close_at, is_open, ask_high_power, ask_ice_bucket, apply_flow, notes)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
     );
     try {
-      $ins->execute([$eventId, $roundNo, $title, $openAt, $closeAt, $isOpen, $notes !== '' ? $notes : null]);
+      $ins->execute([$eventId, $roundNo, $title, $openAt, $closeAt, $isOpen, $askHighPower, $askIceBucket, $applyFlow, $notes !== '' ? $notes : null]);
     } catch (PDOException $e) {
       if (str_contains($e->getMessage(), 'Duplicate')) {
         throw new RuntimeException('หมายเลขรอบซ้ำในกิจกรรมนี้');

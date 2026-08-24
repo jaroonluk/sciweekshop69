@@ -49,7 +49,36 @@ function sci_db(): PDO {
   ]);
   $pdo->exec("SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci");
   $pdo->exec("SET time_zone = '+07:00'");
+  sci_db_ensure_schema_patches($pdo);
   return $pdo;
+}
+
+/** Add missing columns used by newer features without a full re-import. */
+function sci_db_ensure_schema_patches(PDO $pdo): void {
+  static $done = false;
+  if ($done) return;
+  $done = true;
+  $patches = [
+    ['event_rounds', 'ask_high_power', "TINYINT(1) NOT NULL DEFAULT 0 COMMENT 'ถามการใช้ไฟฟ้ากำลังสูงในใบสมัคร'"],
+    ['event_rounds', 'ask_ice_bucket', "TINYINT(1) NOT NULL DEFAULT 0 COMMENT 'ถามการใช้ถังน้ำแข็งในใบสมัคร'"],
+    ['applicants', 'need_high_power', "TINYINT(1) NULL COMMENT '1=ใช้ไฟฟ้ากำลังสูง 0=ไม่ใช้ NULL=ไม่ถาม'"],
+    ['applicants', 'ice_bucket_count', "SMALLINT UNSIGNED NULL COMMENT 'จำนวนถังน้ำแข็ง NULL=ไม่ถาม 0=ไม่ใช้'"],
+    ['event_rounds', 'apply_flow', "VARCHAR(32) NOT NULL DEFAULT 'zone_then_category' COMMENT 'zone_then_category | category_only'"],
+  ];
+  foreach ($patches as [$table, $col, $ddl]) {
+    $st = $pdo->prepare(
+      'SELECT COUNT(*) FROM information_schema.COLUMNS
+       WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ? AND COLUMN_NAME = ?'
+    );
+    $st->execute([$table, $col]);
+    if ((int)$st->fetchColumn() === 0) {
+      $pdo->exec('ALTER TABLE `' . $table . '` ADD COLUMN `' . $col . '` ' . $ddl);
+    }
+  }
+}
+
+function sci_normalize_apply_flow($value): string {
+  return trim((string)$value) === 'category_only' ? 'category_only' : 'zone_then_category';
 }
 
 /**

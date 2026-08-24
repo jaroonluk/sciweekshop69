@@ -58,6 +58,35 @@ function sci_db_active_event(): array {
   return $GLOBALS['SCI_DB_EVENT_CACHE'];
 }
 
+/**
+ * Resolve event by public code (for multi-event apply links).
+ * Does not require is_active and does not overwrite the active-event cache.
+ *
+ * @return array{id:int,code:string,title:string,year_be:int}
+ */
+function sci_db_event_by_code(string $code): array {
+  $code = trim($code);
+  if ($code === '' || !preg_match('/^[a-zA-Z0-9][a-zA-Z0-9._-]{0,63}$/', $code)) {
+    throw new InvalidArgumentException('รหัสกิจกรรมไม่ถูกต้อง');
+  }
+  $st = sci_db()->prepare(
+    'SELECT id, code, title, year_be FROM events WHERE code = ? LIMIT 1'
+  );
+  $st->execute([$code]);
+  $row = $st->fetch();
+  if (!$row) {
+    throw new InvalidArgumentException(
+      'ไม่พบกิจกรรมรหัส "' . $code . '" กรุณาตรวจสอบลิงก์สมัคร'
+    );
+  }
+  return [
+    'id' => (int)$row['id'],
+    'code' => (string)$row['code'],
+    'title' => (string)$row['title'],
+    'year_be' => (int)$row['year_be'],
+  ];
+}
+
 /** @return list<array{id:int,round_no:int,title:string,apply_open_at:?string,apply_close_at:?string,is_open:int}> */
 function sci_db_event_rounds(): array {
   if (isset($GLOBALS['SCI_DB_ROUNDS_CACHE']) && is_array($GLOBALS['SCI_DB_ROUNDS_CACHE'])) {
@@ -547,6 +576,12 @@ function sci_db_build_applicant_payload(array $row, array $files): array {
     'category_raw' => (string)($row['category'] ?? ''),
     'detail' => (string)($row['detail'] ?? ''),
     'qualifications' => $qualify,
+    'need_high_power' => isset($row['need_high_power']) && $row['need_high_power'] !== null && $row['need_high_power'] !== ''
+      ? (int)$row['need_high_power']
+      : null,
+    'ice_bucket_count' => isset($row['ice_bucket_count']) && $row['ice_bucket_count'] !== null && $row['ice_bucket_count'] !== ''
+      ? (int)$row['ice_bucket_count']
+      : null,
     'id_card' => sci_drive_view($idCard),
     'house_reg' => sci_drive_view($houseReg),
     'photo' => sci_drive_view($photo),

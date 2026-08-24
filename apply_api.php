@@ -1,7 +1,8 @@
 <?php
 /**
  * Public JSON API for vendor registration (no staff login).
- * apply_api.php?action=meta|submit|status
+ * apply_api.php?action=meta|submit|status|check_phone|captcha
+ * Optional: &event={events.code} for multi-event apply links.
  */
 ini_set('display_errors', '0');
 error_reporting(E_ALL);
@@ -17,6 +18,15 @@ function sci_apply_json($data, int $code = 200): void {
   header('Content-Type: application/json; charset=utf-8');
   echo json_encode($data, JSON_UNESCAPED_UNICODE);
   exit;
+}
+
+/** Optional event code from query/body; empty → null (active event fallback). */
+function sci_apply_event_param(?array $body = null): ?string {
+  $code = trim((string)($_GET['event'] ?? $_POST['event'] ?? ''));
+  if ($code === '' && is_array($body)) {
+    $code = trim((string)($body['event'] ?? $body['event_code'] ?? ''));
+  }
+  return $code !== '' ? $code : null;
 }
 
 // Simple rate limit by IP (file-based)
@@ -42,10 +52,11 @@ function sci_apply_rate_limit(string $bucket, int $max, int $windowSec): void {
 
 try {
   $action = $_GET['action'] ?? $_POST['action'] ?? 'meta';
+  $eventCode = sci_apply_event_param();
 
   if ($action === 'meta') {
     sci_apply_rate_limit('meta', 60, 60);
-    $meta = sci_vendor_form_meta();
+    $meta = sci_vendor_form_meta(true, $eventCode);
     sci_apply_json(['ok' => true] + $meta);
   }
 
@@ -60,15 +71,17 @@ try {
     sci_apply_rate_limit('check_phone', 30, 60);
     $roundId = (int)($_GET['round_id'] ?? $_POST['round_id'] ?? 0);
     $phone = (string)($_GET['phone'] ?? $_POST['phone'] ?? '');
-    if ($roundId <= 0 || $phone === '') {
+    $body = null;
+    if ($roundId <= 0 || $phone === '' || $eventCode === null) {
       $body = json_decode(file_get_contents('php://input') ?: '{}', true);
       if (is_array($body)) {
         if ($roundId <= 0) $roundId = (int)($body['round_id'] ?? 0);
         if ($phone === '') $phone = (string)($body['phone'] ?? '');
+        if ($eventCode === null) $eventCode = sci_apply_event_param($body);
       }
     }
     if ($roundId <= 0) sci_apply_json(['ok' => false, 'error' => 'กรุณาเลือกรอบสมัคร'], 400);
-    $result = sci_vendor_phone_taken($roundId, $phone);
+    $result = sci_vendor_phone_taken($roundId, $phone, $eventCode);
     sci_apply_json(['ok' => true] + $result);
   }
 
@@ -80,7 +93,7 @@ try {
     $phone = (string)($_POST['phone'] ?? '');
     $name = (string)($_POST['name'] ?? '');
     sci_vendor_captcha_verify($_POST, 'status', false);
-    $result = sci_vendor_status_lookup($phone, $name);
+    $result = sci_vendor_status_lookup($phone, $name, $eventCode);
     $result['status_captcha'] = sci_vendor_captcha_issue('status');
     sci_apply_json(['ok' => true] + $result);
   }
@@ -90,6 +103,10 @@ try {
       sci_apply_json(['ok' => false, 'error' => 'ต้องใช้ POST'], 405);
     }
     sci_apply_rate_limit('submit', 8, 600);
+    // Ensure event from query is on POST if client only put it in URL
+    if ($eventCode !== null && trim((string)($_POST['event'] ?? '')) === '') {
+      $_POST['event'] = $eventCode;
+    }
     $result = sci_vendor_submit($_POST, $_FILES);
     sci_apply_json([
       'ok' => true,

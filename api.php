@@ -418,8 +418,9 @@ try {
   if ($action === 'rounds_save') {
     sci_rbac_require_roles(['admin', 'committee'], true);
     $body = sci_read_json_body();
+    $isUpdate = (int)($body['id'] ?? 0) > 0;
     $detail = sci_admin_save_round($body, sci_api_actor_id());
-    sci_json_out(['ok' => true, 'message' => 'บันทึกรอบสำเร็จ'] + $detail);
+    sci_json_out(['ok' => true, 'message' => $isUpdate ? 'บันทึกรอบแล้ว' : 'เพิ่มรอบแล้ว'] + $detail);
   }
 
   if ($action === 'rounds_delete') {

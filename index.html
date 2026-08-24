@@ -236,21 +236,81 @@
       flex-wrap: wrap;
       gap: .4rem;
     }
-    .events-layout {
+    .events-workspace {
       display: grid;
-      gap: 1rem;
-      grid-template-columns: minmax(220px, 280px) 1fr;
-      align-items: start;
+      gap: .85rem;
+      grid-template-columns: minmax(250px, 18.5rem) minmax(0, 1fr);
+      flex: 1;
+      min-height: 0;
+      align-items: stretch;
     }
     @media (max-width: 980px) {
-      .events-layout { grid-template-columns: 1fr; }
+      .events-workspace { grid-template-columns: 1fr; height: auto; min-height: 0; }
+      .events-year-pane { max-height: min(38vh, 320px); }
+    }
+    .events-year-pane,
+    .events-detail-pane {
+      background: #fffdf7;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(160,100,0,.06);
+    }
+    .events-year-head,
+    .events-detail-head {
+      flex: 0 0 auto;
+      padding: .95rem 1.05rem .7rem;
+    }
+    .events-year-head h2,
+    .events-detail-head h2 {
+      margin: 0 0 .25rem;
+      font-family: "Chakra Petch", sans-serif;
+      font-size: 1.12rem;
+    }
+    .events-year-head .hint,
+    .events-detail-head .hint {
+      margin: 0;
+      color: var(--muted);
+      font-size: .84rem;
+      line-height: 1.4;
+    }
+    .events-detail-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .35rem;
+      margin-top: .5rem;
+    }
+    .events-detail-meta span {
+      font-size: .75rem;
+      font-weight: 700;
+      font-family: "Chakra Petch", sans-serif;
+      padding: .15rem .5rem;
+      border-radius: 999px;
+      background: #fff6e0;
+      border: 1px solid #f0d48a;
+      color: #5c4a1f;
+    }
+    .events-year-list {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      padding: 0 .7rem;
+    }
+    .events-year-foot {
+      flex: 0 0 auto;
+      padding: .7rem .85rem .9rem;
+      border-top: 1px solid #f0e8d8;
+      background: rgba(255,248,232,.65);
     }
     .event-list-item {
       width: 100%;
       text-align: left;
       border: 1px solid var(--line);
       background: #fff;
-      border-radius: 10px;
+      border-radius: 12px;
       padding: .7rem .75rem;
       margin-bottom: .45rem;
       cursor: pointer;
@@ -278,13 +338,15 @@
       display: flex;
       flex-wrap: wrap;
       gap: .35rem;
-      margin: .75rem 0;
+      flex: 0 0 auto;
+      margin: 0 1.05rem .15rem;
+      padding-bottom: .15rem;
     }
     .events-subtabs button {
       border: 1px solid var(--line);
       background: #fff;
       border-radius: 999px;
-      padding: .35rem .75rem;
+      padding: .38rem .8rem;
       font: inherit;
       font-weight: 700;
       cursor: pointer;
@@ -294,11 +356,91 @@
       color: #ffd84d;
       border-color: #1c160e;
     }
+    .events-subtabs button .n {
+      font-weight: 700;
+      opacity: .72;
+      margin-left: .15rem;
+    }
+    .events-subtabs button.active .n { color: #ffe9a0; opacity: 1; }
+    .events-detail-body {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      padding: .65rem 1.1rem 1.05rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .events-detail-body:has(.events-sheet) { overflow: hidden; }
+    .events-detail-body > .empty-state { margin: auto; }
+    .events-sheet {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .65rem;
+    }
+    .events-sheet-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: .5rem;
+      flex: 0 0 auto;
+    }
+    .events-sheet-toolbar .hint { margin: 0; flex: 1; min-width: 12rem; }
+    .events-workspace .hint {
+      color: var(--muted);
+      font-size: .86rem;
+      line-height: 1.45;
+    }
+    .events-sheet-table {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+    }
+    .events-add-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+      align-items: end;
+      padding: .7rem .8rem;
+      background: #fff8e8;
+      border: 1px dashed rgba(240,180,0,.42);
+      border-radius: 12px;
+      flex: 0 0 auto;
+    }
+    .events-add-bar label {
+      display: flex;
+      flex-direction: column;
+      gap: .22rem;
+      font-size: .8rem;
+      color: var(--muted);
+      min-width: 7.5rem;
+      flex: 1;
+    }
+    .events-add-bar label.grow { flex: 2.2; min-width: 12rem; }
+    .events-add-bar label.narrow { flex: 0 0 6.5rem; min-width: 5.5rem; }
+    .events-add-bar input,
+    .events-add-bar select {
+      font: inherit;
+      padding: .48rem .55rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+    }
+    .events-add-bar .btn { height: 2.4rem; white-space: nowrap; }
     .evt-form-grid {
       display: grid;
-      gap: .65rem;
+      gap: .75rem;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      margin: .75rem 0;
+      margin: .15rem 0 .75rem;
+    }
+    .evt-form-grid.evt-overview {
+      grid-template-columns: minmax(16rem, 2.2fr) minmax(7.5rem, .7fr) minmax(10rem, 1fr);
     }
     .evt-form-grid label {
       display: flex;
@@ -309,19 +451,41 @@
     }
     .evt-form-grid input, .evt-form-grid select, .evt-form-grid textarea {
       font: inherit;
-      padding: .45rem .55rem;
+      padding: .5rem .6rem;
       border: 1px solid var(--line);
       border-radius: 8px;
       color: var(--ink);
+      background: #fff;
     }
-    .evt-form-grid textarea { min-height: 4rem; resize: vertical; }
-    .evt-actions { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem; }
-    .mini-table { width: 100%; border-collapse: collapse; font-size: .84rem; }
+    .evt-form-grid textarea { min-height: 6.5rem; resize: vertical; }
+    .evt-actions { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem; align-items: center; }
+    .evt-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .9rem;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .evt-split { grid-template-columns: 1fr; }
+      .evt-form-grid.evt-overview { grid-template-columns: 1fr; }
+    }
+    .evt-split-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: .9rem 1rem 1rem;
+    }
+    .evt-split-card h3 {
+      margin: 0 0 .25rem;
+      font-family: "Chakra Petch", sans-serif;
+      font-size: 1rem;
+    }
+    .mini-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
     .mini-table th, .mini-table td {
-      padding: .45rem .5rem;
+      padding: .5rem .6rem;
       border-bottom: 1px solid #f0e8d8;
       text-align: left;
-      vertical-align: top;
+      vertical-align: middle;
     }
     .mini-table th {
       background: #fff8e8;
@@ -332,13 +496,35 @@
     }
     .mini-table input, .mini-table select {
       font: inherit;
-      padding: .25rem .35rem;
+      padding: .32rem .45rem;
       border: 1px solid var(--line);
       border-radius: 6px;
       width: 100%;
-      max-width: 16rem;
+      max-width: none;
+      background: #fff;
     }
-    .mini-table .code { font-weight: 700; white-space: nowrap; }
+    .mini-table input[type="checkbox"] {
+      width: 1.15rem;
+      height: 1.15rem;
+      max-width: none;
+      padding: 0;
+      accent-color: var(--teal);
+      cursor: pointer;
+    }
+    .mini-table input[type="number"] { max-width: 5.2rem; }
+    .mini-table input[type="datetime-local"] { min-width: 12.5rem; }
+    .mini-table .code { font-weight: 700; white-space: nowrap; font-family: "Chakra Petch", sans-serif; }
+    .mini-table .col-num { width: 5rem; }
+    .mini-table .col-code { width: 5.5rem; }
+    .mini-table .col-zone { width: 5rem; }
+    .mini-table .col-check { width: 4.6rem; text-align: center; }
+    .mini-table .col-actions { width: 14rem; white-space: nowrap; }
+    .mini-table .col-flow { min-width: 11.5rem; }
+    .mini-table .col-flow select { min-width: 11rem; font-size: .82rem; }
+    .mini-table .col-check input { margin: 0 auto; display: block; }
+    .mini-table tbody tr:hover { background: #fffaf0; }
+    .mini-table tbody tr.inactive td { opacity: .58; }
+    .mini-table .row-actions { display: flex; flex-wrap: wrap; gap: .3rem; }
     .users-layout {
       display: grid;
       gap: 1rem;
@@ -1466,10 +1652,21 @@
       font-size: 1.1rem;
       flex: 1;
     }
-    .layout.home-mode {
+    .layout.home-mode,
+    .layout.wide-mode {
       grid-template-columns: 1fr;
     }
-    .layout.home-mode .sidebar { display: none; }
+    .layout.home-mode .sidebar,
+    .layout.wide-mode .sidebar { display: none; }
+    .layout.wide-mode .main {
+      display: flex;
+      flex-direction: column;
+      padding: .65rem .9rem .85rem;
+    }
+    .layout.wide-mode .work-bar {
+      margin-bottom: .65rem;
+      flex: 0 0 auto;
+    }
     .hidden-nav-tabs { display: none !important; }
     .work-filters.hidden-block { display: none !important; }
 
@@ -1482,6 +1679,50 @@
       color: #5c4a1f;
       font-size: .92rem;
     }
+
+    .app-flash {
+      position: fixed;
+      top: calc(var(--topbar-h) + .7rem);
+      left: 50%;
+      transform: translateX(-50%) translateY(-10px);
+      z-index: 220;
+      display: flex;
+      gap: .75rem;
+      align-items: flex-start;
+      min-width: min(92vw, 22rem);
+      max-width: min(92vw, 34rem);
+      padding: .85rem 1.05rem;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: 0 16px 40px rgba(28, 22, 14, .16);
+      font-size: .98rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .22s ease, transform .22s ease;
+    }
+    .app-flash.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+    .app-flash.ok { border-color: #b7e0c8; background: #f3fbf6; }
+    .app-flash.err { border-color: #f0c2c2; background: #fff5f5; color: #7a1f1a; }
+    .app-flash .ban-ico {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      background: #f3eee3;
+      color: var(--muted);
+    }
+    .app-flash.ok .ban-ico { background: #e5f6ec; color: var(--ok); }
+    .app-flash.err .ban-ico { background: #ffe8e6; color: var(--danger); }
+    .app-flash .ban-ico svg { width: 1.2rem; height: 1.2rem; }
+    .app-flash .ban-body { flex: 1; min-width: 0; line-height: 1.4; }
+    .app-flash .ban-body b { font-family: "Chakra Petch", sans-serif; }
 
     .group {
       background: var(--card);
@@ -1634,6 +1875,12 @@
     .face-ava.missing .face-x { display: block; }
     .face-ava.missing img { display: none; }
     .app-sub { margin: .15rem 0 0; color: var(--muted); font-size: .9rem; }
+    .apply-extras {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .35rem;
+      margin: .15rem 0 .55rem;
+    }
     .time {
       font-family: "Chakra Petch", sans-serif;
       font-size: .78rem;
@@ -1929,6 +2176,11 @@
     </div>
   </div>
 
+  <div id="appFlash" class="app-flash" role="status" aria-live="polite" hidden>
+    <span class="ban-ico" aria-hidden="true"></span>
+    <div class="ban-body"></div>
+  </div>
+
   <div class="modal-backdrop" id="statusModal">
     <div class="modal">
       <h3>ตรวจสถานะเอกสาร (Admin)</h3>
@@ -2194,6 +2446,57 @@
       return String(s ?? "").replace(/[&<>"']/g, c => ({
         "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
       }[c]));
+    }
+
+    const FLASH_ICO = {
+      ok: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>`,
+      err: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>`,
+    };
+    let flashTimer = 0;
+    function showAppFlash(message, kind = "ok", titleOverride = "") {
+      const el = document.getElementById("appFlash");
+      if (!el) return;
+      const text = String(message || "").trim();
+      if (!text) return;
+      const type = kind === "err" ? "err" : "ok";
+      const title = titleOverride || (type === "ok" ? "บันทึกแล้ว" : "ไม่สำเร็จ");
+      const ico = el.querySelector(".ban-ico");
+      const body = el.querySelector(".ban-body");
+      if (ico) ico.innerHTML = FLASH_ICO[type];
+      if (body) body.innerHTML = `<b>${esc(title)}</b> · ${esc(text)}`;
+      el.className = "app-flash " + type + " show";
+      el.hidden = false;
+      clearTimeout(flashTimer);
+      flashTimer = setTimeout(() => {
+        el.classList.remove("show");
+        flashTimer = setTimeout(() => { el.hidden = true; }, 240);
+      }, 3600);
+    }
+
+    async function copyText(text) {
+      const value = String(text || "");
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(value);
+        return;
+      }
+      const ta = document.createElement("textarea");
+      ta.value = value;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.left = "-9999px";
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand("copy");
+      ta.remove();
+      if (!ok) throw new Error("คัดลอกไม่สำเร็จ");
+    }
+
+    function applyPromoUrl(roundId) {
+      const code = String(state.eventDetail?.event?.code || "").trim();
+      const url = new URL("apply.php", window.location.href);
+      if (code) url.searchParams.set("event", code);
+      if (roundId) url.searchParams.set("round", String(roundId));
+      return url.toString();
     }
 
     function fmtTime(a) {
@@ -2840,6 +3143,9 @@
       const detail = state.eventDetail;
       const ev = detail?.event;
       const sub = state.eventsSub || "overview";
+      const roundCount = (detail?.rounds || []).length;
+      const zoneCount = (detail?.zones || []).length;
+      const slotCount = (detail?.slots || []).length;
 
       const listHtml = list.length
         ? list.map(e => `
@@ -2848,23 +3154,23 @@
               <div class="meta">ปี ${esc(e.year_be)} · โซน ${e.zone_count} · ล็อก ${e.slot_count} · รอบ ${e.round_count}</div>
               ${Number(e.is_active) === 1 ? `<span class="badge-active">กำลังใช้งาน</span>` : ""}
             </button>`).join("")
-        : `<div class="muted">ยังไม่มีกิจกรรม</div>`;
+        : `<div class="muted" style="padding:.35rem .15rem">ยังไม่มีกิจกรรม</div>`;
 
-      let body = `<div class="empty-state">เลือกกิจกรรมทางซ้าย</div>`;
+      const subBar = ev ? `
+        <div class="events-subtabs">
+          <button type="button" data-evt-sub="overview" class="${sub==="overview"?"active":""}">ข้อมูลกิจกรรม</button>
+          <button type="button" data-evt-sub="rounds" class="${sub==="rounds"?"active":""}">รอบรับสมัคร <span class="n">${roundCount}</span></button>
+          <button type="button" data-evt-sub="zones" class="${sub==="zones"?"active":""}">โซน <span class="n">${zoneCount}</span></button>
+          <button type="button" data-evt-sub="slots" class="${sub==="slots"?"active":""}">ล็อก <span class="n">${slotCount}</span></button>
+          <button type="button" data-evt-sub="swap" class="${sub==="swap"?"active":""}">สลับล็อก</button>
+          <button type="button" data-evt-sub="copy" class="${sub==="copy"?"active":""}">คัดลอกโครงสร้าง</button>
+        </div>` : "";
+
+      let body = `<div class="empty-state">เลือกกิจกรรมทางซ้าย เพื่อดูรอบ โซน และล็อก</div>`;
       if (ev) {
-        const subBar = `
-          <div class="events-subtabs">
-            <button type="button" data-evt-sub="overview" class="${sub==="overview"?"active":""}">ข้อมูลกิจกรรม</button>
-            <button type="button" data-evt-sub="rounds" class="${sub==="rounds"?"active":""}">รอบรับสมัคร</button>
-            <button type="button" data-evt-sub="zones" class="${sub==="zones"?"active":""}">โซน</button>
-            <button type="button" data-evt-sub="slots" class="${sub==="slots"?"active":""}">ล็อก</button>
-            <button type="button" data-evt-sub="swap" class="${sub==="swap"?"active":""}">สลับล็อก</button>
-            <button type="button" data-evt-sub="copy" class="${sub==="copy"?"active":""}">คัดลอกโครงสร้าง</button>
-          </div>`;
-
         if (sub === "overview") {
-          body = subBar + `
-            <div class="evt-form-grid">
+          body = `
+            <div class="evt-form-grid evt-overview">
               <label>ชื่อกิจกรรม<input id="evtTitle" value="${esc(ev.title || "")}" /></label>
               <label>ปี พ.ศ.<input id="evtYear" type="number" value="${esc(ev.year_be || "")}" /></label>
               <label>รหัส<input id="evtCode" value="${esc(ev.code || "")}" /></label>
@@ -2878,81 +3184,135 @@
               ${Number(ev.is_active) === 1 ? "" : `<button type="button" class="btn ghost" id="btnDeleteEvent">ลบกิจกรรม</button>`}
             </div>`;
         } else if (sub === "rounds") {
-          const rows = (detail.rounds || []).map(r => `
+          const rows = (detail.rounds || []).map(r => {
+            const flow = String(r.apply_flow || "zone_then_category") === "category_only" ? "category_only" : "zone_then_category";
+            return `
             <tr>
-              <td><input data-round-field="round_no" data-round-id="${r.id}" type="number" min="1" value="${esc(r.round_no)}" style="max-width:4rem" /></td>
+              <td class="col-num"><input data-round-field="round_no" data-round-id="${r.id}" type="number" min="1" value="${esc(r.round_no)}" /></td>
               <td><input data-round-field="title" data-round-id="${r.id}" value="${esc(r.title || "")}" /></td>
               <td><input data-round-field="apply_open_at" data-round-id="${r.id}" type="datetime-local" value="${esc(dtLocalValue(r.apply_open_at))}" /></td>
               <td><input data-round-field="apply_close_at" data-round-id="${r.id}" type="datetime-local" value="${esc(dtLocalValue(r.apply_close_at))}" /></td>
-              <td><input data-round-field="is_open" data-round-id="${r.id}" type="checkbox" ${Number(r.is_open)===1?"checked":""} /></td>
-              <td>
-                <button type="button" class="btn teal" style="padding:.25rem .5rem" data-save-round="${r.id}">บันทึก</button>
-                <button type="button" class="btn ghost" style="padding:.25rem .5rem" data-del-round="${r.id}">ลบ</button>
+              <td class="col-check"><input data-round-field="is_open" data-round-id="${r.id}" type="checkbox" ${Number(r.is_open)===1?"checked":""} title="เปิดรับสมัคร" /></td>
+              <td class="col-check"><input data-round-field="ask_high_power" data-round-id="${r.id}" type="checkbox" ${Number(r.ask_high_power)===1?"checked":""} title="ถามไฟฟ้ากำลังสูง" /></td>
+              <td class="col-check"><input data-round-field="ask_ice_bucket" data-round-id="${r.id}" type="checkbox" ${Number(r.ask_ice_bucket)===1?"checked":""} title="ถามถังน้ำแข็ง" /></td>
+              <td class="col-flow">
+                <select data-round-field="apply_flow" data-round-id="${r.id}" title="วิธีเลือกประเภทร้านบนหน้าสมัคร">
+                  <option value="zone_then_category" ${flow==="zone_then_category"?"selected":""}>เลือกโซนก่อน แล้วเลือกประเภท</option>
+                  <option value="category_only" ${flow==="category_only"?"selected":""}>เลือกประเภทร้านเลย ไม่เลือกโซน</option>
+                </select>
               </td>
-            </tr>`).join("");
-          body = subBar + `
-            <p class="hint">เปิดรับได้ไม่จำกัดจำนวนรอบต่อปี · ตั้งชื่อรอบ วันเปิด–ปิด และติ๊ก “เปิดรับ” เมื่อต้องการรับสมัคร</p>
-            <div class="users-table-wrap">
-              <table class="mini-table">
-                <thead><tr><th>รอบ</th><th>ชื่อ</th><th>เปิดรับ</th><th>ปิดรับ</th><th>เปิด</th><th></th></tr></thead>
-                <tbody>${rows || `<tr><td colspan="6" class="muted">ยังไม่มีรอบ</td></tr>`}</tbody>
-              </table>
-            </div>
-            <div class="evt-actions" style="margin-top:.75rem">
-              <button type="button" class="btn ok" id="btnAddRound">+ เพิ่มรอบ</button>
+              <td class="col-actions">
+                <div class="row-actions">
+                  <button type="button" class="btn teal" style="padding:.28rem .6rem" data-save-round="${r.id}">บันทึก</button>
+                  <button type="button" class="btn ghost" style="padding:.28rem .6rem" data-copy-apply="${r.id}">คัดลอกลิงก์ประชาสัมพันธ์</button>
+                  <button type="button" class="btn ghost" style="padding:.28rem .6rem" data-del-round="${r.id}">ลบ</button>
+                </div>
+              </td>
+            </tr>`;
+          }).join("");
+          body = `
+            <div class="events-sheet">
+              <div class="events-sheet-toolbar">
+                <p class="hint">ตั้งชื่อรอบ วันเปิด–ปิด และติ๊ก “เปิดรับ” เมื่อต้องการรับสมัคร · ติ๊ก “ถามไฟฟ้า / ถามน้ำแข็ง” เมื่อรอบนั้นต้องถามผู้สมัครสองข้อนี้ · “วิธีสมัคร” กำหนดต่อรอบว่าให้เลือกโซนก่อน หรือเลือกประเภทร้านเลย · ปุ่มคัดลอกลิงก์ใช้ประชาสัมพันธ์ได้ทันที แม้รอบยังไม่เปิด</p>
+                <button type="button" class="btn ok" id="btnAddRound">+ เพิ่มรอบ</button>
+              </div>
+              <div class="events-sheet-table">
+                <table class="mini-table">
+                  <thead>
+                    <tr>
+                      <th class="col-num">รอบ</th>
+                      <th>ชื่อ</th>
+                      <th>เปิดรับ</th>
+                      <th>ปิดรับ</th>
+                      <th class="col-check">เปิด</th>
+                      <th class="col-check" title="ถามการใช้ไฟฟ้ากำลังสูง">ถามไฟฟ้า</th>
+                      <th class="col-check" title="ถามการใช้ถังน้ำแข็ง">ถามน้ำแข็ง</th>
+                      <th class="col-flow">วิธีสมัคร</th>
+                      <th class="col-actions"></th>
+                    </tr>
+                  </thead>
+                  <tbody>${rows || `<tr><td colspan="9" class="muted">ยังไม่มีรอบ</td></tr>`}</tbody>
+                </table>
+              </div>
             </div>`;
         } else if (sub === "zones") {
           const rows = (detail.zones || []).map(z => `
             <tr>
-              <td class="code">${esc(z.code)}</td>
+              <td class="code col-code">${esc(z.code)}</td>
               <td><input data-zone-field="name_th" data-zone-id="${z.id}" value="${esc(z.name_th || "")}" /></td>
-              <td><input data-zone-field="sort_order" data-zone-id="${z.id}" type="number" value="${esc(z.sort_order)}" style="max-width:5rem" /></td>
-              <td>
-                <button type="button" class="btn teal" style="padding:.25rem .5rem" data-save-zone="${z.id}">บันทึก</button>
-                <button type="button" class="btn ghost" style="padding:.25rem .5rem" data-del-zone="${z.id}">ลบ</button>
+              <td class="col-num"><input data-zone-field="sort_order" data-zone-id="${z.id}" type="number" value="${esc(z.sort_order)}" /></td>
+              <td class="col-actions">
+                <div class="row-actions">
+                  <button type="button" class="btn teal" style="padding:.28rem .6rem" data-save-zone="${z.id}">บันทึก</button>
+                  <button type="button" class="btn ghost" style="padding:.28rem .6rem" data-del-zone="${z.id}">ลบ</button>
+                </div>
               </td>
             </tr>`).join("");
-          body = subBar + `
-            <div class="users-table-wrap">
-              <table class="mini-table">
-                <thead><tr><th>รหัส</th><th>ชื่อโซน</th><th>ลำดับ</th><th></th></tr></thead>
-                <tbody>${rows || `<tr><td colspan="4" class="muted">ยังไม่มีโซน</td></tr>`}</tbody>
-              </table>
-            </div>
-            <div class="evt-form-grid" style="margin-top:.85rem">
-              <label>รหัสโซน (A–Z)<input id="newZoneCode" maxlength="1" placeholder="E" /></label>
-              <label>ชื่อโซน<input id="newZoneName" placeholder="โซน E" /></label>
-            </div>
-            <div class="evt-actions"><button type="button" class="btn ok" id="btnAddZone">+ เพิ่มโซน</button></div>`;
+          body = `
+            <div class="events-sheet">
+              <div class="events-sheet-table">
+                <table class="mini-table">
+                  <thead>
+                    <tr>
+                      <th class="col-code">รหัส</th>
+                      <th>ชื่อโซน</th>
+                      <th class="col-num">ลำดับ</th>
+                      <th class="col-actions"></th>
+                    </tr>
+                  </thead>
+                  <tbody>${rows || `<tr><td colspan="4" class="muted">ยังไม่มีโซน</td></tr>`}</tbody>
+                </table>
+              </div>
+              <div class="events-add-bar">
+                <label class="narrow">รหัสโซน (A–Z)<input id="newZoneCode" maxlength="1" placeholder="E" /></label>
+                <label class="grow">ชื่อโซน<input id="newZoneName" placeholder="โซน E" /></label>
+                <button type="button" class="btn ok" id="btnAddZone">+ เพิ่มโซน</button>
+              </div>
+            </div>`;
         } else if (sub === "slots") {
           const zoneOpts = (detail.zones || []).map(z =>
             `<option value="${z.id}">${esc(z.code)} — ${esc(z.name_th)}</option>`).join("");
           const rows = (detail.slots || []).map(s => `
             <tr class="${Number(s.is_active)===1?"":"inactive"}">
-              <td class="code">${esc(s.code)}</td>
-              <td>${esc(s.zone_code)}</td>
+              <td class="code col-code">${esc(s.code)}</td>
+              <td class="col-zone">${esc(s.zone_code)}</td>
               <td><input data-slot-field="category" data-slot-id="${s.id}" value="${esc(s.category || "")}" /></td>
-              <td><input data-slot-field="slot_limit" data-slot-id="${s.id}" type="number" min="1" value="${esc(s.slot_limit)}" style="max-width:4rem" /></td>
-              <td><input data-slot-field="is_active" data-slot-id="${s.id}" type="checkbox" ${Number(s.is_active)===1?"checked":""} /></td>
-              <td>
-                <button type="button" class="btn teal" style="padding:.25rem .5rem" data-save-slot="${s.id}">บันทึก</button>
-                <button type="button" class="btn ghost" style="padding:.25rem .5rem" data-del-slot="${s.id}">ลบ</button>
+              <td class="col-num"><input data-slot-field="slot_limit" data-slot-id="${s.id}" type="number" min="1" value="${esc(s.slot_limit)}" /></td>
+              <td class="col-check"><input data-slot-field="is_active" data-slot-id="${s.id}" type="checkbox" ${Number(s.is_active)===1?"checked":""} /></td>
+              <td class="col-actions">
+                <div class="row-actions">
+                  <button type="button" class="btn teal" style="padding:.28rem .6rem" data-save-slot="${s.id}">บันทึก</button>
+                  <button type="button" class="btn ghost" style="padding:.28rem .6rem" data-del-slot="${s.id}">ลบ</button>
+                </div>
               </td>
             </tr>`).join("");
-          body = subBar + `
-            <p class="hint">แก้ไขประเภทล็อกได้โดยตรง เช่น เปลี่ยน A8 จากขนมจีนเป็นมันฝรั่งทอด</p>
-            <div class="users-table-wrap" style="max-height:min(48vh,420px)">
-              <table class="mini-table">
-                <thead><tr><th>ล็อก</th><th>โซน</th><th>ประเภท</th><th>จำกัด</th><th>ใช้</th><th></th></tr></thead>
-                <tbody>${rows || `<tr><td colspan="6" class="muted">ยังไม่มีล็อก</td></tr>`}</tbody>
-              </table>
-            </div>
-            <div class="evt-form-grid" style="margin-top:.85rem">
-              <label>รหัสล็อก<input id="newSlotCode" placeholder="E1" /></label>
-              <label>โซน<select id="newSlotZone">${zoneOpts}</select></label>
-              <label style="grid-column:1/-1">ประเภท / รายละเอียด<input id="newSlotCat" placeholder="เช่น เครื่องดื่ม" /></label>
-            </div>
-            <div class="evt-actions"><button type="button" class="btn ok" id="btnAddSlot">+ เพิ่มล็อก</button></div>`;
+          body = `
+            <div class="events-sheet">
+              <div class="events-sheet-toolbar">
+                <p class="hint">แก้ไขประเภทล็อกได้โดยตรง เช่น เปลี่ยน A8 จากขนมจีนเป็นมันฝรั่งทอด · ตารางเลื่อนในพื้นที่ที่เหลือของจอ</p>
+              </div>
+              <div class="events-sheet-table">
+                <table class="mini-table">
+                  <thead>
+                    <tr>
+                      <th class="col-code">ล็อก</th>
+                      <th class="col-zone">โซน</th>
+                      <th>ประเภท</th>
+                      <th class="col-num">จำกัด</th>
+                      <th class="col-check">ใช้</th>
+                      <th class="col-actions"></th>
+                    </tr>
+                  </thead>
+                  <tbody>${rows || `<tr><td colspan="6" class="muted">ยังไม่มีล็อก</td></tr>`}</tbody>
+                </table>
+              </div>
+              <div class="events-add-bar">
+                <label class="narrow">รหัสล็อก<input id="newSlotCode" placeholder="E1" /></label>
+                <label>โซน<select id="newSlotZone">${zoneOpts}</select></label>
+                <label class="grow">ประเภท / รายละเอียด<input id="newSlotCat" placeholder="เช่น เครื่องดื่ม" /></label>
+                <button type="button" class="btn ok" id="btnAddSlot">+ เพิ่มล็อก</button>
+              </div>
+            </div>`;
         } else if (sub === "swap") {
           const assigns = detail.assignments || [];
           const opts = assigns.map(a =>
@@ -2961,32 +3321,41 @@
           const bySlot = assigns.map(a =>
             `<option value="${esc(a.slot_code)}">${esc(a.slot_code)} · ${esc(a.name)} (รอบ ${esc(a.round_no)})</option>`
           ).join("");
-          body = subBar + `
-            <p class="hint">สลับล็อกระหว่างร้านที่ได้รับการคัดเลือกแล้ว เช่น A8 ↔ A3</p>
-            <div class="evt-form-grid">
-              <label>ร้านที่ 1<select id="swapA">${opts}</select></label>
-              <label>ร้านที่ 2<select id="swapB">${opts}</select></label>
-            </div>
-            <div class="evt-actions">
-              <button type="button" class="btn teal" id="btnSwapSlots">สลับล็อก</button>
-            </div>
-            <p class="hint" style="margin-top:1rem">หรือระบุรหัสล็อก</p>
-            <div class="evt-form-grid">
-              <label>ล็อก A<select id="swapSlotA"><option value="">—</option>${bySlot}</select></label>
-              <label>ล็อก B<select id="swapSlotB"><option value="">—</option>${bySlot}</select></label>
-            </div>
-            <div class="evt-actions">
-              <button type="button" class="btn ok" id="btnSwapBySlot">สลับตามรหัสล็อก</button>
+          body = `
+            <p class="hint" style="margin:.15rem 0 .75rem">สลับล็อกระหว่างร้านที่ได้รับการคัดเลือกแล้ว เช่น A8 ↔ A3</p>
+            <div class="evt-split">
+              <div class="evt-split-card">
+                <h3>สลับตามร้าน</h3>
+                <p class="hint">เลือกร้านที่ได้รับล็อกแล้วทั้งสองรายการ</p>
+                <div class="evt-form-grid">
+                  <label>ร้านที่ 1<select id="swapA">${opts}</select></label>
+                  <label>ร้านที่ 2<select id="swapB">${opts}</select></label>
+                </div>
+                <div class="evt-actions">
+                  <button type="button" class="btn teal" id="btnSwapSlots">สลับล็อก</button>
+                </div>
+              </div>
+              <div class="evt-split-card">
+                <h3>สลับตามรหัสล็อก</h3>
+                <p class="hint">ระบุรหัสล็อกที่ต้องการสลับกัน</p>
+                <div class="evt-form-grid">
+                  <label>ล็อก A<select id="swapSlotA"><option value="">—</option>${bySlot}</select></label>
+                  <label>ล็อก B<select id="swapSlotB"><option value="">—</option>${bySlot}</select></label>
+                </div>
+                <div class="evt-actions">
+                  <button type="button" class="btn ok" id="btnSwapBySlot">สลับตามรหัสล็อก</button>
+                </div>
+              </div>
             </div>
             ${assigns.length ? "" : `<p class="muted" style="margin-top:.75rem">ยังไม่มีร้านที่ได้รับล็อกในกิจกรรมนี้</p>`}`;
         } else if (sub === "copy") {
-          body = subBar + `
-            <p class="hint">คัดลอกโซนและล็อกจากกิจกรรมนี้ไปปีใหม่ / กิจกรรมใหม่ (ไม่คัดลอกผู้สมัคร) — แก้จำนวนล็อกภายหลังได้</p>
-            <div class="evt-form-grid">
+          body = `
+            <p class="hint" style="margin:.15rem 0 .75rem">คัดลอกโซนและล็อกจากกิจกรรมนี้ไปปีใหม่ / กิจกรรมใหม่ (ไม่คัดลอกผู้สมัคร) — แก้จำนวนล็อกภายหลังได้</p>
+            <div class="evt-form-grid evt-overview">
               <label>ชื่อกิจกรรมใหม่<input id="copyTitle" value="${esc((ev.title || "") + " ปีถัดไป")}" /></label>
               <label>ปี พ.ศ.<input id="copyYear" type="number" value="${esc(Number(ev.year_be || 0) + 1)}" /></label>
               <label>รหัส<input id="copyCode" value="${esc((ev.code || "event") + "-" + (Number(ev.year_be || 0) + 1))}" /></label>
-              <label style="flex-direction:row;align-items:center;gap:.5rem;margin-top:1.4rem">
+              <label style="flex-direction:row;align-items:center;gap:.5rem;margin-top:.2rem">
                 <input id="copyRounds" type="checkbox" checked /> คัดลอกรอบรับสมัครด้วย
               </label>
             </div>
@@ -2997,19 +3366,31 @@
       }
 
       return `
-        <div class="events-layout">
-          <div class="users-card">
-            <h2>ปี / กิจกรรม</h2>
-            <p class="hint">สร้างปีใหม่ได้ที่นี่ · ตั้งเป็น “กำลังใช้งาน” แล้วเลือกรอบด้านบนเพื่อทำงาน · ในแท็บรอบ/โซน/ล็อก กำหนดเปิดรับกี่รอบ โซนไหน ล็อกไหนขายอะไร</p>
-            <div id="eventListPane">${listHtml}</div>
-            <div class="evt-actions" style="margin-top:.75rem">
-              <button type="button" class="btn ok" id="btnNewEvent">+ สร้างปี / กิจกรรม</button>
+        <div class="events-workspace">
+          <aside class="events-year-pane">
+            <div class="events-year-head">
+              <h2>ปี / กิจกรรม</h2>
+              <p class="hint">เลือกปีทางซ้าย แล้วตั้งค่ารอบ โซน ล็อกทางขวา</p>
             </div>
-          </div>
-          <div class="users-card">
-            <h2>${ev ? esc(ev.title) : "รายละเอียด"}</h2>
-            ${body}
-          </div>
+            <div class="events-year-list" id="eventListPane">${listHtml}</div>
+            <div class="events-year-foot">
+              <button type="button" class="btn ok" id="btnNewEvent" style="width:100%">+ สร้างปี / กิจกรรม</button>
+            </div>
+          </aside>
+          <section class="events-detail-pane">
+            <div class="events-detail-head">
+              <h2>${ev ? esc(ev.title) : "รายละเอียด"}</h2>
+              ${ev ? `<p class="hint">${esc(ev.code || "—")} · ปี ${esc(ev.year_be || "—")}</p>
+                <div class="events-detail-meta">
+                  <span>รอบ ${roundCount}</span>
+                  <span>โซน ${zoneCount}</span>
+                  <span>ล็อก ${slotCount}</span>
+                  ${Number(ev.is_active) === 1 ? `<span>กำลังใช้งาน</span>` : ""}
+                </div>` : `<p class="hint">ยังไม่ได้เลือกกิจกรรม</p>`}
+            </div>
+            ${subBar}
+            <div class="events-detail-body">${body}</div>
+          </section>
         </div>`;
     }
 
@@ -3132,12 +3513,18 @@
           apply_open_at: get("apply_open_at")?.value || "",
           apply_close_at: get("apply_close_at")?.value || "",
           is_open: !!get("is_open")?.checked,
+          ask_high_power: !!get("ask_high_power")?.checked,
+          ask_ice_bucket: !!get("ask_ice_bucket")?.checked,
+          apply_flow: get("apply_flow")?.value || "zone_then_category",
         };
       };
       document.querySelectorAll("[data-save-round]").forEach(btn => {
         btn.onclick = async () => {
-          try { await refreshDetail(await post("rounds_save", readRound(btn.dataset.saveRound))); }
-          catch (e) { alert(e.message || e); }
+          try {
+            const json = await post("rounds_save", readRound(btn.dataset.saveRound));
+            await refreshDetail(json);
+            showAppFlash(json.message || "บันทึกรอบแล้ว");
+          } catch (e) { alert(e.message || e); }
         };
       });
       document.querySelectorAll("[data-del-round]").forEach(btn => {
@@ -3147,16 +3534,35 @@
           catch (e) { alert(e.message || e); }
         };
       });
+      document.querySelectorAll("[data-copy-apply]").forEach(btn => {
+        btn.onclick = async () => {
+          const code = String(state.eventDetail?.event?.code || "").trim();
+          if (!code) {
+            showAppFlash("ยังไม่มีรหัสกิจกรรม จึงคัดลอกลิงก์ไม่ได้", "err");
+            return;
+          }
+          const url = applyPromoUrl(btn.dataset.copyApply);
+          try {
+            await copyText(url);
+            showAppFlash("ลิงก์พร้อมนำไปประชาสัมพันธ์ได้ทันที", "ok", "คัดลอกแล้ว");
+          } catch (e) {
+            showAppFlash("คัดลอกไม่สำเร็จ กรุณาคัดลอกเอง: " + url, "err");
+          }
+        };
+      });
       const btnAddRound = document.getElementById("btnAddRound");
       if (btnAddRound) btnAddRound.onclick = async () => {
         const next = Math.max(0, ...(state.eventDetail?.rounds || []).map(r => Number(r.round_no))) + 1;
         try {
-          await refreshDetail(await post("rounds_save", {
+          const json = await post("rounds_save", {
             event_id: state.eventSelectedId,
             round_no: next,
             title: "รอบที่ " + next,
             is_open: 0,
-          }));
+            apply_flow: "zone_then_category",
+          });
+          await refreshDetail(json);
+          showAppFlash(json.message || "เพิ่มรอบแล้ว");
         } catch (e) { alert(e.message || e); }
       };
 
@@ -4414,6 +4820,21 @@
         : `<option value="1">รอบที่ 1</option>`;
     }
 
+    function renderApplyExtras(a) {
+      const bits = [];
+      if (a.need_high_power === 1 || a.need_high_power === "1") {
+        bits.push(`<span class="chip warn">ไฟฟ้ากำลังสูง · นำสายไฟ ≥ 25 ม.</span>`);
+      } else if (a.need_high_power === 0 || a.need_high_power === "0") {
+        bits.push(`<span class="chip empty">ไม่ใช้ไฟฟ้ากำลังสูง</span>`);
+      }
+      if (a.ice_bucket_count === 0 || a.ice_bucket_count === "0") {
+        bits.push(`<span class="chip empty">ไม่ใช้ถังน้ำแข็ง</span>`);
+      } else if (a.ice_bucket_count != null && a.ice_bucket_count !== "") {
+        bits.push(`<span class="chip warn">ถังน้ำแข็ง ${esc(String(a.ice_bucket_count))} ถัง</span>`);
+      }
+      return bits.length ? `<div class="apply-extras">${bits.join("")}</div>` : "";
+    }
+
     function renderApplicant(a, rank) {
       const docs = [
         a.photo && { label: "รูปถ่าย", href: a.photo },
@@ -4454,6 +4875,7 @@
             </div>
           </div>
           <p class="detail">${esc(a.detail || "ไม่ระบุจุดเด่น")}</p>
+          ${renderApplyExtras(a)}
           <div class="docs-row">
             ${docs.map(d => `<a href="${esc(d.href)}" target="_blank" rel="noopener">${esc(d.label)}</a>`).join("")}
           </div>
@@ -4550,7 +4972,10 @@
       const rm = roundMeta();
       document.title = "SCI Shop · ปี " + (rm.year || "") + " · " + (rm.label || "");
       const layout = document.getElementById("appLayout");
-      if (layout) layout.classList.toggle("home-mode", state.view === "home");
+      if (layout) {
+        layout.classList.toggle("home-mode", state.view === "home");
+        layout.classList.toggle("wide-mode", state.view === "events");
+      }
       const pn = document.getElementById("policyNote");
       if (pn) {
         pn.textContent = state.view === "home"

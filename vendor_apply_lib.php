@@ -59,15 +59,29 @@ function sci_vendor_normalize_phone(string $phone): string {
 }
 
 /**
- * Check if phone already registered in a round.
+ * Resolve target event for public apply/status.
+ * Empty code → active event (legacy). Non-empty → exact code match only.
+ *
+ * @return array{id:int,code:string,title:string,year_be:int}
+ */
+function sci_vendor_resolve_event(?string $eventCode = null): array {
+  $eventCode = trim((string)$eventCode);
+  if ($eventCode !== '') {
+    return sci_db_event_by_code($eventCode);
+  }
+  return sci_db_active_event();
+}
+
+/**
+ * Check if phone already registered in a round (within the given event).
  * @return array{taken:bool,applicant_id?:int,name?:string,round_title?:string,message:string}
  */
-function sci_vendor_phone_taken(int $roundId, string $phone): array {
+function sci_vendor_phone_taken(int $roundId, string $phone, ?string $eventCode = null): array {
   $phone = sci_vendor_normalize_phone($phone);
   if ($phone === '' || !preg_match('/^[0-9+]{8,20}$/', $phone)) {
     throw new InvalidArgumentException('กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง');
   }
-  $meta = sci_vendor_form_meta(false);
+  $meta = sci_vendor_form_meta(false, $eventCode);
   $eventId = (int)$meta['event']['id'];
   $roundTitle = '';
   $roundOk = false;
@@ -265,14 +279,15 @@ function sci_vendor_round_accepting(array $round): array {
 }
 
 /**
- * Catalog for the public apply form (active event + accepting rounds).
+ * Catalog for the public apply form (target event + accepting rounds).
+ * Pass $eventCode from apply.php?event=... ; null/empty uses active event.
  */
-function sci_vendor_form_meta(bool $withCaptcha = true): array {
-  $event = sci_db_active_event();
+function sci_vendor_form_meta(bool $withCaptcha = true, ?string $eventCode = null): array {
+  $event = sci_vendor_resolve_event($eventCode);
   $eventId = (int)$event['id'];
 
   $st = sci_db()->prepare(
-    'SELECT id, round_no, title, apply_open_at, apply_close_at, is_open, notes
+    'SELECT id, round_no, title, apply_open_at, apply_close_at, is_open, ask_high_power, ask_ice_bucket, apply_flow, notes
      FROM event_rounds WHERE event_id = ? ORDER BY round_no'
   );
   $st->execute([$eventId]);
@@ -288,6 +303,9 @@ function sci_vendor_form_meta(bool $withCaptcha = true): array {
       'apply_open_at' => $r['apply_open_at'],
       'apply_close_at' => $r['apply_close_at'],
       'is_open_flag' => (int)$r['is_open'],
+      'ask_high_power' => (int)($r['ask_high_power'] ?? 0) === 1,
+      'ask_ice_bucket' => (int)($r['ask_ice_bucket'] ?? 0) === 1,
+      'apply_flow' => sci_normalize_apply_flow($r['apply_flow'] ?? ''),
       'accepting' => $status['open'],
       'status_reason' => $status['reason'],
     ];
@@ -319,6 +337,15 @@ function sci_vendor_form_meta(bool $withCaptcha = true): array {
     if (!isset($categoriesByZone[$z])) $categoriesByZone[$z] = [];
     if (!in_array($cat, $categoriesByZone[$z], true)) {
       $categoriesByZone[$z][] = $cat;
+    }
+  }
+  $categoriesAll = [];
+  $categoryZones = [];
+  foreach ($categoriesByZone as $z => $cats) {
+    foreach ($cats as $cat) {
+      if (!in_array($cat, $categoriesAll, true)) $categoriesAll[] = $cat;
+      if (!isset($categoryZones[$cat])) $categoryZones[$cat] = [];
+      if (!in_array($z, $categoryZones[$cat], true)) $categoryZones[$cat][] = $z;
     }
   }
 
@@ -361,6 +388,8 @@ function sci_vendor_form_meta(bool $withCaptcha = true): array {
       ];
     }, $zones),
     'categories_by_zone' => $categoriesByZone,
+    'categories_all' => $categoriesAll,
+    'category_zones' => $categoryZones,
     'slot_count' => count($slots),
     'upload' => [
       'max_mb' => $settings['upload_max_mb'],
@@ -446,43 +475,20 @@ function sci_vendor_store_upload(array $file, string $fileType, int $eventId, in
   $relKey = 'uploads/' . $eventId . '/' . $roundId . '/' . $applicantId . '/' . $name;
   $original = (string)($file['name'] ?? $name);
 
-  if (sci_s3_configured()) {
-    $put = sci_s3_put_file($relKey, $tmp, $mime);
-    @unlink($tmp);
-    if (!$put['ok']) {
-      return ['ok' => false, 'error' => $put['error'] ?? 'อัปโหลดไป MinIO ไม่สำเร็จ'];
-    }
-    return [
-      'ok' => true,
-      'path' => $put['stored_path'],
-      'mime' => $mime,
-      'size' => (int)($put['size'] ?? $size),
-      'original' => $original,
-    ];
+  if (!sci_s3_configured()) {
+    return ['ok' => false, 'error' => 'ระบบยังไม่ได้ตั้งค่าคลังไฟล์ กรุณาแจ้งเจ้าหน้าที่'];
   }
 
-  // Fallback: local disk when MinIO is not configured
-  $dir = sci_vendor_upload_root()
-    . DIRECTORY_SEPARATOR . $eventId
-    . DIRECTORY_SEPARATOR . $roundId
-    . DIRECTORY_SEPARATOR . $applicantId;
-  if (!is_dir($dir) && !@mkdir($dir, 0750, true)) {
-    return ['ok' => false, 'error' => 'ไม่สามารถสร้างโฟลเดอร์เก็บไฟล์ได้'];
+  $put = sci_s3_put_file($relKey, $tmp, $mime);
+  @unlink($tmp);
+  if (empty($put['ok'])) {
+    return ['ok' => false, 'error' => sci_s3_public_error($put['error'] ?? '')];
   }
-  $dest = $dir . DIRECTORY_SEPARATOR . $name;
-  if (!move_uploaded_file($tmp, $dest)) {
-    if (!@copy($tmp, $dest)) {
-      return ['ok' => false, 'error' => 'บันทึกไฟล์ไม่สำเร็จ'];
-    }
-    @unlink($tmp);
-  }
-  @chmod($dest, 0640);
-
   return [
     'ok' => true,
-    'path' => 'uploads/' . $eventId . '/' . $roundId . '/' . $applicantId . '/' . $name,
+    'path' => $put['stored_path'],
     'mime' => $mime,
-    'size' => $size,
+    'size' => (int)($put['size'] ?? $size),
     'original' => $original,
   ];
 }
@@ -508,7 +514,8 @@ function sci_vendor_insert_file_row(int $applicantId, string $fileType, array $s
  * @param array $files $_FILES
  */
 function sci_vendor_submit(array $post, array $files): array {
-  $meta = sci_vendor_form_meta(false);
+  $eventCode = trim((string)($post['event'] ?? $post['event_code'] ?? ''));
+  $meta = sci_vendor_form_meta(false, $eventCode !== '' ? $eventCode : null);
   if (empty($meta['accepting'])) {
     throw new RuntimeException('ขณะนี้ยังไม่เปิดรับสมัคร หรือปิดรับสมัครแล้ว');
   }
@@ -521,8 +528,13 @@ function sci_vendor_submit(array $post, array $files): array {
       break;
     }
   }
-  if (!$round || empty($round['accepting'])) {
-    // fallback: first accepting round
+  if ($roundId > 0 && !$round) {
+    throw new InvalidArgumentException('ไม่พบรอบที่เลือกในกิจกรรมนี้');
+  }
+  if ($round && empty($round['accepting'])) {
+    throw new RuntimeException($round['status_reason'] ?: 'รอบนี้ยังไม่เปิดรับสมัคร หรือปิดรับแล้ว');
+  }
+  if (!$round) {
     foreach ($meta['rounds'] as $r) {
       if (!empty($r['accepting'])) {
         $round = $r;
@@ -550,24 +562,62 @@ function sci_vendor_submit(array $post, array $files): array {
     throw new InvalidArgumentException('กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง');
   }
 
-  $dupCheck = sci_vendor_phone_taken($roundId, $phone);
+  $dupCheck = sci_vendor_phone_taken($roundId, $phone, $eventCode !== '' ? $eventCode : null);
   if (!empty($dupCheck['taken'])) {
     throw new InvalidArgumentException((string)$dupCheck['message']);
   }
 
-  $zoneOk = false;
-  foreach ($meta['zones'] as $z) {
-    if ($z['code'] === $zone) { $zoneOk = true; break; }
-  }
-  if (!$zoneOk) {
-    throw new InvalidArgumentException('กรุณาเลือกโซนร้านค้า');
-  }
-  $cats = $meta['categories_by_zone'][$zone] ?? [];
-  if ($category === '' || !in_array($category, $cats, true)) {
-    throw new InvalidArgumentException('กรุณาเลือกประเภทร้านค้าในโซนที่เลือก');
+  $flow = sci_normalize_apply_flow($round['apply_flow'] ?? '');
+  $catZones = $meta['category_zones'][$category] ?? [];
+  $zoneCodes = array_map(static fn($z) => (string)$z['code'], $meta['zones']);
+
+  if ($flow === 'category_only') {
+    if ($category === '' || !$catZones) {
+      throw new InvalidArgumentException('กรุณาเลือกประเภทร้านค้า');
+    }
+    if ($zone === '' || !in_array($zone, $catZones, true)) {
+      if (count($catZones) === 1) {
+        $zone = (string)$catZones[0];
+      } else {
+        throw new InvalidArgumentException('ประเภทนี้อยู่ได้หลายโซน กรุณาเลือกโซนร้านค้า');
+      }
+    }
+  } else {
+    $zoneOk = in_array($zone, $zoneCodes, true);
+    if (!$zoneOk) {
+      throw new InvalidArgumentException('กรุณาเลือกโซนร้านค้า');
+    }
+    $cats = $meta['categories_by_zone'][$zone] ?? [];
+    if ($category === '' || !in_array($category, $cats, true)) {
+      throw new InvalidArgumentException('กรุณาเลือกประเภทร้านค้าในโซนที่เลือก');
+    }
   }
   if ($qualify === '') {
     throw new InvalidArgumentException('กรุณาระบุคุณสมบัติของผู้สมัคร');
+  }
+
+  $needHighPower = null;
+  $iceBucketCount = null;
+  if (!empty($round['ask_high_power'])) {
+    $raw = (string)($post['need_high_power'] ?? '');
+    if ($raw !== '0' && $raw !== '1') {
+      throw new InvalidArgumentException('กรุณาระบุว่ามีความจำเป็นใช้ไฟฟ้ากำลังสูงหรือไม่');
+    }
+    $needHighPower = (int)$raw;
+  }
+  if (!empty($round['ask_ice_bucket'])) {
+    $needIce = (string)($post['need_ice'] ?? '');
+    if ($needIce !== '0' && $needIce !== '1') {
+      throw new InvalidArgumentException('กรุณาระบุว่ามีความจำเป็นต้องใช้ถังน้ำแข็งหรือไม่');
+    }
+    if ($needIce === '1') {
+      $iceBucketCount = (int)($post['ice_bucket_count'] ?? 0);
+      if ($iceBucketCount < 1 || $iceBucketCount > 50) {
+        throw new InvalidArgumentException('กรุณาระบุจำนวนถังน้ำแข็ง (1–50 ถัง)');
+      }
+    } else {
+      $iceBucketCount = 0;
+    }
   }
 
   // Required files
@@ -612,9 +662,11 @@ function sci_vendor_submit(array $post, array $files): array {
     $ins = $pdo->prepare(
       'INSERT INTO applicants (
          event_id, round_id, legacy_excel_row, applied_at, name, phone, zone_code, category, detail, qualifications,
+         need_high_power, ice_bucket_count,
          doc_status, selection, payment_status, is_returning, alumni_year, alumni_slot, alumni_category
        ) VALUES (
          ?, ?, ?, NOW(), ?, ?, ?, ?, ?, ?,
+         ?, ?,
          ?, ?, ?, ?, ?, ?, ?
        )'
     );
@@ -628,6 +680,8 @@ function sci_vendor_submit(array $post, array $files): array {
       $category,
       $detail !== '' ? $detail : null,
       $qualify,
+      $needHighPower,
+      $iceBucketCount,
       'รอตรวจสอบ',
       'รอพิจารณา',
       'unpaid',
@@ -705,15 +759,15 @@ function sci_vendor_normalize_multi_files($food): array {
 }
 
 /**
- * Public status lookup by phone (+ optional name).
+ * Public status lookup by phone (+ optional name) within one event.
  */
-function sci_vendor_status_lookup(string $phone, string $name = ''): array {
+function sci_vendor_status_lookup(string $phone, string $name = '', ?string $eventCode = null): array {
   $phone = sci_vendor_normalize_phone($phone);
   $name = trim($name);
   if ($phone === '') {
     throw new InvalidArgumentException('กรุณากรอกเบอร์โทรศัพท์');
   }
-  $event = sci_db_active_event();
+  $event = sci_vendor_resolve_event($eventCode);
   $sql = "SELECT a.id, a.name, a.phone, a.zone_code, a.category, a.selection, a.doc_status,
                  a.assigned_slot_id, a.payment_status, a.applied_at, a.is_returning,
                  er.round_no, er.title AS round_title, s.code AS slot_code
@@ -732,6 +786,8 @@ function sci_vendor_status_lookup(string $phone, string $name = ''): array {
   $rows = $st->fetchAll();
   return [
     'event' => [
+      'id' => (int)$event['id'],
+      'code' => (string)$event['code'],
       'title' => $event['title'],
       'year_be' => (int)$event['year_be'],
     ],

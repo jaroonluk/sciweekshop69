@@ -191,6 +191,57 @@ try {
       border-color: var(--teal);
       background: #eef8f6;
     }
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: .55rem;
+      margin-top: .35rem;
+    }
+    .choice-grid label {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .75rem .8rem;
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .choice-grid input { width: auto; transform: scale(1.2); }
+    .choice-grid label:has(input:checked) {
+      border-color: var(--teal);
+      background: #eef8f6;
+    }
+    .ask-box {
+      margin-bottom: 1rem;
+      padding: .95rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fffdf8;
+    }
+    .ask-box .ask-title {
+      display: block;
+      font-weight: 700;
+      font-size: 1.12rem;
+      margin-bottom: .25rem;
+    }
+    .ask-box .ask-desc {
+      margin: 0 0 .55rem;
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.45;
+    }
+    .ask-note {
+      margin: .7rem 0 0;
+      padding: .7rem .8rem;
+      border-radius: 12px;
+      background: #fff7df;
+      border: 1px solid #f0c44a;
+      color: #5c4a1f;
+      font-size: 1.02rem;
+      line-height: 1.45;
+    }
     .upload-box {
       border: 2px dashed #d2c6ae;
       border-radius: 14px;
@@ -694,7 +745,7 @@ try {
       </div>
       <div class="steps" id="stepper">
         <span data-step-ind="1" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> 1. ข้อมูล</span>
-        <span data-step-ind="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></svg> 2. โซน</span>
+        <span data-step-ind="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></svg> <span id="step2IndLabel">2. โซน</span></span>
         <span data-step-ind="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg> 3. เอกสาร</span>
         <span data-step-ind="4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 4. ยืนยัน</span>
       </div>
@@ -743,6 +794,27 @@ try {
             <span>รายละเอียดเพิ่มเติม / จุดเด่นร้าน</span>
             <textarea id="detail" name="detail" placeholder="เช่น เมนูเด่น วัตถุดิบ ความพิเศษของร้าน"></textarea>
           </label>
+          <div class="ask-box hidden" id="powerAskWrap">
+            <span class="ask-title">ความจำเป็นในการใช้ไฟฟ้ากำลังสูง <span class="req">*</span></span>
+            <p class="ask-desc">เช่น เตาอบไฟฟ้า ตู้ไอศกรีม หรืออุปกรณ์ที่ใช้ไฟสูง</p>
+            <div class="choice-grid">
+              <label><input type="radio" name="need_high_power" value="0" /> ไม่ใช้</label>
+              <label><input type="radio" name="need_high_power" value="1" /> ต้องการใช้</label>
+            </div>
+            <p class="ask-note hidden" id="powerNote">หากต้องการใช้ กรุณานำสายไฟเพื่อรองรับอุปกรณ์ <b>อย่างน้อย 25 เมตร</b></p>
+          </div>
+          <div class="ask-box hidden" id="iceAskWrap">
+            <span class="ask-title">ความจำเป็นต้องใช้ถังน้ำแข็ง <span class="req">*</span></span>
+            <p class="ask-desc">หากต้องการใช้ กรุณาระบุจำนวนถัง</p>
+            <div class="choice-grid">
+              <label><input type="radio" name="need_ice" value="0" /> ไม่ใช้</label>
+              <label><input type="radio" name="need_ice" value="1" /> ต้องการใช้</label>
+            </div>
+            <label class="field hidden" id="iceCountWrap" style="margin:.75rem 0 0">
+              <span>จำนวนถังน้ำแข็ง <span class="req">*</span></span>
+              <input type="number" id="iceBucketCount" name="ice_bucket_count" min="1" max="50" step="1" placeholder="เช่น 2" />
+            </label>
+          </div>
           <!-- honeypot: leave empty -->
           <div class="hp-field" aria-hidden="true">
             <label>เว็บไซต์บริษัท
@@ -752,9 +824,9 @@ try {
         </section>
 
         <section class="step hidden" data-step="2">
-          <h2 class="section-title"><span class="sec-ico warn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></svg></span>เลือกโซนและประเภทร้าน</h2>
-          <p class="hint">เลือกโซนก่อน แล้วระบบจะแสดงประเภทร้านในโซนนั้น</p>
-          <div class="field">
+          <h2 class="section-title" id="step2Title"><span class="sec-ico warn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></svg></span><span id="step2TitleText">เลือกโซนและประเภทร้าน</span></h2>
+          <p class="hint" id="step2Hint">เลือกโซนก่อน แล้วระบบจะแสดงประเภทร้านในโซนนั้น</p>
+          <div class="field" id="zonePickWrap">
             <span style="display:block;font-weight:700;font-size:1.12rem;margin-bottom:.5rem">โซนร้านค้า <span class="req">*</span></span>
             <div class="zone-grid" id="zoneGrid"></div>
           </div>
@@ -764,6 +836,7 @@ try {
               <option value="">— เลือกโซนก่อน —</option>
             </select>
           </label>
+          <p class="hint hidden" id="zoneAutoHint"></p>
         </section>
 
         <section class="step hidden" data-step="3">
@@ -857,9 +930,27 @@ try {
       maxStep: 4,
       mode: "gate", // gate | apply | status | success
       accepting: false,
+      eventCode: (new URLSearchParams(location.search).get("event") || "").trim(),
+      wantedRoundId: Number(new URLSearchParams(location.search).get("round") || 0) || 0,
     };
 
     const $ = (id) => document.getElementById(id);
+
+    /** Build apply_api URL, always preserving ?event= when present. */
+    function apiUrl(action, extra = {}) {
+      const p = new URLSearchParams({ action: String(action), _: String(Date.now()) });
+      if (state.eventCode) p.set("event", state.eventCode);
+      Object.entries(extra).forEach(([k, v]) => {
+        if (v === undefined || v === null || v === "") return;
+        p.set(k, String(v));
+      });
+      return "apply_api.php?" + p.toString();
+    }
+
+    function appendEventField(fd) {
+      if (state.eventCode) fd.set("event", state.eventCode);
+      return fd;
+    }
 
     function setMode(mode) {
       state.mode = mode;
@@ -938,10 +1029,21 @@ try {
     }
 
     async function loadMeta() {
-      const res = await fetch("apply_api.php?action=meta&_=" + Date.now(), { credentials: "same-origin" });
+      const res = await fetch(apiUrl("meta"), { credentials: "same-origin" });
       const json = await res.json();
       if (!json.ok) throw new Error(json.error || "โหลดแบบฟอร์มไม่สำเร็จ");
       state.meta = json;
+      if (json.event?.code) {
+        state.eventCode = String(json.event.code);
+        const url = new URL(location.href);
+        if (url.searchParams.get("event") !== state.eventCode) {
+          url.searchParams.set("event", state.eventCode);
+        }
+        if (state.wantedRoundId > 0) {
+          url.searchParams.set("round", String(state.wantedRoundId));
+        }
+        history.replaceState(null, "", url.pathname + url.search + url.hash);
+      }
       const brand = json.branding || {};
       if ($("brandOrg")) $("brandOrg").textContent = brand.org || "คณะวิทยาศาสตร์ มหาวิทยาลัยขอนแก่น";
       if ($("brandHeadline")) $("brandHeadline").textContent = brand.headline || "รับสมัครร้านค้า · คณะวิทยาศาสตร์ มข.";
@@ -962,10 +1064,12 @@ try {
       }
 
       const banner = $("statusBanner");
-      state.accepting = !!json.accepting;
-      if (json.accepting) {
+      const focus = focusRound();
+      const canApply = !!json.accepting && (!focus || !!focus.accepting);
+      state.accepting = canApply;
+      if (canApply) {
         const openRounds = (json.rounds || []).filter(r => r.accepting);
-        const r = openRounds[0];
+        const r = (focus && focus.accepting) ? focus : openRounds[0];
         banner.className = "banner open";
         banner.innerHTML = `<span class="ban-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg></span>`
           + `<div class="ban-body"><b>เปิดรับสมัครอยู่</b> · ${esc(r?.title || "")}`
@@ -973,17 +1077,28 @@ try {
           + `<br><span style="color:#5c5346">${esc(brand.org || "คณะวิทยาศาสตร์ มหาวิทยาลัยขอนแก่น")}</span></div>`;
       } else {
         banner.className = "banner closed";
-        const reasons = (json.rounds || []).map(r => r.status_reason).filter(Boolean);
+        const r = focus;
+        const reason = r?.status_reason || (json.rounds || []).map(x => x.status_reason).filter(Boolean)[0] || "กรุณาติดตามประกาศอีกครั้ง";
+        let when = "";
+        if (r?.apply_open_at) when += `เปิดรับ ${esc(fmtWhen(r.apply_open_at))}`;
+        if (r?.apply_close_at) when += (when ? " · " : "") + `ปิดรับ ${esc(fmtWhen(r.apply_close_at))}`;
         banner.innerHTML = `<span class="ban-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg></span>`
-          + `<div class="ban-body"><b>ยังไม่เปิดรับสมัคร หรือปิดรับแล้ว</b><br>${esc(reasons[0] || "กรุณาติดตามประกาศอีกครั้ง")}`
+          + `<div class="ban-body"><b>ยังไม่เปิดรับสมัคร หรือปิดรับแล้ว</b>`
+          + (r?.title ? ` · ${esc(r.title)}` : "")
+          + `<br>${esc(reason)}`
+          + (when ? `<br>${when}` : "")
           + `<br><span style="color:#5c5346">ท่านยังสามารถตรวจสอบสถานะใบสมัครเดิมได้</span></div>`;
       }
 
       const roundSel = $("roundId");
-      roundSel.innerHTML = (json.rounds || [])
-        .filter(r => r.accepting)
-        .map(r => `<option value="${r.id}">${esc(r.title)}${r.apply_close_at ? " (ปิด " + esc(fmtWhen(r.apply_close_at)) + ")" : ""}</option>`)
-        .join("") || `<option value="">— ไม่มีรอบเปิดรับ —</option>`;
+      const openRounds = (json.rounds || []).filter(r => r.accepting);
+      roundSel.innerHTML = openRounds.length
+        ? openRounds.map(r => `<option value="${r.id}">${esc(r.title)}${r.apply_close_at ? " (ปิด " + esc(fmtWhen(r.apply_close_at)) + ")" : ""}</option>`).join("")
+        : `<option value="">— ไม่มีรอบเปิดรับ —</option>`;
+      if (state.wantedRoundId && openRounds.some(r => Number(r.id) === state.wantedRoundId)) {
+        roundSel.value = String(state.wantedRoundId);
+      }
+      syncExtraQuestions();
 
       $("qualify").innerHTML = (json.qualify_options || [])
         .map(q => `<option value="${esc(q)}">${esc(q)}</option>`).join("");
@@ -991,15 +1106,13 @@ try {
       $("zoneGrid").innerHTML = (json.zones || []).map(z => {
         const codeLabel = "โซน " + z.code;
         const nameTh = String(z.name_th || "").trim();
-        const sub = (nameTh && nameTh !== codeLabel && nameTh !== z.code)
+        const sub = (nameTh && !zoneNameIsRedundant(nameTh, z.code))
           ? `<br><small style="font-weight:500;color:#5c5346">${esc(nameTh)}</small>`
           : "";
         return `<label><input type="radio" name="zone" value="${esc(z.code)}" /> ${esc(codeLabel)}${sub}</label>`;
       }).join("");
 
-      document.querySelectorAll('input[name="zone"]').forEach(r => {
-        r.onchange = () => fillCategories(r.value);
-      });
+      syncApplyFlow();
 
       setMode("gate");
     }
@@ -1020,7 +1133,7 @@ try {
 
     async function refreshCaptcha() {
       try {
-        const res = await fetch("apply_api.php?action=captcha&purpose=apply&_=" + Date.now(), { credentials: "same-origin" });
+        const res = await fetch(apiUrl("captcha", { purpose: "apply" }), { credentials: "same-origin" });
         const json = await res.json();
         if (!json.ok) throw new Error(json.error || "โหลดรหัสไม่สำเร็จ");
         if (json.captcha) {
@@ -1034,7 +1147,7 @@ try {
 
     async function refreshStatusCaptcha() {
       try {
-        const res = await fetch("apply_api.php?action=captcha&purpose=status&_=" + Date.now(), { credentials: "same-origin" });
+        const res = await fetch(apiUrl("captcha", { purpose: "status" }), { credentials: "same-origin" });
         const json = await res.json();
         if (!json.ok) throw new Error(json.error || "โหลดรหัสไม่สำเร็จ");
         if (json.captcha) {
@@ -1058,6 +1171,179 @@ try {
       const title = ($("nameTitle")?.value || "").trim();
       const name = ($("name")?.value || "").trim().replace(/\s+/g, " ");
       return title && name ? (title + " " + name) : name;
+    }
+
+    function selectedRound() {
+      const id = Number($("roundId")?.value || 0);
+      return (state.meta?.rounds || []).find(r => Number(r.id) === id) || null;
+    }
+
+    function focusRound() {
+      const id = Number(state.wantedRoundId || 0);
+      if (!id) return null;
+      return (state.meta?.rounds || []).find(r => Number(r.id) === id) || null;
+    }
+
+    function isCategoryOnly(round) {
+      return (round?.apply_flow || "zone_then_category") === "category_only";
+    }
+
+    function zoneCodesForCategory(cat) {
+      return (state.meta?.category_zones?.[cat] || []).map(z => String(z).toUpperCase());
+    }
+
+    function setZoneChecked(code) {
+      const want = String(code || "").toUpperCase();
+      document.querySelectorAll('input[name="zone"]').forEach(r => {
+        r.checked = String(r.value || "").toUpperCase() === want && want !== "";
+      });
+    }
+
+    function fillAllCategories() {
+      const cats = state.meta?.categories_all || [];
+      $("category").innerHTML = cats.length
+        ? `<option value="">— เลือกประเภทร้านค้า —</option>` + cats.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join("")
+        : `<option value="">— ยังไม่มีประเภทร้านค้า —</option>`;
+    }
+
+    function syncZoneVisibilityForCategory(cat) {
+      const wrap = $("zonePickWrap");
+      const hint = $("zoneAutoHint");
+      const zones = zoneCodesForCategory(cat);
+      document.querySelectorAll("#zoneGrid label").forEach(label => {
+        const inp = label.querySelector('input[name="zone"]');
+        const ok = !cat || zones.includes(String(inp?.value || "").toUpperCase());
+        label.classList.toggle("hidden", !ok);
+        if (!ok && inp) inp.checked = false;
+      });
+      if (!cat) {
+        wrap?.classList.add("hidden");
+        hint?.classList.add("hidden");
+        setZoneChecked("");
+        return;
+      }
+      if (zones.length <= 1) {
+        wrap?.classList.add("hidden");
+        const z = zones[0] || "";
+        setZoneChecked(z);
+        if (hint) {
+          if (z) {
+            hint.className = "hint";
+            hint.textContent = "ระบบจะจัดร้านไว้ที่ " + formatZoneLabel(z) + " ตามประเภทร้านที่เลือก";
+          } else {
+            hint.className = "hint hidden";
+            hint.textContent = "";
+          }
+        }
+        return;
+      }
+      wrap?.classList.remove("hidden");
+      const checked = String(document.querySelector('input[name="zone"]:checked')?.value || "").toUpperCase();
+      if (checked && !zones.includes(checked)) setZoneChecked("");
+      if (hint) {
+        hint.className = "hint";
+        hint.textContent = "ประเภทนี้อยู่ได้หลายโซน กรุณาเลือกโซนที่ต้องการ";
+      }
+    }
+
+    function syncApplyFlow() {
+      const round = selectedRound() || focusRound();
+      const catOnly = isCategoryOnly(round);
+      const catEl = $("category");
+      const prevCat = catEl?.value || "";
+      if ($("step2IndLabel")) $("step2IndLabel").textContent = catOnly ? "2. ประเภท" : "2. โซน";
+      if ($("step2TitleText")) {
+        $("step2TitleText").textContent = catOnly ? "เลือกประเภทร้านค้า" : "เลือกโซนและประเภทร้าน";
+      }
+      if ($("step2Hint")) {
+        $("step2Hint").textContent = catOnly
+          ? "เลือกประเภทร้านค้าหรือรายการอาหารได้เลย ระบบจะจัดโซนให้อัตโนมัติ"
+          : "เลือกโซนก่อน แล้วระบบจะแสดงประเภทร้านในโซนนั้น";
+      }
+      if (catOnly) {
+        $("zonePickWrap")?.classList.add("hidden");
+        fillAllCategories();
+        if (prevCat && [...catEl.options].some(o => o.value === prevCat)) catEl.value = prevCat;
+        catEl.onchange = () => syncZoneVisibilityForCategory(catEl.value);
+        syncZoneVisibilityForCategory(catEl.value);
+        document.querySelectorAll('input[name="zone"]').forEach(r => {
+          r.onchange = null;
+        });
+      } else {
+        $("zonePickWrap")?.classList.remove("hidden");
+        if ($("zoneAutoHint")) {
+          $("zoneAutoHint").className = "hint hidden";
+          $("zoneAutoHint").textContent = "";
+        }
+        document.querySelectorAll("#zoneGrid label").forEach(label => label.classList.remove("hidden"));
+        catEl.onchange = null;
+        const zone = document.querySelector('input[name="zone"]:checked')?.value;
+        if (zone) fillCategories(zone);
+        else catEl.innerHTML = `<option value="">— เลือกโซนก่อน —</option>`;
+        document.querySelectorAll('input[name="zone"]').forEach(r => {
+          r.onchange = () => fillCategories(r.value);
+        });
+      }
+    }
+
+    function extraReviewHtml() {
+      const r = selectedRound();
+      let html = "";
+      if (r?.ask_high_power) {
+        const v = document.querySelector('input[name="need_high_power"]:checked')?.value;
+        const text = v === "1"
+          ? "ต้องการใช้ · จะนำสายไฟอย่างน้อย 25 เมตร"
+          : (v === "0" ? "ไม่ใช้" : "—");
+        html += `<div class="review-item full"><span class="k">ไฟฟ้ากำลังสูง</span><span class="v">${esc(text)}</span></div>`;
+      }
+      if (r?.ask_ice_bucket) {
+        const v = document.querySelector('input[name="need_ice"]:checked')?.value;
+        let text = "—";
+        if (v === "0") text = "ไม่ใช้";
+        else if (v === "1") text = ($("iceBucketCount")?.value || "—") + " ถัง";
+        html += `<div class="review-item full"><span class="k">ถังน้ำแข็ง</span><span class="v">${esc(text)}</span></div>`;
+      }
+      return html;
+    }
+
+    function syncPowerNote() {
+      const on = document.querySelector('input[name="need_high_power"]:checked')?.value === "1";
+      $("powerNote")?.classList.toggle("hidden", !on);
+    }
+
+    function syncIceCount() {
+      const on = document.querySelector('input[name="need_ice"]:checked')?.value === "1";
+      $("iceCountWrap")?.classList.toggle("hidden", !on);
+    }
+
+    function syncExtraQuestions() {
+      const r = selectedRound();
+      $("powerAskWrap")?.classList.toggle("hidden", !r?.ask_high_power);
+      $("iceAskWrap")?.classList.toggle("hidden", !r?.ask_ice_bucket);
+      syncPowerNote();
+      syncIceCount();
+    }
+
+    function compactZoneKey(s) {
+      return String(s || "").replace(/\s+/g, "").toUpperCase();
+    }
+
+    function zoneNameIsRedundant(nameTh, code) {
+      const n = compactZoneKey(nameTh);
+      const c = compactZoneKey(code);
+      if (!n || !c) return true;
+      return n === c || n === ("โซน" + c) || n === ("ZONE" + c);
+    }
+
+    function formatZoneLabel(zoneOrCode) {
+      const meta = (typeof zoneOrCode === "object" && zoneOrCode)
+        ? zoneOrCode
+        : (state.meta?.zones || []).find(z => String(z.code).toUpperCase() === String(zoneOrCode || "").toUpperCase());
+      const code = String(meta?.code || (typeof zoneOrCode === "string" ? zoneOrCode : "") || "").trim();
+      const codeLabel = code ? ("โซน " + code) : "โซน";
+      const nameTh = String(meta?.name_th || "").trim();
+      if (!nameTh || zoneNameIsRedundant(nameTh, code)) return codeLabel;
+      return codeLabel + " · " + nameTh;
     }
 
     function fillCategories(zone) {
@@ -1085,6 +1371,7 @@ try {
       $("btnBack").classList.toggle("hidden", state.step <= 1);
       $("btnNext").classList.toggle("hidden", state.step >= state.maxStep);
       $("btnSubmit").classList.toggle("hidden", state.step !== state.maxStep);
+      if (state.step === state.maxStep) $("btnSubmit").disabled = !state.accepting;
       if (state.step === 4) paintReview();
       showErr("");
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1102,11 +1389,35 @@ try {
         if (!/^[0-9+\-]{8,20}$/.test($("phone").value.trim().replace(/\s+/g, ""))) {
           return "กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง";
         }
+        const extraRound = selectedRound();
+        if (extraRound?.ask_high_power) {
+          const power = document.querySelector('input[name="need_high_power"]:checked')?.value;
+          if (power !== "0" && power !== "1") return "กรุณาระบุว่ามีความจำเป็นใช้ไฟฟ้ากำลังสูงหรือไม่";
+        }
+        if (extraRound?.ask_ice_bucket) {
+          const ice = document.querySelector('input[name="need_ice"]:checked')?.value;
+          if (ice !== "0" && ice !== "1") return "กรุณาระบุว่ามีความจำเป็นต้องใช้ถังน้ำแข็งหรือไม่";
+          if (ice === "1") {
+            const n = Number($("iceBucketCount")?.value || 0);
+            if (!Number.isInteger(n) || n < 1 || n > 50) return "กรุณาระบุจำนวนถังน้ำแข็ง (1–50 ถัง)";
+          }
+        }
       }
       if (step === 2) {
-        const zone = document.querySelector('input[name="zone"]:checked')?.value;
-        if (!zone) return "กรุณาเลือกโซน";
-        if (!$("category").value) return "กรุณาเลือกประเภทร้านค้า";
+        const round = selectedRound();
+        if (isCategoryOnly(round)) {
+          if (!$("category").value) return "กรุณาเลือกประเภทร้านค้า";
+          const zones = zoneCodesForCategory($("category").value);
+          if (!zones.length) return "ไม่พบโซนสำหรับประเภทร้านนี้";
+          if (zones.length > 1) {
+            const zone = document.querySelector('input[name="zone"]:checked')?.value;
+            if (!zone || !zones.includes(String(zone).toUpperCase())) return "ประเภทนี้อยู่ได้หลายโซน กรุณาเลือกโซนร้านค้า";
+          }
+        } else {
+          const zone = document.querySelector('input[name="zone"]:checked')?.value;
+          if (!zone) return "กรุณาเลือกโซน";
+          if (!$("category").value) return "กรุณาเลือกประเภทร้านค้า";
+        }
       }
       if (step === 3) {
         if (!$("idCard").files?.length) return "กรุณาอัปโหลดสำเนาบัตรประชาชน";
@@ -1124,19 +1435,8 @@ try {
     }
 
     function paintReview() {
-      const zone = document.querySelector('input[name="zone"]:checked')?.value || "-";
-      const zoneMeta = (state.meta?.zones || []).find(z => String(z.code) === String(zone));
-      let zoneName = "โซน " + zone;
-      if (zoneMeta) {
-        const nameTh = String(zoneMeta.name_th || "").trim();
-        const codeLabel = "โซน " + zoneMeta.code;
-        // Avoid "โซน A โซน A" when name_th repeats the code label
-        if (nameTh && nameTh !== codeLabel && nameTh !== zoneMeta.code) {
-          zoneName = codeLabel + " · " + nameTh;
-        } else {
-          zoneName = codeLabel;
-        }
-      }
+      const zone = document.querySelector('input[name="zone"]:checked')?.value || "";
+      const zoneName = formatZoneLabel(zone);
       const roundText = $("roundId").selectedOptions[0]?.textContent || "-";
       const qualify = $("qualify").value + ($("qualify").value === "อื่นๆ" ? " — " + $("qualifyOther").value : "");
       const docs = [
@@ -1155,6 +1455,7 @@ try {
           <div class="review-item"><span class="k">โซนร้านค้า</span><span class="v">${esc(zoneName)}</span></div>
           <div class="review-item"><span class="k">ประเภทร้าน</span><span class="v">${esc($("category").value)}</span></div>
           <div class="review-item full"><span class="k">จุดเด่น / รายละเอียด</span><span class="v">${esc($("detail").value || "—")}</span></div>
+          ${extraReviewHtml()}
           <div class="review-item full">
             <span class="k">เอกสารที่แนบ</span>
             <div class="review-docs">${docs.map(([label, n]) => `<span>${esc(label)} · ${n} ไฟล์</span>`).join("")}</div>
@@ -1185,8 +1486,7 @@ try {
       hint.className = "phone-hint";
       hint.textContent = "กำลังตรวจสอบเบอร์โทร...";
       try {
-        const url = "apply_api.php?action=check_phone&round_id=" + encodeURIComponent(roundId)
-          + "&phone=" + encodeURIComponent(phone) + "&_=" + Date.now();
+        const url = apiUrl("check_phone", { round_id: roundId, phone });
         const res = await fetch(url, { credentials: "same-origin" });
         const json = await res.json();
         if (!json.ok) throw new Error(json.error || "ตรวจสอบเบอร์ไม่สำเร็จ");
@@ -1239,7 +1539,25 @@ try {
       phoneCheckTimer = setTimeout(() => { checkPhoneDuplicate(); }, 450);
     };
     $("phone").onblur = () => checkPhoneDuplicate();
-    $("roundId").onchange = () => checkPhoneDuplicate();
+    $("roundId").onchange = () => {
+      const id = Number($("roundId").value || 0);
+      if (id > 0) {
+        state.wantedRoundId = id;
+        const url = new URL(location.href);
+        if (state.eventCode) url.searchParams.set("event", state.eventCode);
+        url.searchParams.set("round", String(id));
+        history.replaceState(null, "", url.pathname + url.search + url.hash);
+      }
+      checkPhoneDuplicate();
+      syncExtraQuestions();
+      syncApplyFlow();
+    };
+    document.querySelectorAll('input[name="need_high_power"]').forEach(el => {
+      el.onchange = () => syncPowerNote();
+    });
+    document.querySelectorAll('input[name="need_ice"]').forEach(el => {
+      el.onchange = () => syncIceCount();
+    });
 
     $("btnNext").onclick = async () => {
       const err = validateStep(state.step);
@@ -1258,6 +1576,9 @@ try {
 
     $("applyForm").onsubmit = async (e) => {
       e.preventDefault();
+      if (!state.accepting) {
+        return showErr("ขณะนี้ยังไม่เปิดรับสมัคร หรือรอบนี้ยังไม่ถึงกำหนดเปิดรับ");
+      }
       for (let s = 1; s <= 4; s++) {
         const err = validateStep(s);
         if (err) {
@@ -1275,12 +1596,13 @@ try {
       fd.set("captcha_answer", $("captchaAnswer").value.trim());
       const zone = document.querySelector('input[name="zone"]:checked')?.value;
       if (zone) fd.set("zone", zone);
+      appendEventField(fd);
 
       $("btnSubmit").disabled = true;
       $("btnSubmit").textContent = "กำลังส่ง...";
       showErr("");
       try {
-        const res = await fetch("apply_api.php?action=submit", { method: "POST", body: fd, credentials: "same-origin" });
+        const res = await fetch(apiUrl("submit"), { method: "POST", body: fd, credentials: "same-origin" });
         const json = await res.json();
         if (!json.ok) throw new Error(json.error || "ส่งไม่สำเร็จ");
         setMode("success");
@@ -1353,7 +1675,8 @@ try {
         fd.set("name", name);
         fd.set("captcha_token", captchaToken);
         fd.set("captcha_answer", captchaAnswer);
-        const res = await fetch("apply_api.php?action=status", {
+        appendEventField(fd);
+        const res = await fetch(apiUrl("status"), {
           method: "POST",
           body: fd,
           credentials: "same-origin",
@@ -1396,10 +1719,11 @@ try {
     bindPreview($("food"), $("prevFood"));
 
     loadMeta().catch(err => {
+      state.accepting = false;
       $("statusBanner").className = "banner closed";
-      $("statusBanner").textContent = "โหลดแบบฟอร์มไม่สำเร็จ: " + (err.message || err);
-      $("gateView")?.classList.add("hidden");
-      $("applyCard")?.classList.add("hidden");
+      $("statusBanner").innerHTML = `<span class="ban-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg></span>`
+        + `<div class="ban-body"><b>เปิดหน้าสมัครไม่สำเร็จ</b><br>${esc(err.message || err)}</div>`;
+      updateGateCards();
     });
   </script>
 </body>

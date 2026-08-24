@@ -1,8 +1,52 @@
 <?php
 /**
  * Minimal S3-compatible client for MinIO (SigV4, path-style).
- * Config: data/minio_config.php (see minio_config.example.php).
+ * Same settings as Laravel MINIO_* / filesystem s3 disk.
+ * Config: data/minio_config.php (gitignored) and optional .env
  */
+
+function sci_s3_truthy($value): bool {
+  if (is_bool($value)) return $value;
+  $s = strtolower(trim((string)$value));
+  return in_array($s, ['1', 'true', 'yes', 'on'], true);
+}
+
+/** @return array<string,string> */
+function sci_s3_read_dotenv(): array {
+  static $cache = null;
+  if ($cache !== null) return $cache;
+  $cache = [];
+  $path = __DIR__ . DIRECTORY_SEPARATOR . '.env';
+  if (!is_file($path) || !is_readable($path)) return $cache;
+  $lines = file($path, FILE_IGNORE_NEW_LINES) ?: [];
+  foreach ($lines as $line) {
+    $line = trim($line);
+    if ($line === '' || str_starts_with($line, '#')) continue;
+    if (!str_contains($line, '=')) continue;
+    [$k, $v] = explode('=', $line, 2);
+    $k = trim($k);
+    $v = trim($v);
+    if ($v !== '' && ($v[0] === '"' || $v[0] === "'")) {
+      $v = trim($v, "\"'");
+    }
+    if (str_starts_with($k, 'MINIO_')) $cache[$k] = $v;
+  }
+  return $cache;
+}
+
+function sci_s3_env(string $name, $default = '') {
+  $fromFile = sci_s3_read_dotenv();
+  if (array_key_exists($name, $fromFile) && $fromFile[$name] !== '') {
+    return $fromFile[$name];
+  }
+  foreach ([$name, strtolower($name)] as $k) {
+    $v = getenv($k);
+    if ($v !== false && $v !== '') return $v;
+    if (isset($_ENV[$k]) && (string)$_ENV[$k] !== '') return (string)$_ENV[$k];
+    if (isset($_SERVER[$k]) && (string)$_SERVER[$k] !== '') return (string)$_SERVER[$k];
+  }
+  return $default;
+}
 
 function sci_s3_config(): array {
   static $cfg = null;
@@ -17,27 +61,41 @@ function sci_s3_config(): array {
     'secret_key' => '',
     'bucket' => 'sci-shop',
     'region' => 'us-east-1',
+    'use_path_style_endpoint' => true,
     'prefix' => '',
   ];
 
-  $path = __DIR__ . '/data/minio_config.php';
+  $fromEnv = [];
+  $ep = trim((string)sci_s3_env('MINIO_ENDPOINT', ''));
+  if ($ep !== '') $fromEnv['endpoint'] = $ep;
+  $port = sci_s3_env('MINIO_PORT', '');
+  if ($port !== '') $fromEnv['port'] = (int)$port;
+  $ssl = sci_s3_env('MINIO_USE_SSL', '');
+  if ($ssl !== '') $fromEnv['use_ssl'] = sci_s3_truthy($ssl);
+  $skip = sci_s3_env('MINIO_INSECURE_SKIP_VERIFY', '');
+  if ($skip !== '') $fromEnv['insecure_skip_verify'] = sci_s3_truthy($skip);
+  $ak = (string)sci_s3_env('MINIO_ACCESS_KEY', '');
+  if ($ak !== '') $fromEnv['access_key'] = $ak;
+  $sk = (string)sci_s3_env('MINIO_SECRET_KEY', '');
+  if ($sk !== '') $fromEnv['secret_key'] = $sk;
+  $bucket = trim((string)sci_s3_env('MINIO_BUCKET', ''));
+  if ($bucket !== '') $fromEnv['bucket'] = $bucket;
+
   $loaded = [];
+  $path = __DIR__ . '/data/minio_config.php';
   if (is_file($path)) {
     $tmp = include $path;
     if (is_array($tmp)) $loaded = $tmp;
-  } else {
-    $ex = __DIR__ . '/data/minio_config.example.php';
-    if (is_file($ex)) {
-      $tmp = include $ex;
-      if (is_array($tmp)) $loaded = $tmp;
-    }
   }
 
-  $cfg = array_merge($defaults, $loaded);
+  $cfg = array_merge($defaults, $fromEnv, $loaded);
   $cfg['endpoint'] = trim((string)$cfg['endpoint']);
   $cfg['port'] = (int)$cfg['port'];
-  $cfg['use_ssl'] = !empty($cfg['use_ssl']);
-  $cfg['insecure_skip_verify'] = !empty($cfg['insecure_skip_verify']);
+  $cfg['use_ssl'] = sci_s3_truthy($cfg['use_ssl']);
+  $cfg['insecure_skip_verify'] = sci_s3_truthy($cfg['insecure_skip_verify']);
+  $cfg['use_path_style_endpoint'] = array_key_exists('use_path_style_endpoint', $cfg)
+    ? sci_s3_truthy($cfg['use_path_style_endpoint'])
+    : true;
   $cfg['bucket'] = trim((string)$cfg['bucket']);
   $cfg['region'] = trim((string)$cfg['region']) ?: 'us-east-1';
   $cfg['prefix'] = trim((string)$cfg['prefix'], '/');
@@ -53,6 +111,33 @@ function sci_s3_configured(): bool {
     && $c['secret_key'] !== ''
     && $c['bucket'] !== ''
     && $c['access_key'] !== 'YOUR_ACCESS_KEY';
+}
+
+function sci_s3_is_unreachable_error(?string $err): bool {
+  $e = strtolower((string)$err);
+  if ($e === '') return false;
+  return str_contains($e, 'failed to connect')
+    || str_contains($e, "couldn't connect")
+    || str_contains($e, 'could not resolve host')
+    || str_contains($e, 'connection timed out')
+    || str_contains($e, 'timed out after')
+    || str_contains($e, 'operation timed out')
+    || str_contains($e, 'connection refused');
+}
+
+function sci_s3_is_unreachable(): bool {
+  return $GLOBALS['SCI_S3_UNREACHABLE'] ?? false;
+}
+
+function sci_s3_mark_unreachable(): void {
+  $GLOBALS['SCI_S3_UNREACHABLE'] = true;
+}
+
+function sci_s3_public_error(?string $err): string {
+  if (sci_s3_is_unreachable_error($err)) {
+    return 'เชื่อมต่อคลังไฟล์ไม่สำเร็จ กรุณาลองใหม่อีกครั้ง';
+  }
+  return 'อัปโหลดไปคลังไฟล์ไม่สำเร็จ';
 }
 
 function sci_s3_base_url(): string {
@@ -210,6 +295,7 @@ function sci_s3_request(string $method, string $key, string $body = '', array $e
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_HEADER => true,
     CURLOPT_HTTPHEADER => $curlHeaders,
+    CURLOPT_CONNECTTIMEOUT => 15,
     CURLOPT_TIMEOUT => 120,
   ]);
   if ($body !== '' || in_array(strtoupper($method), ['PUT', 'POST'], true)) {
@@ -228,6 +314,9 @@ function sci_s3_request(string $method, string $key, string $body = '', array $e
   curl_close($ch);
 
   if ($raw === false) {
+    if (sci_s3_is_unreachable_error($err)) {
+      sci_s3_mark_unreachable();
+    }
     return ['ok' => false, 'status' => 0, 'headers' => [], 'body' => '', 'error' => 'curl: ' . ($err ?: (string)$errno)];
   }
 

@@ -25,7 +25,6 @@ if (isset($_GET['go']) && $_GET['go'] === 'google') {
 }
 
 $configured = sci_auth_configured();
-$redirectUri = sci_auth_redirect_uri();
 $errorText = [
   'access_denied' => 'คุณยกเลิกการเข้าสู่ระบบด้วย Google',
   'state' => 'เซสชันไม่ถูกต้อง กรุณาลองใหม่',
@@ -433,15 +432,6 @@ $errorText = [
       <p style="margin:1rem 0 0;text-align:center">
         <a href="apply.php" style="color:#0d8a7f;font-weight:700;text-decoration:none">พ่อค้าแม่ค้าสมัครร้านค้าที่นี่ →</a>
       </p>
-
-      <?php if ($configured): ?>
-        <details class="oauth-hint">
-          <summary>แก้ error <code>redirect_uri_mismatch</code></summary>
-          <p>คัดลอก URI ด้านล่างไปใส่ใน Google Cloud Console → <b>Credentials</b> → OAuth 2.0 Client → <b>Authorized redirect URIs</b> ให้ตรงทุกตัวอักษร</p>
-          <code class="oauth-uri"><?= htmlspecialchars($redirectUri, ENT_QUOTES, 'UTF-8') ?></code>
-          <p class="oauth-note">ถ้าเปิดทั้ง <code>127.0.0.1</code> และ <code>localhost</code> ให้เพิ่มทั้งสอง URI (ถือเป็นคนละตัว)</p>
-        </details>
-      <?php endif; ?>
 
       <p class="foot">คณะวิทยาศาสตร์ · มหาวิทยาลัยขอนแก่น</p>
     </section>
