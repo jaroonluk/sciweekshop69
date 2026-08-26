@@ -1,69 +1,69 @@
 {
-    "generated_at": "2026-08-24T11:51:48+07:00",
-    "source": "mysql:event-2569-30a559:r1",
-    "source_mtime": "2026-08-24T11:51:48+07:00",
-    "total_applicants": 2,
+    "generated_at": "2026-08-25T16:11:29+07:00",
+    "source": "mysql:event-2569-aa7ecc:r1",
+    "source_mtime": "2026-08-25T16:11:29+07:00",
+    "total_applicants": 0,
     "slots": [
         {
-            "id": "A1",
-            "zone": "A",
-            "cat": "เครื่องดิ่ม",
+            "id": "S1",
+            "zone": "S",
+            "cat": "อาหารว่าง\/เครื่องดิ่ม",
             "limit": 1
         },
         {
-            "id": "A2",
-            "zone": "A",
-            "cat": "ข้าวขาหมู",
+            "id": "S2",
+            "zone": "S",
+            "cat": "ข้าวขาหมู\/ข้าวมันไก่",
             "limit": 1
         },
         {
-            "id": "A3",
-            "zone": "A",
-            "cat": "ผลไม้",
+            "id": "S3",
+            "zone": "S",
+            "cat": "ก๋วยจั๊บ\/ก๋วยเตี๋ยว",
             "limit": 1
         }
     ],
     "groups": [
         {
-            "zone": "A",
-            "cat": "เครื่องดิ่ม",
+            "zone": "S",
+            "cat": "อาหารว่าง\/เครื่องดิ่ม",
             "slots": [
-                "A1"
+                "S1"
             ],
-            "label": "A1",
+            "label": "S1",
             "limit": 1,
-            "primary": "A1"
+            "primary": "S1"
         },
         {
-            "zone": "A",
-            "cat": "ข้าวขาหมู",
+            "zone": "S",
+            "cat": "ข้าวขาหมู\/ข้าวมันไก่",
             "slots": [
-                "A2"
+                "S2"
             ],
-            "label": "A2",
+            "label": "S2",
             "limit": 1,
-            "primary": "A2"
+            "primary": "S2"
         },
         {
-            "zone": "A",
-            "cat": "ผลไม้",
+            "zone": "S",
+            "cat": "ก๋วยจั๊บ\/ก๋วยเตี๋ยว",
             "slots": [
-                "A3"
+                "S3"
             ],
-            "label": "A3",
+            "label": "S3",
             "limit": 1,
-            "primary": "A3"
+            "primary": "S3"
         }
     ],
     "shared": {
-        "A|เครื่องดิ่ม": [
-            "A1"
+        "S|อาหารว่าง\/เครื่องดิ่ม": [
+            "S1"
         ],
-        "A|ข้าวขาหมู": [
-            "A2"
+        "S|ข้าวขาหมู\/ข้าวมันไก่": [
+            "S2"
         ],
-        "A|ผลไม้": [
-            "A3"
+        "S|ก๋วยจั๊บ\/ก๋วยเตี๋ยว": [
+            "S3"
         ]
     },
     "round1_occupied": {
@@ -76,245 +76,42 @@
         "prior_label": "รอบที่ 1",
         "prior_rounds": []
     },
-    "applicants": [
-        {
-            "id": 128,
-            "row": 2,
-            "timestamp": 1787542841,
-            "datetime": "2026-08-24 10:40:41",
-            "datetime_th": "24 ส.ค. 2569 · 10:40:41 น.",
-            "time_label": "24 ส.ค. 2569 · 10:40:41 น.",
-            "timestamp_raw": "2026-08-24 10:40:41",
-            "name": "นาย ทดสอบ คนดี",
-            "phone": "0862373898",
-            "zone": "A",
-            "zone_raw": "โซน A",
-            "category": "ข้าวขาหมู",
-            "category_raw": "ข้าวขาหมู",
-            "detail": "แซบ",
-            "qualifications": "บุคคลธรรมดา \/ ผู้ประกอบการทั่วไป",
-            "need_high_power": null,
-            "ice_bucket_count": null,
-            "id_card": "file_serve.php?id=623",
-            "house_reg": "file_serve.php?id=624",
-            "photo": "file_serve.php?id=625",
-            "food_photos": [
-                {
-                    "url": "file_serve.php?id=626",
-                    "id": null,
-                    "thumb": "file_serve.php?id=626",
-                    "full": "file_serve.php?id=626"
-                },
-                {
-                    "url": "file_serve.php?id=627",
-                    "id": null,
-                    "thumb": "file_serve.php?id=627",
-                    "full": "file_serve.php?id=627"
-                }
-            ],
-            "docs": {
-                "id_card": true,
-                "house_reg": true,
-                "photo": true,
-                "food": true,
-                "qualify": true
-            },
-            "auto_missing": [],
-            "status": "ครบถ้วน",
-            "status_raw": "ครบถ้วน",
-            "missing_detail": "เอกสารไม่ครบนะคะ",
-            "review_note": "ส่งเอกสารด่วนเลยค่ะ",
-            "selection": "ได้รับการคัดเลือก",
-            "reviewed_at": "2026-08-24 04:03:27",
-            "assigned_slot": "A2",
-            "payment_status": "paid",
-            "payment_at": "2026-08-24 11:03:57",
-            "payment_note": "",
-            "returning": false,
-            "alumni": null,
-            "key": "a5a9e86809849317f4030c2807423ab2",
-            "doc_check": {
-                "system": {
-                    "pass": true,
-                    "label": "ครบถ้วน",
-                    "missing": []
-                },
-                "admin": {
-                    "reviewed": true,
-                    "status": "ครบถ้วน",
-                    "pass": true,
-                    "fail": false,
-                    "missing_detail": "เอกสารไม่ครบนะคะ",
-                    "review_note": "ส่งเอกสารด่วนเลยค่ะ",
-                    "reviewed_at": "2026-08-24 04:03:27"
-                },
-                "effective": {
-                    "source": "admin",
-                    "source_label": "ยึดตามที่ Admin ตรวจ",
-                    "pass": true,
-                    "label": "ครบถ้วน",
-                    "reason": ""
-                }
-            },
-            "payment_warning": false
-        },
-        {
-            "id": 129,
-            "row": 3,
-            "timestamp": 1787546742,
-            "datetime": "2026-08-24 11:45:42",
-            "datetime_th": "24 ส.ค. 2569 · 11:45:42 น.",
-            "time_label": "24 ส.ค. 2569 · 11:45:42 น.",
-            "timestamp_raw": "2026-08-24 11:45:42",
-            "name": "นางสาว คนสวย ใจงาม",
-            "phone": "0862373897",
-            "zone": "A",
-            "zone_raw": "โซน A",
-            "category": "เครื่องดิ่ม",
-            "category_raw": "เครื่องดิ่ม",
-            "detail": "เด็ดดวงมากเวอร์",
-            "qualifications": "บุคคลธรรมดา \/ ผู้ประกอบการทั่วไป",
-            "need_high_power": 1,
-            "ice_bucket_count": 5,
-            "id_card": "file_serve.php?id=628",
-            "house_reg": "file_serve.php?id=629",
-            "photo": "file_serve.php?id=630",
-            "food_photos": [
-                {
-                    "url": "file_serve.php?id=631",
-                    "id": null,
-                    "thumb": "file_serve.php?id=631",
-                    "full": "file_serve.php?id=631"
-                },
-                {
-                    "url": "file_serve.php?id=632",
-                    "id": null,
-                    "thumb": "file_serve.php?id=632",
-                    "full": "file_serve.php?id=632"
-                },
-                {
-                    "url": "file_serve.php?id=633",
-                    "id": null,
-                    "thumb": "file_serve.php?id=633",
-                    "full": "file_serve.php?id=633"
-                }
-            ],
-            "docs": {
-                "id_card": true,
-                "house_reg": true,
-                "photo": true,
-                "food": true,
-                "qualify": true
-            },
-            "auto_missing": [],
-            "status": "รอตรวจสอบ",
-            "status_raw": "รอตรวจสอบ",
-            "missing_detail": "",
-            "review_note": "",
-            "selection": "ได้รับการคัดเลือก",
-            "reviewed_at": "2026-08-24 11:46:54",
-            "assigned_slot": "A1",
-            "payment_status": "unpaid",
-            "payment_at": "",
-            "payment_note": "",
-            "returning": false,
-            "alumni": null,
-            "key": "265e6fe21715321c7165ec6e4adf3d5c",
-            "doc_check": {
-                "system": {
-                    "pass": true,
-                    "label": "ครบถ้วน",
-                    "missing": []
-                },
-                "admin": {
-                    "reviewed": true,
-                    "status": "รอตรวจสอบ",
-                    "pass": false,
-                    "fail": false,
-                    "missing_detail": "",
-                    "review_note": "",
-                    "reviewed_at": "2026-08-24 11:46:54"
-                },
-                "effective": {
-                    "source": "admin",
-                    "source_label": "ยึดตามที่ Admin ตรวจ",
-                    "pass": false,
-                    "label": "รอตรวจสอบ",
-                    "reason": ""
-                }
-            },
-            "payment_warning": false
-        }
-    ],
+    "applicants": [],
     "shop_report": [
         {
-            "slot": "A1",
-            "zone": "A",
-            "category": "เครื่องดิ่ม",
-            "filled": true,
+            "slot": "S1",
+            "zone": "S",
+            "category": "อาหารว่าง\/เครื่องดิ่ม",
+            "filled": false,
             "cross_assigned": false,
-            "operator": {
-                "row": 3,
-                "key": "265e6fe21715321c7165ec6e4adf3d5c",
-                "name": "นางสาว คนสวย ใจงาม",
-                "phone": "0862373897",
-                "status": "รอตรวจสอบ",
-                "selection": "ได้รับการคัดเลือก",
-                "reviewed_at": "2026-08-24 11:46:54",
-                "time_label": "24 ส.ค. 2569 · 11:45:42 น.",
-                "applied_zone": "A",
-                "applied_category": "เครื่องดิ่ม",
-                "review_note": "",
-                "returning": false,
-                "alumni": null,
-                "payment_status": "unpaid",
-                "payment_at": "",
-                "payment_note": ""
-            }
+            "operator": null
         },
         {
-            "slot": "A2",
-            "zone": "A",
-            "category": "ข้าวขาหมู",
-            "filled": true,
+            "slot": "S2",
+            "zone": "S",
+            "category": "ข้าวขาหมู\/ข้าวมันไก่",
+            "filled": false,
             "cross_assigned": false,
-            "operator": {
-                "row": 2,
-                "key": "a5a9e86809849317f4030c2807423ab2",
-                "name": "นาย ทดสอบ คนดี",
-                "phone": "0862373898",
-                "status": "ครบถ้วน",
-                "selection": "ได้รับการคัดเลือก",
-                "reviewed_at": "2026-08-24 04:03:27",
-                "time_label": "24 ส.ค. 2569 · 10:40:41 น.",
-                "applied_zone": "A",
-                "applied_category": "ข้าวขาหมู",
-                "review_note": "ส่งเอกสารด่วนเลยค่ะ",
-                "returning": false,
-                "alumni": null,
-                "payment_status": "paid",
-                "payment_at": "2026-08-24 11:03:57",
-                "payment_note": ""
-            }
+            "operator": null
         },
         {
-            "slot": "A3",
-            "zone": "A",
-            "category": "ผลไม้",
+            "slot": "S3",
+            "zone": "S",
+            "category": "ก๋วยจั๊บ\/ก๋วยเตี๋ยว",
             "filled": false,
             "cross_assigned": false,
             "operator": null
         }
     ],
     "doc_summary": {
-        "total": 2,
-        "system_ok": 2,
+        "total": 0,
+        "system_ok": 0,
         "system_fail": 0,
-        "admin_ok": 1,
+        "admin_ok": 0,
         "admin_fail": 0,
-        "admin_pending": 1,
-        "effective_ok": 1,
-        "effective_fail": 1
+        "admin_pending": 0,
+        "effective_ok": 0,
+        "effective_fail": 0
     },
     "alumni": {
         "year": 2568,
@@ -340,9 +137,9 @@
         "database": "sciweekshop",
         "mysql_ok": true,
         "event": {
-            "id": 5,
-            "code": "event-2569-30a559",
-            "title": "รับสมัครร้านค้า ทดสอบ",
+            "id": 6,
+            "code": "event-2569-aa7ecc",
+            "title": "รับสมัครร้านค้า sci square ประจำปี 2569",
             "year_be": 2569
         },
         "data_dir": "mysql",
@@ -357,34 +154,34 @@
             "year": 2569,
             "label": "รอบที่ 1",
             "short": "รอบ 1",
-            "title": "รับสมัครร้านค้า ทดสอบ · รอบที่ 1",
-            "event_id": 5,
-            "event_code": "event-2569-30a559",
-            "event_title": "รับสมัครร้านค้า ทดสอบ",
+            "title": "รับสมัครร้านค้า sci square ประจำปี 2569 · รอบที่ 1",
+            "event_id": 6,
+            "event_code": "event-2569-aa7ecc",
+            "event_title": "รับสมัครร้านค้า sci square ประจำปี 2569",
             "is_open": true,
             "status_store": "mysql",
             "payload": "mysql",
             "xlsx_canonical": ""
         },
-        "hint": "บันทึกสถานะลง MySQL ฐานข้อมูล sciweekshop · รับสมัครร้านค้า ทดสอบ · รอบที่ 1"
+        "hint": "บันทึกสถานะลง MySQL ฐานข้อมูล sciweekshop · รับสมัครร้านค้า sci square ประจำปี 2569 · รอบที่ 1"
     },
     "status_store": {
         "backend": "mysql",
-        "event_id": 5,
-        "round_id": 11,
-        "count": 2
+        "event_id": 6,
+        "round_id": 12,
+        "count": 0
     },
     "policy": "บันทึกสถานะตรวจเอกสาร\/คัดเลือก\/ล็อก\/ชำระเงินลง MySQL — ไม่ลบรายการผู้สมัคร",
-    "notice": "ข้อมูลอ่าน\/เขียนจาก MySQL (`sciweekshop`) · กิจกรรม event-2569-30a559 · ไม่ลบแถวผู้สมัคร",
+    "notice": "ข้อมูลอ่าน\/เขียนจาก MySQL (`sciweekshop`) · กิจกรรม event-2569-aa7ecc · ไม่ลบแถวผู้สมัคร",
     "round": {
         "id": 1,
         "year": 2569,
         "label": "รอบที่ 1",
         "short": "รอบ 1",
-        "title": "รับสมัครร้านค้า ทดสอบ · รอบที่ 1",
-        "event_id": 5,
-        "event_code": "event-2569-30a559",
-        "event_title": "รับสมัครร้านค้า ทดสอบ",
+        "title": "รับสมัครร้านค้า sci square ประจำปี 2569 · รอบที่ 1",
+        "event_id": 6,
+        "event_code": "event-2569-aa7ecc",
+        "event_title": "รับสมัครร้านค้า sci square ประจำปี 2569",
         "is_open": true,
         "status_store": "mysql",
         "payload": "mysql",
@@ -396,18 +193,18 @@
             "year": 2569,
             "label": "รอบที่ 1",
             "short": "รอบ 1",
-            "title": "รับสมัครร้านค้า ทดสอบ · รอบที่ 1",
-            "event_id": 5,
-            "event_code": "event-2569-30a559",
-            "event_title": "รับสมัครร้านค้า ทดสอบ",
+            "title": "รับสมัครร้านค้า sci square ประจำปี 2569 · รอบที่ 1",
+            "event_id": 6,
+            "event_code": "event-2569-aa7ecc",
+            "event_title": "รับสมัครร้านค้า sci square ประจำปี 2569",
             "is_open": true,
             "status_store": "mysql",
             "payload": "mysql",
             "xlsx_canonical": "",
-            "db_id": 11,
+            "db_id": 12,
             "round_no": 1,
-            "apply_open_at": "2026-08-24 09:00:00",
-            "apply_close_at": "2026-08-24 16:30:00",
+            "apply_open_at": "2026-08-23 09:00:00",
+            "apply_close_at": "2026-09-24 15:58:00",
             "xlsx": null,
             "available": true,
             "error": null,
@@ -416,26 +213,36 @@
         }
     ],
     "event": {
-        "id": 5,
-        "code": "event-2569-30a559",
-        "title": "รับสมัครร้านค้า ทดสอบ",
+        "id": 6,
+        "code": "event-2569-aa7ecc",
+        "title": "รับสมัครร้านค้า sci square ประจำปี 2569",
         "year_be": 2569
     },
     "events": [
         {
             "id": 5,
-            "code": "event-2569-30a559",
-            "title": "รับสมัครร้านค้า ทดสอบ",
+            "code": "sciweek-2569-2570",
+            "title": "ร้านค้าสัปดาห์วิทยาศาสตร์แห่งชาติ ส่วนภูมิภาค ณ คณะวิทยาศาสตร์ มข. ประจำปี 2570",
+            "year_be": 2570,
+            "is_active": false,
+            "round_count": 1,
+            "slot_count": 40,
+            "applicant_count": 0
+        },
+        {
+            "id": 6,
+            "code": "event-2569-aa7ecc",
+            "title": "รับสมัครร้านค้า sci square ประจำปี 2569",
             "year_be": 2569,
             "is_active": true,
             "round_count": 1,
             "slot_count": 3,
-            "applicant_count": 2
+            "applicant_count": 0
         },
         {
             "id": 1,
             "code": "sciweek-2569",
-            "title": "ร้านค้าสัปดาห์วิทยาศาสตร์แห่งชาติ ส่วนภูมิภาค ณ คณะวิทยาศาสตร์ มข. ประจำปี 2569x",
+            "title": "ร้านค้าสัปดาห์วิทยาศาสตร์แห่งชาติ ส่วนภูมิภาค ณ คณะวิทยาศาสตร์ มข. ประจำปี 2569",
             "year_be": 2569,
             "is_active": false,
             "round_count": 3,
