@@ -86,7 +86,30 @@ try {
       align-items: flex-start;
     }
     .banner.closed { border-color: #f0c2c2; background: #fff5f5; color: #7a1f1a; }
+    .banner.pending { border-color: #f0d4a8; background: #fff8ed; color: #7a4a12; }
     .banner.open { border-color: #b7e0c8; background: #f3fbf6; }
+    .banner.pending,
+    .banner.closed {
+      border-width: 2px;
+      border-radius: 18px;
+      padding: 1.35rem 1.45rem 1.4rem;
+      margin-bottom: 1.35rem;
+      box-shadow: 0 16px 40px rgba(80, 50, 0, .14);
+      align-items: center;
+      gap: 1rem;
+    }
+    .banner.pending {
+      border-color: #e8a84a;
+      border-left-width: 7px;
+      border-left-color: #c45c12;
+      background: linear-gradient(135deg, #fff9f0 0%, #ffefd6 55%, #fff5e8 100%);
+    }
+    .banner.closed {
+      border-color: #e8a0a0;
+      border-left-width: 7px;
+      border-left-color: #b42318;
+      background: linear-gradient(135deg, #fff7f7 0%, #ffe8e8 55%, #fff0f0 100%);
+    }
     .banner .ban-ico {
       width: 2.4rem;
       height: 2.4rem;
@@ -99,8 +122,54 @@ try {
     }
     .banner.open .ban-ico { background: #e5f6ec; color: var(--ok); }
     .banner.closed .ban-ico { background: #ffe8e6; color: var(--danger); }
+    .banner.pending .ban-ico { background: #ffeed6; color: #c45c12; }
+    .banner.pending .ban-ico,
+    .banner.closed .ban-ico {
+      width: 3.6rem;
+      height: 3.6rem;
+      border-radius: 15px;
+      color: #fff;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, .16);
+    }
+    .banner.pending .ban-ico { background: linear-gradient(145deg, #f0a030, #c45c12); }
+    .banner.closed .ban-ico { background: linear-gradient(145deg, #e85555, #b42318); }
     .banner .ban-ico svg { width: 1.25rem; height: 1.25rem; }
+    .banner.pending .ban-ico svg,
+    .banner.closed .ban-ico svg { width: 1.75rem; height: 1.75rem; }
     .banner .ban-body { flex: 1; min-width: 0; }
+    .ban-tag {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: .2rem .6rem;
+      border-radius: 999px;
+      margin: 0 0 .45rem;
+    }
+    .banner.pending .ban-tag { background: rgba(196, 92, 18, .14); color: #9a4a08; }
+    .banner.closed .ban-tag { background: rgba(180, 35, 24, .12); color: #8a2018; }
+    .ban-headline {
+      font-family: "Chakra Petch", sans-serif;
+      font-size: 1.55rem;
+      font-weight: 800;
+      line-height: 1.3;
+      margin: 0 0 .55rem;
+      letter-spacing: -.01em;
+    }
+    .ban-schedule {
+      display: block;
+      font-size: 1rem;
+      color: #5c5346;
+      line-height: 1.5;
+      margin: 0;
+      padding: .65rem .9rem;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .72);
+      border: 1px solid rgba(0, 0, 0, .07);
+    }
+    .banner.closed .ban-schedule { color: #7a3530; border-color: rgba(180, 35, 24, .14); background: rgba(255, 255, 255, .78); }
+    .banner.pending .ban-schedule { color: #7a4a12; border-color: rgba(196, 92, 18, .16); background: rgba(255, 255, 255, .78); }
     .card {
       background: var(--card);
       border: 1px solid var(--line);
@@ -291,6 +360,11 @@ try {
       line-height: 1.5;
     }
     .upload-head .uh-list li { margin: .1rem 0; }
+    .upload-head .uh-list li.uh-note {
+      list-style: none;
+      margin-left: -1.15rem;
+      padding-left: 0;
+    }
     .upload-head .uh-accept {
       margin: .4rem 0 0;
       font-size: .88rem;
@@ -1038,7 +1112,6 @@ try {
       <form id="applyForm" novalidate>
         <section class="step" data-step="1">
           <h2 class="section-title"><span class="sec-ico teal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>ข้อมูลผู้สมัคร</h2>
-          <p class="hint">กรอกทีละช่องให้ครบ · ใช้อักษรใหญ่ อ่านง่าย</p>
           <input type="hidden" id="roundId" name="round_id" value="" />
           <label class="field">
             <span>คุณสมบัติของท่าน <span class="req">*</span></span>
@@ -1319,12 +1392,45 @@ try {
       const title = String(round?.title || "").trim();
       const open = round?.apply_open_at ? fmtWhenDate(round.apply_open_at) : "";
       const close = round?.apply_close_at ? fmtWhenDate(round.apply_close_at) : "";
+      const program = state.meta?.apply_program || state.meta?.event?.apply_program || "sciweek";
       let text = "เปิดรับสมัคร";
-      if (title) text += " " + title;
+      if (title && program !== "scisquare") text += " " + title;
       if (open && close) text += " " + open + " ถึง " + close;
       else if (open) text += " " + open;
       else if (close) text += " ถึง " + close;
       return text;
+    }
+
+    const BAN_ICO_CLOCK = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`;
+    const BAN_ICO_X = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>`;
+
+    function fmtBanSchedule(round) {
+      let when = "";
+      if (round?.apply_open_at) when += `เปิดรับ ${esc(fmtWhen(round.apply_open_at))}`;
+      if (round?.apply_close_at) when += (when ? " · " : "") + `ปิดรับ ${esc(fmtWhen(round.apply_close_at))}`;
+      return when;
+    }
+
+    function renderClosedBanner(round, fallbackReason) {
+      const reason = round?.status_reason || fallbackReason || "กรุณาติดตามประกาศอีกครั้ง";
+      const pendingReasons = ["ยังไม่ถึงวันเปิดรับสมัคร", "รอบนี้ยังไม่เปิดรับสมัคร"];
+      const isPending = pendingReasons.includes(reason);
+      const isClosed = reason === "ปิดรับสมัครแล้ว";
+      const headline = isPending
+        ? "ยังไม่ถึงวันเปิดรับสมัคร"
+        : (isClosed ? "ปิดรับสมัครแล้ว" : reason);
+      const bannerClass = isPending ? "banner pending" : "banner closed";
+      const icon = isPending ? BAN_ICO_CLOCK : BAN_ICO_X;
+      const schedule = fmtBanSchedule(round);
+      return {
+        className: bannerClass,
+        html: `<span class="ban-ico" aria-hidden="true">${icon}</span>`
+          + `<div class="ban-body">`
+          + `<span class="ban-tag">สถานะการรับสมัคร</span>`
+          + `<p class="ban-headline">${esc(headline)}</p>`
+          + (schedule ? `<p class="ban-schedule">${schedule}</p>` : "")
+          + `</div>`,
+      };
     }
 
     async function loadMeta() {
@@ -1371,18 +1477,10 @@ try {
         banner.innerHTML = `<span class="ban-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg></span>`
           + `<div class="ban-body"><b>${esc(fmtApplyWindow(r))}</b></div>`;
       } else {
-        banner.className = "banner closed";
-        const r = focus;
-        const reason = r?.status_reason || (json.rounds || []).map(x => x.status_reason).filter(Boolean)[0] || "กรุณาติดตามประกาศอีกครั้ง";
-        let when = "";
-        if (r?.apply_open_at) when += `เปิดรับ ${esc(fmtWhen(r.apply_open_at))}`;
-        if (r?.apply_close_at) when += (when ? " · " : "") + `ปิดรับ ${esc(fmtWhen(r.apply_close_at))}`;
-        banner.innerHTML = `<span class="ban-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg></span>`
-          + `<div class="ban-body"><b>ยังไม่เปิดรับสมัคร หรือปิดรับแล้ว</b>`
-          + (r?.title ? ` · ${esc(r.title)}` : "")
-          + `<br>${esc(reason)}`
-          + (when ? `<br>${when}` : "")
-          + `<br><span style="color:#5c5346">ท่านยังสามารถตรวจสอบสถานะใบสมัครเดิมได้</span></div>`;
+        const fallbackReason = (json.rounds || []).map(x => x.status_reason).filter(Boolean)[0] || "";
+        const closed = renderClosedBanner(focus, fallbackReason);
+        banner.className = closed.className;
+        banner.innerHTML = closed.html;
       }
 
       const roundSel = $("roundId");
@@ -1541,7 +1639,12 @@ try {
       }
       const intro = f.hint_intro ? `<p class="uh-intro">${esc(f.hint_intro)}</p>` : "";
       const list = items.length
-        ? `<ul class="uh-list">${items.map(t => `<li>${esc(t)}</li>`).join("")}</ul>`
+        ? `<ul class="uh-list">${items.map(t => {
+            if (typeof t === "string" && t.startsWith("(")) {
+              return `<li class="uh-note">${esc(t)}</li>`;
+            }
+            return `<li>${esc(t)}</li>`;
+          }).join("")}</ul>`
         : "";
       const accept = f.hint_accept ? `<p class="uh-accept">${esc(f.hint_accept)}</p>` : "";
       return `<div class="uh-hint">${intro}${list}${accept}</div>`;
