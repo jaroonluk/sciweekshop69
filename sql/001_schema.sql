@@ -72,6 +72,7 @@ CREATE TABLE events (
   title VARCHAR(255) NOT NULL,
   year_be SMALLINT UNSIGNED NOT NULL COMMENT 'พ.ศ. เช่น 2569',
   description TEXT NULL,
+  apply_program VARCHAR(16) NOT NULL DEFAULT 'sciweek' COMMENT 'sciweek | scisquare',
   is_active TINYINT(1) NOT NULL DEFAULT 1,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -178,7 +179,7 @@ CREATE TABLE applicants (
 CREATE TABLE applicant_files (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   applicant_id INT UNSIGNED NOT NULL,
-  file_type VARCHAR(16) NOT NULL COMMENT 'id_card|house_reg|photo|food|other',
+  file_type VARCHAR(32) NOT NULL COMMENT 'id_card|house_reg|photo|food|company_cert|prop_menu|prop_mgmt|prop_ops|prop_exp|prop_extra|other',
   original_name VARCHAR(255) NOT NULL DEFAULT '',
   stored_path VARCHAR(500) NOT NULL,
   mime_type VARCHAR(120) NULL,

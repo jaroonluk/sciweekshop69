@@ -1568,6 +1568,7 @@ function sci_with_round_context(array $data): array {
             'code' => (string)$e['code'],
             'title' => (string)$e['title'],
             'year_be' => (int)$e['year_be'],
+            'apply_program' => sci_normalize_apply_program($e['apply_program'] ?? 'sciweek'),
             'is_active' => (int)$e['is_active'] === 1,
             'round_count' => (int)($e['round_count'] ?? 0),
             'slot_count' => (int)($e['slot_count'] ?? 0),
@@ -1577,7 +1578,7 @@ function sci_with_round_context(array $data): array {
       } else {
         // Lightweight list without event_admin_lib
         $st = sci_db()->query(
-          'SELECT id, code, title, year_be, is_active,
+          'SELECT id, code, title, year_be, apply_program, is_active,
                   (SELECT COUNT(*) FROM event_rounds r WHERE r.event_id = e.id) AS round_count,
                   (SELECT COUNT(*) FROM slots s WHERE s.event_id = e.id) AS slot_count,
                   (SELECT COUNT(*) FROM applicants a WHERE a.event_id = e.id) AS applicant_count
@@ -1589,6 +1590,7 @@ function sci_with_round_context(array $data): array {
             'code' => (string)$e['code'],
             'title' => (string)$e['title'],
             'year_be' => (int)$e['year_be'],
+            'apply_program' => sci_normalize_apply_program($e['apply_program'] ?? 'sciweek'),
             'is_active' => (int)$e['is_active'] === 1,
             'round_count' => (int)($e['round_count'] ?? 0),
             'slot_count' => (int)($e['slot_count'] ?? 0),

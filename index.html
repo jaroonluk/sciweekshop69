@@ -2428,9 +2428,10 @@
             <option value="">— ยังไม่ระบุล็อก —</option>
           </select>
         </label>
-        <p class="policy-note" style="margin:0">บันทึกสถานะลงฐานข้อมูลเท่านั้น ไม่ลบรายการผู้สมัคร</p>
+        <p class="policy-note" style="margin:0" id="statusPolicyNote">บันทึกสถานะลงฐานข้อมูลเท่านั้น ไม่ลบรายการผู้สมัคร</p>
       </div>
       <div class="modal-actions">
+        <button class="btn ghost danger" type="button" id="btnDeleteApplicant" hidden style="margin-right:auto">ลบใบสมัคร</button>
         <button class="btn" type="button" id="btnCancelStatus">ยกเลิก</button>
         <button class="btn primary" type="button" id="btnSaveStatus">บันทึกสถานะ</button>
       </div>
@@ -3611,7 +3612,7 @@
         ? list.map(e => `
             <button type="button" class="event-list-item ${Number(e.id) === Number(state.eventSelectedId) ? "active" : ""}" data-pick-event="${e.id}">
               <div class="ttl">${esc(e.title)}</div>
-              <div class="meta">ปี ${esc(e.year_be)} · โซน ${e.zone_count} · ล็อก ${e.slot_count} · รอบ ${e.round_count}</div>
+              <div class="meta">ปี ${esc(e.year_be)} · ${esc((e.apply_program || "sciweek") === "scisquare" ? "SCiSQUARE" : "SCiWEEK")} · โซน ${e.zone_count} · ล็อก ${e.slot_count} · รอบ ${e.round_count}</div>
               ${Number(e.is_active) === 1 ? `<span class="badge-active">กำลังใช้งาน</span>` : ""}
             </button>`).join("")
         : `<div class="muted" style="padding:.35rem .15rem">ยังไม่มีกิจกรรม</div>`;
@@ -3634,6 +3635,12 @@
               <label>ชื่อกิจกรรม<input id="evtTitle" value="${esc(ev.title || "")}" /></label>
               <label>ปี พ.ศ.<input id="evtYear" type="number" value="${esc(ev.year_be || "")}" /></label>
               <label>รหัส<input id="evtCode" value="${esc(ev.code || "")}" /></label>
+              <label>รูปแบบสมัคร
+                <select id="evtApplyProgram">
+                  <option value="sciweek" ${(ev.apply_program || "sciweek") === "sciweek" ? "selected" : ""}>SCiWEEK — สัปดาห์วิทยาศาสตร์</option>
+                  <option value="scisquare" ${(ev.apply_program || "") === "scisquare" ? "selected" : ""}>SCiSQUARE</option>
+                </select>
+              </label>
               <label style="grid-column:1/-1">รายละเอียด<textarea id="evtDesc">${esc(ev.description || "")}</textarea></label>
             </div>
             <div class="evt-actions">
@@ -3922,8 +3929,10 @@
         if (!title) return;
         const year = prompt("ปี พ.ศ.", String(new Date().getFullYear() + 543));
         if (!year) return;
+        const programRaw = prompt("รูปแบบสมัคร: sciweek หรือ scisquare", "sciweek");
+        const applyProgram = String(programRaw || "sciweek").trim().toLowerCase() === "scisquare" ? "scisquare" : "sciweek";
         try {
-          const json = await post("events_save", { title, year_be: Number(year) });
+          const json = await post("events_save", { title, year_be: Number(year), apply_program: applyProgram });
           await refreshDetail(json);
         } catch (e) { alert(e.message || e); }
       };
@@ -3937,6 +3946,7 @@
             year_be: Number(document.getElementById("evtYear").value),
             code: document.getElementById("evtCode").value,
             description: document.getElementById("evtDesc").value,
+            apply_program: document.getElementById("evtApplyProgram")?.value || "sciweek",
           });
           await refreshDetail(json);
         } catch (e) { alert(e.message || e); }
@@ -4635,18 +4645,55 @@
       return statusBadge("ผลการคัดเลือก", s, "sel-wait", "wait");
     }
 
-    function renderDocOverview(a) {
-      const dc = docCheckOf(a);
-      const sys = dc.system;
-      const adm = dc.admin;
-      const eff = dc.effective;
-      const checklist = [
+    function docChecklistItems(a) {
+      const program = a.apply_program || state.data?.event?.apply_program || "sciweek";
+      const q = String(a.qualifications || "");
+      const isJuristic = q === "นิติบุคคล" || q.startsWith("นิติบุคคล");
+      if (program === "scisquare") {
+        const items = isJuristic
+          ? [
+              ["หนังสือรับรองนิติบุคคล", a.docs?.company_cert],
+              ["บัตร ปชช. ผู้มีอำนาจ", a.docs?.id_card],
+            ]
+          : [
+              ["รูปถ่าย", a.docs?.photo],
+              ["บัตร ปชช.", a.docs?.id_card],
+              ["ทะเบียนบ้าน", a.docs?.house_reg],
+            ];
+        items.push(
+          ["1) เมนู/สินค้า", a.docs?.prop_menu],
+          ["2) แผนบริหาร", a.docs?.prop_mgmt],
+        );
+        if (isJuristic) {
+          items.push(
+            ["3) ซ่อมบำรุง / ตกแต่ง", a.docs?.prop_ops],
+            ["4) ประสบการณ์", a.docs?.prop_exp],
+            ["5) หลักฐานเพิ่ม (ถ้ามี)", a.docs?.prop_extra],
+          );
+        } else {
+          items.push(
+            ["3) ประสบการณ์", a.docs?.prop_exp],
+            ["4) หลักฐานเพิ่ม (ถ้ามี)", a.docs?.prop_extra],
+          );
+        }
+        items.push(["คุณสมบัติ", a.docs?.qualify]);
+        return items;
+      }
+      return [
         ["บัตร ปชช.", a.docs?.id_card],
         ["ทะเบียนบ้าน", a.docs?.house_reg],
         ["รูปถ่าย", a.docs?.photo],
         ["รูปอาหาร", a.docs?.food],
         ["คุณสมบัติ", a.docs?.qualify],
       ];
+    }
+
+    function renderDocOverview(a) {
+      const dc = docCheckOf(a);
+      const sys = dc.system;
+      const adm = dc.admin;
+      const eff = dc.effective;
+      const checklist = docChecklistItems(a);
 
       const sysReason = !sys.pass
         ? `<div class="reason">ไม่ครบ เพราะขาด: ${esc((sys.missing || []).join(", ") || "-")}</div>`
@@ -5417,7 +5464,26 @@
         a.photo && { label: "รูปถ่าย", href: a.photo },
         a.id_card && { label: "บัตร ปชช.", href: a.id_card },
         a.house_reg && { label: "ทะเบียนบ้าน", href: a.house_reg },
+        a.company_cert && { label: "หนังสือรับรองนิติบุคคล", href: a.company_cert },
       ].filter(Boolean);
+      const q = String(a.qualifications || "");
+      const isJuristic = q === "นิติบุคคล" || q.startsWith("นิติบุคคล");
+      const propLabels = isJuristic
+        ? {
+            prop_menu: "1) เมนู/สินค้า",
+            prop_mgmt: "2) แผนบริหาร",
+            prop_ops: "3) ซ่อมบำรุง / ตกแต่ง",
+            prop_extra: "5) หลักฐานเพิ่ม",
+          }
+        : {
+            prop_menu: "1) เมนู/สินค้า",
+            prop_mgmt: "2) แผนบริหาร",
+            prop_extra: "4) หลักฐานเพิ่ม",
+          };
+      const propDocs = Object.entries(a.prop_docs || {})
+        .filter(([, v]) => v && (v.url || v.full))
+        .map(([k, v]) => ({ label: propLabels[k] || k, href: v.full || v.url, mime: v.mime || "" }));
+      const allDocs = docs.concat(propDocs);
 
       return `
         <article class="applicant ${rank===1?"first":""} ${selectionClass(a.selection)} ${a.returning?"returning":""} ${(a.payment_warning || a.alumni?.payment_warning)?"pay-warn":""}" data-key="${esc(a.key)}">
@@ -5439,6 +5505,7 @@
                 <span class="btn-ico">${ico("doc")}</span>
                 <span>เช็คเอกสาร</span>
               </button>
+              ${isAdmin() ? `<button class="btn ghost danger" type="button" data-del-applicant="${esc(a.key)}" title="ลบใบสมัครออกจากระบบ (ข้อมูลทดสอบ)">ลบใบสมัคร</button>` : ""}
             </div>
             ${renderDocOverview(a)}
             <div class="sel-actions">
@@ -5452,12 +5519,15 @@
             </div>
           </div>
           <p class="detail">${esc(a.detail || "ไม่ระบุจุดเด่น")}</p>
+          ${a.experience_text ? `<p class="detail" style="margin-top:.45rem"><b>4) ประสบการณ์:</b> ${esc(a.experience_text)}</p>` : ""}
           ${renderApplyExtras(a)}
           <div class="docs-row">
-            ${docs.map(d => `<a href="${esc(d.href)}" target="_blank" rel="noopener">${esc(d.label)}</a>`).join("")}
+            ${allDocs.map(d => `<a href="${esc(d.href)}" target="_blank" rel="noopener">${esc(d.label)}</a>`).join("") || `<span class="chip empty">ไม่มีเอกสารแนบ</span>`}
           </div>
           <div class="thumbs">
-            ${(a.food_photos||[]).map((p,i)=>thumbButton(p,i)).join("") || `<span class="chip empty">ไม่มีรูปอาหาร</span>`}
+            ${(a.food_photos||[]).map((p,i)=>thumbButton(p,i)).join("")}
+            ${propDocs.filter(d => !String(d.mime || "").includes("pdf")).map((d, i) => thumbButton({ url: d.href, full: d.href, thumb: d.href }, "p" + i)).join("")}
+            ${!(a.food_photos||[]).length && !propDocs.length ? `<span class="chip empty">ไม่มีรูปอาหาร / เอกสารนำเสนอ</span>` : ""}
           </div>
         </article>`;
     }
@@ -5870,6 +5940,9 @@
       document.querySelectorAll("[data-check]").forEach(btn => {
         btn.onclick = () => openStatus(btn.dataset.check);
       });
+      document.querySelectorAll("[data-del-applicant]").forEach(btn => {
+        btn.onclick = () => deleteApplicant(btn.dataset.delApplicant);
+      });
 
       document.querySelectorAll("[data-quick-sel]").forEach(btn => {
         btn.onclick = () => quickSelect(btn.dataset.quickSel, btn.dataset.sel);
@@ -5989,18 +6062,13 @@
       state.editing = a;
       const dc = docCheckOf(a);
       document.getElementById("statusSub").textContent = `${a.name} · โซน ${a.zone} · ${a.category}`;
-      const items = [
-        ["สำเนาบัตรประชาชน", a.docs.id_card],
-        ["สำเนาทะเบียนบ้าน", a.docs.house_reg],
-        ["รูปถ่ายหน้าตรง", a.docs.photo],
-        ["ภาพถ่ายอาหาร/สินค้า", a.docs.food],
-        ["ระบุคุณสมบัติในแบบฟอร์ม", a.docs.qualify],
-      ];
+      const items = docChecklistItems(a).map(([label, ok]) => [label, !!ok]);
+      // Optional prop_extra should not show as "ขาด" in admin checklist wording if unchecked
       const sysHint = dc.system.pass
         ? `<div class="chip ok" style="margin-bottom:.45rem">ระบบตรวจ: ไฟล์แนบครบ</div>`
         : `<div class="chip warn" style="margin-bottom:.45rem;white-space:normal;height:auto;border-radius:10px;line-height:1.35">ระบบตรวจ: ไม่ครบ — ขาด ${esc((dc.system.missing||[]).join(", "))}</div>`;
       document.getElementById("autoChecks").innerHTML = sysHint + items.map(([label, ok]) => `
-        <label><input type="checkbox" disabled ${ok?"checked":""} /> ${esc(label)} ${ok?"✓":"— ขาด"}</label>`).join("")
+        <label><input type="checkbox" disabled ${ok?"checked":""} /> ${esc(label)} ${ok?"✓":(String(label).includes("ถ้ามี") ? "— ไม่มี" : "— ขาด")}</label>`).join("")
         + `<p class="policy-note" style="margin:.5rem 0 0">บันทึกด้านล่างคือผลตรวจของ Admin (จะถูกใช้ตัดสินแทนระบบเมื่อบันทึกแล้ว)</p>`;
 
       const sel = document.getElementById("fStatus");
@@ -6014,6 +6082,14 @@
       document.getElementById("fNote").value = a.review_note || "";
       setSelectionButtons(a.selection || "รอพิจารณา");
       fillSlotOptions(document.getElementById("fSlot"), a, true);
+      const delBtn = document.getElementById("btnDeleteApplicant");
+      const policy = document.getElementById("statusPolicyNote");
+      if (delBtn) delBtn.hidden = !isAdmin();
+      if (policy) {
+        policy.textContent = isAdmin()
+          ? "ผู้ดูแลระบบสามารถลบใบสมัครทดสอบออกจากระบบได้"
+          : "บันทึกสถานะลงฐานข้อมูลเท่านั้น ไม่ลบรายการผู้สมัคร";
+      }
       document.getElementById("statusModal").classList.add("show");
     }
 
@@ -6174,6 +6250,44 @@
         await unassignShop(a.row, selection);
       } catch (e) {
         alert("บันทึกไม่สำเร็จ: " + e.message);
+      }
+    }
+
+    async function deleteApplicant(key) {
+      const a = (state.data?.applicants || []).find(x => x.key === key) || (state.editing?.key === key ? state.editing : null);
+      if (!a) return;
+      if (!isAdmin()) {
+        alert("เฉพาะผู้ดูแลระบบเท่านั้นที่ลบใบสมัครได้");
+        return;
+      }
+      const who = [a.name, a.phone].filter(Boolean).join(" · ");
+      if (!confirm("ลบใบสมัครของ " + who + " ออกจากระบบ?\nใช้กับข้อมูลทดสอบ และกู้คืนไม่ได้")) return;
+      try {
+        const res = await fetch(apiUrl("delete_applicant"), {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            round: currentRound(),
+            id: Number(a.id || 0),
+            row: Number(a.row || 0),
+          }),
+        });
+        const text = await res.text();
+        let json;
+        try { json = JSON.parse(text); }
+        catch (e) {
+          if (res.status === 401) { location.href = "login.php"; throw new Error("กรุณาเข้าสู่ระบบด้วย Google"); }
+          throw new Error(text.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 240) || "ลบไม่สำเร็จ");
+        }
+        if (res.status === 401 || json.login_url) { location.href = json.login_url || "login.php"; throw new Error(json.error || "กรุณาเข้าสู่ระบบ"); }
+        if (res.status === 403 || !json.ok) throw new Error(json.error || "ลบไม่สำเร็จ");
+        state.data = json.data;
+        state.editing = null;
+        document.getElementById("statusModal")?.classList.remove("show");
+        render();
+        showAppFlash(json.message || "ลบใบสมัครแล้ว");
+      } catch (e) {
+        alert("ลบใบสมัครไม่สำเร็จ: " + (e.message || e));
       }
     }
 
@@ -6542,6 +6656,10 @@
     document.getElementById("btnCloseEmpty").onclick = () => document.getElementById("emptyModal").classList.remove("show");
     document.getElementById("btnCancelStatus").onclick = () => document.getElementById("statusModal").classList.remove("show");
     document.getElementById("btnSaveStatus").onclick = saveStatus;
+    document.getElementById("btnDeleteApplicant").onclick = () => {
+      const a = state.editing;
+      if (a) deleteApplicant(a.key);
+    };
     document.querySelectorAll("#selButtons [data-sel]").forEach(btn => {
       btn.onclick = () => setSelectionButtons(btn.dataset.sel);
     });

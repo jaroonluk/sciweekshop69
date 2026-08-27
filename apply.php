@@ -245,34 +245,282 @@ try {
     .upload-box {
       border: 2px dashed #d2c6ae;
       border-radius: 14px;
-      padding: 1rem;
+      padding: 1rem 1.05rem 1.1rem;
       background: #fff;
       margin-bottom: 1rem;
     }
     .upload-box strong { display: block; font-size: 1.12rem; margin-bottom: .25rem; }
-    .upload-box p { margin: 0 0 .65rem; color: var(--muted); }
+    .upload-box p { margin: 0 0 .65rem; color: var(--muted); line-height: 1.45; }
     .upload-box input[type=file] { font-size: 1rem; width: 100%; }
+    .upload-box textarea { width: 100%; font-size: 1rem; }
+    .upload-head {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      margin-bottom: .7rem;
+    }
+    .upload-head .uh-ico {
+      flex: 0 0 auto;
+      width: 2.55rem;
+      height: 2.55rem;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: #f3ebe0;
+      color: var(--teal);
+    }
+    .upload-head .uh-ico svg { width: 1.35rem; height: 1.35rem; }
+    .upload-head .uh-ico.img { background: #e8f4f1; color: #1f6f63; }
+    .upload-head .uh-ico.pdf { background: #fdecec; color: #b42318; }
+    .upload-head .uh-ico.text { background: #eef2ff; color: #3b4d9a; }
+    .upload-head .uh-body { min-width: 0; flex: 1; }
+    .upload-head .uh-body strong { margin-bottom: .2rem; }
+    .upload-head .uh-body p { margin: 0; font-size: .98rem; }
+    .upload-head .uh-hint { margin: 0; }
+    .upload-head .uh-intro {
+      margin: 0;
+      font-size: .98rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    .upload-head .uh-list {
+      margin: .3rem 0 0;
+      padding: 0 0 0 1.15rem;
+      color: var(--muted);
+      font-size: .95rem;
+      line-height: 1.5;
+    }
+    .upload-head .uh-list li { margin: .1rem 0; }
+    .upload-head .uh-accept {
+      margin: .4rem 0 0;
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .file-pick {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      margin-top: .15rem;
+      font: inherit;
+      font-size: 1.02rem;
+      font-weight: 700;
+      border: 2px solid var(--line);
+      border-radius: 999px;
+      padding: .55rem 1.05rem;
+      background: #fffaf2;
+      color: var(--ink);
+      cursor: pointer;
+    }
+    .file-pick:hover { border-color: var(--teal); color: var(--teal); }
+    .file-pick svg { width: 1.1rem; height: 1.1rem; }
+    .file-pick input[type=file] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+      font-size: 0;
+    }
     .preview {
       display: flex;
       flex-wrap: wrap;
-      gap: .5rem;
-      margin-top: .65rem;
+      gap: .65rem;
+      margin-top: .85rem;
     }
-    .preview img, .preview .filechip {
-      width: 88px;
-      height: 88px;
-      object-fit: cover;
-      border-radius: 10px;
+    .preview-card {
+      width: 108px;
+      border-radius: 14px;
       border: 1px solid var(--line);
-      background: #f7f3ea;
+      background: #fbf7f0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      text-align: left;
+      padding: 0;
+      font: inherit;
+      color: inherit;
+      transition: transform .15s ease, box-shadow .15s ease;
     }
-    .preview .filechip {
+    .preview-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(40, 30, 10, .12);
+    }
+    .preview-card .pc-media {
+      width: 100%;
+      height: 78px;
       display: grid;
       place-items: center;
-      font-size: .8rem;
+      background: #efe7da;
+      position: relative;
+      overflow: hidden;
+    }
+    .preview-card .pc-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .preview-card .pc-media.pdf {
+      background: linear-gradient(160deg, #fff1f0, #fde2e0);
+      color: #b42318;
+    }
+    .preview-card .pc-media.pdf svg { width: 2.2rem; height: 2.2rem; }
+    .preview-card .pc-media .eye {
+      position: absolute;
+      right: .35rem;
+      bottom: .35rem;
+      width: 1.55rem;
+      height: 1.55rem;
+      border-radius: 999px;
+      background: rgba(28, 22, 14, .72);
+      color: #fff;
+      display: grid;
+      place-items: center;
+    }
+    .preview-card .pc-media .eye svg { width: .9rem; height: .9rem; }
+    .preview-card .pc-name {
+      padding: .4rem .45rem .5rem;
+      font-size: .78rem;
+      font-weight: 600;
+      line-height: 1.25;
+      color: #4a4338;
+      word-break: break-all;
+    }
+    .preview-empty {
+      font-size: .92rem;
+      color: var(--muted);
+      margin-top: .55rem;
+    }
+    .file-type-modal {
+      width: min(460px, 100%);
+      background: linear-gradient(165deg, #fffdf8, #fff8ee);
+      border: 1px solid #efd7a8;
+      border-radius: 22px;
+      padding: 1.35rem 1.3rem 1.2rem;
+      box-shadow: 0 22px 48px rgba(80, 40, 0, .22);
       text-align: center;
-      padding: .35rem;
+      animation: warnPop .22s ease-out;
+    }
+    .file-type-modal .ico {
+      width: 4.2rem;
+      height: 4.2rem;
+      margin: 0 auto .85rem;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #3aa89a, #1f6f63);
+      color: #fff;
+      box-shadow: 0 10px 20px rgba(31, 111, 99, .28);
+    }
+    .file-type-modal .ico svg { width: 2.1rem; height: 2.1rem; }
+    .file-type-modal h3 {
+      margin: 0 0 .4rem;
+      font-family: "Chakra Petch", sans-serif;
+      font-size: 1.35rem;
+      color: var(--ink);
+    }
+    .file-type-modal p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.5;
+    }
+    .file-type-modal .type-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45rem;
+      justify-content: center;
+      margin: .95rem 0 0;
+    }
+    .file-type-modal .type-list span {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      padding: .45rem .75rem;
+      border-radius: 12px;
+      background: #fff;
+      border: 1px solid #e4d8c4;
       font-weight: 700;
+      font-size: .95rem;
+      color: var(--ink);
+    }
+    .file-type-modal .type-list span svg { width: 1.05rem; height: 1.05rem; }
+    .file-type-modal .bad-name {
+      margin-top: .75rem;
+      padding: .55rem .7rem;
+      border-radius: 10px;
+      background: #fff1f0;
+      border: 1px solid #f0c2c2;
+      color: #7a1f1a;
+      font-size: .95rem;
+      word-break: break-all;
+    }
+    .file-type-modal .modal-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.15rem;
+    }
+    .lightbox {
+      width: min(920px, 100%);
+      max-height: min(90vh, 900px);
+      background: #1c160e;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,.4);
+      display: flex;
+      flex-direction: column;
+    }
+    .lightbox .lb-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .75rem;
+      padding: .7rem .9rem;
+      background: rgba(255,255,255,.06);
+      color: #f5efe4;
+    }
+    .lightbox .lb-bar strong {
+      font-size: .95rem;
+      font-weight: 600;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .lightbox .lb-bar button {
+      border: 0;
+      background: transparent;
+      color: #fff;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      padding: .35rem .55rem;
+      border-radius: 8px;
+    }
+    .lightbox .lb-bar button:hover { background: rgba(255,255,255,.12); }
+    .lightbox .lb-body {
+      flex: 1;
+      min-height: 0;
+      display: grid;
+      place-items: center;
+      padding: .75rem;
+      background: #111;
+    }
+    .lightbox .lb-body img {
+      max-width: 100%;
+      max-height: min(78vh, 780px);
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .lightbox .lb-body iframe {
+      width: min(860px, 100%);
+      height: min(78vh, 780px);
+      border: 0;
+      border-radius: 8px;
+      background: #fff;
     }
     .nav {
       display: flex;
@@ -529,26 +777,62 @@ try {
     }
     .review-docs {
       display: flex;
-      flex-wrap: wrap;
-      gap: .4rem;
-      margin-top: .2rem;
+      flex-direction: column;
+      gap: .85rem;
+      margin-top: .55rem;
     }
-    .review-docs span {
-      display: inline-flex;
+    .review-doc-row {
+      border: 1px solid #e8dfd0;
+      border-radius: 14px;
+      background: #fffefb;
+      padding: .75rem .85rem;
+    }
+    .review-doc-row .rd-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0 0 .45rem;
+      display: flex;
       align-items: center;
-      gap: .25rem;
-      padding: .28rem .6rem;
+      gap: .4rem;
+      flex-wrap: wrap;
+    }
+    .review-doc-row .rd-title .rd-status {
+      font-size: .78rem;
+      font-weight: 700;
+      padding: .15rem .5rem;
       border-radius: 999px;
       background: #eef8f6;
       color: var(--teal);
-      font-size: .88rem;
-      font-weight: 700;
+    }
+    .review-doc-row .rd-title .rd-status.miss {
+      background: #fff1f0;
+      color: #9b1c1c;
+    }
+    .review-doc-row .rd-text {
+      margin: 0;
+      color: #4a4338;
+      font-size: 1rem;
+      line-height: 1.45;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .review-doc-row .rd-files {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+    }
+    .review-doc-row .rd-empty {
+      margin: 0;
+      color: var(--muted);
+      font-size: .95rem;
     }
     .phone-hint {
       margin: .35rem 0 0;
       font-size: .92rem;
       color: var(--muted);
     }
+    .phone-hint:empty { display: none; }
     .phone-hint.bad { color: var(--danger); font-weight: 700; }
     .phone-hint.ok { color: var(--ok); font-weight: 600; }
     @media (max-width: 560px) {
@@ -755,10 +1039,7 @@ try {
         <section class="step" data-step="1">
           <h2 class="section-title"><span class="sec-ico teal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>ข้อมูลผู้สมัคร</h2>
           <p class="hint">กรอกทีละช่องให้ครบ · ใช้อักษรใหญ่ อ่านง่าย</p>
-          <label class="field">
-            <span>รอบที่เปิดรับ <span class="req">*</span></span>
-            <select id="roundId" name="round_id" required></select>
-          </label>
+          <input type="hidden" id="roundId" name="round_id" value="" />
           <label class="field">
             <span>คุณสมบัติของท่าน <span class="req">*</span></span>
             <select id="qualify" name="qualifications" required></select>
@@ -788,11 +1069,7 @@ try {
           <label class="field">
             <span>เบอร์ติดต่อ <span class="req">*</span></span>
             <input type="tel" id="phone" name="phone" autocomplete="tel" required placeholder="08x-xxx-xxxx" />
-            <p class="phone-hint" id="phoneHint">เบอร์นี้ใช้สมัครได้ 1 ครั้งต่อรอบเท่านั้น</p>
-          </label>
-          <label class="field">
-            <span>รายละเอียดเพิ่มเติม / จุดเด่นร้าน</span>
-            <textarea id="detail" name="detail" placeholder="เช่น เมนูเด่น วัตถุดิบ ความพิเศษของร้าน"></textarea>
+            <p class="phone-hint" id="phoneHint"></p>
           </label>
           <div class="ask-box hidden" id="powerAskWrap">
             <span class="ask-title">ความจำเป็นในการใช้ไฟฟ้ากำลังสูง <span class="req">*</span></span>
@@ -841,31 +1118,7 @@ try {
 
         <section class="step hidden" data-step="3">
           <h2 class="section-title"><span class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></span>อัปโหลดเอกสาร</h2>
-          <p class="hint">รองรับเฉพาะไฟล์ภาพ JPG / PNG / WEBP · ไฟล์ละไม่เกิน <b id="maxMb">10</b> MB · เก็บบน MinIO</p>
-          <div class="upload-box">
-            <strong>สำเนาบัตรประชาชน <span class="req">*</span></strong>
-            <p>ถ่ายให้ชัด อ่านตัวอักษรได้</p>
-            <input type="file" id="idCard" name="id_card" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" required />
-            <div class="preview" id="prevId"></div>
-          </div>
-          <div class="upload-box">
-            <strong>สำเนาทะเบียนบ้าน <span class="req">*</span></strong>
-            <p>หน้าที่มีชื่อผู้สมัคร</p>
-            <input type="file" id="houseReg" name="house_reg" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" required />
-            <div class="preview" id="prevHouse"></div>
-          </div>
-          <div class="upload-box">
-            <strong>รูปถ่ายหน้าตรง <span class="req">*</span></strong>
-            <p>เห็นใบหน้าชัดเจน</p>
-            <input type="file" id="photo" name="photo" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" required />
-            <div class="preview" id="prevPhoto"></div>
-          </div>
-          <div class="upload-box">
-            <strong>ภาพอาหาร / สินค้า <span class="req">*</span></strong>
-            <p>เลือกได้หลายรูป (สูงสุด <span id="foodMax">5</span> รูป)</p>
-            <input type="file" id="food" name="food[]" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" multiple required />
-            <div class="preview" id="prevFood"></div>
-          </div>
+          <div id="docUploadFields"></div>
         </section>
 
         <section class="step hidden" data-step="4">
@@ -920,6 +1173,34 @@ try {
         <button type="button" class="btn secondary" id="btnExitCancel">อยู่ต่อ</button>
         <button type="button" class="btn" id="btnExitConfirm" style="background:#c45c12;color:#fff;border-color:#c45c12">ออกจากแบบฟอร์ม</button>
       </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="fileTypeModal" role="dialog" aria-modal="true" aria-labelledby="fileTypeModalTitle">
+    <div class="file-type-modal">
+      <div class="ico" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="M9 15h6"/>
+        </svg>
+      </div>
+      <h3 id="fileTypeModalTitle">ชนิดไฟล์ไม่รองรับ</h3>
+      <p id="fileTypeModalMsg">กรุณาเลือกไฟล์ตามประเภทที่ระบบรองรับสำหรับช่องนี้</p>
+      <div class="type-list" id="fileTypeModalList"></div>
+      <div class="bad-name hidden" id="fileTypeModalBad"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn teal" id="btnFileTypeOk">เข้าใจแล้ว</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="previewLightbox" role="dialog" aria-modal="true" aria-labelledby="previewLightboxTitle">
+    <div class="lightbox">
+      <div class="lb-bar">
+        <strong id="previewLightboxTitle">ดูไฟล์</strong>
+        <button type="button" id="btnCloseLightbox">ปิด</button>
+      </div>
+      <div class="lb-body" id="previewLightboxBody"></div>
     </div>
   </div>
 
@@ -1028,6 +1309,24 @@ try {
       return `${day} ${month} ${yearBe} เวลา ${hh}:${mm} น.`;
     }
 
+    function fmtWhenDate(v) {
+      const t = fmtWhen(v);
+      if (!t || t === "—") return "";
+      return t.startsWith("วันที่ ") ? t : ("วันที่ " + t);
+    }
+
+    function fmtApplyWindow(round) {
+      const title = String(round?.title || "").trim();
+      const open = round?.apply_open_at ? fmtWhenDate(round.apply_open_at) : "";
+      const close = round?.apply_close_at ? fmtWhenDate(round.apply_close_at) : "";
+      let text = "เปิดรับสมัคร";
+      if (title) text += " " + title;
+      if (open && close) text += " " + open + " ถึง " + close;
+      else if (open) text += " " + open;
+      else if (close) text += " ถึง " + close;
+      return text;
+    }
+
     async function loadMeta() {
       const res = await fetch(apiUrl("meta"), { credentials: "same-origin" });
       const json = await res.json();
@@ -1049,8 +1348,6 @@ try {
       if ($("brandHeadline")) $("brandHeadline").textContent = brand.headline || "รับสมัครร้านค้า · คณะวิทยาศาสตร์ มข.";
       $("eventTitle").textContent = brand.subline || json.event?.title || "รับสมัครร้านค้า";
       document.title = brand.page_title || ("รับสมัครร้านค้า · " + (json.event?.title || "คณะวิทยาศาสตร์ มข."));
-      $("maxMb").textContent = json.upload?.max_mb || 10;
-      $("foodMax").textContent = json.upload?.food_max || 5;
       paintCaptcha(json.captcha);
       paintStatusCaptcha(json.status_captcha);
 
@@ -1072,9 +1369,7 @@ try {
         const r = (focus && focus.accepting) ? focus : openRounds[0];
         banner.className = "banner open";
         banner.innerHTML = `<span class="ban-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg></span>`
-          + `<div class="ban-body"><b>เปิดรับสมัครอยู่</b> · ${esc(r?.title || "")}`
-          + (r?.apply_close_at ? ` · ปิดรับ ${esc(fmtWhen(r.apply_close_at))}` : "")
-          + `<br><span style="color:#5c5346">${esc(brand.org || "คณะวิทยาศาสตร์ มหาวิทยาลัยขอนแก่น")}</span></div>`;
+          + `<div class="ban-body"><b>${esc(fmtApplyWindow(r))}</b></div>`;
       } else {
         banner.className = "banner closed";
         const r = focus;
@@ -1092,12 +1387,11 @@ try {
 
       const roundSel = $("roundId");
       const openRounds = (json.rounds || []).filter(r => r.accepting);
-      roundSel.innerHTML = openRounds.length
-        ? openRounds.map(r => `<option value="${r.id}">${esc(r.title)}${r.apply_close_at ? " (ปิด " + esc(fmtWhen(r.apply_close_at)) + ")" : ""}</option>`).join("")
-        : `<option value="">— ไม่มีรอบเปิดรับ —</option>`;
+      let picked = openRounds[0] || null;
       if (state.wantedRoundId && openRounds.some(r => Number(r.id) === state.wantedRoundId)) {
-        roundSel.value = String(state.wantedRoundId);
+        picked = openRounds.find(r => Number(r.id) === state.wantedRoundId) || picked;
       }
+      if (roundSel) roundSel.value = picked ? String(picked.id) : "";
       syncExtraQuestions();
 
       $("qualify").innerHTML = (json.qualify_options || [])
@@ -1113,8 +1407,194 @@ try {
       }).join("");
 
       syncApplyFlow();
+      renderDocFields();
 
       setMode("gate");
+    }
+
+    function currentDocSchema() {
+      const program = state.meta?.apply_program || state.meta?.event?.apply_program || "sciweek";
+      const schemas = state.meta?.upload?.doc_schemas || {};
+      if (program === "scisquare") {
+        const q = $("qualify")?.value || "";
+        if (q === "นิติบุคคล") return schemas.juristic || state.meta?.upload?.doc_schema || [];
+        return schemas.individual || state.meta?.upload?.doc_schema || [];
+      }
+      return schemas.default || state.meta?.upload?.doc_schema || [];
+    }
+
+    function fieldDomId(key) {
+      return "doc_" + String(key || "").replace(/[^a-z0-9_]/gi, "_");
+    }
+
+    function fieldAllowedExt(f) {
+      const fromSchema = (f.accept_ext || []).map(x => String(x).toLowerCase().replace(/^\./, ""));
+      if (fromSchema.length) return [...new Set(fromSchema)];
+      const accept = String(f.accept || "");
+      const found = [];
+      if (/\.jpe?g|image\/jpeg/i.test(accept)) found.push("jpg", "jpeg");
+      if (/\.png|image\/png/i.test(accept)) found.push("png");
+      if (/\.webp|image\/webp/i.test(accept)) found.push("webp");
+      if (/\.pdf|application\/pdf/i.test(accept)) found.push("pdf");
+      return [...new Set(found)];
+    }
+
+    function fileExt(name) {
+      const m = String(name || "").toLowerCase().match(/\.([a-z0-9]+)$/);
+      return m ? m[1] : "";
+    }
+
+    function normalizeExt(ext) {
+      return ext === "jpeg" ? "jpg" : ext;
+    }
+
+    function isFileAllowed(file, allowedExt) {
+      const ext = normalizeExt(fileExt(file.name));
+      const allowed = allowedExt.map(normalizeExt);
+      if (ext && allowed.includes(ext)) return true;
+      const mime = String(file.type || "").toLowerCase();
+      if (mime === "image/jpeg" && allowed.includes("jpg")) return true;
+      if (mime === "image/png" && allowed.includes("png")) return true;
+      if (mime === "image/webp" && allowed.includes("webp")) return true;
+      if (mime === "application/pdf" && allowed.includes("pdf")) return true;
+      return false;
+    }
+
+    function formatAllowedLabels(allowedExt) {
+      const set = new Set(allowedExt.map(normalizeExt));
+      const labels = [];
+      if (set.has("jpg")) labels.push("JPEG");
+      if (set.has("png")) labels.push("PNG");
+      if (set.has("webp")) labels.push("WEBP");
+      if (set.has("pdf")) labels.push("PDF");
+      return labels;
+    }
+
+    function uploadHeadIcon(f, allowedExt) {
+      const kind = f.kind || "file";
+      if (kind === "text") {
+        return `<span class="uh-ico text" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h6"/></svg></span>`;
+      }
+      const set = new Set(allowedExt.map(normalizeExt));
+      const onlyPdf = set.has("pdf") && !set.has("jpg") && !set.has("png") && !set.has("webp");
+      if (onlyPdf) {
+        return `<span class="uh-ico pdf" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M10 12h4v8h-4z"/><path d="M8 12h2"/><path d="M14 18h2"/></svg></span>`;
+      }
+      return `<span class="uh-ico img" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></span>`;
+    }
+
+    function openFileTypeModal(fieldLabel, allowedExt, badNames) {
+      const labels = formatAllowedLabels(allowedExt);
+      $("fileTypeModalTitle").textContent = "ชนิดไฟล์ไม่รองรับ";
+      $("fileTypeModalMsg").textContent = fieldLabel
+        ? `ช่อง “${fieldLabel}” รองรับเฉพาะไฟล์ตามรายการด้านล่าง กรุณาเลือกไฟล์ใหม่`
+        : "ระบบรองรับเฉพาะไฟล์ตามรายการด้านล่าง กรุณาเลือกไฟล์ใหม่";
+      $("fileTypeModalList").innerHTML = labels.map(l => {
+        if (l === "PDF") {
+          return `<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> PDF</span>`;
+        }
+        return `<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg> ${esc(l)}</span>`;
+      }).join("");
+      const bad = $("fileTypeModalBad");
+      if (badNames?.length) {
+        bad.classList.remove("hidden");
+        bad.textContent = "ไฟล์ที่เลือก: " + badNames.join(", ");
+      } else {
+        bad.classList.add("hidden");
+        bad.textContent = "";
+      }
+      $("fileTypeModal")?.classList.add("show");
+    }
+
+    function closeFileTypeModal() {
+      $("fileTypeModal")?.classList.remove("show");
+    }
+
+    function openPreviewLightbox(title, kind, url) {
+      $("previewLightboxTitle").textContent = title || "ดูไฟล์";
+      const body = $("previewLightboxBody");
+      body.innerHTML = "";
+      if (kind === "pdf") {
+        const frame = document.createElement("iframe");
+        frame.src = url;
+        frame.title = title || "PDF";
+        body.appendChild(frame);
+      } else {
+        const img = document.createElement("img");
+        img.src = url;
+        img.alt = title || "preview";
+        body.appendChild(img);
+      }
+      $("previewLightbox")?.classList.add("show");
+    }
+
+    function closePreviewLightbox() {
+      $("previewLightbox")?.classList.remove("show");
+      const body = $("previewLightboxBody");
+      if (body) body.innerHTML = "";
+    }
+
+    function renderFieldHint(f) {
+      const items = Array.isArray(f.hint_items) ? f.hint_items.filter(Boolean) : [];
+      if (!f.hint_intro && !items.length && !f.hint_accept) {
+        return `<p>${esc(f.hint || "")}</p>`;
+      }
+      const intro = f.hint_intro ? `<p class="uh-intro">${esc(f.hint_intro)}</p>` : "";
+      const list = items.length
+        ? `<ul class="uh-list">${items.map(t => `<li>${esc(t)}</li>`).join("")}</ul>`
+        : "";
+      const accept = f.hint_accept ? `<p class="uh-accept">${esc(f.hint_accept)}</p>` : "";
+      return `<div class="uh-hint">${intro}${list}${accept}</div>`;
+    }
+
+    function renderDocFields() {
+      const wrap = $("docUploadFields");
+      if (!wrap) return;
+      const schema = currentDocSchema();
+      wrap.innerHTML = schema.map(f => {
+        const id = fieldDomId(f.key);
+        const req = f.required ? ` <span class="req">*</span>` : "";
+        const name = esc(f.name || f.key);
+        const allowed = fieldAllowedExt(f);
+        if ((f.kind || "file") === "text") {
+          const rows = Number(f.rows || 5);
+          const ph = esc(f.placeholder || "");
+          return `<div class="upload-box" data-doc-key="${esc(f.key)}" data-doc-kind="text">
+            <div class="upload-head">
+              ${uploadHeadIcon(f, allowed)}
+              <div class="uh-body">
+                <strong>${esc(f.label || f.key)}${req}</strong>
+                ${renderFieldHint(f)}
+              </div>
+            </div>
+            <textarea id="${id}" name="${name}" rows="${rows}" placeholder="${ph}"${f.required ? " required" : ""}></textarea>
+          </div>`;
+        }
+        const multi = f.multiple ? " multiple" : "";
+        const accept = esc(f.accept || "");
+        return `<div class="upload-box" data-doc-key="${esc(f.key)}" data-doc-kind="file">
+          <div class="upload-head">
+            ${uploadHeadIcon(f, allowed)}
+            <div class="uh-body">
+              <strong>${esc(f.label || f.key)}${req}</strong>
+              ${renderFieldHint(f)}
+            </div>
+          </div>
+          <label class="file-pick">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></svg>
+            เลือกไฟล์
+            <input type="file" id="${id}" name="${name}" accept="${accept}"${multi}${f.required ? " required" : ""} />
+          </label>
+          <div class="preview" id="prev_${id}"></div>
+          <div class="preview-empty" id="empty_${id}">ยังไม่ได้เลือกไฟล์</div>
+        </div>`;
+      }).join("");
+      schema.forEach(f => {
+        if ((f.kind || "file") === "text") return;
+        const input = $(fieldDomId(f.key));
+        const prev = $("prev_" + fieldDomId(f.key));
+        if (input && prev) bindPreview(input, prev, f);
+      });
     }
 
     function paintCaptcha(captcha) {
@@ -1420,12 +1900,23 @@ try {
         }
       }
       if (step === 3) {
-        if (!$("idCard").files?.length) return "กรุณาอัปโหลดสำเนาบัตรประชาชน";
-        if (!$("houseReg").files?.length) return "กรุณาอัปโหลดสำเนาทะเบียนบ้าน";
-        if (!$("photo").files?.length) return "กรุณาอัปโหลดรูปถ่ายหน้าตรง";
-        if (!$("food").files?.length) return "กรุณาอัปโหลดภาพอาหาร/สินค้าอย่างน้อย 1 รูป";
-        const maxFood = Number(state.meta?.upload?.food_max || 5);
-        if ($("food").files.length > maxFood) return "ภาพอาหาร/สินค้าได้สูงสุด " + maxFood + " รูป";
+        const schema = currentDocSchema();
+        for (const f of schema) {
+          const input = $(fieldDomId(f.key));
+          if ((f.kind || "file") === "text") {
+            const val = (input?.value || "").trim();
+            if (f.required && !val) return "กรุณากรอก" + (f.label || f.key);
+            continue;
+          }
+          const n = input?.files?.length || 0;
+          if (f.required && n < 1) {
+            return "กรุณาอัปโหลด" + (f.label || f.key);
+          }
+          const maxFiles = Number(f.max_files || (f.multiple ? 5 : 1));
+          if (n > maxFiles) {
+            return (f.label || f.key) + " อัปโหลดได้สูงสุด " + maxFiles + " ไฟล์";
+          }
+        }
       }
       if (step === 4) {
         if (!$("captchaToken").value) return "รหัสป้องกันสแปมยังไม่พร้อม กรุณากดเปลี่ยนข้อ";
@@ -1437,14 +1928,8 @@ try {
     function paintReview() {
       const zone = document.querySelector('input[name="zone"]:checked')?.value || "";
       const zoneName = formatZoneLabel(zone);
-      const roundText = $("roundId").selectedOptions[0]?.textContent || "-";
+      const roundText = selectedRound()?.title || "-";
       const qualify = $("qualify").value + ($("qualify").value === "อื่นๆ" ? " — " + $("qualifyOther").value : "");
-      const docs = [
-        ["บัตรประชาชน", $("idCard").files.length],
-        ["ทะเบียนบ้าน", $("houseReg").files.length],
-        ["รูปหน้าตรง", $("photo").files.length],
-        ["อาหาร/สินค้า", $("food").files.length],
-      ];
       $("reviewBox").innerHTML = `
         <div class="review-head">สรุปใบสมัครร้านค้า</div>
         <div class="review-grid">
@@ -1454,13 +1939,77 @@ try {
           <div class="review-item full"><span class="k">คุณสมบัติ</span><span class="v">${esc(qualify)}</span></div>
           <div class="review-item"><span class="k">โซนร้านค้า</span><span class="v">${esc(zoneName)}</span></div>
           <div class="review-item"><span class="k">ประเภทร้าน</span><span class="v">${esc($("category").value)}</span></div>
-          <div class="review-item full"><span class="k">จุดเด่น / รายละเอียด</span><span class="v">${esc($("detail").value || "—")}</span></div>
           ${extraReviewHtml()}
           <div class="review-item full">
-            <span class="k">เอกสารที่แนบ</span>
-            <div class="review-docs">${docs.map(([label, n]) => `<span>${esc(label)} · ${n} ไฟล์</span>`).join("")}</div>
+            <span class="k">เอกสาร / ข้อมูลที่แนบ</span>
+            <div class="review-docs" id="reviewDocsList"></div>
           </div>
         </div>`;
+
+      const list = $("reviewDocsList");
+      if (!list) return;
+      const eyeSvg = `<span class="eye" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></span>`;
+      const pdfSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6"/><path d="M9 17h4"/></svg>`;
+
+      currentDocSchema().forEach(f => {
+        const input = $(fieldDomId(f.key));
+        const row = document.createElement("div");
+        row.className = "review-doc-row";
+
+        if ((f.kind || "file") === "text") {
+          const val = (input?.value || "").trim();
+          row.innerHTML = `
+            <div class="rd-title">${esc(f.label || f.key)}
+              <span class="rd-status ${val ? "" : "miss"}">${val ? "กรอกแล้ว" : "ยังไม่กรอก"}</span>
+            </div>
+            ${val ? `<p class="rd-text">${esc(val)}</p>` : `<p class="rd-empty">ไม่มีข้อความ</p>`}`;
+          list.appendChild(row);
+          return;
+        }
+
+        const files = [...(input?.files || [])];
+        const title = document.createElement("div");
+        title.className = "rd-title";
+        title.innerHTML = `${esc(f.label || f.key)}
+          <span class="rd-status ${files.length ? "" : "miss"}">${files.length ? files.length + " ไฟล์" : "ยังไม่มีไฟล์"}</span>`;
+        row.appendChild(title);
+
+        if (!files.length) {
+          const empty = document.createElement("p");
+          empty.className = "rd-empty";
+          empty.textContent = "ยังไม่ได้แนบไฟล์";
+          row.appendChild(empty);
+          list.appendChild(row);
+          return;
+        }
+
+        const filesWrap = document.createElement("div");
+        filesWrap.className = "rd-files";
+        files.forEach(file => {
+          const ext = normalizeExt(fileExt(file.name));
+          const isPdf = ext === "pdf" || file.type === "application/pdf";
+          const url = URL.createObjectURL(file);
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "preview-card";
+          btn.title = "คลิกเพื่อดูไฟล์ · " + file.name;
+          if (isPdf) {
+            btn.innerHTML = `<div class="pc-media pdf">${pdfSvg}${eyeSvg}</div><div class="pc-name">${esc(file.name)}</div>`;
+            btn.onclick = () => openPreviewLightbox(file.name, "pdf", url);
+          } else {
+            btn.innerHTML = `<div class="pc-media"><img alt="" />${eyeSvg}</div><div class="pc-name">${esc(file.name)}</div>`;
+            const img = btn.querySelector("img");
+            if (img) {
+              img.src = url;
+              img.alt = file.name;
+            }
+            btn.onclick = () => openPreviewLightbox(file.name, "image", url);
+          }
+          filesWrap.appendChild(btn);
+        });
+        row.appendChild(filesWrap);
+        list.appendChild(row);
+      });
     }
 
     async function checkPhoneDuplicate() {
@@ -1470,7 +2019,7 @@ try {
       if (!hint) return "";
       if (!phone || phone.length < 8) {
         hint.className = "phone-hint";
-        hint.textContent = "เบอร์นี้ใช้สมัครได้ 1 ครั้งต่อรอบเท่านั้น";
+        hint.textContent = "";
         return "";
       }
       if (!roundId) {
@@ -1505,27 +2054,68 @@ try {
       }
     }
 
-    function bindPreview(input, box) {
+    function bindPreview(input, box, fieldMeta) {
+      const empty = $("empty_" + input.id);
+      const allowed = fieldAllowedExt(fieldMeta || {});
+      const eyeSvg = `<span class="eye" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></span>`;
+      const pdfSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6"/><path d="M9 17h4"/></svg>`;
+
       input.addEventListener("change", () => {
-        box.innerHTML = "";
-        [...(input.files || [])].forEach(f => {
-          if (f.type.startsWith("image/")) {
-            const img = document.createElement("img");
-            img.src = URL.createObjectURL(f);
-            img.alt = f.name;
-            box.appendChild(img);
-          } else {
-            const chip = document.createElement("div");
-            chip.className = "filechip";
-            chip.textContent = f.name.split(".").pop()?.toUpperCase() || "FILE";
-            box.appendChild(chip);
+        const files = [...(input.files || [])];
+        const ok = [];
+        const bad = [];
+        files.forEach(f => {
+          if (isFileAllowed(f, allowed)) ok.push(f);
+          else bad.push(f);
+        });
+
+        if (bad.length) {
+          openFileTypeModal(fieldMeta?.label || "", allowed, bad.map(f => f.name));
+          try {
+            const dt = new DataTransfer();
+            ok.forEach(f => dt.items.add(f));
+            input.files = dt.files;
+          } catch (_) {
+            input.value = "";
+            ok.length = 0;
           }
+        }
+
+        box.innerHTML = "";
+        const finalFiles = [...(input.files || [])];
+        if (empty) empty.style.display = finalFiles.length ? "none" : "";
+
+        finalFiles.forEach(f => {
+          const ext = normalizeExt(fileExt(f.name));
+          const isPdf = ext === "pdf" || f.type === "application/pdf";
+          const url = URL.createObjectURL(f);
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "preview-card";
+          btn.title = "คลิกเพื่อดูไฟล์ · " + f.name;
+
+          if (isPdf) {
+            btn.innerHTML = `<div class="pc-media pdf">${pdfSvg}${eyeSvg}</div><div class="pc-name">${esc(f.name)}</div>`;
+            btn.onclick = () => openPreviewLightbox(f.name, "pdf", url);
+          } else {
+            btn.innerHTML = `<div class="pc-media"><img alt="" /><span class="eye" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></span></div><div class="pc-name">${esc(f.name)}</div>`;
+            const img = btn.querySelector("img");
+            if (img) {
+              img.src = url;
+              img.alt = f.name;
+            }
+            btn.onclick = () => openPreviewLightbox(f.name, "image", url);
+          }
+          box.appendChild(btn);
         });
       });
     }
 
     $("qualify").onchange = () => {
       $("qualifyOtherWrap").classList.toggle("hidden", $("qualify").value !== "อื่นๆ");
+      if ((state.meta?.apply_program || state.meta?.event?.apply_program) === "scisquare") {
+        renderDocFields();
+      }
     };
 
     let phoneCheckTimer;
@@ -1533,7 +2123,7 @@ try {
       const hint = $("phoneHint");
       if (hint) {
         hint.className = "phone-hint";
-        hint.textContent = "เบอร์นี้ใช้สมัครได้ 1 ครั้งต่อรอบเท่านั้น";
+        hint.textContent = "";
       }
       clearTimeout(phoneCheckTimer);
       phoneCheckTimer = setTimeout(() => { checkPhoneDuplicate(); }, 450);
@@ -1645,8 +2235,19 @@ try {
     $("exitModal").onclick = (e) => {
       if (e.target.id === "exitModal") closeExitModal();
     };
+    $("btnFileTypeOk")?.addEventListener("click", () => closeFileTypeModal());
+    $("fileTypeModal")?.addEventListener("click", (e) => {
+      if (e.target.id === "fileTypeModal") closeFileTypeModal();
+    });
+    $("btnCloseLightbox")?.addEventListener("click", () => closePreviewLightbox());
+    $("previewLightbox")?.addEventListener("click", (e) => {
+      if (e.target.id === "previewLightbox") closePreviewLightbox();
+    });
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && $("exitModal")?.classList.contains("show")) closeExitModal();
+      if (e.key !== "Escape") return;
+      if ($("previewLightbox")?.classList.contains("show")) closePreviewLightbox();
+      else if ($("fileTypeModal")?.classList.contains("show")) closeFileTypeModal();
+      else if ($("exitModal")?.classList.contains("show")) closeExitModal();
     });
     $("btnGotoStatus").onclick = () => setMode("status");
     $("btnHomeGate").onclick = () => setMode("gate");
@@ -1713,10 +2314,7 @@ try {
       }
     };
 
-    bindPreview($("idCard"), $("prevId"));
-    bindPreview($("houseReg"), $("prevHouse"));
-    bindPreview($("photo"), $("prevPhoto"));
-    bindPreview($("food"), $("prevFood"));
+    // File preview bindings are attached in renderDocFields() after meta load.
 
     loadMeta().catch(err => {
       state.accepting = false;

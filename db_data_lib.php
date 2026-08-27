@@ -43,7 +43,7 @@ function sci_db_active_event(): array {
   }
   $pdo = sci_db();
   $st = $pdo->query(
-    "SELECT id, code, title, year_be FROM events WHERE is_active = 1 ORDER BY year_be DESC, id DESC LIMIT 1"
+    "SELECT id, code, title, year_be, apply_program FROM events WHERE is_active = 1 ORDER BY year_be DESC, id DESC LIMIT 1"
   );
   $row = $st->fetch();
   if (!$row) {
@@ -54,6 +54,7 @@ function sci_db_active_event(): array {
     'code' => (string)$row['code'],
     'title' => (string)$row['title'],
     'year_be' => (int)$row['year_be'],
+    'apply_program' => sci_normalize_apply_program($row['apply_program'] ?? 'sciweek'),
   ];
   return $GLOBALS['SCI_DB_EVENT_CACHE'];
 }
@@ -62,7 +63,7 @@ function sci_db_active_event(): array {
  * Resolve event by public code (for multi-event apply links).
  * Does not require is_active and does not overwrite the active-event cache.
  *
- * @return array{id:int,code:string,title:string,year_be:int}
+ * @return array{id:int,code:string,title:string,year_be:int,apply_program:string}
  */
 function sci_db_event_by_code(string $code): array {
   $code = trim($code);
@@ -70,7 +71,7 @@ function sci_db_event_by_code(string $code): array {
     throw new InvalidArgumentException('รหัสกิจกรรมไม่ถูกต้อง');
   }
   $st = sci_db()->prepare(
-    'SELECT id, code, title, year_be FROM events WHERE code = ? LIMIT 1'
+    'SELECT id, code, title, year_be, apply_program FROM events WHERE code = ? LIMIT 1'
   );
   $st->execute([$code]);
   $row = $st->fetch();
@@ -84,6 +85,7 @@ function sci_db_event_by_code(string $code): array {
     'code' => (string)$row['code'],
     'title' => (string)$row['title'],
     'year_be' => (int)$row['year_be'],
+    'apply_program' => sci_normalize_apply_program($row['apply_program'] ?? 'sciweek'),
   ];
 }
 
@@ -527,28 +529,72 @@ function sci_db_format_applied_at(string $appliedAt): array {
   return sci_format_thai_time($dt, $sortKey);
 }
 
-function sci_db_build_applicant_payload(array $row, array $files): array {
+function sci_db_build_applicant_payload(array $row, array $files, string $applyProgram = 'sciweek'): array {
+  $applyProgram = sci_normalize_apply_program($applyProgram);
   $idCard = '';
   $houseReg = '';
   $photo = '';
+  $companyCert = '';
   $food = [];
+  $propFiles = [
+    'prop_menu' => null,
+    'prop_mgmt' => null,
+    'prop_ops' => null,
+    'prop_extra' => null,
+  ];
   foreach ($files as $f) {
     $url = sci_db_file_public_url($f);
     $type = (string)($f['file_type'] ?? '');
+    $mime = (string)($f['mime_type'] ?? '');
+    $bundle = $url !== '' ? sci_db_drive_bundle($url) : null;
+    if ($bundle && $mime !== '') {
+      $bundle['mime'] = $mime;
+    }
     if ($type === 'id_card') $idCard = $url;
     elseif ($type === 'house_reg') $houseReg = $url;
     elseif ($type === 'photo') $photo = $url;
+    elseif ($type === 'company_cert') $companyCert = $url;
     elseif ($type === 'food' && $url !== '') {
-      $food[] = sci_db_drive_bundle($url);
+      $food[] = $bundle ?: sci_db_drive_bundle($url);
+    } elseif (array_key_exists($type, $propFiles) && $url !== '') {
+      $propFiles[$type] = $bundle ?: ['url' => $url, 'full' => $url, 'thumb' => null, 'mime' => $mime];
     }
   }
 
+  $experienceText = trim((string)($row['experience_text'] ?? ''));
   $qualify = (string)($row['qualifications'] ?? '');
+  $isJuristic = ($qualify === 'นิติบุคคล' || str_starts_with(trim($qualify), 'นิติบุคคล'));
   $autoMissing = [];
-  if ($idCard === '') $autoMissing[] = 'สำเนาบัตรประชาชน';
-  if ($houseReg === '') $autoMissing[] = 'สำเนาทะเบียนบ้าน';
-  if ($photo === '') $autoMissing[] = 'รูปถ่ายหน้าตรง';
-  if (count($food) === 0) $autoMissing[] = 'ภาพถ่ายอาหาร/สินค้า';
+  if ($applyProgram === 'scisquare') {
+    if ($isJuristic) {
+      if ($companyCert === '') $autoMissing[] = 'สำเนาหนังสือรับรองนิติบุคคล';
+      if ($idCard === '') $autoMissing[] = 'สำเนาบัตรประชาชนผู้มีอำนาจลงนาม';
+    } else {
+      if ($photo === '') $autoMissing[] = 'รูปถ่ายหน้าตรง';
+      if ($idCard === '') $autoMissing[] = 'สำเนาบัตรประชาชน';
+      if ($houseReg === '') $autoMissing[] = 'สำเนาทะเบียนบ้าน';
+    }
+    $propLabels = [
+      'prop_menu' => '1) รายละเอียดอาหารและสินค้า',
+      'prop_mgmt' => '2) แผนการบริหารจัดการร้านค้า',
+    ];
+    if ($isJuristic) {
+      $propLabels['prop_ops'] = '3) การซ่อมบำรุง / มาตรฐาน / การตกแต่งร้านค้า';
+    }
+    foreach ($propLabels as $k => $label) {
+      if (empty($propFiles[$k])) $autoMissing[] = $label;
+    }
+    if ($experienceText === '') {
+      $autoMissing[] = $isJuristic
+        ? '4) ประสบการณ์ ความรู้ ความชำนาญ'
+        : '3) ประสบการณ์ ความรู้ ความชำนาญ';
+    }
+  } else {
+    if ($idCard === '') $autoMissing[] = 'สำเนาบัตรประชาชน';
+    if ($houseReg === '') $autoMissing[] = 'สำเนาทะเบียนบ้าน';
+    if ($photo === '') $autoMissing[] = 'รูปถ่ายหน้าตรง';
+    if (count($food) === 0) $autoMissing[] = 'ภาพถ่ายอาหาร/สินค้า';
+  }
   if ($qualify === '') $autoMissing[] = 'คุณสมบัติตามประกาศ';
 
   $timeInfo = sci_db_format_applied_at((string)($row['applied_at'] ?? ''));
@@ -576,6 +622,7 @@ function sci_db_build_applicant_payload(array $row, array $files): array {
     'category_raw' => (string)($row['category'] ?? ''),
     'detail' => (string)($row['detail'] ?? ''),
     'qualifications' => $qualify,
+    'apply_program' => $applyProgram,
     'need_high_power' => isset($row['need_high_power']) && $row['need_high_power'] !== null && $row['need_high_power'] !== ''
       ? (int)$row['need_high_power']
       : null,
@@ -585,12 +632,21 @@ function sci_db_build_applicant_payload(array $row, array $files): array {
     'id_card' => sci_drive_view($idCard),
     'house_reg' => sci_drive_view($houseReg),
     'photo' => sci_drive_view($photo),
+    'company_cert' => sci_drive_view($companyCert),
     'food_photos' => $food,
+    'prop_docs' => $propFiles,
+    'experience_text' => $experienceText,
     'docs' => [
       'id_card' => $idCard !== '',
       'house_reg' => $houseReg !== '',
       'photo' => $photo !== '',
+      'company_cert' => $companyCert !== '',
       'food' => count($food) > 0,
+      'prop_menu' => !empty($propFiles['prop_menu']),
+      'prop_mgmt' => !empty($propFiles['prop_mgmt']),
+      'prop_ops' => !empty($propFiles['prop_ops']),
+      'prop_exp' => $experienceText !== '',
+      'prop_extra' => !empty($propFiles['prop_extra']),
       'qualify' => $qualify !== '',
     ],
     'auto_missing' => $autoMissing,
@@ -640,8 +696,9 @@ function sci_db_parse_applicants(): array {
   $filesBy = sci_db_files_by_applicant($ids);
 
   $apps = [];
+  $applyProgram = sci_normalize_apply_program($event['apply_program'] ?? 'sciweek');
   foreach ($rows as $row) {
-    $apps[] = sci_db_build_applicant_payload($row, $filesBy[(int)$row['id']] ?? []);
+    $apps[] = sci_db_build_applicant_payload($row, $filesBy[(int)$row['id']] ?? [], $applyProgram);
   }
 
   // Re-attach alumni fuzzy match for display (DB may already have flags)
@@ -827,6 +884,90 @@ function sci_db_save_payment_status(int $row, string $paymentStatus, string $pay
     'status_store' => 'mysql:applicants',
     'message' => $status === 'paid' ? 'บันทึกว่าชำระเงินแล้ว' : 'บันทึกว่ายังไม่ชำระเงิน',
   ];
+}
+
+function sci_db_unlink_stored_file(string $storedPath): void {
+  $storedPath = trim($storedPath);
+  if ($storedPath === '') return;
+  if (!function_exists('sci_s3_is_stored_path')) {
+    $s3 = __DIR__ . DIRECTORY_SEPARATOR . 's3_lib.php';
+    if (is_file($s3)) require_once $s3;
+  }
+  if (function_exists('sci_s3_is_stored_path') && sci_s3_is_stored_path($storedPath)) {
+    if (function_exists('sci_s3_delete_object')) {
+      sci_s3_delete_object($storedPath);
+    }
+    return;
+  }
+  $storedPath = str_replace(['\\', "\0"], ['/', ''], $storedPath);
+  $storedPath = ltrim($storedPath, '/');
+  if ($storedPath === '' || str_contains($storedPath, '..')) return;
+  if (!str_starts_with($storedPath, 'uploads/')) return;
+  $full = __DIR__ . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $storedPath);
+  if (is_file($full)) @unlink($full);
+}
+
+/**
+ * Admin-only: remove one applicant in the current event/round, plus attached files.
+ * @return array{ok:bool,deleted_id:int,name:string,phone:string}
+ */
+function sci_db_delete_applicant(int $id, ?int $actorId = null): array {
+  if ($id <= 0) {
+    throw new InvalidArgumentException('ไม่พบใบสมัคร');
+  }
+  $event = sci_db_active_event();
+  $roundId = sci_db_round_id();
+  $pdo = sci_db();
+  $st = $pdo->prepare(
+    'SELECT a.id, a.name, a.phone, a.round_id, er.round_no
+     FROM applicants a
+     JOIN event_rounds er ON er.id = a.round_id
+     WHERE a.id = ? AND a.event_id = ? AND a.round_id = ?
+     LIMIT 1'
+  );
+  $st->execute([$id, (int)$event['id'], $roundId]);
+  $row = $st->fetch();
+  if (!$row) {
+    throw new RuntimeException('ไม่พบใบสมัครในรอบนี้');
+  }
+
+  $files = $pdo->prepare('SELECT stored_path FROM applicant_files WHERE applicant_id = ?');
+  $files->execute([$id]);
+  foreach ($files->fetchAll() as $f) {
+    try {
+      sci_db_unlink_stored_file((string)($f['stored_path'] ?? ''));
+    } catch (Throwable $e) {
+      // best-effort: still delete the DB row
+    }
+  }
+
+  $del = $pdo->prepare('DELETE FROM applicants WHERE id = ? AND event_id = ? AND round_id = ?');
+  $del->execute([$id, (int)$event['id'], $roundId]);
+  if ($del->rowCount() < 1) {
+    throw new RuntimeException('ลบใบสมัครไม่สำเร็จ');
+  }
+
+  if (function_exists('sci_rbac_audit')) {
+    sci_rbac_audit($actorId, 'applicant_delete', 'applicants', $id, [
+      'name' => (string)$row['name'],
+      'phone' => (string)$row['phone'],
+      'round_id' => (int)$row['round_id'],
+      'round_no' => (int)$row['round_no'],
+    ]);
+  }
+  sci_db_clear_runtime_caches();
+  return [
+    'ok' => true,
+    'deleted_id' => $id,
+    'name' => (string)$row['name'],
+    'phone' => (string)$row['phone'],
+  ];
+}
+
+function sci_db_find_applicant_id_by_row(int $rowNo): int {
+  if ($rowNo < 2) return 0;
+  $cur = sci_db_find_applicant_by_row($rowNo);
+  return $cur ? (int)$cur['id'] : 0;
 }
 
 /**

@@ -63,7 +63,7 @@ function sci_admin_slug_code(string $title, int $yearBe): string {
 function sci_admin_list_events(): array {
   sci_admin_require_mysql();
   $st = sci_db()->query(
-    'SELECT e.id, e.code, e.title, e.year_be, e.description, e.is_active, e.created_at, e.updated_at,
+    'SELECT e.id, e.code, e.title, e.year_be, e.description, e.apply_program, e.is_active, e.created_at, e.updated_at,
             (SELECT COUNT(*) FROM zones z WHERE z.event_id = e.id) AS zone_count,
             (SELECT COUNT(*) FROM slots s WHERE s.event_id = e.id) AS slot_count,
             (SELECT COUNT(*) FROM event_rounds r WHERE r.event_id = e.id) AS round_count,
@@ -71,18 +71,22 @@ function sci_admin_list_events(): array {
      FROM events e
      ORDER BY e.year_be DESC, e.id DESC'
   );
-  return $st->fetchAll();
+  return array_map(static function ($row) {
+    $row['apply_program'] = sci_normalize_apply_program($row['apply_program'] ?? 'sciweek');
+    return $row;
+  }, $st->fetchAll());
 }
 
 function sci_admin_get_event(int $eventId): array {
   sci_admin_require_mysql();
   $st = sci_db()->prepare(
-    'SELECT id, code, title, year_be, description, is_active, created_at, updated_at
+    'SELECT id, code, title, year_be, description, apply_program, is_active, created_at, updated_at
      FROM events WHERE id = ? LIMIT 1'
   );
   $st->execute([$eventId]);
   $event = $st->fetch();
   if (!$event) throw new RuntimeException('ไม่พบกิจกรรม');
+  $event['apply_program'] = sci_normalize_apply_program($event['apply_program'] ?? 'sciweek');
 
   $rounds = sci_db()->prepare(
     'SELECT id, event_id, round_no, title, apply_open_at, apply_close_at, is_open,
@@ -136,6 +140,7 @@ function sci_admin_save_event(array $body, ?int $actorId = null): array {
   $yearBe = (int)($body['year_be'] ?? 0);
   $description = trim((string)($body['description'] ?? ''));
   $code = trim((string)($body['code'] ?? ''));
+  $applyProgram = sci_normalize_apply_program($body['apply_program'] ?? 'sciweek');
 
   if ($title === '') throw new InvalidArgumentException('ต้องระบุชื่อกิจกรรม');
   if ($yearBe < 2500 || $yearBe > 2700) throw new InvalidArgumentException('ปี พ.ศ. ไม่ถูกต้อง');
@@ -150,10 +155,10 @@ function sci_admin_save_event(array $body, ?int $actorId = null): array {
     $chk->execute([$id]);
     if (!$chk->fetch()) throw new RuntimeException('ไม่พบกิจกรรม');
     $upd = $pdo->prepare(
-      'UPDATE events SET code = ?, title = ?, year_be = ?, description = ?, updated_at = NOW() WHERE id = ?'
+      'UPDATE events SET code = ?, title = ?, year_be = ?, description = ?, apply_program = ?, updated_at = NOW() WHERE id = ?'
     );
     try {
-      $upd->execute([$code, $title, $yearBe, $description !== '' ? $description : null, $id]);
+      $upd->execute([$code, $title, $yearBe, $description !== '' ? $description : null, $applyProgram, $id]);
     } catch (PDOException $e) {
       if (str_contains($e->getMessage(), 'Duplicate')) {
         throw new RuntimeException('รหัสกิจกรรมซ้ำกับที่มีอยู่แล้ว');
@@ -161,14 +166,18 @@ function sci_admin_save_event(array $body, ?int $actorId = null): array {
       throw $e;
     }
     if (function_exists('sci_rbac_audit')) {
-      sci_rbac_audit($actorId, 'event_update', 'events', $id, ['code' => $code, 'title' => $title]);
+      sci_rbac_audit($actorId, 'event_update', 'events', $id, [
+        'code' => $code,
+        'title' => $title,
+        'apply_program' => $applyProgram,
+      ]);
     }
   } else {
     $ins = $pdo->prepare(
-      'INSERT INTO events (code, title, year_be, description, is_active) VALUES (?, ?, ?, ?, 0)'
+      'INSERT INTO events (code, title, year_be, description, apply_program, is_active) VALUES (?, ?, ?, ?, ?, 0)'
     );
     try {
-      $ins->execute([$code, $title, $yearBe, $description !== '' ? $description : null]);
+      $ins->execute([$code, $title, $yearBe, $description !== '' ? $description : null, $applyProgram]);
     } catch (PDOException $e) {
       if (str_contains($e->getMessage(), 'Duplicate')) {
         throw new RuntimeException('รหัสกิจกรรมซ้ำกับที่มีอยู่แล้ว');
@@ -181,7 +190,11 @@ function sci_admin_save_event(array $body, ?int $actorId = null): array {
       'INSERT INTO event_rounds (event_id, round_no, title, is_open) VALUES (?, 1, ?, 0)'
     )->execute([$id, 'รอบที่ 1']);
     if (function_exists('sci_rbac_audit')) {
-      sci_rbac_audit($actorId, 'event_create', 'events', $id, ['code' => $code, 'title' => $title]);
+      sci_rbac_audit($actorId, 'event_create', 'events', $id, [
+        'code' => $code,
+        'title' => $title,
+        'apply_program' => $applyProgram,
+      ]);
     }
   }
 
@@ -264,16 +277,24 @@ function sci_admin_copy_event_structure(array $body, ?int $actorId = null): arra
         $newCode = sci_admin_slug_code($newTitle, $newYear);
       }
       $ins = $pdo->prepare(
-        'INSERT INTO events (code, title, year_be, description, is_active) VALUES (?, ?, ?, ?, 0)'
+        'INSERT INTO events (code, title, year_be, description, apply_program, is_active) VALUES (?, ?, ?, ?, ?, 0)'
       );
       $ins->execute([
         substr(preg_replace('/[^a-zA-Z0-9\-_]/', '', $newCode) ?: ('event-' . $newYear), 0, 64),
         $newTitle,
         $newYear,
         $src['event']['description'] ?? null,
+        sci_normalize_apply_program($src['event']['apply_program'] ?? 'sciweek'),
       ]);
       $targetId = (int)$pdo->lastInsertId();
     } else {
+      // Keep existing target metadata; still copy apply_program from source when target is empty structure.
+      $pdo->prepare(
+        'UPDATE events SET apply_program = ?, updated_at = NOW() WHERE id = ?'
+      )->execute([
+        sci_normalize_apply_program($src['event']['apply_program'] ?? 'sciweek'),
+        $targetId,
+      ]);
       $cnt = $pdo->prepare('SELECT COUNT(*) FROM slots WHERE event_id = ?');
       $cnt->execute([$targetId]);
       if ((int)$cnt->fetchColumn() > 0) {

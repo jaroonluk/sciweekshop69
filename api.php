@@ -498,6 +498,28 @@ try {
     ]);
   }
 
+  if ($action === 'delete_applicant') {
+    sci_rbac_require_roles(['admin'], true);
+    $body = sci_read_json_body();
+    sci_apply_round_from_request($body);
+    $id = (int)($body['id'] ?? 0);
+    if ($id <= 0) {
+      $id = sci_db_find_applicant_id_by_row((int)($body['row'] ?? 0));
+    }
+    if ($id <= 0) {
+      sci_json_out(['ok' => false, 'error' => 'ไม่พบใบสมัคร'], 400);
+    }
+    $result = sci_db_delete_applicant($id, sci_api_actor_id());
+    $data = sci_parse_applicants();
+    sci_save_payload_json($data);
+    sci_json_out([
+      'ok' => true,
+      'message' => 'ลบใบสมัครของ ' . ($result['name'] ?? '') . ' แล้ว',
+      'result' => $result,
+      'data' => $data,
+    ]);
+  }
+
   sci_json_out(['ok' => false, 'error' => 'unknown action'], 400);
 } catch (Throwable $e) {
   sci_json_out(['ok' => false, 'error' => $e->getMessage()], 500);

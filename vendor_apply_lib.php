@@ -14,9 +14,14 @@ function sci_vendor_upload_root(): string {
   return $dir;
 }
 
-/** Hard rule: vendor uploads are images only (JPG/PNG/WEBP). */
+/** SCiWEEK uploads: images only (JPG/PNG/WEBP). */
 function sci_vendor_image_mimes(): array {
   return ['image/jpeg', 'image/png', 'image/webp'];
+}
+
+/** SCiSQUARE document uploads: JPEG/PNG/PDF (no WEBP). */
+function sci_vendor_doc_mimes(): array {
+  return ['image/jpeg', 'image/png', 'application/pdf'];
 }
 
 function sci_vendor_settings(): array {
@@ -32,13 +37,256 @@ function sci_vendor_settings(): array {
       if ($k === 'upload_max_mb') {
         $out['upload_max_mb'] = max(1, (int)$v);
       }
-      // upload_allowed_mimes from DB is ignored — images only
     }
   } catch (Throwable $e) {
     // defaults
   }
   $out['upload_allowed_mimes'] = sci_vendor_image_mimes();
   return $out;
+}
+
+/** Whether qualifications map to juristic-person docs (SCiSQUARE). */
+function sci_vendor_is_juristic_qualify(string $qualify): bool {
+  $q = trim($qualify);
+  return $q === 'นิติบุคคล' || str_starts_with($q, 'นิติบุคคล');
+}
+
+/**
+ * Document upload schema for the apply form.
+ * @return list<array{key:string,name:string,label:string,hint:string,required:bool,multiple:bool,max_files:int,accept:string,accept_mimes:list<string>,accept_ext:list<string>}>
+ */
+function sci_vendor_doc_schema(string $applyProgram, string $qualify = ''): array {
+  $applyProgram = sci_normalize_apply_program($applyProgram);
+  $imgAccept = '.jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp';
+  $imgMimes = sci_vendor_image_mimes();
+  $imgExt = ['jpg', 'jpeg', 'png', 'webp'];
+  $photoAccept = '.jpg,.jpeg,.png,image/jpeg,image/png';
+  $photoMimes = ['image/jpeg', 'image/png'];
+  $photoExt = ['jpg', 'jpeg', 'png'];
+  $docAccept = '.jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf';
+  $docMimes = sci_vendor_doc_mimes();
+  $docExt = ['jpg', 'jpeg', 'png', 'pdf'];
+
+  if ($applyProgram === 'sciweek') {
+    return [
+      [
+        'key' => 'id_card',
+        'name' => 'id_card',
+        'label' => 'สำเนาบัตรประชาชน',
+        'hint' => 'ถ่ายให้ชัด อ่านตัวอักษรได้',
+        'required' => true,
+        'multiple' => false,
+        'max_files' => 1,
+        'accept' => $imgAccept,
+        'accept_mimes' => $imgMimes,
+        'accept_ext' => $imgExt,
+      ],
+      [
+        'key' => 'house_reg',
+        'name' => 'house_reg',
+        'label' => 'สำเนาทะเบียนบ้าน',
+        'hint' => 'หน้าที่มีชื่อผู้สมัคร',
+        'required' => true,
+        'multiple' => false,
+        'max_files' => 1,
+        'accept' => $imgAccept,
+        'accept_mimes' => $imgMimes,
+        'accept_ext' => $imgExt,
+      ],
+      [
+        'key' => 'photo',
+        'name' => 'photo',
+        'label' => 'รูปถ่ายหน้าตรง',
+        'hint' => 'เห็นใบหน้าชัดเจน',
+        'required' => true,
+        'multiple' => false,
+        'max_files' => 1,
+        'accept' => $imgAccept,
+        'accept_mimes' => $imgMimes,
+        'accept_ext' => $imgExt,
+      ],
+      [
+        'key' => 'food',
+        'name' => 'food[]',
+        'label' => 'ภาพอาหาร / สินค้า',
+        'hint' => 'เลือกได้หลายรูป (สูงสุด 5 รูป)',
+        'required' => true,
+        'multiple' => true,
+        'max_files' => 5,
+        'accept' => $imgAccept,
+        'accept_mimes' => $imgMimes,
+        'accept_ext' => $imgExt,
+      ],
+    ];
+  }
+
+  $isJuristic = sci_vendor_is_juristic_qualify($qualify);
+  $propHint = 'รองรับไฟล์ JPEG, PNG หรือ PDF';
+  $menuIntro = 'ส่งไฟล์รายละเอียดอาหารหรือสินค้า ประกอบด้วย';
+  $menuItems = [
+    'ราคาและภาพแสดงปริมาณอาหารเหมือนกับที่จะจำหน่ายจริงทุกประการ',
+    'ระบุขนาดจานหรือภาชนะบรรจุอาหาร เพื่อให้เห็นภาพปริมาณอาหารได้ชัดเจน',
+    'ระบุแหล่งที่มาของวัตถุดิบที่ใช้ทำอาหาร',
+  ];
+  $mgmtIntro = 'ไฟล์รายละเอียดแผนการบริหารจัดการร้านค้า ประกอบด้วย';
+  $mgmtItems = [
+    'การรักษาความสะอาด',
+    'การจัดการขยะ',
+    'การซ่อมบำรุง',
+    'การรักษามาตรฐานหรือการกำกับควบคุมคุณภาพสินค้า',
+    'การตกแต่งร้านค้า',
+    'ช่วงเวลาการเปิด–ปิดร้าน',
+  ];
+  $props = [
+    [
+      'key' => 'prop_menu',
+      'label' => '1) รายละเอียดอาหารและสินค้า',
+      'hint' => $menuIntro . ' ' . implode(' · ', $menuItems) . ' · ' . $propHint,
+      'hint_intro' => $menuIntro,
+      'hint_items' => $menuItems,
+      'hint_accept' => $propHint,
+      'required' => true,
+    ],
+    [
+      'key' => 'prop_mgmt',
+      'label' => '2) แผนการบริหารจัดการร้านค้า',
+      'hint' => $mgmtIntro . ' ' . implode(' · ', $mgmtItems) . ' · ' . $propHint,
+      'hint_intro' => $mgmtIntro,
+      'hint_items' => $mgmtItems,
+      'hint_accept' => $propHint,
+      'required' => true,
+    ],
+  ];
+  if ($isJuristic) {
+    $props[] = [
+      'key' => 'prop_ops',
+      'label' => '3) การซ่อมบำรุง / มาตรฐาน / การตกแต่งร้านค้า',
+      'hint' => 'การซ่อมบำรุง การรักษามาตรฐานหรือกำกับคุณภาพสินค้า การตกแต่งร้านค้า ช่วงเวลาเปิด–ปิดร้าน · ' . $propHint,
+      'required' => true,
+    ];
+  }
+  $expNo = $isJuristic ? '4)' : '3)';
+  $extraNo = $isJuristic ? '5)' : '4)';
+  $props[] = [
+    'key' => 'prop_exp',
+    'label' => $expNo . ' ประสบการณ์ ความรู้ และความชำนาญ',
+    'hint' => 'กรอกประสบการณ์ ความรู้ และความชำนาญในการประกอบกิจการ',
+    'required' => true,
+    'kind' => 'text',
+  ];
+  $props[] = [
+    'key' => 'prop_extra',
+    'label' => $extraNo . ' หลักฐานเพิ่มเติม (ถ้ามี)',
+    'hint' => 'เช่น สำเนาประกาศนียบัตร หนังสือรับรองการอบรม หรือรางวัลที่เกี่ยวข้อง ภาพกิจการที่ผ่านมา · ' . $propHint,
+    'required' => false,
+  ];
+
+  $schema = [];
+  if ($isJuristic) {
+    $schema[] = [
+      'key' => 'company_cert',
+      'name' => 'company_cert',
+      'label' => 'สำเนาหนังสือรับรองการจดทะเบียนนิติบุคคล',
+      'hint' => 'นับตั้งแต่วันที่ออกหนังสือไม่เกิน 6 เดือน · รับรองสำเนาถูกต้อง และประทับตราสำคัญ (ถ้ามี) · ' . $propHint,
+      'required' => true,
+      'kind' => 'file',
+      'multiple' => false,
+      'max_files' => 1,
+      'accept' => $docAccept,
+      'accept_mimes' => $docMimes,
+      'accept_ext' => $docExt,
+    ];
+    $schema[] = [
+      'key' => 'id_card',
+      'name' => 'id_card',
+      'label' => 'สำเนาบัตรประจำตัวประชาชนของผู้มีอำนาจลงนาม',
+      'hint' => 'พร้อมรับรองสำเนาถูกต้อง · ณ วันยื่นสมัครบัตรต้องยังไม่หมดอายุ · ' . $propHint,
+      'required' => true,
+      'kind' => 'file',
+      'multiple' => false,
+      'max_files' => 1,
+      'accept' => $docAccept,
+      'accept_mimes' => $docMimes,
+      'accept_ext' => $docExt,
+    ];
+  } else {
+    $schema[] = [
+      'key' => 'photo',
+      'name' => 'photo',
+      'label' => 'ไฟล์รูปถ่ายดิจิทัลหน้าตรง',
+      'hint' => 'ไม่สวมหมวก ไม่สวมแว่นตาดำ · ถ่ายไว้ไม่เกิน 6 เดือน · รองรับเฉพาะไฟล์ JPEG, PNG',
+      'required' => true,
+      'kind' => 'file',
+      'multiple' => false,
+      'max_files' => 1,
+      'accept' => $photoAccept,
+      'accept_mimes' => $photoMimes,
+      'accept_ext' => $photoExt,
+    ];
+    $schema[] = [
+      'key' => 'id_card',
+      'name' => 'id_card',
+      'label' => 'สำเนาบัตรประจำตัวประชาชน',
+      'hint' => 'พร้อมรับรองสำเนาถูกต้อง · ณ วันยื่นสมัครบัตรต้องยังไม่หมดอายุ · ' . $propHint,
+      'required' => true,
+      'kind' => 'file',
+      'multiple' => false,
+      'max_files' => 1,
+      'accept' => $docAccept,
+      'accept_mimes' => $docMimes,
+      'accept_ext' => $docExt,
+    ];
+    $schema[] = [
+      'key' => 'house_reg',
+      'name' => 'house_reg',
+      'label' => 'สำเนาทะเบียนบ้าน',
+      'hint' => 'พร้อมรับรองสำเนาถูกต้อง · ' . $propHint,
+      'required' => true,
+      'kind' => 'file',
+      'multiple' => false,
+      'max_files' => 1,
+      'accept' => $docAccept,
+      'accept_mimes' => $docMimes,
+      'accept_ext' => $docExt,
+    ];
+  }
+
+  foreach ($props as $p) {
+    $kind = (string)($p['kind'] ?? 'file');
+    $hintExtra = [];
+    if (!empty($p['hint_intro'])) $hintExtra['hint_intro'] = (string)$p['hint_intro'];
+    if (!empty($p['hint_items']) && is_array($p['hint_items'])) {
+      $hintExtra['hint_items'] = array_values(array_map('strval', $p['hint_items']));
+    }
+    if (!empty($p['hint_accept'])) $hintExtra['hint_accept'] = (string)$p['hint_accept'];
+    if ($kind === 'text') {
+      $schema[] = array_merge([
+        'key' => $p['key'],
+        'name' => $p['key'] === 'prop_exp' ? 'experience_text' : $p['key'],
+        'label' => $p['label'],
+        'hint' => $p['hint'],
+        'required' => (bool)$p['required'],
+        'kind' => 'text',
+        'rows' => 5,
+        'placeholder' => 'เช่น เคยประกอบกิจการมากี่ปี มีความรู้ด้านใดบ้าง',
+      ], $hintExtra);
+      continue;
+    }
+    $schema[] = array_merge([
+      'key' => $p['key'],
+      'name' => $p['key'],
+      'label' => $p['label'],
+      'hint' => $p['hint'],
+      'required' => (bool)$p['required'],
+      'kind' => 'file',
+      'multiple' => false,
+      'max_files' => 1,
+      'accept' => $docAccept,
+      'accept_mimes' => $docMimes,
+      'accept_ext' => $docExt,
+    ], $hintExtra);
+  }
+  return $schema;
 }
 
 function sci_vendor_ensure_session(): void {
@@ -350,13 +598,33 @@ function sci_vendor_form_meta(bool $withCaptcha = true, ?string $eventCode = nul
   }
 
   $settings = sci_vendor_settings();
-  $qualifyOptions = [
-    'บุคคลธรรมดา / ผู้ประกอบการทั่วไป',
-    'นิติบุคคล',
-    'ศิษย์เก่าคณะวิทยาศาสตร์ มข.',
-    'บุคลากร / นักศึกษา มข.',
-    'อื่นๆ',
-  ];
+  $applyProgram = sci_normalize_apply_program($event['apply_program'] ?? 'sciweek');
+  $programLabel = $applyProgram === 'scisquare' ? 'SCiSQUARE' : 'SCiWEEK';
+  $qualifyOptions = $applyProgram === 'scisquare'
+    ? [
+      'บุคคลธรรมดา / ผู้ประกอบการทั่วไป',
+      'นิติบุคคล',
+    ]
+    : [
+      'บุคคลธรรมดา / ผู้ประกอบการทั่วไป',
+      'นิติบุคคล',
+      'ศิษย์เก่าคณะวิทยาศาสตร์ มข.',
+      'บุคลากร / นักศึกษา มข.',
+      'อื่นๆ',
+    ];
+
+  $defaultQualify = $qualifyOptions[0] ?? '';
+  $docSchema = sci_vendor_doc_schema($applyProgram, $defaultQualify);
+  $allowedExt = $applyProgram === 'scisquare'
+    ? ['jpg', 'jpeg', 'png', 'pdf', 'webp']
+    : ['jpg', 'jpeg', 'png', 'webp'];
+  $allowedMimes = $applyProgram === 'scisquare'
+    ? array_values(array_unique(array_merge(sci_vendor_image_mimes(), sci_vendor_doc_mimes())))
+    : sci_vendor_image_mimes();
+
+  $uploadHint = $applyProgram === 'scisquare'
+    ? 'เอกสารทั่วไปรองรับไฟล์ JPEG / PNG / PDF · รูปหน้าตรงรองรับเฉพาะไฟล์ JPEG / PNG · ไฟล์ละไม่เกิน'
+    : 'รองรับเฉพาะไฟล์ภาพ JPG / PNG / WEBP · ไฟล์ละไม่เกิน';
 
   return [
     'event' => [
@@ -364,13 +632,16 @@ function sci_vendor_form_meta(bool $withCaptcha = true, ?string $eventCode = nul
       'code' => $event['code'],
       'title' => $event['title'],
       'year_be' => (int)$event['year_be'],
+      'apply_program' => $applyProgram,
     ],
+    'apply_program' => $applyProgram,
+    'apply_program_label' => $programLabel,
     'branding' => [
       'org' => 'คณะวิทยาศาสตร์ มหาวิทยาลัยขอนแก่น',
       'org_short' => 'คณะวิทยาศาสตร์ มข.',
       'product' => 'ระบบรับสมัครร้านค้า',
-      'headline' => 'รับสมัครร้านค้า · คณะวิทยาศาสตร์ มข.',
-      'page_title' => 'รับสมัครร้านค้า · ' . $event['title'],
+      'headline' => 'รับสมัครร้านค้า ' . $programLabel . ' · คณะวิทยาศาสตร์ มข.',
+      'page_title' => 'รับสมัครร้านค้า ' . $programLabel . ' · ' . $event['title'],
       'subline' => trim((string)$event['title']) !== ''
         ? (string)$event['title']
         : ('กิจกรรมประจำปี ' . (int)$event['year_be']),
@@ -393,10 +664,17 @@ function sci_vendor_form_meta(bool $withCaptcha = true, ?string $eventCode = nul
     'slot_count' => count($slots),
     'upload' => [
       'max_mb' => $settings['upload_max_mb'],
-      'allowed_mimes' => $settings['upload_allowed_mimes'],
-      'allowed_ext' => ['jpg', 'jpeg', 'png', 'webp'],
+      'allowed_mimes' => $allowedMimes,
+      'allowed_ext' => $allowedExt,
       'food_max' => 5,
       'storage' => sci_s3_configured() ? 'minio' : 'local',
+      'hint' => $uploadHint,
+      'doc_schema' => $docSchema,
+      'doc_schemas' => [
+        'default' => $docSchema,
+        'individual' => sci_vendor_doc_schema($applyProgram, 'บุคคลธรรมดา / ผู้ประกอบการทั่วไป'),
+        'juristic' => sci_vendor_doc_schema($applyProgram, 'นิติบุคคล'),
+      ],
     ],
     'qualify_options' => $qualifyOptions,
   ];
@@ -417,8 +695,14 @@ function sci_vendor_detect_mime(string $tmpPath): string {
     if ($fi) {
       $mime = (string)finfo_file($fi, $tmpPath);
       finfo_close($fi);
-      return strtolower($mime);
+      if ($mime !== '') return strtolower($mime);
     }
+  }
+  $fh = @fopen($tmpPath, 'rb');
+  $head = $fh ? (string)fread($fh, 5) : '';
+  if ($fh) fclose($fh);
+  if (str_starts_with($head, '%PDF')) {
+    return 'application/pdf';
   }
   $img = @getimagesize($tmpPath);
   if (is_array($img) && !empty($img['mime'])) {
@@ -432,18 +716,21 @@ function sci_vendor_ext_for_mime(string $mime): string {
     'image/jpeg' => 'jpg',
     'image/png' => 'png',
     'image/webp' => 'webp',
+    'application/pdf' => 'pdf',
     default => '',
   };
 }
 
 /**
  * @param array $file one $_FILES entry
+ * @param list<string>|null $allowedMimes null = images only (legacy)
  * @return array{ok:bool,error?:string,path?:string,mime?:string,size?:int,original?:string}
  */
-function sci_vendor_store_upload(array $file, string $fileType, int $eventId, int $roundId, int $applicantId): array {
+function sci_vendor_store_upload(array $file, string $fileType, int $eventId, int $roundId, int $applicantId, ?array $allowedMimes = null): array {
   $settings = sci_vendor_settings();
   $maxBytes = (int)$settings['upload_max_mb'] * 1024 * 1024;
-  $allowed = sci_vendor_image_mimes();
+  $allowed = $allowedMimes ?: sci_vendor_image_mimes();
+  $allowPdf = in_array('application/pdf', $allowed, true);
 
   if (($file['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) {
     return ['ok' => false, 'error' => 'อัปโหลดไฟล์ไม่สำเร็จ (รหัส ' . ($file['error'] ?? '?') . ')'];
@@ -459,10 +746,25 @@ function sci_vendor_store_upload(array $file, string $fileType, int $eventId, in
 
   $mime = sci_vendor_detect_mime($tmp);
   if ($mime === '' || !in_array($mime, $allowed, true)) {
-    return ['ok' => false, 'error' => 'รองรับเฉพาะไฟล์ภาพ JPG, PNG หรือ WEBP'];
+    $labels = [];
+    if (in_array('image/jpeg', $allowed, true)) $labels[] = 'JPEG';
+    if (in_array('image/png', $allowed, true)) $labels[] = 'PNG';
+    if (in_array('image/webp', $allowed, true)) $labels[] = 'WEBP';
+    if (in_array('application/pdf', $allowed, true)) $labels[] = 'PDF';
+    $fmt = $labels ? implode(', ', $labels) : 'ชนิดไฟล์ที่กำหนด';
+    return [
+      'ok' => false,
+      'error' => 'รองรับเฉพาะไฟล์ ' . $fmt,
+    ];
   }
-  // Extra guard: must be a real image
-  if (@getimagesize($tmp) === false) {
+  if ($mime === 'application/pdf') {
+    $fh = @fopen($tmp, 'rb');
+    $head = $fh ? (string)fread($fh, 5) : '';
+    if ($fh) fclose($fh);
+    if (!str_starts_with($head, '%PDF')) {
+      return ['ok' => false, 'error' => 'ไฟล์ PDF ไม่ถูกต้อง'];
+    }
+  } elseif (@getimagesize($tmp) === false) {
     return ['ok' => false, 'error' => 'ไฟล์ไม่ใช่รูปภาพที่ถูกต้อง'];
   }
   $ext = sci_vendor_ext_for_mime($mime);
@@ -595,6 +897,14 @@ function sci_vendor_submit(array $post, array $files): array {
   if ($qualify === '') {
     throw new InvalidArgumentException('กรุณาระบุคุณสมบัติของผู้สมัคร');
   }
+  $applyProgram = sci_normalize_apply_program($meta['apply_program'] ?? 'sciweek');
+  $allowedQualify = $meta['qualify_options'] ?? [];
+  if ($applyProgram === 'scisquare') {
+    $qualifyBase = sci_vendor_is_juristic_qualify($qualify) ? 'นิติบุคคล' : 'บุคคลธรรมดา / ผู้ประกอบการทั่วไป';
+    if (!in_array($qualifyBase, $allowedQualify, true) && !in_array($qualify, $allowedQualify, true)) {
+      throw new InvalidArgumentException('กรุณาเลือกคุณสมบัติให้ถูกต้อง');
+    }
+  }
 
   $needHighPower = null;
   $iceBucketCount = null;
@@ -620,19 +930,56 @@ function sci_vendor_submit(array $post, array $files): array {
     }
   }
 
-  // Required files
-  foreach (['id_card', 'house_reg', 'photo'] as $req) {
-    if (empty($files[$req]) || ($files[$req]['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_NO_FILE) {
-      $labels = ['id_card' => 'สำเนาบัตรประชาชน', 'house_reg' => 'สำเนาทะเบียนบ้าน', 'photo' => 'รูปถ่ายหน้าตรง'];
-      throw new InvalidArgumentException('กรุณาอัปโหลด' . ($labels[$req] ?? $req));
+  $docSchema = sci_vendor_doc_schema($applyProgram, $qualify);
+  $pendingUploads = []; // list of [fileType, fileArray, allowedMimes]
+  $experienceText = null;
+  foreach ($docSchema as $field) {
+    $key = (string)$field['key'];
+    $label = (string)$field['label'];
+    $required = !empty($field['required']);
+    $kind = (string)($field['kind'] ?? 'file');
+
+    if ($kind === 'text') {
+      $postName = (string)($field['name'] ?? $key);
+      $text = trim((string)($post[$postName] ?? $post[$key] ?? ''));
+      if ($text === '' && $required) {
+        throw new InvalidArgumentException('กรุณากรอก' . $label);
+      }
+      if ($key === 'prop_exp' || $postName === 'experience_text') {
+        $experienceText = $text !== '' ? $text : null;
+      }
+      continue;
     }
-  }
-  $foodFiles = sci_vendor_normalize_multi_files($files['food'] ?? null);
-  if (!$foodFiles) {
-    throw new InvalidArgumentException('กรุณาอัปโหลดภาพถ่ายอาหารหรือสินค้าอย่างน้อย 1 รูป');
-  }
-  if (count($foodFiles) > (int)$meta['upload']['food_max']) {
-    throw new InvalidArgumentException('อัปโหลดภาพอาหาร/สินค้าได้สูงสุด ' . $meta['upload']['food_max'] . ' ไฟล์');
+
+    $multiple = !empty($field['multiple']);
+    $maxFiles = max(1, (int)($field['max_files'] ?? 1));
+    $allowedMimes = $field['accept_mimes'] ?? sci_vendor_image_mimes();
+
+    if ($multiple) {
+      $list = sci_vendor_normalize_multi_files($files[$key] ?? null);
+      if (!$list) {
+        if ($required) {
+          throw new InvalidArgumentException('กรุณาอัปโหลด' . $label . 'อย่างน้อย 1 ไฟล์');
+        }
+        continue;
+      }
+      if (count($list) > $maxFiles) {
+        throw new InvalidArgumentException($label . ' อัปโหลดได้สูงสุด ' . $maxFiles . ' ไฟล์');
+      }
+      foreach ($list as $ff) {
+        $pendingUploads[] = [$key, $ff, $allowedMimes];
+      }
+    } else {
+      $one = $files[$key] ?? null;
+      $missing = !is_array($one) || ($one['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_NO_FILE;
+      if ($missing) {
+        if ($required) {
+          throw new InvalidArgumentException('กรุณาอัปโหลด' . $label);
+        }
+        continue;
+      }
+      $pendingUploads[] = [$key, $one, $allowedMimes];
+    }
   }
 
   sci_vendor_captcha_verify($post, 'apply', true);
@@ -662,11 +1009,11 @@ function sci_vendor_submit(array $post, array $files): array {
     $ins = $pdo->prepare(
       'INSERT INTO applicants (
          event_id, round_id, legacy_excel_row, applied_at, name, phone, zone_code, category, detail, qualifications,
-         need_high_power, ice_bucket_count,
+         need_high_power, ice_bucket_count, experience_text,
          doc_status, selection, payment_status, is_returning, alumni_year, alumni_slot, alumni_category
        ) VALUES (
          ?, ?, ?, NOW(), ?, ?, ?, ?, ?, ?,
-         ?, ?,
+         ?, ?, ?,
          ?, ?, ?, ?, ?, ?, ?
        )'
     );
@@ -682,6 +1029,7 @@ function sci_vendor_submit(array $post, array $files): array {
       $qualify,
       $needHighPower,
       $iceBucketCount,
+      $experienceText,
       'รอตรวจสอบ',
       'รอพิจารณา',
       'unpaid',
@@ -692,19 +1040,12 @@ function sci_vendor_submit(array $post, array $files): array {
     ]);
     $applicantId = (int)$pdo->lastInsertId();
 
-    foreach (['id_card', 'house_reg', 'photo'] as $type) {
-      $stored = sci_vendor_store_upload($files[$type], $type, $eventId, $roundId, $applicantId);
+    foreach ($pendingUploads as [$type, $fileArr, $allowedMimes]) {
+      $stored = sci_vendor_store_upload($fileArr, $type, $eventId, $roundId, $applicantId, $allowedMimes);
       if (empty($stored['ok'])) {
         throw new RuntimeException($stored['error'] ?? 'อัปโหลดไม่สำเร็จ');
       }
       sci_vendor_insert_file_row($applicantId, $type, $stored);
-    }
-    foreach ($foodFiles as $ff) {
-      $stored = sci_vendor_store_upload($ff, 'food', $eventId, $roundId, $applicantId);
-      if (empty($stored['ok'])) {
-        throw new RuntimeException($stored['error'] ?? 'อัปโหลดภาพอาหารไม่สำเร็จ');
-      }
-      sci_vendor_insert_file_row($applicantId, 'food', $stored);
     }
 
     $pdo->commit();
@@ -728,6 +1069,7 @@ function sci_vendor_submit(array $post, array $files): array {
       'title' => (string)$round['title'],
     ],
     'event' => $meta['event'],
+    'apply_program' => $applyProgram,
     'is_returning' => (bool)$isReturning,
     'selection' => 'รอพิจารณา',
     'doc_status' => 'รอตรวจสอบ',

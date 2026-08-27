@@ -401,6 +401,23 @@ function sci_s3_get_object(string $key, ?string $bucket = null): array {
   ];
 }
 
+/** @return array{ok:bool,error?:string,status?:int} */
+function sci_s3_delete_object(string $key, ?string $bucket = null): array {
+  if (sci_s3_is_stored_path($key)) {
+    $parsed = sci_s3_parse_stored_path($key);
+    if (!$parsed) return ['ok' => false, 'error' => 'stored_path ไม่ถูกต้อง'];
+    $key = $parsed['key'];
+    $bucket = $parsed['bucket'];
+  } else {
+    $key = sci_s3_object_key($key);
+  }
+  $res = sci_s3_request('DELETE', $key, '', [], $bucket);
+  if (!$res['ok'] && (int)($res['status'] ?? 0) !== 404) {
+    return ['ok' => false, 'error' => $res['error'] ?? 'ลบไฟล์ใน MinIO ไม่สำเร็จ', 'status' => $res['status']];
+  }
+  return ['ok' => true, 'status' => (int)($res['status'] ?? 204)];
+}
+
 function sci_s3_head_bucket(): array {
   $c = sci_s3_config();
   // GET /bucket/ (list with max-keys=0) as connectivity check

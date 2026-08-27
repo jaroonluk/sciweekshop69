@@ -70,6 +70,8 @@ function sci_db_ensure_schema_patches(PDO $pdo): void {
     ['applicants', 'need_high_power', "TINYINT(1) NULL COMMENT '1=ใช้ไฟฟ้ากำลังสูง 0=ไม่ใช้ NULL=ไม่ถาม'"],
     ['applicants', 'ice_bucket_count', "SMALLINT UNSIGNED NULL COMMENT 'จำนวนถังน้ำแข็ง NULL=ไม่ถาม 0=ไม่ใช้'"],
     ['event_rounds', 'apply_flow', "VARCHAR(32) NOT NULL DEFAULT 'zone_then_category' COMMENT 'zone_then_category | category_only'"],
+    ['events', 'apply_program', "VARCHAR(16) NOT NULL DEFAULT 'sciweek' COMMENT 'sciweek | scisquare'"],
+    ['applicants', 'experience_text', "TEXT NULL COMMENT 'SCiSQUARE ข้อ 4 ประสบการณ์ ความรู้ ความชำนาญ'"],
   ];
   foreach ($patches as [$table, $col, $ddl]) {
     $st = $pdo->prepare(
@@ -81,10 +83,28 @@ function sci_db_ensure_schema_patches(PDO $pdo): void {
       $pdo->exec('ALTER TABLE `' . $table . '` ADD COLUMN `' . $col . '` ' . $ddl);
     }
   }
+
+  // Widen file_type for SCiSQUARE proposal docs (company_cert, prop_*).
+  $st = $pdo->prepare(
+    "SELECT CHARACTER_MAXIMUM_LENGTH FROM information_schema.COLUMNS
+     WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'applicant_files' AND COLUMN_NAME = 'file_type'"
+  );
+  $st->execute();
+  $len = (int)$st->fetchColumn();
+  if ($len > 0 && $len < 32) {
+    $pdo->exec(
+      "ALTER TABLE applicant_files MODIFY COLUMN file_type VARCHAR(32) NOT NULL
+       COMMENT 'id_card|house_reg|photo|food|company_cert|prop_menu|prop_mgmt|prop_ops|prop_exp|prop_extra|other'"
+    );
+  }
 }
 
 function sci_normalize_apply_flow($value): string {
   return trim((string)$value) === 'category_only' ? 'category_only' : 'zone_then_category';
+}
+
+function sci_normalize_apply_program($value): string {
+  return trim((string)$value) === 'scisquare' ? 'scisquare' : 'sciweek';
 }
 
 /**
