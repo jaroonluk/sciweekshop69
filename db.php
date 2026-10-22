@@ -10,30 +10,52 @@ if (function_exists('date_default_timezone_set')) {
   date_default_timezone_set('Asia/Bangkok');
 }
 
+function sci_db_env(string $name, $default = null) {
+  $v = getenv($name);
+  if ($v !== false && $v !== '') return $v;
+  if (isset($_ENV[$name]) && (string)$_ENV[$name] !== '') return (string)$_ENV[$name];
+  if (isset($_SERVER[$name]) && (string)$_SERVER[$name] !== '') return (string)$_SERVER[$name];
+  return $default;
+}
+
 function sci_db_config(): array {
   static $cfg = null;
   if ($cfg !== null) return $cfg;
+  $cfg = sci_db_default_config();
   $path = __DIR__ . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db_config.php';
   if (is_file($path)) {
     $loaded = require $path;
     if (is_array($loaded)) {
-      $cfg = array_merge(sci_db_default_config(), $loaded);
-      return $cfg;
+      $cfg = array_merge($cfg, $loaded);
     }
   }
-  $cfg = sci_db_default_config();
+  // Environment overrides (Docker / deployment) — win over file defaults.
+  $host = sci_db_env('SCI_DB_HOST');
+  if ($host !== null) $cfg['host'] = (string)$host;
+  $port = sci_db_env('SCI_DB_PORT');
+  if ($port !== null) $cfg['port'] = (int)$port;
+  $dbname = sci_db_env('SCI_DB_NAME');
+  if ($dbname !== null) $cfg['dbname'] = (string)$dbname;
+  $user = sci_db_env('SCI_DB_USER');
+  if ($user !== null) $cfg['user'] = (string)$user;
+  $pass = sci_db_env('SCI_DB_PASS');
+  if ($pass !== null) $cfg['pass'] = (string)$pass;
+  $charset = sci_db_env('SCI_DB_CHARSET');
+  if ($charset !== null) $cfg['charset'] = (string)$charset;
+  $eoffice = sci_db_env('SCI_EOFFICE_DB');
+  if ($eoffice !== null) $cfg['eoffice_db'] = (string)$eoffice;
   return $cfg;
 }
 
 function sci_db_default_config(): array {
   return [
-    'host' => '127.0.0.1',
-    'port' => 3306,
-    'dbname' => 'sciweekshop',
-    'user' => 'root',
-    'pass' => '',
-    'charset' => 'utf8mb4',
-    'eoffice_db' => 'eoffice',
+    'host' => (string)(sci_db_env('SCI_DB_HOST', '127.0.0.1') ?? '127.0.0.1'),
+    'port' => (int)(sci_db_env('SCI_DB_PORT', 3306) ?? 3306),
+    'dbname' => (string)(sci_db_env('SCI_DB_NAME', 'sciweekshop') ?? 'sciweekshop'),
+    'user' => (string)(sci_db_env('SCI_DB_USER', 'root') ?? 'root'),
+    'pass' => (string)(sci_db_env('SCI_DB_PASS', '') ?? ''),
+    'charset' => (string)(sci_db_env('SCI_DB_CHARSET', 'utf8mb4') ?? 'utf8mb4'),
+    'eoffice_db' => (string)(sci_db_env('SCI_EOFFICE_DB', 'eoffice') ?? 'eoffice'),
   ];
 }
 

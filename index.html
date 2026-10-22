@@ -1386,6 +1386,53 @@
       margin-bottom: .25rem;
       opacity: .85;
     }
+    .review-notes {
+      margin-top: .45rem;
+      display: grid;
+      gap: .4rem;
+    }
+    .review-note-item {
+      padding: .5rem .65rem;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #fffdf8;
+    }
+    .review-note-item.warn {
+      background: #fff6ee;
+      border-color: #ffd0a8;
+    }
+    .review-note-item .rn-label {
+      font-family: "Chakra Petch", sans-serif;
+      font-weight: 700;
+      font-size: .82rem;
+      margin-bottom: .2rem;
+      color: var(--muted);
+    }
+    .review-note-item .rn-body {
+      font-size: .92rem;
+      line-height: 1.45;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .admin-review-note {
+      margin-top: .45rem;
+      padding-top: .4rem;
+      border-top: 1px dashed rgba(91, 61, 143, .28);
+    }
+    .admin-review-note .arn-label {
+      font-family: "Chakra Petch", sans-serif;
+      font-weight: 700;
+      font-size: .8rem;
+      margin-bottom: .2rem;
+      color: #5b3d8f;
+    }
+    .admin-review-note .arn-body {
+      font-size: .88rem;
+      line-height: 1.45;
+      color: #6b4aa8;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
     .doc-box .box-v {
       font-family: "Chakra Petch", sans-serif;
       font-weight: 700;
@@ -4699,6 +4746,14 @@
         ? `<div class="reason">ไม่ครบ เพราะขาด: ${esc((sys.missing || []).join(", ") || "-")}</div>`
         : `<div style="margin-top:.3rem;font-size:.85rem;color:var(--ok);font-weight:600">ระบบตรวจพบไฟล์แนบครบ</div>`;
 
+      const reviewNote = String(a.review_note || adm.review_note || "").trim();
+      const reviewNoteHtml = reviewNote
+        ? `<div class="admin-review-note">
+            <div class="arn-label">คุณสมบัติ / หมายเหตุการพิจารณา</div>
+            <div class="arn-body">${esc(reviewNote)}</div>
+          </div>`
+        : "";
+
       let adminBody;
       if (!adm.reviewed) {
         adminBody = `<div class="box-v">ยังไม่ตรวจ</div><div style="margin-top:.3rem;font-size:.85rem;color:var(--muted)">รอ Admin บันทึกผลตรวจ</div>`;
@@ -4710,7 +4765,6 @@
         adminBody = `
           <div class="box-v">${esc(adm.status || "ไม่ผ่าน")}</div>
           <div class="reason">ไม่ผ่าน เพราะ: ${esc(why)}</div>
-          ${adm.review_note && adm.status !== "ขาดคุณสมบัติ" ? `<div style="margin-top:.2rem;font-size:.85rem;color:var(--muted)">หมายเหตุ: ${esc(adm.review_note)}</div>` : ""}
           ${adm.reviewed_at ? `<div style="margin-top:.25rem;font-size:.8rem;color:var(--muted)">ตรวจเมื่อ ${esc(adm.reviewed_at)}</div>` : ""}`;
       }
 
@@ -4734,7 +4788,21 @@
             <div class="doc-box admin ${!adm.reviewed ? "" : (adm.pass ? "ok" : "fail")}">
               <div class="box-h">Admin ตรวจ (ใช้ตัดสิน)</div>
               ${adminBody}
+              ${reviewNoteHtml}
             </div>
+          </div>
+        </div>`;
+    }
+
+    /** Show missing reason only when filled (review note lives in Admin box). */
+    function renderReviewAdminNotes(a) {
+      const missing = String(a.missing_detail || "").trim();
+      if (!missing) return "";
+      return `
+        <div class="review-notes">
+          <div class="review-note-item warn">
+            <div class="rn-label">เอกสารที่ขาด / เหตุผลที่ไม่ครบ</div>
+            <div class="rn-body">${esc(missing)}</div>
           </div>
         </div>`;
     }
@@ -5508,6 +5576,7 @@
               ${isAdmin() ? `<button class="btn ghost danger" type="button" data-del-applicant="${esc(a.key)}" title="ลบใบสมัครออกจากระบบ (ข้อมูลทดสอบ)">ลบใบสมัคร</button>` : ""}
             </div>
             ${renderDocOverview(a)}
+            ${renderReviewAdminNotes(a)}
             <div class="sel-actions">
               <button type="button" class="btn ok btn-quick ${a.selection==="ได้รับการคัดเลือก"?"active-sel":""}" data-quick-sel="${esc(a.key)}" data-sel="ได้รับการคัดเลือก">
                 <span class="btn-ico">${ico("star")}</span> คัดเลือกเข้าล็อก

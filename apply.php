@@ -670,6 +670,120 @@ try {
     }
     .gate-card.apply { border-left: 5px solid var(--teal); }
     .gate-card.status { border-left: 5px solid #c45c12; }
+    .gate-card.notice {
+      cursor: default;
+      border-left: 5px solid #c45c12;
+      background: linear-gradient(135deg, #fffaf3 0%, #fff4e8 100%);
+    }
+    .gate-card.notice:hover {
+      transform: none;
+      border-color: var(--line);
+      border-left-color: #c45c12;
+      box-shadow: 0 8px 20px rgba(80,50,0,.06);
+    }
+    .gate-card.notice .gate-ico { background: linear-gradient(145deg, #e07a2f, #c45c12); }
+    .gate-card.notice .tag { background: #fff1e4; color: #c45c12; }
+    .gate-card.notice.announced {
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+      grid-column: 1 / -1;
+      border: 1px solid rgba(13, 138, 127, .22);
+      border-left: 5px solid var(--teal);
+      background:
+        radial-gradient(520px 180px at 100% 0%, rgba(255, 216, 77, .28), transparent 55%),
+        radial-gradient(420px 160px at 0% 100%, rgba(13, 138, 127, .12), transparent 50%),
+        linear-gradient(135deg, #fffdf8 0%, #eef9f6 55%, #fff8e8 100%);
+      box-shadow: 0 14px 32px rgba(13, 138, 127, .12);
+      min-height: auto;
+      padding: 1.25rem 1.3rem 1.35rem;
+      animation: announceIn .55s ease both;
+    }
+    .gate-card.notice.announced::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 5px;
+      background: linear-gradient(180deg, #ffd84d, #0d8a7f 55%, #187a48);
+    }
+    .gate-card.notice.announced:hover {
+      transform: translateY(-2px);
+      border-color: rgba(13, 138, 127, .35);
+      border-left-color: var(--teal);
+      box-shadow: 0 18px 36px rgba(13, 138, 127, .16);
+    }
+    .gate-card.notice.announced .gate-ico {
+      background: linear-gradient(145deg, #2fad6a, #0d8a7f);
+      box-shadow: 0 10px 20px rgba(13, 138, 127, .28);
+    }
+    .gate-card.notice.announced .tag {
+      background: #e5f6ec;
+      color: var(--ok);
+    }
+    .gate-card.notice.announced .announce-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem .65rem;
+      margin: .15rem 0 .35rem;
+      font-size: .82rem;
+      color: var(--muted);
+    }
+    .gate-card.notice.announced .announce-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: .28rem;
+      padding: .2rem .55rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .75);
+      border: 1px solid rgba(13, 138, 127, .14);
+    }
+    .gate-card.notice.announced p {
+      color: #3d3428;
+      max-width: 52rem;
+    }
+    .gate-card.notice.announced .announce-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .65rem;
+      margin-top: .35rem;
+    }
+    .gate-card.notice.announced .announce-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .72rem 1.15rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #0d8a7f, #187a48);
+      color: #fff;
+      text-decoration: none;
+      font-family: "Chakra Petch", sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      box-shadow: 0 10px 22px rgba(13, 138, 127, .28);
+      transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+    }
+    .gate-card.notice.announced .announce-link:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      box-shadow: 0 14px 26px rgba(13, 138, 127, .34);
+    }
+    .gate-card.notice.announced .announce-link svg {
+      width: 1.1rem;
+      height: 1.1rem;
+      flex: 0 0 auto;
+    }
+    .gate-card.notice.announced .announce-note {
+      font-size: .86rem;
+      color: var(--muted);
+    }
+    @keyframes announceIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 640px) {
+      .gate-card.notice.announced .announce-link { width: 100%; justify-content: center; }
+    }
     .gate-card .gate-top {
       display: flex;
       align-items: flex-start;
@@ -1064,6 +1178,18 @@ try {
         <p>ค้นหาด้วยเบอร์โทรที่ใช้สมัคร เพื่อดูผลตรวจเอกสารและการคัดเลือก</p>
         <span class="go">ตรวจสถานะ →</span>
       </button>
+      <div class="gate-card notice hidden" id="gateReviewNotice" role="status">
+        <div class="gate-top">
+          <span class="gate-ico" aria-hidden="true" id="gateReviewIco"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <div>
+            <span class="tag" id="gateReviewTag">ประกาศผล</span>
+            <h3 style="margin-top:.35rem" id="gateReviewTitle">อยู่ระหว่างพิจารณาผล</h3>
+          </div>
+        </div>
+        <div id="gateReviewBody">
+          <p>ประกาศผลร้านค้า SCiSQUARE · คณะวิทยาศาสตร์ มข. อยู่ระหว่างคณะกรรมการพิจารณาผลการคัดเลือก · จะแจ้งผลผ่านช่องทางของคณะเมื่อพิจารณาแล้วเสร็จ</p>
+        </div>
+      </div>
     </div>
 
     <div class="status-panel hidden" id="statusPanel">
@@ -1330,6 +1456,9 @@ try {
         $("successBox")?.classList.remove("hidden");
       }
       if (mode === "status") {
+        if (isScisquareResultAnnounced()) {
+          return setMode("gate");
+        }
         $("statusResult").innerHTML = "";
         refreshStatusCaptcha();
         $("statusPhone")?.focus();
@@ -1340,14 +1469,75 @@ try {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
+    function isScisquareResultAnnounced() {
+      const code = String(state.eventCode || state.meta?.event?.code || "").trim();
+      return code === "event-2569-aa7ecc";
+    }
+
+    function paintGateReviewNotice(announced) {
+      const notice = $("gateReviewNotice");
+      const ico = $("gateReviewIco");
+      const tag = $("gateReviewTag");
+      const title = $("gateReviewTitle");
+      const body = $("gateReviewBody");
+      if (!notice || !title || !body) return;
+
+      notice.classList.toggle("announced", !!announced);
+      if (announced) {
+        if (ico) {
+          ico.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="m9 15 2 2 4-4"/></svg>`;
+        }
+        if (tag) tag.textContent = "ประกาศผลแล้ว";
+        title.textContent = "ประกาศรายชื่อผู้ได้รับสิทธิ์แล้ว";
+        body.innerHTML = `
+          <div class="announce-meta">
+            <span>ฉบับที่ 135/2569</span>
+            <span>Science Square</span>
+            <span>14 กันยายน 2569</span>
+          </div>
+          <p>คณะวิทยาศาสตร์ มหาวิทยาลัยขอนแก่น ได้ประกาศรายชื่อผู้ได้รับสิทธิ์ใช้พื้นที่ ผู้ประกอบการประเภทร้านค้าภายใน Science Square เรียบร้อยแล้ว</p>
+          <div class="announce-actions">
+            <a class="announce-link" href="https://kku.world/re0vyn" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg>
+              เปิดดูประกาศฉบับเต็ม
+            </a>
+            <span class="announce-note">ลิงก์ไปยังประกาศทางการของคณะ</span>
+          </div>`;
+      } else {
+        if (ico) {
+          ico.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`;
+        }
+        if (tag) tag.textContent = "ประกาศผล";
+        title.textContent = "อยู่ระหว่างพิจารณาผล";
+        body.innerHTML = `<p>ประกาศผลร้านค้า SCiSQUARE · คณะวิทยาศาสตร์ มข. อยู่ระหว่างคณะกรรมการพิจารณาผลการคัดเลือก · จะแจ้งผลผ่านช่องทางของคณะเมื่อพิจารณาแล้วเสร็จ</p>`;
+      }
+    }
+
     function updateGateCards() {
       const start = $("btnStartApply");
-      if (!start) return;
-      if (state.accepting) {
-        start.classList.remove("hidden");
-        start.disabled = false;
-      } else {
-        start.classList.add("hidden");
+      const statusBtn = $("btnOpenStatus");
+      const notice = $("gateReviewNotice");
+      const program = state.meta?.apply_program || state.meta?.event?.apply_program || "sciweek";
+      const showReviewNotice = program === "scisquare" && !state.accepting;
+      const announced = showReviewNotice && isScisquareResultAnnounced();
+
+      if (start) {
+        if (state.accepting) {
+          start.classList.remove("hidden");
+          start.disabled = false;
+        } else {
+          start.classList.add("hidden");
+        }
+      }
+      // event นี้ปิดตรวจสถานะ — ให้ดูประกาศผลอย่างเดียว
+      if (statusBtn) {
+        statusBtn.classList.toggle("hidden", isScisquareResultAnnounced() || showReviewNotice);
+      }
+      const gotoStatus = $("btnGotoStatus");
+      if (gotoStatus) gotoStatus.classList.toggle("hidden", isScisquareResultAnnounced());
+      if (notice) {
+        notice.classList.toggle("hidden", !showReviewNotice);
+        if (showReviewNotice) paintGateReviewNotice(announced);
       }
     }
 
@@ -2327,7 +2517,10 @@ try {
       if (!state.accepting) return alert("ขณะนี้ยังไม่เปิดรับสมัคร");
       setMode("apply");
     };
-    $("btnOpenStatus").onclick = () => setMode("status");
+    $("btnOpenStatus").onclick = () => {
+      if (isScisquareResultAnnounced()) return setMode("gate");
+      setMode("status");
+    };
     $("btnBackGate").onclick = () => setMode("gate");
     $("btnExitApply").onclick = () => openExitModal();
     $("btnExitCancel").onclick = () => closeExitModal();
@@ -2352,7 +2545,10 @@ try {
       else if ($("fileTypeModal")?.classList.contains("show")) closeFileTypeModal();
       else if ($("exitModal")?.classList.contains("show")) closeExitModal();
     });
-    $("btnGotoStatus").onclick = () => setMode("status");
+    $("btnGotoStatus").onclick = () => {
+      if (isScisquareResultAnnounced()) return setMode("gate");
+      setMode("status");
+    };
     $("btnHomeGate").onclick = () => setMode("gate");
     $("btnRefreshStatusCaptcha").onclick = () => refreshStatusCaptcha();
 

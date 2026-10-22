@@ -1,0 +1,88 @@
+services:
+  db:
+    image: mariadb:11.4
+    container_name: sci_shop_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpass}
+      MYSQL_DATABASE: ${SCI_DB_NAME:-sciweekshop}
+      MYSQL_USER: ${SCI_DB_USER:-sci}
+      MYSQL_PASSWORD: ${SCI_DB_PASS:-sci}
+      TZ: Asia/Bangkok
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --default-time-zone=+07:00
+    ports:
+      - "${SCI_DB_PUBLISH_PORT:-3308}:3306"
+    volumes:
+      - sci_shop_db:/var/lib/mysql
+      - ./sql/001_schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+      - ./sql/002_add_committee_role.sql:/docker-entrypoint-initdb.d/02_committee.sql:ro
+      - ./sql/003_apply_extra_questions.sql:/docker-entrypoint-initdb.d/03_extra_questions.sql:ro
+      - ./sql/004_apply_flow.sql:/docker-entrypoint-initdb.d/04_apply_flow.sql:ro
+      - ./sql/005_apply_program.sql:/docker-entrypoint-initdb.d/05_apply_program.sql:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  # Optional: docker compose --profile minio up -d
+  minio:
+    profiles: ["minio"]
+    image: minio/minio:latest
+    container_name: sci_shop_minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ACCESS_KEY:-sciadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_SECRET_KEY:-scipassword}
+    ports:
+      - "${MINIO_PUBLISH_PORT:-9000}:9000"
+      - "${MINIO_CONSOLE_PORT:-9001}:9001"
+    volumes:
+      - sci_shop_minio:/data
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sci_shop_app
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "${SCI_APP_PORT:-8088}:80"
+    environment:
+      SCI_DB_HOST: db
+      SCI_DB_PORT: 3306
+      SCI_DB_NAME: ${SCI_DB_NAME:-sciweekshop}
+      SCI_DB_USER: ${SCI_DB_USER:-sci}
+      SCI_DB_PASS: ${SCI_DB_PASS:-sci}
+      SCI_EOFFICE_DB: ${SCI_EOFFICE_DB:-eoffice}
+      SCI_PUBLIC_BASE_URL: ${SCI_PUBLIC_BASE_URL:-http://localhost:8088}
+      SCI_AUTO_SCHEMA: ${SCI_AUTO_SCHEMA:-1}
+      SCI_WRITE_DB_CONFIG: "1"
+      SCI_ENABLE_MINIO: ${SCI_ENABLE_MINIO:-0}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+      SCI_ALLOWED_EMAILS: ${SCI_ALLOWED_EMAILS:-}
+      SCI_ALLOWED_DOMAINS: ${SCI_ALLOWED_DOMAINS:-}
+      MINIO_ENDPOINT: ${MINIO_ENDPOINT:-minio}
+      MINIO_PORT: ${MINIO_PORT:-9000}
+      MINIO_USE_SSL: ${MINIO_USE_SSL:-false}
+      MINIO_INSECURE_SKIP_VERIFY: ${MINIO_INSECURE_SKIP_VERIFY:-true}
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY:-sciadmin}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY:-scipassword}
+      MINIO_BUCKET: ${MINIO_BUCKET:-sci-shop}
+      TZ: Asia/Bangkok
+    volumes:
+      - ./:/var/www/html
+      - sci_shop_uploads:/var/www/html/data/uploads
+
+volumes:
+  sci_shop_db:
+  sci_shop_minio:
+  sci_shop_uploads:

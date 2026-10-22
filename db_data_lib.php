@@ -360,8 +360,65 @@ function sci_db_upsert_alumni_from_applicant(array $appRow, array $event): void 
 }
 
 /**
+ * Remove alumni_vendors row synced from a selected applicant for the active event year.
+ */
+function sci_db_delete_alumni_from_applicant(string $name, array $event): void {
+  $name = trim($name);
+  if ($name === '') return;
+
+  $yearBe = (int)($event['year_be'] ?? 0);
+  if ($yearBe < 2500) return;
+
+  $sourceRef = 'event:' . (string)($event['code'] ?? $event['id'] ?? '');
+  $pdo = sci_db();
+  $st = $pdo->prepare(
+    'DELETE FROM alumni_vendors WHERE year_be = ? AND name = ? AND source_ref = ?'
+  );
+  $st->execute([$yearBe, $name, $sourceRef]);
+  $GLOBALS['SCI_ALUMNI_CACHE'] = null;
+}
+
+/**
+ * Drop event-synced alumni rows for the current year that are no longer selected.
+ * @param list<string> $selectedNames
+ * @return int rows deleted
+ */
+function sci_db_prune_event_alumni(array $event, array $selectedNames): int {
+  $yearBe = (int)($event['year_be'] ?? 0);
+  if ($yearBe < 2500) return 0;
+
+  $sourceRef = 'event:' . (string)($event['code'] ?? $event['id'] ?? '');
+  $pdo = sci_db();
+  $names = array_values(array_unique(array_filter(array_map(
+    static fn($n) => trim((string)$n),
+    $selectedNames
+  ), static fn($n) => $n !== '')));
+
+  if (!$names) {
+    $st = $pdo->prepare(
+      'DELETE FROM alumni_vendors WHERE year_be = ? AND source_ref = ?'
+    );
+    $st->execute([$yearBe, $sourceRef]);
+    $deleted = $st->rowCount();
+    if ($deleted > 0) $GLOBALS['SCI_ALUMNI_CACHE'] = null;
+    return $deleted;
+  }
+
+  $placeholders = implode(',', array_fill(0, count($names), '?'));
+  $params = array_merge([$yearBe, $sourceRef], $names);
+  $st = $pdo->prepare(
+    "DELETE FROM alumni_vendors
+     WHERE year_be = ? AND source_ref = ? AND name NOT IN ({$placeholders})"
+  );
+  $st->execute($params);
+  $deleted = $st->rowCount();
+  if ($deleted > 0) $GLOBALS['SCI_ALUMNI_CACHE'] = null;
+  return $deleted;
+}
+
+/**
  * Sync all selected applicants of an event into alumni_vendors.
- * @return array{synced:int,unpaid:int,paid:int}
+ * @return array{synced:int,unpaid:int,paid:int,pruned:int,year_be:int}
  */
 function sci_db_sync_event_alumni(?int $eventId = null): array {
   $pdo = sci_db();
@@ -385,13 +442,22 @@ function sci_db_sync_event_alumni(?int $eventId = null): array {
   $rows = $st->fetchAll();
   $paid = 0;
   $unpaid = 0;
+  $selectedNames = [];
   foreach ($rows as $row) {
     sci_db_upsert_alumni_from_applicant($row, $event);
+    $selectedNames[] = (string)($row['name'] ?? '');
     if (sci_normalize_payment_status((string)($row['payment_status'] ?? 'unpaid')) === 'paid') $paid++;
     else $unpaid++;
   }
+  $pruned = sci_db_prune_event_alumni($event, $selectedNames);
   $GLOBALS['SCI_ALUMNI_CACHE'] = null;
-  return ['synced' => count($rows), 'unpaid' => $unpaid, 'paid' => $paid, 'year_be' => (int)$event['year_be']];
+  return [
+    'synced' => count($rows),
+    'unpaid' => $unpaid,
+    'paid' => $paid,
+    'pruned' => $pruned,
+    'year_be' => (int)$event['year_be'],
+  ];
 }
 
 /**
@@ -765,7 +831,7 @@ function sci_db_ensure_status_and_write(array $updates): array {
   $slotMap = sci_db_slot_id_map();
 
   $find = $pdo->prepare(
-    'SELECT id, doc_status, missing_detail, review_note, selection, reviewed_at, assigned_slot_id
+    'SELECT id, name, doc_status, missing_detail, review_note, selection, reviewed_at, assigned_slot_id
      FROM applicants WHERE event_id = ? AND round_id = ? AND legacy_excel_row = ? LIMIT 1'
   );
   $upd = $pdo->prepare(
@@ -817,14 +883,20 @@ function sci_db_ensure_status_and_write(array $updates): array {
     throw $e;
   }
 
-  // Sync selected shops into alumni for next-year unpaid warnings
+  // Sync selected shops into alumni; remove alumni when deselected
   try {
     foreach ($updates as $u) {
-      if (($u['selection'] ?? '') !== 'ได้รับการคัดเลือก') continue;
-      $full = sci_db_find_applicant_by_row((int)($u['row'] ?? 0));
-      if ($full) {
+      $row = (int)($u['row'] ?? 0);
+      if ($row < 2) continue;
+      $full = sci_db_find_applicant_by_row($row);
+      if (!$full) continue;
+
+      $newSelection = (string)($u['selection'] ?? $full['selection'] ?? 'รอพิจารณา');
+      if ($newSelection === 'ได้รับการคัดเลือก') {
         if (!isset($full['payment_status'])) $full['payment_status'] = 'unpaid';
         sci_db_upsert_alumni_from_applicant($full, $event);
+      } elseif (array_key_exists('selection', $u)) {
+        sci_db_delete_alumni_from_applicant((string)($full['name'] ?? ''), $event);
       }
     }
   } catch (Throwable $e) {
@@ -939,6 +1011,12 @@ function sci_db_delete_applicant(int $id, ?int $actorId = null): array {
     } catch (Throwable $e) {
       // best-effort: still delete the DB row
     }
+  }
+
+  try {
+    sci_db_delete_alumni_from_applicant((string)$row['name'], $event);
+  } catch (Throwable $e) {
+    // non-fatal
   }
 
   $del = $pdo->prepare('DELETE FROM applicants WHERE id = ? AND event_id = ? AND round_id = ?');
